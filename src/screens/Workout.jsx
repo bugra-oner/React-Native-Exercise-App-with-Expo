@@ -6,7 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const baseSets = [2, 2, 2, 2, 2];
 
  //Egzersiz isimleri
-
  const exercises  = ["Push Ups", "Squads" , "Sit ups", "Calf Raises"]
 
 const Workout = () => {
@@ -14,40 +13,50 @@ const Workout = () => {
   const [currentExercise, setCurrentExercise] = useState(0);
   const [currentSet, setCurrentSet] = useState(0);
   const [sets, setSets] = useState([...baseSets]);
-  
 
   useEffect(() => {
-    // Başlangıçta AsyncStorage'den verileri yükle
-    getData('level').then(data => {
-      if (data) setLevel(data);
-    });
-
-    getData('currentExercise').then(data => {
-      if (data) setCurrentExercise(data);
-    });
-
-    getData('currentSet').then(data => {
-      if (data) setCurrentSet(data);
-    });
-
-    getData('sets').then(data => {
-      if (data) setSets(data);
-    });
+    getDataFromAsyncStorage();
   }, []);
 
   useEffect(() => {
-    // Seviye değiştiğinde, set sayılarını artır
-    setSets(sets.map(set => set + level));
-    // AsyncStorage'ye verileri kaydet
+    increaseSetsAndUpdateAsyncStorage();
+  }, [level, currentExercise, currentSet, sets]);
+
+  const getDataFromAsyncStorage = async () => {
+    try {
+      const level = await AsyncStorage.getItem('@level');
+      const currentExercise = await AsyncStorage.getItem('@currentExercise');
+      const currentSet = await AsyncStorage.getItem('@currentSet');
+      const sets = await AsyncStorage.getItem('@sets');
+
+      if (level) setLevel(JSON.parse(level));
+      if (currentExercise) setCurrentExercise(JSON.parse(currentExercise));
+      if (currentSet) setCurrentSet(JSON.parse(currentSet));
+      if (sets) setSets(JSON.parse(sets));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const increaseSetsAndUpdateAsyncStorage = async () => {
+    let newSets = [...sets];
+    if (level > 1) {
+      newSets = sets.map(set => set + level);
+    }
+
     storeData('level', level);
     storeData('currentExercise', currentExercise);
     storeData('currentSet', currentSet);
-    storeData('sets', sets);
-  }, [level, currentExercise, currentSet, sets]);
+    storeData('sets', newSets);
+
+    if(level > 1) {
+        setSets(newSets);
+    }
+};
+
 
   const completeSet = async () => {
-    try{
-    console.log("boner")
+    console.log("test")
     if (currentSet < sets.length - 1) {
       setCurrentSet(currentSet + 1);
     } else {
@@ -56,94 +65,108 @@ const Workout = () => {
         setCurrentSet(0);
       } else {
         // Egzersizler bitti, level artırılıyor
-        await AsyncStorage.setItem('@level', JSON.stringify(level + 1));
         setLevel(level + 1);
         setSets(baseSets.map((set) => set * (level + 1)));
         setCurrentSet(0);
         setCurrentExercise(0);
       }
     }
-} catch(error){
-    console.log("boner")
-}
   };
 
   const reset = async () => {
-    try {
-      await AsyncStorage.setItem('@level', JSON.stringify(1));
-      setLevel(1);
-      setSets(baseSets.map((set) => set));
-      setCurrentSet(0);
-      setCurrentExercise(0);
-    } catch (error) {
-      console.error(error);
-    }
+    setLevel(1);
+    setSets(baseSets.map((set) => set));
+    setCurrentSet(0);
+    setCurrentExercise(0);
   };
-  // Bir değeri sakla
+
   const storeData = async (key, value) => {
     try {
       await AsyncStorage.setItem('@' + key, JSON.stringify(value));
     } catch (error) {
-      // Veriyi saklarken hata oluştu
       console.error(error);
     }
   };
-
-  // Bir değeri al
-  // Bir değeri al
-  const getData = async (key) => {
-    try {
-      const value = await AsyncStorage.getItem('@' + key);
-      if (value !== null) {
-        return JSON.parse(value);
-      }
-    } catch (error) {
-      // Veriyi alırken hata oluştu
-      console.error(error);
-    }
-  };
+  
 
   return (
     <View style={styles.container}>
-      <View style={styles.circle}>
-        <Text style={styles.circleText}>{currentSet + 1}</Text>
+      <Text style={styles.title}>Workout App</Text>
+      <View style={styles.infoContainer}>
+        <Text style={styles.text}>Current Level: {level}</Text>
+        <Text style={styles.text}>Current Exercise: {exercises[currentExercise]}</Text>
+        <Text style={styles.text}>Sets: {sets.join(',')}</Text>
       </View>
-      <Text style={styles.text}>Current Level: {level}</Text>
-      <Text style={styles.text}>Current Exercise: {exercises[currentExercise]}</Text>
-      <Text style={styles.text}>Sets: {sets.join(',')}</Text>
-      <Pressable onPress={completeSet} style={{padding: 10, backgroundColor: 'lightblue'}}>
-            <Text>Complete Set</Text>
+      <View style={styles.circle}>
+        <Text style={styles.circleText}>{sets[currentSet]}</Text>
+      </View>
+      <View style={styles.buttonContainer}>
+          <Pressable onPress={() => {console.log('complete set pressed'); completeSet();}} style={styles.button}>
+                <Text style={styles.buttonText}>Complete Set</Text>
             </Pressable>
-        <Pressable onPress={reset} style={{padding: 10, backgroundColor: 'lightblue', marginTop: 10}}>
-         <Text>Reset</Text>
-        </Pressable>
-        </View>
+            <Pressable onPress={() => {console.log('reset pressed'); reset();}} style={styles.button}>
+                <Text style={styles.buttonText}>Reset</Text>
+            </Pressable>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    circle: {
-      width: 100,
-      height: 100,
-      borderRadius: 50,
-      borderWidth: 2,
-      borderColor: 'grey',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginBottom: 20,
-    },
-    circleText: {
-      fontSize: 24,
-      fontWeight: 'bold',
-    },
-    text: {
-      marginBottom: 10,
-    },
-  });
+  container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+    paddingTop: 50,
+    paddingHorizontal: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  infoContainer: {
+    marginBottom: 20,
+  },
+  text: {
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  circle: {
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: 'grey',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginBottom: 20,
+  },
+  circleText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  button: {
+    backgroundColor: 'lightblue',
+    padding: 10,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    marginHorizontal: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '500',
+  },
+});
 
 export default Workout;
+
