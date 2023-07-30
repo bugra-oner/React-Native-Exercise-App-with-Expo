@@ -10,7 +10,7 @@ export default function StackNavigator() {
     <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} />
-      <Text></Text>
+      <Text>asdfasdf</Text>
     </Stack.Navigator> 
     </NavigationContainer>
   )
