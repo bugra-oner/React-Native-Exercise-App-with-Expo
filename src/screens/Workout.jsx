@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Svg, Circle, Text as SVGText } from 'react-native-svg';
 
 const exercises = [
   { name: 'Push Ups', sets: [4, 4, 4, 5, 6], difficulty: 'easy' },
@@ -15,6 +14,7 @@ export default function WorkoutScreen() {
   const [exerciseIndex, setExerciseIndex] = useState(0);
   const [currentSet, setCurrentSet] = useState(1);
   const [restTime, setRestTime] = useState(0);
+  const [isResting, setIsResting] = useState(false);
 
   useEffect(() => {
     getDataFromAsyncStorage();
@@ -25,16 +25,14 @@ export default function WorkoutScreen() {
   }, [level, exerciseIndex, currentSet]);
 
   useEffect(() => {
-    if (restTime > 0) {
-      const timer = setInterval(() => {
-        setRestTime((prevTime) => prevTime - 1);
+    if (isResting && restTime > 0) {
+      const interval = setInterval(() => {
+        setRestTime(restTime - 1);
       }, 1000);
 
-      return () => clearInterval(timer);
-    } else {
-      handleCompleteSet();
+      return () => clearInterval(interval);
     }
-  }, [restTime]);
+  }, [isResting, restTime]);
 
   const getDataFromAsyncStorage = async () => {
     try {
@@ -61,13 +59,8 @@ export default function WorkoutScreen() {
   };
 
   const handleCompleteSet = () => {
-    if (restTime > 0) {
-      return; // Dinlenme sırasında "Complete Set" işlemini engelle
-    }
-
     if (currentSet < exercises[exerciseIndex].sets.length) {
       setCurrentSet(currentSet + 1);
-      setRestTime(currentSet * 10 + 20); // Dinlenme süresini ayarla (örn. 1.set 30, 2.set 40)
     } else {
       setCurrentSet(1);
       if (exerciseIndex < exercises.length - 1) {
@@ -76,53 +69,9 @@ export default function WorkoutScreen() {
         setExerciseIndex(0);
         setLevel(level + 1);
       }
-      setRestTime(currentSet * 10 + 20); // Dinlenme süresini ayarla (örn. 1.set 30, 2.set 40)
     }
-  };
-
-  const renderCircle = () => {
-    const exercise = exercises[exerciseIndex];
-    const currentSetNumber = exercise.sets[currentSet - 1];
-
-    const progress = (currentSet / exercise.sets.length) * 100;
-    const circleRadius = 60;
-    const circleStrokeWidth = 10;
-    const circleCenter = circleRadius + circleStrokeWidth / 2;
-    const circleCircumference = 2 * Math.PI * circleRadius;
-    const circleProgress = (circleCircumference * progress) / 100;
-
-    return (
-      <Svg width={circleCenter * 2} height={circleCenter * 2}>
-        <Circle
-          cx={circleCenter}
-          cy={circleCenter}
-          r={circleRadius}
-          stroke="#00ff00"
-          strokeWidth={circleStrokeWidth}
-          fill="transparent"
-        />
-        <Circle
-          cx={circleCenter}
-          cy={circleCenter}
-          r={circleRadius}
-          stroke="#3498db"
-          strokeWidth={circleStrokeWidth}
-          fill="transparent"
-          strokeDasharray={[circleProgress, circleCircumference]}
-          transform={`rotate(-90, ${circleCenter}, ${circleCenter})`}
-        />
-        <SVGText
-          x={circleCenter}
-          y={circleCenter}
-          fontSize="24"
-          textAnchor="middle"
-          dominantBaseline="central"
-          fill="black"
-        >
-          {currentSetNumber}
-        </SVGText>
-      </Svg>
-    );
+    setRestTime(currentSet * 10 + 20); // 20 saniye dinlenme süresi, sonraki setlere 10 saniye ekleyerek
+    setIsResting(true);
   };
 
   const handleResetWorkout = () => {
@@ -130,6 +79,7 @@ export default function WorkoutScreen() {
     setExerciseIndex(0);
     setCurrentSet(1);
     setRestTime(0);
+    setIsResting(false);
   };
 
   const exercise = exercises[exerciseIndex];
@@ -137,46 +87,39 @@ export default function WorkoutScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Workout</Text>
+      <Text style={styles.title}>Workout App</Text>
       <Text style={styles.text}>Current Level: {level}</Text>
       <Text style={styles.text}>Current Exercise: {exercise.name}</Text>
-      <View style={styles.setContainer}>
+      <View style={styles.setsContainer}>
         {exercise.sets.map((set, index) => (
           <View
             key={index}
             style={[
-              styles.setBox,
-              {
-                backgroundColor: index === currentSet - 1 ? '#3498db' : '#ccc',
-              },
+              styles.setTextContainer,
+              currentSet === index + 1 && styles.activeSetContainer,
             ]}
           >
-            <Text
-              style={[
-                styles.setText,
-                { color: index === currentSet - 1 ? '#fff' : '#000' },
-              ]}
-            >
+            <Text style={[styles.setText, currentSet === index + 1 && styles.activeSetText]}>
               {set}
             </Text>
           </View>
         ))}
       </View>
       <View style={styles.progressContainer}>
-        {renderCircle()}
-        {restTime > 0 && (
-          <Text style={styles.progressText}>Rest: {restTime} seconds</Text>
-        )}
-        {restTime === 0 && (
-          <TouchableOpacity
-            onPress={handleCompleteSet}
-            style={styles.completeButton}
-          >
-            <Text style={styles.completeButtonText}>Complete Set</Text>
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity
+          style={[
+            styles.circularButton,
+            { borderColor: isResting ? '#f39c12' : '#00ff00' },
+            { borderWidth: isResting ? 4 : 0 },
+          ]}
+        >
+          <Text style={styles.circularButtonText}>{currentSetNumber}</Text>
+        </TouchableOpacity>
+        {isResting && <Text style={styles.restTimeText}>Rest Time: {restTime}</Text>}
       </View>
       <View style={styles.buttonContainer}>
+        {!isResting && <Button title="Complete Set" onPress={handleCompleteSet} />}
+        {isResting && <Button title="Skip Rest" onPress={() => setIsResting(false)} />}
         <Button title="Reset Workout" onPress={handleResetWorkout} />
       </View>
     </View>
@@ -200,45 +143,48 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
   },
-  setContainer: {
+  setsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-  },
-  setBox: {
-    width: 50,
-    height: 50,
     justifyContent: 'center',
-    alignItems: 'center',
+    marginBottom: 20,
+  },
+  setTextContainer: {
     borderWidth: 1,
-    borderColor: '#000',
     borderRadius: 5,
+    paddingHorizontal: 10,
+    marginRight: 10,
+  },
+  activeSetContainer: {
+    backgroundColor: 'blue',
   },
   setText: {
     fontSize: 18,
   },
+  activeSetText: {
+    color: 'white',
+  },
   progressContainer: {
     alignItems: 'center',
-    marginTop: 20,
+    marginBottom: 20,
   },
-  progressText: {
+  circularButton: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+  circularButtonText: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  restTimeText: {
     fontSize: 18,
     marginTop: 10,
-  },
-  completeButton: {
-    marginTop: 10,
-    backgroundColor: '#3498db',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-  },
-  completeButtonText: {
-    color: '#fff',
-    fontSize: 18,
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    marginTop: 20,
+    justifyContent: 'space-between',
   },
 });
