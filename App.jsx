@@ -1,23 +1,24 @@
+// App.js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import { StyleSheet } from 'react-native';
+import HomeScreen from './src/screens/HomeScreen';
+import LevelSelector from './src/screens/LevelSelector';
+import WorkoutScreen from './src/screens/Workout';
+import History from './src/screens/History';
 
-
-import StackNavigator from './src/navigation/StackNavigator';
-
-
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <StackNavigator />
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="LevelSelector" component={LevelSelector} />
+        <Stack.Screen name="Workout" component={WorkoutScreen} />
+        <Stack.Screen name="History" component={History} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  Button:{},
-});
