@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Svg, Circle, Text as SVGText } from 'react-native-svg';
 
@@ -23,6 +23,18 @@ export default function WorkoutScreen() {
   useEffect(() => {
     storeData();
   }, [level, exerciseIndex, currentSet]);
+
+  useEffect(() => {
+    if (restTime > 0) {
+      const timer = setInterval(() => {
+        setRestTime((prevTime) => prevTime - 1);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    } else {
+      handleCompleteSet();
+    }
+  }, [restTime]);
 
   const getDataFromAsyncStorage = async () => {
     try {
@@ -49,8 +61,13 @@ export default function WorkoutScreen() {
   };
 
   const handleCompleteSet = () => {
+    if (restTime > 0) {
+      return; // Dinlenme sırasında "Complete Set" işlemini engelle
+    }
+
     if (currentSet < exercises[exerciseIndex].sets.length) {
       setCurrentSet(currentSet + 1);
+      setRestTime(currentSet * 10 + 20); // Dinlenme süresini ayarla (örn. 1.set 30, 2.set 40)
     } else {
       setCurrentSet(1);
       if (exerciseIndex < exercises.length - 1) {
@@ -59,8 +76,8 @@ export default function WorkoutScreen() {
         setExerciseIndex(0);
         setLevel(level + 1);
       }
+      setRestTime(currentSet * 10 + 20); // Dinlenme süresini ayarla (örn. 1.set 30, 2.set 40)
     }
-    setRestTime(currentSet * 10 + 5); // Süre hesaplaması
   };
 
   const renderCircle = () => {
@@ -120,16 +137,46 @@ export default function WorkoutScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Workout App</Text>
+      <Text style={styles.title}>Workout</Text>
       <Text style={styles.text}>Current Level: {level}</Text>
       <Text style={styles.text}>Current Exercise: {exercise.name}</Text>
-      <Text style={styles.text}>Set: {currentSet} / {exercise.sets.length}</Text>
+      <View style={styles.setContainer}>
+        {exercise.sets.map((set, index) => (
+          <View
+            key={index}
+            style={[
+              styles.setBox,
+              {
+                backgroundColor: index === currentSet - 1 ? '#3498db' : '#ccc',
+              },
+            ]}
+          >
+            <Text
+              style={[
+                styles.setText,
+                { color: index === currentSet - 1 ? '#fff' : '#000' },
+              ]}
+            >
+              {set}
+            </Text>
+          </View>
+        ))}
+      </View>
       <View style={styles.progressContainer}>
         {renderCircle()}
-        <Text style={styles.progressText}>{exercise.sets.length - currentSet} sets left</Text>
+        {restTime > 0 && (
+          <Text style={styles.progressText}>Rest: {restTime} seconds</Text>
+        )}
+        {restTime === 0 && (
+          <TouchableOpacity
+            onPress={handleCompleteSet}
+            style={styles.completeButton}
+          >
+            <Text style={styles.completeButtonText}>Complete Set</Text>
+          </TouchableOpacity>
+        )}
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Complete Set" onPress={handleCompleteSet} />
         <Button title="Reset Workout" onPress={handleResetWorkout} />
       </View>
     </View>
@@ -153,6 +200,23 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
   },
+  setContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  setBox: {
+    width: 50,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#000',
+    borderRadius: 5,
+  },
+  setText: {
+    fontSize: 18,
+  },
   progressContainer: {
     alignItems: 'center',
     marginTop: 20,
@@ -161,10 +225,20 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 10,
   },
+  completeButton: {
+    marginTop: 10,
+    backgroundColor: '#3498db',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  completeButtonText: {
+    color: '#fff',
+    fontSize: 18,
+  },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginTop: 20,
   },
 });
-
