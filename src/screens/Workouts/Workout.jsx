@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Button, Image,  StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ProgressBar } from 'react-native-paper';
+
+
+const images = {
+  push_ups: require('../../assets/push_ups.png'),
+  sit_ups: require('../../assets/sit_ups.png'),
+  calf_raises: require('../../assets/calf_raises.png'),
+  squats: require('../../assets/squats.png'),
+}
 
 const exercises = [
-  { name: 'Push Ups', sets: [4, 4, 4, 5, 6], difficulty: 'easy' },
-  { name: 'Sit Ups', sets: [5, 5, 5, 6, 7], difficulty: 'medium' },
-  { name: 'Calf Raises', sets: [3, 4, 4, 5, 6], difficulty: 'hard' },
-  { name: 'Squats', sets: [3, 3, 3, 4, 5], difficulty: 'medium' },
+  { name: 'Push Ups', sets: [4, 4, 4, 5, 6], rate: 2, image: 'push_ups' },
+  { name: 'Sit Ups', sets: [5, 5, 5, 6, 7], rate: 1, image: 'sit_ups' },
+  { name: 'Calf Raises', sets: [3, 4, 4, 5, 6], rate: 1, image: 'calf_raises' },
+  { name: 'Squats', sets: [3, 3, 3, 4, 5], rate: 1, image: 'squats' },
 ];
+
+const calculateSets = (level, sets) => {
+  const additionalSets = Math.floor(level / 15); // 15 seviyede bir set ekler.
+  return [...sets, ...new Array(additionalSets).fill(0)];
+};
 
 export default function WorkoutScreen() {
   const [level, setLevel] = useState(1);
@@ -15,10 +29,16 @@ export default function WorkoutScreen() {
   const [currentSet, setCurrentSet] = useState(1);
   const [restTime, setRestTime] = useState(0);
   const [isResting, setIsResting] = useState(false);
+  const [exerciseSets, setExerciseSets] = useState(exercises[0].sets);
 
   useEffect(() => {
     getDataFromAsyncStorage();
   }, []);
+
+  useEffect(() => {
+    const newSets = calculateSets(level, exercises[exerciseIndex].sets);
+    setExerciseSets(newSets);
+  }, [level, exerciseIndex]);
 
   useEffect(() => {
     storeData();
@@ -58,8 +78,14 @@ export default function WorkoutScreen() {
     }
   };
 
+  const increaseSetsByLevel = (exercise) => {
+    return exercise.sets.map((set) => set + exercise.rate * (level - 1));
+  };
+
   const handleCompleteSet = () => {
-    if (currentSet < exercises[exerciseIndex].sets.length) {
+    const exercise = exercises[exerciseIndex];
+    const increasedSets = increaseSetsByLevel(exercise);
+    if (currentSet < increasedSets.length) {
       setCurrentSet(currentSet + 1);
     } else {
       setCurrentSet(1);
@@ -70,12 +96,11 @@ export default function WorkoutScreen() {
         setLevel(level + 1);
       }
     }
-    setRestTime(currentSet * 10 + 20); // 20 saniye dinlenme süresi, sonraki setlere 10 saniye ekleyerek
+    setRestTime(currentSet * 10 + 20);
     setIsResting(true);
   };
 
   const handleResetWorkout = () => {
-    setLevel(1);
     setExerciseIndex(0);
     setCurrentSet(1);
     setRestTime(0);
@@ -83,15 +108,15 @@ export default function WorkoutScreen() {
   };
 
   const exercise = exercises[exerciseIndex];
-  const currentSetNumber = exercise.sets[currentSet - 1];
+  const increasedSets = increaseSetsByLevel(exercise);
+  const currentSetNumber = increasedSets[currentSet - 1];
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Workout App</Text>
-      <Text style={styles.text}>Current Level: {level}</Text>
-      <Text style={styles.text}>Current Exercise: {exercise.name}</Text>
+      <Text style={styles.text}>Level: {level}</Text>
+      <Text style={styles.text}>Exercise: {exercise.name}</Text>
       <View style={styles.setsContainer}>
-        {exercise.sets.map((set, index) => (
+        {exerciseSets.map((set, index) => (
           <View
             key={index}
             style={[
@@ -105,18 +130,9 @@ export default function WorkoutScreen() {
           </View>
         ))}
       </View>
-      <View style={styles.progressContainer}>
-        <TouchableOpacity
-          style={[
-            styles.circularButton,
-            { borderColor: isResting ? '#f39c12' : '#00ff00' },
-            { borderWidth: isResting ? 4 : 0 },
-          ]}
-        >
-          <Text style={styles.circularButtonText}>{currentSetNumber}</Text>
-        </TouchableOpacity>
-        {isResting && <Text style={styles.restTimeText}>Rest Time: {restTime}</Text>}
-      </View>
+      <Image source={images[exercise.image]} style={styles.image} />
+      <ProgressBar progress={currentSet / increasedSets.length} color="#00ff00" />
+      {isResting && <Text style={styles.restTimeText}>Rest Time: {restTime}</Text>}
       <View style={styles.buttonContainer}>
         {!isResting && <Button title="Complete Set" onPress={handleCompleteSet} />}
         {isResting && <Button title="Skip Rest" onPress={() => setIsResting(false)} />}
@@ -129,18 +145,13 @@ export default function WorkoutScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#333',
     paddingTop: 50,
     paddingHorizontal: 20,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
   text: {
-    fontSize: 18,
+    fontSize: 20,
+    color: '#fff',
     marginBottom: 10,
   },
   setsContainer: {
@@ -150,37 +161,30 @@ const styles = StyleSheet.create({
   },
   setTextContainer: {
     borderWidth: 1,
+    borderColor: '#fff',
     borderRadius: 5,
     paddingHorizontal: 10,
     marginRight: 10,
   },
   activeSetContainer: {
-    backgroundColor: 'blue',
+    backgroundColor: '#d35400',
   },
   setText: {
     fontSize: 18,
+    color: '#fff',
   },
   activeSetText: {
-    color: 'white',
+    color: '#2c3e50',
   },
-  progressContainer: {
-    alignItems: 'center',
+  image: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'contain',
     marginBottom: 20,
-  },
-  circularButton: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-  },
-  circularButtonText: {
-    fontSize: 30,
-    fontWeight: 'bold',
   },
   restTimeText: {
     fontSize: 18,
+    color: '#fff',
     marginTop: 10,
   },
   buttonContainer: {
@@ -188,3 +192,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
+
+
