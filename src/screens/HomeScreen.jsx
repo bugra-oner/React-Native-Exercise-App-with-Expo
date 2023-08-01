@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
+
 export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
@@ -12,6 +13,13 @@ export default function Home({ navigation }) {
       >
         <Text style={styles.buttonText}>Start Workout</Text>
       </TouchableOpacity>
+      <TouchableOpacity 
+       style={styles.button}
+       onPress={() => navigation.navigate('Statistic')}>
+       <Text style={styles.buttonText}>
+       İstatistik
+       </Text> 
+       </TouchableOpacity>
     </View>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, Alert, StyleSheet } from 'react-native';
+import { View, Text, Button, Alert, StyleSheet, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { navigate } from '../navigation/navigationRef';
 import ExerciseService from '../service/ExerciseService';
@@ -7,20 +7,26 @@ import ExerciseService from '../service/ExerciseService';
 export default function LevelSelector() {
   const [level, setLevel] = useState(1);
   const [exerciseIndex, setExerciseIndex] = useState(0);
-  const [selectedExercise, setSelectedExercise] = useState(null);
 
-  const loadLevel = async () => {
+  const loadFromAsyncStorage = async (key) => {
     try {
-      const savedLevel = await AsyncStorage.getItem('@level');
-      const savedExerciseIndex = await AsyncStorage.getItem('@exerciseIndex');
-      if (savedLevel !== null) {
-        setLevel(Number(savedLevel));
-      }
-      if (savedExerciseIndex !== null) {
-        setExerciseIndex(Number(savedExerciseIndex));
+      const value = await AsyncStorage.getItem(key);
+      if (value !== null) {
+        return Number(value);
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
+    }
+  };
+
+  const loadLevel = async () => {
+    const savedLevel = await loadFromAsyncStorage('@level');
+    const savedExerciseIndex = await loadFromAsyncStorage('@exerciseIndex');
+    if (savedLevel !== undefined) {
+      setLevel(savedLevel);
+    }
+    if (savedExerciseIndex !== undefined) {
+      setExerciseIndex(savedExerciseIndex);
     }
   };
 
@@ -40,7 +46,7 @@ export default function LevelSelector() {
               await AsyncStorage.setItem('@level', String(level + 1));
               setLevel(level + 1);
             } catch (error) {
-              console.error(error);
+              console.log(error);
             }
           } 
         }
@@ -52,25 +58,23 @@ export default function LevelSelector() {
     loadLevel();
   }, []);
 
-  useEffect(() => {
-    const allExercises = ExerciseService.getExercises();
-    const exercise = allExercises[exerciseIndex];
-    setSelectedExercise(exercise);
-  }, [exerciseIndex]);
+  const exercises = ExerciseService.getExercises();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Current Level: {level}</Text>
-      {selectedExercise && (
-        <View style={styles.exerciseContainer}>
-          <Text style={styles.exerciseName}>{selectedExercise.name}</Text>
-          <Text style={styles.exerciseText}>Sets: {selectedExercise.sets}</Text>
-          <Text style={styles.exerciseText}>Reps per set: {ExerciseService.increaseRepsByLevel(selectedExercise, level).join(', ')}</Text>
-        </View>
-      )}
+      <Text style={styles.title}>Antrenman içeriği</Text>
+      <ScrollView style={styles.exercisesList}>
+        {exercises.map((exercise, index) => (
+          <View key={index} style={styles.exerciseItem}>
+            <Text style={styles.exerciseName}>{exercise.name}</Text>
+            <Text style={styles.exerciseText}>Sets: {exercise.sets}</Text>
+            <Text style={styles.exerciseText}>Reps per set: {ExerciseService.increaseRepsByLevel(exercise, level).join(', ')}</Text>
+          </View>
+        ))}
+      </ScrollView>
       <View style={styles.buttonContainer}>
-        <Button title="Continue Where You Left Off" onPress={() => navigate('Workout')} />
-        <Button title="Increase Level" onPress={increaseLevel} />
+        <Button title="Antrenmana başla" onPress={() => navigate('Workout')} />
+        <Button title="Seviye arttır" onPress={increaseLevel} />
       </View>
     </View>
   );
@@ -82,30 +86,46 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    paddingHorizontal: 20,
   },
-  text: {
-    fontSize: 20,
-    marginBottom: 10,
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
   },
-  exerciseContainer: {
-    marginTop: 20,
-    alignItems: 'center',
+  exercisesList: {
+    width: '100%',
+    marginBottom: 20,
+  },
+  exerciseItem: {
+    padding: 15,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    marginBottom: 15,
+    backgroundColor: '#fff',
+    elevation: 4, // Gölgelendirme ekledik
   },
   exerciseName: {
     fontSize: 18,
     fontWeight: 'bold',
+    marginBottom: 10,
   },
   exerciseText: {
     fontSize: 16,
-    marginBottom: 10,
+    marginBottom: 5,
+    color: '#555',
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '100%',
-    marginTop: 30,
+    marginBottom: 30,
   },
 });
+
+
+
 
 
 

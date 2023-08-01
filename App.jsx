@@ -10,6 +10,7 @@ import LevelSelector from './src/screens/LevelSelector';
 import WorkoutScreen from './src/screens/Workouts/Workout';
 import History from './src/screens/History';
 import Workouts from './src/screens/Workouts';
+import StatisticsScreen from './src/screens/Statistics';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,7 @@ export default function App() {
         name="Workout" component={WorkoutScreen} />
         <Stack.Screen name="History" component={History} />
         <Stack.Screen name="Workouts" component={Workouts} />
+        <Stack.Screen name="Statistic" component={StatisticsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

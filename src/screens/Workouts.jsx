@@ -5,15 +5,29 @@ export default function Workouts({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Select Your Workout</Text>
-      {['Workout 1', 'Workout 2', 'Workout 3'].map(workout => (
+      <View style={styles.cardsContainer}>
         <TouchableOpacity 
-          key={workout} 
-          style={styles.button} 
-          onPress={workout === 'Workout 1' ? () => navigation.navigate('LevelSelector') : null}
+          style={styles.card} 
+          onPress={() => navigation.navigate('LevelSelector')}
         >
-          <Text style={styles.buttonText}>{workout}</Text>
+          <Text style={styles.cardTitle}>Workout 1</Text>
+          <Text style={styles.cardDescription}>Description of Workout 1 goes here...</Text>
         </TouchableOpacity>
-      ))}
+        <TouchableOpacity 
+          style={styles.card} 
+          onPress={() => navigation.navigate('LevelSelector')}
+        >
+          <Text style={styles.cardTitle}>Workout 2</Text>
+          <Text style={styles.cardDescription}>Description of Workout 2 goes here...</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.card} 
+          onPress={() => navigation.navigate('LevelSelector')}
+        >
+          <Text style={styles.cardTitle}>Workout 3</Text>
+          <Text style={styles.cardDescription}>Description of Workout 3 goes here...</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -31,14 +45,28 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
-  button: {
-    backgroundColor: '#007AFF',
-    padding: 10,
-    margin: 10,
-    borderRadius: 5,
+  cardsContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
   },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
+  card: {
+    backgroundColor: '#fff',
+    padding: 20,
+    margin: 10,
+    borderRadius: 10,
+    width: '80%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 5,
+  },
+  cardTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  cardDescription: {
+    fontSize: 16,
   },
 });
