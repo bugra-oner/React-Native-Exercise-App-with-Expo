@@ -3,7 +3,6 @@ import { View, Text, Button, Image,  StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ProgressBar } from 'react-native-paper';
 
-
 const images = {
   push_ups: require('../../assets/push_ups.png'),
   sit_ups: require('../../assets/sit_ups.png'),
@@ -11,17 +10,13 @@ const images = {
   squats: require('../../assets/squats.png'),
 }
 
-const exercises = [
-  { name: 'Push Ups', sets: [4, 4, 4, 5, 6], rate: 2, image: 'push_ups' },
-  { name: 'Sit Ups', sets: [5, 5, 5, 6, 7], rate: 1, image: 'sit_ups' },
-  { name: 'Calf Raises', sets: [3, 4, 4, 5, 6], rate: 1, image: 'calf_raises' },
-  { name: 'Squats', sets: [3, 3, 3, 4, 5], rate: 1, image: 'squats' },
+export const exercises = [
+  { name: 'Push Ups', sets: 5, reps: [10, 12, 15, 10, 8], rate: 2, image: 'push_ups' },
+  { name: 'Sit Ups', sets: 5, reps: [15, 20, 25, 20, 15], rate: 1, image: 'sit_ups' },
+  { name: 'Calf Raises', sets: 5, reps: [20, 25, 30, 25, 20], rate: 1, image: 'calf_raises' },
+  { name: 'Squats', sets: 5, reps: [10, 15, 20, 15, 10], rate: 1, image: 'squats' },
 ];
 
-const calculateSets = (level, sets) => {
-  const additionalSets = Math.floor(level / 15); // 15 seviyede bir set ekler.
-  return [...sets, ...new Array(additionalSets).fill(0)];
-};
 
 export default function WorkoutScreen() {
   const [level, setLevel] = useState(1);
@@ -29,15 +24,15 @@ export default function WorkoutScreen() {
   const [currentSet, setCurrentSet] = useState(1);
   const [restTime, setRestTime] = useState(0);
   const [isResting, setIsResting] = useState(false);
-  const [exerciseSets, setExerciseSets] = useState(exercises[0].sets);
+  const [exerciseReps, setExerciseReps] = useState(exercises[0].reps);
 
   useEffect(() => {
     getDataFromAsyncStorage();
   }, []);
 
   useEffect(() => {
-    const newSets = calculateSets(level, exercises[exerciseIndex].sets);
-    setExerciseSets(newSets);
+    const newReps = increaseRepsByLevel(exercises[exerciseIndex], level);
+    setExerciseReps(newReps);
   }, [level, exerciseIndex]);
 
   useEffect(() => {
@@ -78,14 +73,13 @@ export default function WorkoutScreen() {
     }
   };
 
-  const increaseSetsByLevel = (exercise) => {
-    return exercise.sets.map((set) => set + exercise.rate * (level - 1));
+  const increaseRepsByLevel = (exercise, level) => {
+    return exercise.reps.map(rep => rep + exercise.rate * (level - 1));
   };
 
   const handleCompleteSet = () => {
-    const exercise = exercises[exerciseIndex];
-    const increasedSets = increaseSetsByLevel(exercise);
-    if (currentSet < increasedSets.length) {
+    const newReps = increaseRepsByLevel(exercises[exerciseIndex], level);
+    if (currentSet < exercises[exerciseIndex].sets) {
       setCurrentSet(currentSet + 1);
     } else {
       setCurrentSet(1);
@@ -96,6 +90,7 @@ export default function WorkoutScreen() {
         setLevel(level + 1);
       }
     }
+    setExerciseReps(newReps);
     setRestTime(currentSet * 10 + 20);
     setIsResting(true);
   };
@@ -108,15 +103,13 @@ export default function WorkoutScreen() {
   };
 
   const exercise = exercises[exerciseIndex];
-  const increasedSets = increaseSetsByLevel(exercise);
-  const currentSetNumber = increasedSets[currentSet - 1];
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Level: {level}</Text>
       <Text style={styles.text}>Exercise: {exercise.name}</Text>
       <View style={styles.setsContainer}>
-        {exerciseSets.map((set, index) => (
+        {exerciseReps.map((rep, index) => (
           <View
             key={index}
             style={[
@@ -125,13 +118,13 @@ export default function WorkoutScreen() {
             ]}
           >
             <Text style={[styles.setText, currentSet === index + 1 && styles.activeSetText]}>
-              {set}
+              {rep}
             </Text>
           </View>
         ))}
       </View>
       <Image source={images[exercise.image]} style={styles.image} />
-      <ProgressBar progress={currentSet / increasedSets.length} color="#00ff00" />
+      <ProgressBar progress={currentSet / exercise.sets} color="#00ff00" />
       {isResting && <Text style={styles.restTimeText}>Rest Time: {restTime}</Text>}
       <View style={styles.buttonContainer}>
         {!isResting && <Button title="Complete Set" onPress={handleCompleteSet} />}
@@ -192,5 +185,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
+
 
 

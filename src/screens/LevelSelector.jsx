@@ -3,7 +3,9 @@ import { View, Text, Button, Alert, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { navigate } from '../navigation/navigationRef';
+import { exercises, calculateSets, increaseSetsByLevel } from './Workouts/Workout';
 
+// Load data from AsyncStorage
 const loadFromAsyncStorage = async (key) => {
   try {
     const value = await AsyncStorage.getItem(key);
@@ -61,8 +63,15 @@ export default function LevelSelector() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Current Level: {level}</Text>
-      <Button title="Kaldığın Yerden Devam Et" onPress={() => navigate('Workout')} />
-      <Button title="Leveli Artır" onPress={increaseLevel} />
+      {exercises && exercises.map(exercise => (
+        <View key={exercise.name}>
+          <Text style={styles.text}>{exercise.name}</Text>
+          <Text style={styles.text}>Sets: {calculateSets(level, exercise.sets).length}</Text>
+          <Text style={styles.text}>Reps per set: {increaseSetsByLevel(exercise, level).join(', ')}</Text>
+        </View>
+      ))}
+      <Button title="Continue Where You Left Off" onPress={() => navigate('Workout')} />
+      <Button title="Increase Level" onPress={increaseLevel} />
     </View>
   );
 }
@@ -79,4 +88,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
+
+
 
