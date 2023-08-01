@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, Image,  StyleSheet } from 'react-native';
+import { View, Text, Button, Image, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ProgressBar } from 'react-native-paper';
+import ExerciseService from '../../service/ExerciseService';
 
 const images = {
   push_ups: require('../../assets/push_ups.png'),
   sit_ups: require('../../assets/sit_ups.png'),
   calf_raises: require('../../assets/calf_raises.png'),
   squats: require('../../assets/squats.png'),
-}
-
-export const exercises = [
-  { name: 'Push Ups', sets: 5, reps: [10, 12, 15, 10, 8], rate: 2, image: 'push_ups' },
-  { name: 'Sit Ups', sets: 5, reps: [15, 20, 25, 20, 15], rate: 1, image: 'sit_ups' },
-  { name: 'Calf Raises', sets: 5, reps: [20, 25, 30, 25, 20], rate: 1, image: 'calf_raises' },
-  { name: 'Squats', sets: 5, reps: [10, 15, 20, 15, 10], rate: 1, image: 'squats' },
-];
-
+};
 
 export default function WorkoutScreen() {
   const [level, setLevel] = useState(1);
@@ -24,14 +17,15 @@ export default function WorkoutScreen() {
   const [currentSet, setCurrentSet] = useState(1);
   const [restTime, setRestTime] = useState(0);
   const [isResting, setIsResting] = useState(false);
-  const [exerciseReps, setExerciseReps] = useState(exercises[0].reps);
+  const [exercises, setExercises] = useState(ExerciseService.getExercises());
+  const [exerciseReps, setExerciseReps] = useState(ExerciseService.increaseRepsByLevel(exercises[0], level));
 
   useEffect(() => {
     getDataFromAsyncStorage();
   }, []);
 
   useEffect(() => {
-    const newReps = increaseRepsByLevel(exercises[exerciseIndex], level);
+    const newReps = ExerciseService.increaseRepsByLevel(exercises[exerciseIndex], level);
     setExerciseReps(newReps);
   }, [level, exerciseIndex]);
 
@@ -73,12 +67,8 @@ export default function WorkoutScreen() {
     }
   };
 
-  const increaseRepsByLevel = (exercise, level) => {
-    return exercise.reps.map(rep => rep + exercise.rate * (level - 1));
-  };
-
   const handleCompleteSet = () => {
-    const newReps = increaseRepsByLevel(exercises[exerciseIndex], level);
+    const newReps = ExerciseService.increaseRepsByLevel(exercises[exerciseIndex], level);
     if (currentSet < exercises[exerciseIndex].sets) {
       setCurrentSet(currentSet + 1);
     } else {
@@ -185,6 +175,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
+
 
 
 

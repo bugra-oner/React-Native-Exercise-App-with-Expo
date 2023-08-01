@@ -32,3 +32,19 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+{/* <NavigationContainer
+    headerOptions={{
+      headerShown:false,
+    }}
+    ref={navigationRef}
+    >
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="LevelSelector" component={LevelSelector} />
+        <Stack.Screen 
+        name="Workout" component={WorkoutScreen} />
+        <Stack.Screen name="History" component={History} />
+        <Stack.Screen name="Workouts" component={Workouts} />
+      </Stack.Navigator>
+    </NavigationContainer> */}

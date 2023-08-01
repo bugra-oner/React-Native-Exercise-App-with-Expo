@@ -1,34 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, Alert, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import { navigate } from '../navigation/navigationRef';
-import { exercises, calculateSets, increaseSetsByLevel } from './Workouts/Workout';
-
-// Load data from AsyncStorage
-const loadFromAsyncStorage = async (key) => {
-  try {
-    const value = await AsyncStorage.getItem(key);
-    if (value !== null) {
-      return Number(value);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
+import ExerciseService from '../service/ExerciseService';
 
 export default function LevelSelector() {
   const [level, setLevel] = useState(1);
   const [exerciseIndex, setExerciseIndex] = useState(0);
+  const [selectedExercise, setSelectedExercise] = useState(null);
 
   const loadLevel = async () => {
-    const savedLevel = await loadFromAsyncStorage('@level');
-    const savedExerciseIndex = await loadFromAsyncStorage('@exerciseIndex');
-    if (savedLevel !== undefined) {
-      setLevel(savedLevel);
-    }
-    if (savedExerciseIndex !== undefined) {
-      setExerciseIndex(savedExerciseIndex);
+    try {
+      const savedLevel = await AsyncStorage.getItem('@level');
+      const savedExerciseIndex = await AsyncStorage.getItem('@exerciseIndex');
+      if (savedLevel !== null) {
+        setLevel(Number(savedLevel));
+      }
+      if (savedExerciseIndex !== null) {
+        setExerciseIndex(Number(savedExerciseIndex));
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -48,7 +40,7 @@ export default function LevelSelector() {
               await AsyncStorage.setItem('@level', String(level + 1));
               setLevel(level + 1);
             } catch (error) {
-              console.log(error);
+              console.error(error);
             }
           } 
         }
@@ -60,18 +52,26 @@ export default function LevelSelector() {
     loadLevel();
   }, []);
 
+  useEffect(() => {
+    const allExercises = ExerciseService.getExercises();
+    const exercise = allExercises[exerciseIndex];
+    setSelectedExercise(exercise);
+  }, [exerciseIndex]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Current Level: {level}</Text>
-      {exercises && exercises.map(exercise => (
-        <View key={exercise.name}>
-          <Text style={styles.text}>{exercise.name}</Text>
-          <Text style={styles.text}>Sets: {calculateSets(level, exercise.sets).length}</Text>
-          <Text style={styles.text}>Reps per set: {increaseSetsByLevel(exercise, level).join(', ')}</Text>
+      {selectedExercise && (
+        <View style={styles.exerciseContainer}>
+          <Text style={styles.exerciseName}>{selectedExercise.name}</Text>
+          <Text style={styles.exerciseText}>Sets: {selectedExercise.sets}</Text>
+          <Text style={styles.exerciseText}>Reps per set: {ExerciseService.increaseRepsByLevel(selectedExercise, level).join(', ')}</Text>
         </View>
-      ))}
-      <Button title="Continue Where You Left Off" onPress={() => navigate('Workout')} />
-      <Button title="Increase Level" onPress={increaseLevel} />
+      )}
+      <View style={styles.buttonContainer}>
+        <Button title="Continue Where You Left Off" onPress={() => navigate('Workout')} />
+        <Button title="Increase Level" onPress={increaseLevel} />
+      </View>
     </View>
   );
 }
@@ -84,10 +84,31 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   text: {
+    fontSize: 20,
+    marginBottom: 10,
+  },
+  exerciseContainer: {
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  exerciseName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  exerciseText: {
     fontSize: 16,
     marginBottom: 10,
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    marginTop: 30,
+  },
 });
+
+
+
 
 
 
