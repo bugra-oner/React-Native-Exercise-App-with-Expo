@@ -1,15 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-import i18n from '../i18n/i18n';
 
+import {useTranslation} from 'react-i18next';
 
 
 export default function Home({ navigation }) {
+  const { t, i18n } = useTranslation();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{i18n.t("home")}</Text>
-      <Text style={styles.subtitle}>{i18n.t("homeSubtitle")}</Text>
+      <Text style={styles.title}>{t("home")}</Text>
+      <Text style={styles.subtitle}>{t("homeSubtitle")}</Text>
       <TouchableOpacity 
         style={styles.button} 
         onPress={() => navigation.navigate('Workouts')}

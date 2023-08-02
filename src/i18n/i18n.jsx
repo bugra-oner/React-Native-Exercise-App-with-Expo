@@ -1,21 +1,45 @@
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Localization from 'expo-localization';
-import i18n from 'i18n-js';
+import { useEffect, useState } from 'react';
 
-// Dil dosyalarını içe aktar
-const en = require('./locales/en.json');
-const tr = require('./locales/tr.json');
+import en from './locales/en.json';
+import tr from './locales/tr.json';
 
-i18n.translations = {
-  en,
-  tr,
+const useSetLanguage = () => {
+  const [isLanguageLoaded, setLanguageLoaded] = useState(false);
+
+  useEffect(() => {
+    const setLanguage = async () => {
+      let lng = await AsyncStorage.getItem('language');
+      if (!lng) {
+        lng = Localization.locale.split('-')[0];
+      }
+      i18n.changeLanguage(lng);
+      setLanguageLoaded(true);
+    };
+    setLanguage();
+  }, []);
+
+  return isLanguageLoaded;
 };
 
-// Cihazın dil ayarını al
-const locale = Localization.locale.split('-')[0];
-i18n.locale = locale;
-i18n.fallbacks = true;
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: en },
+    tr: { translation: tr },
+  },
+  lng: 'en', 
+  fallbackLng: 'en',
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
+export { useSetLanguage };
 export default i18n;
+
 
 
 
