@@ -7,6 +7,9 @@
     "level3": "Level for Workout 3",
     "totalRepsForEachExercise": "Total Reps for Each Exercise:",
     "greeting": "Hello!",
-    "farewell": "Goodbye!"
+    "farewell": "Goodbye!",
+    "selectLanguage":"Select Language",
+    "turkish": "Turkish",
+    "english": "English"
   }
   

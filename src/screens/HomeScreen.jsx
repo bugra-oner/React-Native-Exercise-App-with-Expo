@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useTranslation } from 'expo-localization';
+
 
 
 export default function Home({ navigation }) {

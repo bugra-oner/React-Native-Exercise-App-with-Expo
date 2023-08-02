@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import ExerciseService from '../service/ExerciseService';
 
 
-import {translate} from '../i18n/Localization';
+
+
 
 
 
@@ -70,7 +71,7 @@ const StatisticsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{translate('Statistic')}</Text>
+      <Text style={styles.title}>{i18n.t('Statistic')}</Text>
       <Text style={styles.statText}>Total Workouts: {totalWorkouts}</Text>
       <Text style={styles.statText}> totalReps </Text>
       <Text style={styles.statText}>Level for Workout 1: {level}</Text>

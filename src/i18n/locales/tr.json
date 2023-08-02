@@ -1,4 +1,5 @@
 {
+    "StartWorkout":"Antremana başla",
     "Statistic": "İstatistikler asdfas",
     "totalWorkouts": "Toplam Antrenmanlar",
     "totalReps": "Toplam Tekrarlar",
@@ -7,6 +8,10 @@
     "level3": "3. Antrenman Seviyesi",
     "totalRepsForEachExercise": "Her Egzersiz İçin Toplam Tekrarlar:",
     "greeting": "Merhaba!",
-    "farewell": "Hoşçakal!"
+    "farewell": "Hoşçakal!",
+    "selectLanguage":"Dil Seç",
+    "turkish": "Türkçe",
+    "english": "İngilizce",
+    "Settings": "Ayarlar"
   }
   

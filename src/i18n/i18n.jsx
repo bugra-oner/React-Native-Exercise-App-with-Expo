@@ -1,21 +1,21 @@
-// Localization.js
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
-import en from '../locales/en.json';
-import tr from '../locales/tr.json';
 
-// Set the supported languages and their translations
+// Dil dosyalarını içe aktar
+const en = require('./locales/en.json');
+const tr = require('./locales/tr.json');
+
 i18n.translations = {
   en,
   tr,
 };
 
-// Set the default language
-i18n.locale = Localization.locale;
-
-// Set the fallback language in case the current locale is not supported
+// Cihazın dil ayarını al
+const locale = Localization.locale.split('-')[0];
+i18n.locale = locale;
 i18n.fallbacks = true;
 
 export default i18n;
+
 
 
