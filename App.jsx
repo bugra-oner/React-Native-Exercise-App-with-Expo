@@ -12,10 +12,16 @@ import History from './src/screens/History';
 import Workouts from './src/screens/Workouts';
 import StatisticsScreen from './src/screens/Statistics';
 
+import Test from './src/screens/Test'
+import SettingsScreen from './src/screens/SettingsScreen';
+
+
+
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
+    
     <NavigationContainer
     headerOptions={{
       headerShown:false,
@@ -30,8 +36,11 @@ export default function App() {
         <Stack.Screen name="History" component={History} />
         <Stack.Screen name="Workouts" component={Workouts} />
         <Stack.Screen name="Statistic" component={StatisticsScreen} />
+        <Stack.Screen name="TestScreen" component={Test} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+    
   );
 }
 

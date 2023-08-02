@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'expo-localization';
 
 
 export default function Home({ navigation }) {
@@ -18,6 +19,20 @@ export default function Home({ navigation }) {
        onPress={() => navigation.navigate('Statistic')}>
        <Text style={styles.buttonText}>
        İstatistik
+       </Text> 
+       </TouchableOpacity>
+       <TouchableOpacity 
+       style={styles.button}
+       onPress={() => navigation.navigate('TestScreen')}>
+       <Text style={styles.buttonText}>
+       Test
+       </Text> 
+       </TouchableOpacity>
+       <TouchableOpacity 
+       style={styles.button}
+       onPress={() => navigation.navigate('Settings')}>
+       <Text style={styles.buttonText}>
+       Ayarlar
        </Text> 
        </TouchableOpacity>
     </View>

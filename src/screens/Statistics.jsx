@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import ExerciseService from '../service/ExerciseService';
 
-export default function StatisticsScreen() {
+
+import {translate} from '../i18n/Localization';
+
+
+
+
+const StatisticsScreen = () => {
   const [level, setLevel] = useState(1);
   const [workout2Level, setWorkout2Level] = useState(1);
   const [workout3Level, setWorkout3Level] = useState(1);
+  const [totalWorkouts, setTotalWorkouts] = useState(0);
+  const [totalReps, setTotalReps] = useState(0);
 
   useEffect(() => {
     loadLevels();
+    calculateStatistics();
   }, []);
 
   const loadLevels = async () => {
@@ -25,45 +34,66 @@ export default function StatisticsScreen() {
     }
   };
 
-  const totalWorkouts = ExerciseService.getTotalWorkouts();
-  const totalReps = ExerciseService.getTotalReps();
+  const calculateStatistics = () => {
+    // Calculate total workouts
+    const totalWorkouts = (ExerciseService.getExercises()?.length || 0) + (ExerciseService.flexibleExercises?.length || 0);
+    setTotalWorkouts(totalWorkouts);
+
+    // Calculate total reps
+    let totalReps = 0;
+    ExerciseService.getExercises()?.forEach((exercise) => {
+      const totalRepsDone = exercise.reps.slice(0, level - 1).reduce((acc, rep) => acc + rep, 0);
+      totalReps += totalRepsDone * exercise.sets;
+    });
+
+    ExerciseService.flexibleExercises?.forEach((exercise) => {
+      const totalRepsDone = exercise.reps.slice(0, workout2Level - 1).reduce((acc, rep) => acc + rep, 0);
+      totalReps += totalRepsDone * exercise.sets;
+    });
+    
+    setTotalReps(totalReps);
+  };
 
   const getTotalRepsForExercise = (exercise, level) => {
-    const totalRepsDone = exercise.reps.slice(0, level-1).reduce((acc, rep) => acc + rep, 0);
+    const totalRepsDone = exercise.reps.slice(0, level - 1).reduce((acc, rep) => acc + rep, 0);
     return totalRepsDone * exercise.sets;
   };
 
+  const renderItem = ({ item }) => (
+    <View style={styles.exerciseItem}>
+      <Text style={styles.exerciseName}>{item.name}</Text>
+      <Text style={styles.exerciseReps}>
+        Total Reps: {getTotalRepsForExercise(item, level)}
+      </Text>
+    </View>
+  );
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Statistics</Text>
-      <Text style={styles.text}>Total Workouts: {totalWorkouts}</Text>
-      <Text style={styles.text}>Total Reps: {totalReps}</Text>
-      <Text style={styles.text}>Level for Workout 1: {level}</Text>
-      <Text style={styles.text}>Level for Workout 2: {workout2Level}</Text>
-      <Text style={styles.text}>Level for Workout 3: {workout3Level}</Text>
+      <Text style={styles.title}>{translate('Statistic')}</Text>
+      <Text style={styles.statText}>Total Workouts: {totalWorkouts}</Text>
+      <Text style={styles.statText}> totalReps </Text>
+      <Text style={styles.statText}>Level for Workout 1: {level}</Text>
+      <Text style={styles.statText}>Level for Workout 2: {workout2Level}</Text>
+      <Text style={styles.statText}>Level for Workout 3: {workout3Level}</Text>
 
       {/* Total Reps for Each Exercise */}
-      <Text style={styles.text}>Total Reps for Each Exercise:</Text>
-      {ExerciseService.getExercises().map((exercise, index) => (
-        <Text key={index} style={styles.text}>
-          {exercise.name}: {getTotalRepsForExercise(exercise, level)}
-        </Text>
-      ))}
-      {ExerciseService.flexibleExercises.map((exercise, index) => (
-        <Text key={index} style={styles.text}>
-          {exercise.name}: {getTotalRepsForExercise(exercise, workout2Level)}
-        </Text>
-      ))}
+      <Text style={styles.subtitle}>Total Reps for Each Exercise:</Text>
+      <FlatList
+        data={ExerciseService.getExercises()}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.name}
+        style={styles.list}
+      />
       {/* Diğer istatistikler buraya eklenebilir */}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 20,
     backgroundColor: '#F5FCFF',
   },
   title: {
@@ -72,10 +102,33 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
-  text: {
+  statText: {
     fontSize: 16,
     marginBottom: 10,
   },
+  subtitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  list: {
+    marginBottom: 20,
+  },
+  exerciseItem: {
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+    paddingVertical: 10,
+  },
+  exerciseName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  exerciseReps: {
+    fontSize: 14,
+  },
 });
+
+export default StatisticsScreen;
+
 
 
