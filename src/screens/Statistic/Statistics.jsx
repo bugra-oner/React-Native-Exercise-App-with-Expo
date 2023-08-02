@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import ExerciseService from '../service/ExerciseService';
+import ExerciseService from '../../service/ExerciseService';
 
 
-
+import i18n from '../../i18n/i18n';
 
 
 
@@ -72,8 +72,8 @@ const StatisticsScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{i18n.t('Statistic')}</Text>
-      <Text style={styles.statText}>Total Workouts: {totalWorkouts}</Text>
-      <Text style={styles.statText}> totalReps </Text>
+      <Text style={styles.statText}>{i18n.t('totalWorkouts')}: {totalWorkouts}</Text>
+      <Text style={styles.statText}>{i18n.t('totalReps')}: {totalReps} </Text>
       <Text style={styles.statText}>Level for Workout 1: {level}</Text>
       <Text style={styles.statText}>Level for Workout 2: {workout2Level}</Text>
       <Text style={styles.statText}>Level for Workout 3: {workout3Level}</Text>

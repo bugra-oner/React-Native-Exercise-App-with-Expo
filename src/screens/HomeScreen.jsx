@@ -1,13 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
+import i18n from '../i18n/i18n';
+
 
 
 export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to My Fitness App</Text>
-      <Text style={styles.subtitle}>Achieve your fitness goals with personalized workouts!</Text>
+      <Text style={styles.title}>{i18n.t("home")}</Text>
+      <Text style={styles.subtitle}>{i18n.t("homeSubtitle")}</Text>
       <TouchableOpacity 
         style={styles.button} 
         onPress={() => navigation.navigate('Workouts')}

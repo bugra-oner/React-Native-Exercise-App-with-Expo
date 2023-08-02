@@ -1,5 +1,7 @@
-{
-    "Statistic": "Statistics asdfasfdafsadf",
+{ 
+    "home" : "home yazısı",
+    "homeSubtitle": " Achieve your fitness goals with personalized workouts!",
+    "Statistic": "Statistics",
     "totalWorkouts": "Total Workouts",
     "totalReps": "Total Reps",
     "level1": "Level for Workout 1",

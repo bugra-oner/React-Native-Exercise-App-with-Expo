@@ -10,10 +10,12 @@ import LevelSelector from './src/screens/LevelSelector';
 import WorkoutScreen from './src/screens/Workouts/Workout';
 import History from './src/screens/History';
 import Workouts from './src/screens/Workouts';
-import StatisticsScreen from './src/screens/Statistics';
+import StatisticsScreen from './src/screens/Statistic/Statistics';
 
+
+import Settings from './src/screens/Settings/Settings';
 import Test from './src/screens/Test'
-import SettingsScreen from './src/screens/SettingsScreen';
+
 
 
 
@@ -37,7 +39,7 @@ export default function App() {
         <Stack.Screen name="Workouts" component={Workouts} />
         <Stack.Screen name="Statistic" component={StatisticsScreen} />
         <Stack.Screen name="TestScreen" component={Test} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="Settings" component={Settings} />
       </Stack.Navigator>
     </NavigationContainer>
     

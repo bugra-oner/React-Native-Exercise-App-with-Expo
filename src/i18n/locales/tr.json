@@ -1,6 +1,8 @@
 {
+    "home" : "home yazısı",
+    "homeSubtitle": " Achieve your fitness goals with personalized workouts!",
     "StartWorkout":"Antremana başla",
-    "Statistic": "İstatistikler asdfas",
+    "Statistic": "İstatistikler",
     "totalWorkouts": "Toplam Antrenmanlar",
     "totalReps": "Toplam Tekrarlar",
     "level1": "1. Antrenman Seviyesi",
