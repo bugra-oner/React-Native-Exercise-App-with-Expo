@@ -8,8 +8,7 @@ import Home from '../screens/HomeScreen';
 import Statistic from '../screens/Statistic/Statistics'
 
 
-import Languages from '../screens/Settings/Languages'
-import Settings from '../screens/Settings/Settings'
+import Profil from '../screens/Profil/Profil'
 import Workout from '../screens/Workouts/Workout'
 import History from '../screens/History'
 import Test from '../screens/Test'
@@ -51,9 +50,9 @@ export const BottomNavigator = () => {
         tabBarStyle: {
           backgroundColor: '#1A1624',
           borderTopColor: 'transparent',
-          height: Platform.OS == 'ios' ? 75 : 60,
+          height: Platform.OS == 'ios' ? 90 : 60,
           paddingTop: 5,
-          paddingBottom: Platform.OS == 'ios' ? 20 : 5,
+          paddingBottom: Platform.OS == 'ios' ? 25 : 5,
           borderTopLeftRadius: 17,
           borderTopRightRadius: 17,
         },
@@ -77,29 +76,26 @@ export const BottomNavigator = () => {
                 tabBarLabel:"İstatistik",
                 headerShown:false,
                 tabBarIcon:({color,size}) => (
-                    <Ionicons name="home" size={size} color={color} /> // Expo'nun yerleşik ikonunu kullanıyoruz
+                    <Ionicons name="stats-chart" size={size} color={color} /> // Expo'nun yerleşik ikonunu kullanıyoruz
           )}}/>
                 <Stack.Screen name="Workouts" 
                     options={{
                         tabBarLabel:"Antrenman",
                         headerShown: false,
                         tabBarIcon:({color,size}) => (
-                            <Ionicons name="home" size={size} color={color}  />
+                            <Ionicons name="barbell" size={size} color={color}  />
                             )}}
                             component={Workouts}
                             />  
-                <Stack.Screen name="Settings" component={Settings}
+                <Stack.Screen name="Profil" component={Profil}
                     options={{
-                        tabBarLabel:"Ayalar",
+                        tabBarLabel:"Profil",
                         headerShown: false,
                         tabBarIcon:({color,size}) => (
-                            <Ionicons name="home" size={size} color={color} /> 
+                            <Ionicons name="settings" size={size} color={color} /> 
                             )    
                          }}
                         />
-                
-           
-
         </Tab.Navigator>
     );
   };
