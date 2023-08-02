@@ -17,13 +17,6 @@ export default function Home({ navigation }) {
       >
         <Text style={styles.buttonText}>Start Workout</Text>
       </TouchableOpacity>
-      <TouchableOpacity 
-       style={styles.button}
-       onPress={() => navigation.navigate('Statistic')}>
-       <Text style={styles.buttonText}>
-       İstatistik
-       </Text> 
-       </TouchableOpacity>
        <TouchableOpacity 
        style={styles.button}
        onPress={() => navigation.navigate('TestScreen')}>
