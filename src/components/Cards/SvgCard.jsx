@@ -32,8 +32,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         alignItems : 'center',
         borderRadius: 13,
-        height: "100%",
-        marginHorizontal: 15,
+        height: "80%",
         shadowOffset: {
             width: 0,
             height: 2,
