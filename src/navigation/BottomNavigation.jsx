@@ -48,7 +48,7 @@ export const BottomNavigator = () => {
         tabBarActiveTintColor: '#2196F3',
         tabBarInactiveTintColor: '#ffffff',
         tabBarStyle: {
-          backgroundColor: '#1A1624',
+          backgroundColor: '#2c3e50',
           borderTopColor: 'transparent',
           height: Platform.OS == 'ios' ? 90 : 60,
           paddingTop: 5,

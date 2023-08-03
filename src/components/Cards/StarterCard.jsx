@@ -1,17 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 
 import BenchHome from '../../assets/BenchHome.svg'
-
+import colors from '../../constants/colors';
 import {useTranslation} from 'react-i18next';
 
 
 export default function StarterCard({ onPress }) {
   const { t, i18n } = useTranslation();
   return (
-        <View style={styles.container}>
+        
+        <LinearGradient 
+        colors={[colors.gradientColor.color, colors.gradientColor.colorTwo]}
+        style={styles.container}
+        >
         <View style={styles.topContainerView}>
           <Text style={styles.titleText}>
              {t('readyProgram')}
@@ -30,15 +35,15 @@ export default function StarterCard({ onPress }) {
           <View style={styles.deneme}>
           </View>
           <BenchHome  width={235} height={235} style={styles.benchHome}   />
-          </View>
+          </LinearGradient>
+          
   );
 }
 
 const styles = StyleSheet.create({
   container:{
-    width: '90%',
+        width: '90%',
         height: '18%',
-        backgroundColor: '#484F88',
         shadowColor: '#7b7b82',
         shadowOpacity: 0.7,
         shadowRadius: 1.3208664655685425,
@@ -79,7 +84,7 @@ const styles = StyleSheet.create({
     marginTop : '8%',
   },
   buttonText:{
-    color: '#484F88',
+    color: '#3d4160',
     alignSelf:'center',
     fontWeight: 'bold'
   },
