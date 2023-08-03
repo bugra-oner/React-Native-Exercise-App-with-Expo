@@ -1,6 +1,7 @@
 { 
-    "home" : "home yazısı en ",
-    "homeSubtitle": " Achieve your fitness goals with personalized workouts!",
+    "readyProgram" : "home yazısı en ",
+    "readyProgramSubtitle": " Achieve your fitness goals with personalized workouts!",
+    "nowStart":"Şimdi Başla",
     "Statistic": "Statistics",
     "totalWorkouts": "Total Workouts",
     "totalReps": "Total Reps",

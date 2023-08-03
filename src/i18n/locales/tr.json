@@ -1,6 +1,7 @@
 {
-    "home" : "home yazısı",
-    "homeSubtitle": " tr trtr ",
+    "readyProgram" : "Program Hazırla",
+    "readyProgramSubtitle": "Kendine uygun hareketleri seçerek kendi programını hazırla",
+    "nowStart":"Şimdi Başla",
     "StartWorkout":"Antremana başla",
     "Statistic": "İstatistikler",
     "totalWorkouts": "Toplam Antrenmanlar",
