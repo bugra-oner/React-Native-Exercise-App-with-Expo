@@ -12,9 +12,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 export default function SvgCard({title,subTitle}) {
   return (
-    <View>
     <LinearGradient
-    colors={[colors.gradientColor.color, colors.gradientColor.colorTwo]}
+    colors={[colors.gradientColor.colorThree, colors.gradientColor.colorTwo]}
      style={styles.container}>
      <Human 
         width= {160}
@@ -25,7 +24,6 @@ export default function SvgCard({title,subTitle}) {
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.subTitle}>{subTitle}</Text>
     </LinearGradient>
-    </View>
   )
 }
 
@@ -33,10 +31,16 @@ const styles = StyleSheet.create({
     container:{
         marginVertical: 10,
         alignItems : 'center',
-        alignSelf: 'center',
         borderRadius: 13,
         height: "100%",
         marginHorizontal: 15,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,  // This adds shadow to Android and is optional
     },
     title:{
         fontSize : typography.title,
@@ -47,11 +51,12 @@ const styles = StyleSheet.create({
     subTitle:{
         fontSize: typography.body,
         color: colors.subTitle,
-        fontWeight: '600',
+        fontWeight: '700',
+        marginTop: "2%",
     },
     SvgCard:{
         position : 'auto',
-        top: -10,
+        top: -11,
         
     }
 })

@@ -54,6 +54,23 @@ const getTotalReps = () => {
   return totalReps;
 };
 
+const calculateStatistics = () => {
+  // Calculate total workouts
+  const totalWorkouts = exercises.length + flexibleExercises.length;
+
+  // Calculate total reps
+  let totalReps = 0;
+  exercises.forEach(exercise => {
+    totalReps += exercise.reps.reduce((acc, rep) => acc + rep, 0);
+  });
+
+  flexibleExercises.forEach(exercise => {
+    totalReps += exercise.reps.reduce((acc, rep) => acc + rep, 0);
+  });
+
+  return { totalWorkouts, totalReps };
+};
+
 const getExercises = () => exercises;
 
 export default {
@@ -64,6 +81,7 @@ export default {
   getTotalWorkouts,
   getTotalReps,
   getLevel,
+  calculateStatistics,
   
 };
 

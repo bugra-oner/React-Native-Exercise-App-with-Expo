@@ -5,7 +5,9 @@ const colors = {
     white: '#fff',
     gradientColor: {
         color: '#2c3e50',
-        colorTwo : '#bdc3c7'
+        colorTwo : '#bdc3c7',
+        colorThree: '#F3F5FF',
+        colorFour: '#484F88'
     },
     // Daha fazla renk ekleyebilirsiniz.
 };

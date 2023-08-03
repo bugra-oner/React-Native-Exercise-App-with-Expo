@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 
 import BenchHome from '../../assets/BenchHome.svg'
+import typography from '../../constants/typography';
 import colors from '../../constants/colors';
 import {useTranslation} from 'react-i18next';
 
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   titleText:{
     fontWeight : '700',
     color : 'white',
-    fontSize: 15,
+    fontSize: typography.title,
     lineHeight: 15.85,
   },
   subTitleText:{

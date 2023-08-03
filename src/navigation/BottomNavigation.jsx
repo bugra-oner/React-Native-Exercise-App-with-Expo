@@ -12,7 +12,7 @@ import Profil from '../screens/Profil/Profil'
 import Workout from '../screens/Workouts/Workout'
 import History from '../screens/History'
 import Test from '../screens/Test'
-import Workouts from '../screens/Workouts'
+import Workouts from '../screens/Workouts/Workouts'
 import LevelSelector from '../screens/LevelSelector'
 
 const Tab = createBottomTabNavigator();
