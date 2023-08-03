@@ -17,10 +17,9 @@ export default function SvgCard({title,subTitle}) {
     colors={[colors.gradientColor.color, colors.gradientColor.colorTwo]}
      style={styles.container}>
      <Human 
-        width= {150}
-        height= {100}
-        
-       
+        width= {160}
+        height= {90}
+        style={styles.SvgCard}
      />
      
       <Text style={styles.title}>{title}</Text>
@@ -32,17 +31,27 @@ export default function SvgCard({title,subTitle}) {
 
 const styles = StyleSheet.create({
     container:{
+        marginVertical: 10,
         alignItems : 'center',
-        borderRadius: 35
+        alignSelf: 'center',
+        borderRadius: 13,
+        height: "100%",
+        marginHorizontal: 15,
     },
     title:{
         fontSize : typography.title,
         color: colors.title,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+
     },
     subTitle:{
         fontSize: typography.body,
         color: colors.subTitle,
         fontWeight: '600',
     },
+    SvgCard:{
+        position : 'auto',
+        top: -10,
+        
+    }
 })
