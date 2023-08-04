@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Bu satırı ekledim
 import ExerciseService from '../../service/ExerciseService';
-
-
 import i18n from '../../i18n/i18n';
-
-
-
-
 
 const StatisticsScreen = () => {
   const [level, setLevel] = useState(1);
@@ -15,11 +10,26 @@ const StatisticsScreen = () => {
   const [workout3Level, setWorkout3Level] = useState(1);
   const [totalWorkouts, setTotalWorkouts] = useState(0);
   const [totalReps, setTotalReps] = useState(0);
+  const [completedWorkouts, setCompletedWorkouts] = useState(0);
 
   useEffect(() => {
     loadLevels();
+    getDataFromAsyncStorage(); // Bu satırı ekledim
     calculateStatistics();
   }, []);
+
+  const getDataFromAsyncStorage = async () => {
+    try {
+      const storedStatus = await AsyncStorage.getItem('@workoutStatus');
+      if (storedStatus !== null) {
+        const workoutStatus = JSON.parse(storedStatus);
+        setLevel(workoutStatus['HomeFullBodyWorkout'].level);
+        setCompletedWorkouts(workoutStatus['HomeFullBodyWorkout'].completedCount);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const loadLevels = async () => {
     try {
@@ -37,7 +47,7 @@ const StatisticsScreen = () => {
 
   const calculateStatistics = () => {
     // Calculate total workouts
-    const totalWorkouts = (ExerciseService.getExercises()?.length || 0) + (ExerciseService.flexibleExercises?.length || 0);
+    const totalWorkouts = ExerciseService.getExercises()?.length || 0;
     setTotalWorkouts(totalWorkouts);
 
     // Calculate total reps
@@ -46,12 +56,6 @@ const StatisticsScreen = () => {
       const totalRepsDone = exercise.reps.slice(0, level - 1).reduce((acc, rep) => acc + rep, 0);
       totalReps += totalRepsDone * exercise.sets;
     });
-
-    ExerciseService.flexibleExercises?.forEach((exercise) => {
-      const totalRepsDone = exercise.reps.slice(0, workout2Level - 1).reduce((acc, rep) => acc + rep, 0);
-      totalReps += totalRepsDone * exercise.sets;
-    });
-    
     setTotalReps(totalReps);
   };
 
@@ -59,6 +63,9 @@ const StatisticsScreen = () => {
     const totalRepsDone = exercise.reps.slice(0, level - 1).reduce((acc, rep) => acc + rep, 0);
     return totalRepsDone * exercise.sets;
   };
+
+ 
+
 
   const renderItem = ({ item }) => (
     <View style={styles.exerciseItem}>
@@ -71,9 +78,10 @@ const StatisticsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{i18n.t('Statistic')}</Text>
-      <Text style={styles.statText}>{i18n.t('totalWorkouts')}: {totalWorkouts}</Text>
-      <Text style={styles.statText}>{i18n.t('totalReps')}: {totalReps} </Text>
+       <Text style={styles.title}>{i18n.t('Statistic')}</Text>
+      <Text style={styles.statText}>{i18n.t('totalWorkouts')}: {completedWorkouts}</Text>
+      <Text style={styles.statText}>{i18n.t('totalReps')}: {totalReps}</Text>
+      <Text style={styles.statText}>Level: {level}</Text>
       <Text style={styles.statText}>Level for Workout 1: {level}</Text>
       <Text style={styles.statText}>Level for Workout 2: {workout2Level}</Text>
       <Text style={styles.statText}>Level for Workout 3: {workout3Level}</Text>

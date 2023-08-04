@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import ExerciseService from '../../service/ExerciseService';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import Spacing from '../../components/views/Spacing';
 
 import StarterCard from '../../components/Cards/StarterCard';
@@ -12,6 +14,7 @@ import ButtonCard from '../../components/Cards/ButtonCard';
 import IndexCard from '../../components/Cards/IndexCard'
 
 export default function HomeScreen() {
+  const [completedWorkouts,setCompletedWorkouts] = useState(0);
   const [level, setLevel] = useState(1);
   const [workout2Level, setWorkout2Level] = useState(1);
   const [workout3Level, setWorkout3Level] = useState(1);

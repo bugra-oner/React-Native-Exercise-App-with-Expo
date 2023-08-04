@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, Image, StyleSheet } from 'react-native';
+import { Alert,View, Text, Button, Image, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ProgressBar } from 'react-native-paper';
 import ExerciseService from '../../service/ExerciseService';
@@ -11,7 +11,14 @@ const images = {
   squats: require('../../assets/squats.png'),
 };
 
-export default function WorkoutScreen() {
+let workoutStatus = {
+  'HomeFullBodyWorkout': {
+    completedCount: 0,
+    level: 1,
+  },
+};
+
+const WorkoutScreen = () => {
   const [level, setLevel] = useState(1);
   const [exerciseIndex, setExerciseIndex] = useState(0);
   const [currentSet, setCurrentSet] = useState(1);
@@ -45,11 +52,17 @@ export default function WorkoutScreen() {
 
   const getDataFromAsyncStorage = async () => {
     try {
-      const savedLevel = await AsyncStorage.getItem('@level');
+      const storedStatus = await AsyncStorage.getItem('@workoutStatus');
+      if (storedStatus === null) {
+        await AsyncStorage.setItem('@workoutStatus', JSON.stringify(workoutStatus));
+      } else {
+        workoutStatus = JSON.parse(storedStatus);
+      }
+      
       const savedExerciseIndex = await AsyncStorage.getItem('@exerciseIndex');
       const savedCurrentSet = await AsyncStorage.getItem('@currentSet');
-
-      if (savedLevel) setLevel(JSON.parse(savedLevel));
+      
+      setLevel(workoutStatus['HomeFullBodyWorkout'].level);
       if (savedExerciseIndex) setExerciseIndex(JSON.parse(savedExerciseIndex));
       if (savedCurrentSet) setCurrentSet(JSON.parse(savedCurrentSet));
     } catch (error) {
@@ -59,7 +72,7 @@ export default function WorkoutScreen() {
 
   const storeData = async () => {
     try {
-      await AsyncStorage.setItem('@level', JSON.stringify(level));
+      await AsyncStorage.setItem('@workoutStatus', JSON.stringify(workoutStatus));
       await AsyncStorage.setItem('@exerciseIndex', JSON.stringify(exerciseIndex));
       await AsyncStorage.setItem('@currentSet', JSON.stringify(currentSet));
     } catch (error) {
@@ -67,19 +80,20 @@ export default function WorkoutScreen() {
     }
   };
 
-  const handleCompleteSet = () => {
-    const newReps = ExerciseService.increaseRepsByLevel(exercises[exerciseIndex], level);
+  const handleCompleteSet = async () => {
     if (currentSet < exercises[exerciseIndex].sets) {
       setCurrentSet(currentSet + 1);
     } else {
-      setCurrentSet(1);
       if (exerciseIndex < exercises.length - 1) {
         setExerciseIndex(exerciseIndex + 1);
+        setCurrentSet(1);
       } else {
-        setExerciseIndex(0);
-        setLevel(level + 1);
+        handleCompleteWorkout();
+        return;
       }
     }
+    
+    const newReps = ExerciseService.increaseRepsByLevel(exercises[exerciseIndex], level);
     setExerciseReps(newReps);
     setRestTime(currentSet * 10 + 20);
     setIsResting(true);
@@ -91,6 +105,37 @@ export default function WorkoutScreen() {
     setRestTime(0);
     setIsResting(false);
   };
+
+  const handleCompleteWorkout = () => {
+    Alert.alert(
+      'Workout Completed',
+      'How did you find the workout?',
+      [
+        {
+          text: 'It was easy for me',
+          onPress: async () => {
+            workoutStatus['HomeFullBodyWorkout'].completedCount += 1;
+            workoutStatus['HomeFullBodyWorkout'].level = level + 1;
+            await AsyncStorage.setItem('@workoutStatus', JSON.stringify(workoutStatus));
+            setLevel(level + 1);
+            handleResetWorkout();
+          }
+        },
+        {
+          text: 'It was just right',
+          onPress: async () => {
+            workoutStatus['HomeFullBodyWorkout'].completedCount += 1;
+            await AsyncStorage.setItem('@workoutStatus', JSON.stringify(workoutStatus));
+            handleResetWorkout();
+          }
+        },
+        {text: 'Cancel', style: 'cancel'},
+      ],
+      {cancelable: true},
+    );
+  };
+
+  
 
   const exercise = exercises[exerciseIndex];
 
@@ -116,14 +161,23 @@ export default function WorkoutScreen() {
       <Image source={images[exercise.image]} style={styles.image} />
       <ProgressBar progress={currentSet / exercise.sets} color="#00ff00" />
       {isResting && <Text style={styles.restTimeText}>Rest Time: {restTime}</Text>}
+      
       <View style={styles.buttonContainer}>
-        {!isResting && <Button title="Complete Set" onPress={handleCompleteSet} />}
-        {isResting && <Button title="Skip Rest" onPress={() => setIsResting(false)} />}
-        <Button title="Reset Workout" onPress={handleResetWorkout} />
-      </View>
+      {!isResting &&
+        (exerciseIndex < exercises.length - 1 || currentSet < exercises[exerciseIndex].sets ?
+          <Button title="Complete Set" onPress={handleCompleteSet} /> :
+          <Button title="Complete Workout" onPress={handleCompleteWorkout} />
+        )
+      }
+      {isResting && <Button title="Skip Rest" onPress={() => setIsResting(false)} />}
+      <Button title="Reset Workout" onPress={handleResetWorkout} />
     </View>
+      </View>
+    
   );
 }
+
+export default WorkoutScreen;
 
 const styles = StyleSheet.create({
   container: {
