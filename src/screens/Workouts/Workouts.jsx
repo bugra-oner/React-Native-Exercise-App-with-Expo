@@ -18,7 +18,7 @@ export default function Workouts({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity 
           style={styles.card} 
-          onPress={() => navigation.navigate('LevelSelector')}
+          onPress={() => navigation.navigate('UpperBody')}
         >
           <Text style={styles.cardTitle}>Workout 2</Text>
           <Text style={styles.cardDescription}>Description of Workout 2 goes here...</Text>

@@ -15,6 +15,8 @@ import Test from '../screens/Test'
 import Workouts from '../screens/Workouts/Workouts'
 import LevelSelector from '../screens/LevelSelector'
 
+import UpperBodyScreen from '../screens/Workouts/UpperBody';
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -35,6 +37,7 @@ export default function BottomStackNavigator(){
                  name="Workout" component={Workout} />
                  <Stack.Screen name="History" component={History} />
                  <Stack.Screen name="TestScreen" component={Test} />
+                 <Stack.Screen name="UpperBody" component={UpperBodyScreen} />
         </Stack.Navigator>
     )
 }

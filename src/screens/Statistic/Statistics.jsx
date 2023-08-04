@@ -13,7 +13,7 @@ const StatisticsScreen = () => {
   const [completedWorkouts, setCompletedWorkouts] = useState(0);
 
   useEffect(() => {
-    loadLevels();
+    
     getDataFromAsyncStorage(); // Bu satırı ekledim
     calculateStatistics();
   }, []);
@@ -25,25 +25,15 @@ const StatisticsScreen = () => {
         const workoutStatus = JSON.parse(storedStatus);
         setLevel(workoutStatus['HomeFullBodyWorkout'].level);
         setCompletedWorkouts(workoutStatus['HomeFullBodyWorkout'].completedCount);
+        console.log(completedWorkouts)
+        console.log(JSON.parse(storedStatus))
       }
     } catch (error) {
       console.error(error);
     }
   };
 
-  const loadLevels = async () => {
-    try {
-      const savedLevel = await ExerciseService.getLevel('@level');
-      const savedWorkout2Level = await ExerciseService.getLevel('@workout2Level');
-      const savedWorkout3Level = await ExerciseService.getLevel('@workout3Level');
-
-      setLevel(savedLevel);
-      setWorkout2Level(savedWorkout2Level);
-      setWorkout3Level(savedWorkout3Level);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
 
   const calculateStatistics = () => {
     // Calculate total workouts
