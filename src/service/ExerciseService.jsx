@@ -12,7 +12,7 @@ let upperBodyExercises = [
   { name: 'Push Ups', sets: 5, reps: [10, 12, 15, 10, 8], rate: 2, image: 'push_ups' },
   { name: 'Sit Ups', sets: 5, reps: [15, 20, 25, 20, 15], rate: 1, image: 'sit_ups' },
   { name: 'Plank', sets: 5, reps: [20, 25, 30, 25, 20], rate: 1, image: 'calf_raises' },
-  { name: 'Cross Push Up', sets: 5, reps: [10, 15, 20, 15, 10], rate: 1, image: 'squats' },
+  { name: 'Cross Push Up', sets: 5, reps: [10, 15, 20, 15, 10], rate: 1, image: 'cross_push_ups' },
 ]
 
 let lowerBody = [

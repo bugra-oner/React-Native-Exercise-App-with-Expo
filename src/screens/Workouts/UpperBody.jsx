@@ -6,10 +6,10 @@ import ExerciseService from '../../service/ExerciseService';
 import i18n from '../../i18n/i18n';
 
 const images = {
-  pull_ups: require('../../assets/pull_ups.png'),
-  dumbbell_press: require('../../assets/dumbbell_press.png'),
-  bicep_curls: require('../../assets/bicep_curls.png'),
-  shoulder_press: require('../../assets/shoulder_press.png'),
+  push_ups: require('../../assets/push_ups.png'),
+  sit_ups: require('../../assets/sit_ups.png'),
+  calf_raises: require('../../assets/bicep_curls.png'),
+  cross_push_ups: require('../../assets/shoulder_press.png'),
 };
 
 let workoutStatus = {
@@ -34,8 +34,7 @@ const UpperBodyScreen = () => {
   }, []);
 
   useEffect(() => {
-    const newReps = ExerciseService.increaseRepsByLevel(exercises[exerciseIndex], level);
-    setExerciseReps(newReps);
+    setExerciseReps(ExerciseService.increaseRepsByLevel(exercises[exerciseIndex], level));
   }, [level, exerciseIndex]);
 
   useEffect(() => {
@@ -45,19 +44,8 @@ const UpperBodyScreen = () => {
   useEffect(() => {
     if (isResting && restTime > 0) {
       const interval = setInterval(() => {
-        setRestTime(restTime - 1);
+        setRestTime(prevTime => prevTime - 1);
       }, 1000);
-
-      return () => clearInterval(interval);
-    }
-  }, [isResting, restTime]);
-
-  useEffect(() => {
-    if (isResting && restTime > 0) {
-      const interval = setInterval(() => {
-        setRestTime(restTime - 1);
-      }, 1000);
-
       return () => clearInterval(interval);
     }
   }, [isResting, restTime]);
