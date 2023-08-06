@@ -96,6 +96,7 @@ const UpperBodyScreen = () => {
       await AsyncStorage.setItem('@upperBodyWorkoutStatus', JSON.stringify({ 'UpperBodyWorkout': { level } }));
       await AsyncStorage.setItem('@upperBodyExerciseIndex', JSON.stringify(exerciseIndex));
       await AsyncStorage.setItem('@upperBodyCurrentSet', JSON.stringify(currentSet));
+    
     } catch (error) {
       console.error(error);
     }
