@@ -1,19 +1,37 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
+import CustomPicker from '../components/CustomPicker';
 
-import  CustomPicker  from '../components/CustomPicker';
+import typography from '../constants/typography';
 
 const HealthCalculator = () => {
-  
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [age, setAge] = useState('');
-  const [gender, setGender] = useState('male'); // 'male' veya 'female'
-  const [activityLevel, setActivityLevel] = useState('sedentary'); // 'sedentary', 'moderate', 'active'
+  const [gender, setGender] = useState('male');
+  const [activityLevel, setActivityLevel] = useState('sedentary');
   const [bmi, setBMI] = useState(null);
   const [dailyCalories, setDailyCalories] = useState(null);
   const [dailyWater, setDailyWater] = useState(null);
+  const [idealWeight, setIdealWeight] = useState(null);
+
+  const isFormValid = () => {
+    return weight !== '' && height !== '' && age !== '' && gender !== '' && activityLevel !== '';
+  }
+
+  const calculateIdealWeight = () => {
+    const heightInCm = parseFloat(height);
+  
+    let idealWeight = 0;
+    if (gender === 'male') {
+      idealWeight = heightInCm - 100 - ((heightInCm - 150) / 4);
+    } else if (gender === 'female') {
+      idealWeight = heightInCm - 100 - ((heightInCm - 150) / 2.5);
+    }
+  
+    return idealWeight.toFixed(2);
+  };
 
   const activityLevels = [
     { label: 'Az Aktif (Ofis İşleri)', value: 'sedentary' },
@@ -25,7 +43,7 @@ const HealthCalculator = () => {
 
   const calculateBMI = () => {
     if (weight && height && age) {
-      const heightInMeters = height / 100; // Boyu metreye çevir
+      const heightInMeters = height / 100;
       const calculatedBMI = weight / (heightInMeters * heightInMeters);
 
       let interpretation = '';
@@ -55,9 +73,6 @@ const HealthCalculator = () => {
   };
 
   const calculateDailyCalories = () => {
-    // Burada aktivite seviyesine göre günlük kalori ihtiyacı hesaplayabilirsiniz
-    // Aktivite seviyesine göre bir katsayı kullanarak hesaplama yapabilirsiniz
-    // Örnek katsayılar: sedentary: 1.2, moderate: 1.55, active: 1.725
     const activityMultiplier = {
       sedentary: 1.2,
       lightlyActive: 1.375,
@@ -66,25 +81,42 @@ const HealthCalculator = () => {
       superActive: 1.9,
     };
 
+    // Calculate BMR based on gender and Harris-Benedict equation
+    let BMR = 0;
+    if (gender === 'male') {
+      BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+    } else {
+      BMR = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+    }
+
     const dailyCalories = BMR * activityMultiplier[activityLevel];
     setDailyCalories(dailyCalories.toFixed(2));
   };
-  
 
   const calculateDailyWater = () => {
-    // Burada kiloya göre günlük su ihtiyacı hesaplayabilirsiniz
-    // Genellikle kilogram başına 30-35 ml su önerilir
-    const waterPerKilogram = 30; // ml
-
+    const waterPerKilogram = 38;
     const dailyWaterAmount = waterPerKilogram * weight;
     setDailyWater(dailyWaterAmount.toFixed(2));
   };
 
   const handleCalculatePress = () => {
+    if (!isFormValid()) {
+      // Eğer form eksik ise hata mesajı gösterme veya gerekli işlemleri yapma
+      alert('Lütfen tüm alanları doldurun.');
+      return;
+    }
+
     calculateBMI();
     calculateDailyCalories();
     calculateDailyWater();
+    const calculatedIdealWeight = calculateIdealWeight(); // Ideal kiloyu hesapla
+    setIdealWeight(calculatedIdealWeight); // State'i güncelle
   };
+
+  const genders = [
+    { label: 'Erkek', value: 'male' },
+    { label: 'Kadın', value: 'female' },
+  ];
 
   return (
     <View style={styles.container}>
@@ -109,13 +141,17 @@ const HealthCalculator = () => {
           keyboardType="numeric"
         />
         <CustomPicker
-        options={activityLevels}
-        selectedValue={activityLevel}
-        onValueChange={value => setActivityLevel(value)}
-      />
-        <Button title="Hesapla" onPress={() => {calculateBMI(); calculateDailyCalories();}} />
+          options={activityLevels}
+          selectedValue={activityLevel}
+          onValueChange={value => setActivityLevel(value)}
+        />
+        <CustomPicker
+          options={genders}
+          selectedValue={gender}
+          onValueChange={value => setGender(value)}
+        />
+        <Button title="Hesapla" onPress={handleCalculatePress} />
       </View>
-      <Button title="Hesapla" onPress={handleCalculatePress} />
       {bmi !== null && (
         <View style={styles.resultContainer}>
           <Text style={styles.resultText}>Vücut Kitle İndeksi: {bmi.value}</Text>
@@ -127,6 +163,9 @@ const HealthCalculator = () => {
       )}
       {dailyWater !== null && (
         <Text style={styles.resultText}>Günlük Su İhtiyacı: {dailyWater} ml</Text>
+      )}
+      {idealWeight !== null && (
+        <Text style={styles.resultText}>İdeal Kilo: {idealWeight} kg</Text>
       )}
       <Text style={styles.infoText}>
         Sağlığınızı kontrol etmek ve düzenli olarak egzersiz yapmak önemlidir. Dünya Sağlık Örgütü tarafından
@@ -164,18 +203,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   resultText: {
-    fontSize: 18,
+    fontSize: typography.healthText,
     marginBottom: 10,
   },
   infoText: {
-    fontSize: 14,
+    fontSize: typography.healthInfo,
     marginTop: 20,
     textAlign: 'center',
     color: 'gray',
+    maxWidth: "94%"
   },
 });
 
 export default HealthCalculator;
-
 
 

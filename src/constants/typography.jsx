@@ -7,8 +7,9 @@ const typography = {
     cardTitle: 15,
     cardSubtitle:13,
     workoutsCardTitle:12,
-    workoutsCardSubtitle:8
-    // ve daha fazlası...
+    workoutsCardSubtitle:8,
+    healthText:16,
+    healthInfo:14,
 };
 
 export default typography;
