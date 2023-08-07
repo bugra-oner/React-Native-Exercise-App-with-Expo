@@ -1,12 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View, Button } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import i18n from '../../i18n/i18n';
 
-export default function Profil() {
+export default function Languages() {
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    AsyncStorage.setItem('language', lng);
+  };
+
   return (
     <View>
-      <Text>Profil</Text>
+      <Button
+        title="English"
+        onPress={() => changeLanguage('en')}
+      />
+      <Button
+        title="Türkçe"
+        onPress={() => changeLanguage('tr')}
+      />
     </View>
-  )
-}
-
-const styles = StyleSheet.create({})
+  );
+};

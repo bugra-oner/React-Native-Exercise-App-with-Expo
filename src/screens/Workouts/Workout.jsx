@@ -55,9 +55,11 @@ const WorkoutScreen = () => {
     try {
       const storedStatus = await AsyncStorage.getItem('@workoutStatus');
       if (storedStatus === null) {
-        await AsyncStorage.setItem('@workoutStatus', JSON.stringify(workoutStatus));
+        await AsyncStorage.setItem('@workoutStatus', JSON.stringify({}));
       } else {
-        workoutStatus = JSON.parse(storedStatus);
+        const homeBodyWorkoutStatus = JSON.parse(storedStatus)
+        const currentLevel = homeBodyWorkoutStatus['@workoutStatus']?.level || 1;
+        setLevel(currentLevel)
         const completedExerciseStats = workoutStatus[exercises[exerciseIndex].name];
         if (completedExerciseStats) {
           setTotalReps(completedExerciseStats.totalReps);
@@ -112,9 +114,10 @@ const WorkoutScreen = () => {
 
     // Hareket istatistiklerini güncelle
     const completedExerciseName = exercises[exerciseIndex].name;
-    const completedExerciseStats = workoutStatus[completedExerciseName] || { completedCount: 0, totalReps: 0 };
+    const completedExerciseStats = workoutStatus[completedExerciseName] || { completedCount: 0, totalReps: 0,  };
     completedExerciseStats.completedCount += 1;
     completedExerciseStats.totalReps += repsInThisSet;
+    
     workoutStatus[completedExerciseName] = completedExerciseStats;
 
     // Hafızada güncellenen istatistikleri sakla
@@ -167,7 +170,7 @@ const WorkoutScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Level: {level}</Text>
-      <Text style={styles.text}>Exercise: {exercise.name}</Text>
+      <Text style={styles.text}>Exercise: {exercise?.name}</Text>
       <View style={styles.setsContainer}>
         {exerciseReps.map((rep, index) => (
           <View

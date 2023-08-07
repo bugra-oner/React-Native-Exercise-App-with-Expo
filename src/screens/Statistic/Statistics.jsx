@@ -6,7 +6,7 @@ import i18n from '../../i18n/i18n';
 
 const StatisticsScreen = () => {
   const [level, setLevel] = useState(1);
-  const [workout2Level, setWorkout2Level] = useState(1);
+  const [UpperBodyLevel, setUpperBodyLevel] = useState(1);
   const [workout3Level, setWorkout3Level] = useState(1);
   const [totalWorkouts, setTotalWorkouts] = useState(0);
   const [totalReps, setTotalReps] = useState(0);
@@ -15,39 +15,41 @@ const StatisticsScreen = () => {
   useEffect(() => {
     
     getDataFromAsyncStorage(); // Bu satırı ekledim
-    calculateStatistics();
+    
   }, []);
 
   const getDataFromAsyncStorage = async () => {
     try {
       const storedStatus = await AsyncStorage.getItem('@workoutStatus');
+      const upperBodyTest = await AsyncStorage.getItem('@upperBodyWorkoutStatus')
+      console.log(upperBodyTest,"test")
+      console.log(storedStatus,"storedStatusTest");
       if (storedStatus !== null) {
         const workoutStatus = JSON.parse(storedStatus);
+        console.log(workoutStatus,'burayı dene')
         setLevel(workoutStatus['HomeFullBodyWorkout'].level);
         setCompletedWorkouts(workoutStatus['HomeFullBodyWorkout'].completedCount);
-        console.log(completedWorkouts)
-        console.log(JSON.parse(storedStatus))
+        setUpperBodyLevel(workoutStatus['UpperBodyWorkout'].level);
+        // Veri çekildikten sonra istatistikleri hesapla ve workoutStatus verisini geç
+        calculateStatistics(workoutStatus);
       }
     } catch (error) {
       console.error(error);
     }
   };
-
   
-
-  const calculateStatistics = () => {
-    // Calculate total workouts
-    const totalWorkouts = ExerciseService.getExercises()?.length || 0;
-    setTotalWorkouts(totalWorkouts);
-
-    // Calculate total reps
+  const calculateStatistics = (workoutStatus) => {
     let totalReps = 0;
-    ExerciseService.getExercises()?.forEach((exercise) => {
-      const totalRepsDone = exercise.reps.slice(0, level - 1).reduce((acc, rep) => acc + rep, 0);
-      totalReps += totalRepsDone * exercise.sets;
+    const exercises = ExerciseService.getExercises();
+    exercises.forEach((exercise) => {
+      if (workoutStatus[exercise.name]) {
+        const completedExerciseStats = workoutStatus[exercise.name];
+        totalReps += completedExerciseStats.totalReps;
+      }
     });
     setTotalReps(totalReps);
   };
+  
 
   const getTotalRepsForExercise = (exercise, level) => {
     const totalRepsDone = exercise.reps.slice(0, level - 1).reduce((acc, rep) => acc + rep, 0);
@@ -71,9 +73,9 @@ const StatisticsScreen = () => {
        <Text style={styles.title}>{i18n.t('Statistic')}</Text>
       <Text style={styles.statText}>{i18n.t('totalWorkouts')}: {completedWorkouts}</Text>
       <Text style={styles.statText}>{i18n.t('totalReps')}: {totalReps}</Text>
-      <Text style={styles.statText}>Level: {level}</Text>
-      <Text style={styles.statText}>Level for Workout 1: {level}</Text>
-      <Text style={styles.statText}>Level for Workout 2: {workout2Level}</Text>
+      <Text style={styles.statText}></Text>
+      <Text style={styles.statText}></Text>
+      <Text style={styles.statText}>Level for Workout 2: {UpperBodyLevel}</Text>
       <Text style={styles.statText}>Level for Workout 3: {workout3Level}</Text>
 
       {/* Total Reps for Each Exercise */}
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'white',
   },
   title: {
     fontSize: 24,

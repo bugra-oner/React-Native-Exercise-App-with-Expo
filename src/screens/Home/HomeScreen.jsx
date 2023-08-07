@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,ScrollView,TouchableOpacity } from 'react-native';
 import ExerciseService from '../../service/ExerciseService';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Spacing from '../../components/views/Spacing';
 
-import StarterCard from '../../components/Cards/StarterCard';
+import CreaterCard from '../../components/Cards/CreateCard';
 import SvgCard from '../../components/Cards/SvgCard';
 import colors from '../../constants/colors';
 import typography from '../../constants/typography';
 import ButtonCard from '../../components/Cards/ButtonCard';
 import IndexCard from '../../components/Cards/IndexCard'
+import WorkoutsCard from '../../components/Cards/WorkoutsCard';
+import { navigate } from '../../navigation/navigationRef';
 
 export default function HomeScreen() {
   const [completedWorkouts,setCompletedWorkouts] = useState(0);
@@ -46,8 +48,9 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <StarterCard />
+    <ScrollView style={styles.container}>
+      <CreaterCard  onPress={() => navigate('Workouts')}
+      />
       <Text style={styles.title}>Genel Bakış</Text>
       <View style={styles.headerContainer}>
         <SvgCard title="Tamamlanan" subTitle={`${totalWorkouts} Antrenman`} />
@@ -63,8 +66,37 @@ export default function HomeScreen() {
         title="Toplam" subTitle=" 360 tekrar" />
         </View>
       </View>
-      <IndexCard />
-    </View>
+      <View style={styles.cardsContainer}>
+      <View style={styles.workoutsHeader}>
+      <Text style={styles.workoutsTitle}>Ekipmansız Egzersizler</Text>
+      <TouchableOpacity
+      onPress={() => navigate('Workouts')}>
+      <Text style={styles.workoutsSubTitle}>Tümü</Text>
+      </TouchableOpacity>
+       </View>
+        <WorkoutsCard 
+          title="Tüm Vücut Antrenmanı"
+          subTitle="Tüm büyük kas gruplarını çalıştırarak genel kondisyonu ve vücut şeklini geliştirir."
+          onPress={null}
+          image="push_ups"
+          buttonText="Başla"
+        />
+         <WorkoutsCard 
+          title="Üst Vücut antremanı"
+          subTitle="Göğüs, omuz, sırt ve kolları hedefler. Kasları güçlendirir, duruşu düzeltir ve üst vücudu şekillendirir."
+          onPress={null}
+          image="push_ups"
+          buttonText="Başla"
+        />
+         <WorkoutsCard 
+          title="Alt Vücut Antrenmanı"
+          subTitle="Bacak, kalça ve alt karın bölgelerini hedefler. Dengeyi artırır, bacak kaslarını güçlendirir ve alt vücudu şekillendirir."
+          onPress={null}
+          image="push_ups"
+          buttonText="Başla"
+        />
+      </View>
+    </ScrollView>
   );
 }
 
@@ -75,9 +107,9 @@ const styles = StyleSheet.create({
   },
   title:{
     marginLeft: '5%',
-    marginTop: '3%',
-   color: '#343854',
-   fontSize : 17,
+    marginTop: '2%',
+    color: colors.UiText,
+   fontSize : 15,
    fontWeight: 'bold',
   },
   headerContainer:{
@@ -87,8 +119,7 @@ const styles = StyleSheet.create({
     alignContent:'center',
     width: '100%',
     height : '25%',
-    marginTop : "7%",
-
+    marginTop : "1%",
     justifyContent:'space-around'
 
   },
@@ -96,12 +127,31 @@ const styles = StyleSheet.create({
       flexDirection: 'column', // Satır düzeninde sıralamak için flex yönlendirme
       justifyContent: 'space-between',
       alignItems: 'center',
-
-       // Yatayda ve dikeyde ortalamak için
-       // Sağ ve sol tarafında 10 birimlik boşluk verme
     },
     spacing: {
       height: 10, // Boşluğun genişliği
+    },
+    cardsContainer: {
+      alignItems: 'center',
+    },
+    workoutsTitle:{
+      fontSize: typography.title,
+    color: colors.UiText,
+    fontWeight: '900',
+    textAlign: 'center',
+    marginBottom: 10,
+    },
+    workoutsSubTitle:{
+      fontSize : typography.cardSubtitle,
+      opacity : 0.8,
+      color: colors.UiText,
+    },
+    workoutsHeader:{
+      marginTop : 10,
+      flexDirection: "row",
+      justifyContent: 'space-between',
+      width : '90%',
+      alignSelf: 'center'
     },
 })
 

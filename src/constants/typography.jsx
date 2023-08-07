@@ -5,7 +5,9 @@ const typography = {
     caption: 12,
     button: 20,
     cardTitle: 15,
-    cardSubtitle:11,
+    cardSubtitle:13,
+    workoutsCardTitle:12,
+    workoutsCardSubtitle:8
     // ve daha fazlası...
 };
 

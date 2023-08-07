@@ -34,7 +34,8 @@ const UpperBodyScreen = () => {
   }, []);
 
   useEffect(() => {
-    setExerciseReps(ExerciseService.increaseRepsByLevel(exercises[exerciseIndex], level));
+    const newReps = ExerciseService.increaseRepsByLevel(exercises[exerciseIndex], level);
+    setExerciseReps(newReps);
   }, [level, exerciseIndex]);
 
   useEffect(() => {
@@ -44,12 +45,12 @@ const UpperBodyScreen = () => {
   useEffect(() => {
     if (isResting && restTime > 0) {
       const interval = setInterval(() => {
-        setRestTime(prevTime => prevTime - 1);
+        setRestTime(restTime -1);
       }, 1000);
       return () => clearInterval(interval);
     }
   }, [isResting, restTime]);
-
+  // ctrl z test
   const getDataFromAsyncStorage = async () => {
     try {
       const storedStatus = await AsyncStorage.getItem('@upperBodyWorkoutStatus');
@@ -144,21 +145,20 @@ const UpperBodyScreen = () => {
         {
           text: 'It was easy for me',
           onPress: async () => {
-            const completedCount = await getCompletedCount('@upperBodyCompletedCount');
-            const currentLevel = await getLevel('@upperBodyLevel');
-            await updateWorkoutStatus('@upperBodyCompletedCount', completedCount + 1);
-            await updateWorkoutStatus('@upperBodyLevel', currentLevel + 1);
+            workoutStatus['UpperBodyWorkout'].completedCount +=1;
+            workoutStatus['UpperBodyWorkout'].level = level + 1;
 
-            setLevel(currentLevel + 1);
-            handleResetWorkout();
-          },
+            await AsyncStorage.setItem('@workoutStatus',JSON.stringify(workoutStatus));
+            setLevel(level + 1)
+            handleResetWorkout()
+          }   
         },
         {
           text: 'It was just right',
           onPress: async () => {
-            const completedCount = await getCompletedCount('@upperBodyCompletedCount');
-            await updateWorkoutStatus('@upperBodyCompletedCount', completedCount + 1);
-
+            workoutStatus['UpperBodyWorkout'].completedCount +=1;
+            await AsyncStorage.setItem('@workoutStatus', JSON.stringify
+            (workoutStatus));
             handleResetWorkout();
           },
         },

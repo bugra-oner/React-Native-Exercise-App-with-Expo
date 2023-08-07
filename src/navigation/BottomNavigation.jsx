@@ -11,11 +11,13 @@ import Statistic from '../screens/Statistic/Statistics'
 import Profil from '../screens/Profil/Profil'
 import Workout from '../screens/Workouts/Workout'
 import History from '../screens/History'
-import Test from '../screens/Test'
+
 import Workouts from '../screens/Workouts/Workouts'
 import LevelSelector from '../screens/LevelSelector'
+import Test from '../screens/HealthCalculator';
 
 import UpperBodyScreen from '../screens/Workouts/UpperBody';
+import BMICalculator from '../screens/BMICalculator';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -24,6 +26,7 @@ export default function BottomStackNavigator(){
     return(
         <Stack.Navigator
         screenOptions={{
+            backgroundColor :'#ffff'
             
         }}>
             <Stack.Screen
@@ -38,6 +41,7 @@ export default function BottomStackNavigator(){
                  <Stack.Screen name="History" component={History} />
                  <Stack.Screen name="TestScreen" component={Test} />
                  <Stack.Screen name="UpperBody" component={UpperBodyScreen} />
+                 <Stack.Screen name="BMI" component={BMICalculator}/>
         </Stack.Navigator>
     )
 }
@@ -48,10 +52,10 @@ export const BottomNavigator = () => {
         <Tab.Navigator
         screenOptions={() => ({
         headerShown: false,
-        tabBarActiveTintColor: '#2196F3',
+        tabBarActiveTintColor: '#black',
         tabBarInactiveTintColor: '#ffffff',
         tabBarStyle: {
-          backgroundColor: '#2c3e50',
+          backgroundColor: '#484F88',
           borderTopColor: 'transparent',
           height: Platform.OS == 'ios' ? 90 : 60,
           paddingTop: 5,
@@ -60,6 +64,7 @@ export const BottomNavigator = () => {
           borderTopRightRadius: 17,
         },
         tabBarHideOnKeyboard: true,
+        backgroundColor: '#ffff',
         })}
       initialRouteName="Home"
         >
@@ -95,10 +100,11 @@ export const BottomNavigator = () => {
                         tabBarLabel:"Profil",
                         headerShown: false,
                         tabBarIcon:({color,size}) => (
-                            <Ionicons name="settings" size={size} color={color} /> 
+                            <Ionicons name="man" size={size} color={color} /> 
                             )    
                          }}
                         />
+                        <Stack.Screen name="Test" component={Test} />
         </Tab.Navigator>
     );
   };

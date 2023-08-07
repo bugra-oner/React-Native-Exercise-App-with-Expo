@@ -21,7 +21,7 @@ export default function ButtonCard({title,subTitle,onPress}) {
 const styles = StyleSheet.create({
   container: {
     width: 180.65,
-    height: '48%',
+    height: '44%',
     backgroundColor: '#F3F5FF',
     borderRadius: 13,
     borderColor: 'black',

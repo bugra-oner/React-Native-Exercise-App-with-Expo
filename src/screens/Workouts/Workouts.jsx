@@ -4,32 +4,39 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import colors from '../../constants/colors'
 import typography from '../../constants/typography'
 
+import WorkoutsCard from '../../components/Cards/WorkoutsCard';
+import CreaterCard from '../../components/Cards/CreateCard';
+import i18n from '../../i18n/i18n';
+
 export default function Workouts({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Select Your Workout</Text>
+    <View style={styles.topHeader}>
+    <Text style={styles.title}>Ekipmansız Egzersizler</Text>
+    <Text style={styles.subTitle}>Tümü</Text>
+    </View>
       <View style={styles.cardsContainer}>
-        <TouchableOpacity 
-          style={styles.card} 
-          onPress={() => navigation.navigate('LevelSelector')}
-        >
-          <Text style={styles.cardTitle}>Workout 1</Text>
-          <Text style={styles.cardDescription}>Description of Workout 1 goes here...</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.card} 
-          onPress={() => navigation.navigate('UpperBody')}
-        >
-          <Text style={styles.cardTitle}>Workout 2</Text>
-          <Text style={styles.cardDescription}>Description of Workout 2 goes here...</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.card} 
-          onPress={() => navigation.navigate('LevelSelector')}
-        >
-          <Text style={styles.cardTitle}>Workout 3</Text>
-          <Text style={styles.cardDescription}>Description of Workout 3 goes here...</Text>
-        </TouchableOpacity>
+        <WorkoutsCard 
+          title="Tüm Vücut Antrenmanı"
+          subTitle="Tüm büyük kas gruplarını çalıştırarak genel kondisyonu ve vücut şeklini geliştirir."
+          onPress={null}
+          image="push_ups"
+          buttonText="Başla"
+        />
+         <WorkoutsCard 
+          title="Üst Vücut antremanı"
+          subTitle="Göğüs, omuz, sırt ve kolları hedefler. Kasları güçlendirir, duruşu düzeltir ve üst vücudu şekillendirir."
+          onPress={null}
+          image="push_ups"
+          buttonText="Başla"
+        />
+         <WorkoutsCard 
+          title="Alt Vücut Antrenmanı"
+          subTitle="Bacak, kalça ve alt karın bölgelerini hedefler. Dengeyi artırır, bacak kaslarını güçlendirir ve alt vücudu şekillendirir."
+          onPress={null}
+          image="push_ups"
+          buttonText="Başla"
+        />
       </View>
     </View>
   );
@@ -38,19 +45,20 @@ export default function Workouts({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F3F5FF',
+    backgroundColor: 'white',
   },
   title: {
     fontSize: typography.title,
-    color: colors.title,
-    fontWeight: 'bold',
+    color: colors.UiText,
+    fontWeight: '900',
     textAlign: 'center',
     marginBottom: 20,
   },
+  subTitle:{
+    fontSize : typography.cardSubtitle,
+    opacity : 0.6
+  },
   cardsContainer: {
-    flexDirection: 'column',
     alignItems: 'center',
   },
   card: {
@@ -75,5 +83,12 @@ const styles = StyleSheet.create({
     fontSize: typography.body,
     color: colors.subTitle,
     fontWeight: '600',
+  },
+  topHeader:{
+    marginTop : 50,
+    flexDirection: "row",
+    justifyContent: 'space-between',
+    width : '90%',
+    alignSelf: 'center'
   },
 });

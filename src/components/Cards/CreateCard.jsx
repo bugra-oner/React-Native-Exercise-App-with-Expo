@@ -10,7 +10,7 @@ import colors from '../../constants/colors';
 import {useTranslation} from 'react-i18next';
 
 
-export default function StarterCard({ onPress }) {
+export default function CreaterCard({ onPress }) {
   const { t, i18n } = useTranslation();
   return (
         
@@ -44,7 +44,7 @@ export default function StarterCard({ onPress }) {
 const styles = StyleSheet.create({
   container:{
         width: '90%',
-        height: '18%',
+        height: '16%',
         shadowColor: '#7b7b82',
         shadowOpacity: 0.7,
         shadowRadius: 1.3208664655685425,
