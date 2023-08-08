@@ -4,58 +4,73 @@ import React from 'react'
 import colors from '../../constants/colors'
 import typography from '../../constants/typography'
 
-import Human from '../../assets/Human.svg'
+import Woman from '../../assets/cards/woman.svg'
 
 import { LinearGradient } from 'expo-linear-gradient';
+import Button from '../Button'
 
 
 
-export default function SvgCard({title,subTitle}) {
+export default function IndexCard({title,subTitle,buttonTitle,borderRadius,onPress}) {
   return (
     <LinearGradient
-    colors={[colors.gradientColor.colorThree, colors.gradientColor.colorTwo]}
+    colors={[colors.gradientColor.colorFour, colors.gradientColor.colorThree]}
      style={styles.container}>
-     <Human 
-        width= {160}
-        height= {90}
-        style={styles.SvgCard}
-     />
-     
-      <Text style={styles.title}>{title}</Text>
+     <View style={styles.leftContainer}>
+     <Text style={styles.title}>{title}</Text>
       <Text style={styles.subTitle}>{subTitle}</Text>
+      <View style={styles.buttonContainer}>
+      <Button
+     title={buttonTitle}
+     borderRadius={borderRadius}
+     onPress={onPress}
+      />
+      </View>
+      </View>
+     <Woman 
+        width= {200}
+        height= {140}
+        style={styles.SvgCard}
+     /> 
     </LinearGradient>
   )
 }
 
 const styles = StyleSheet.create({
     container:{
+        justifyContent: 'space-between',
+        flexDirection : 'row',
         marginVertical: 10,
         alignItems : 'center',
-        borderRadius: 13,
-        height: "80%",
+        width: '94%',
+        alignSelf: 'center',
+        borderRadius: 16,
         shadowOffset: {
             width: 0,
-            height: 2,
+            height: 3,
           },
           shadowOpacity: 0.25,
           shadowRadius: 3.84,
-          elevation: 5,  // This adds shadow to Android and is optional
+          elevation: 6,  // This adds shadow to Android and is optional
+    },
+    leftContainer:{
+      marginHorizontal: 9,
+      width : '40%',
+      textAlign: 'center',
+      alignItems: 'center',
     },
     title:{
-        fontSize : typography.title,
+        fontSize : typography.healthText,
         color: colors.title,
         fontWeight: 'bold',
-
     },
     subTitle:{
-        fontSize: typography.body,
-        color: colors.subTitle,
-        fontWeight: '700',
+        fontSize: typography.healthInfo,
+        color: colors.UiText,
+        fontWeight: '400',
         marginTop: "2%",
+        maxWidth: '90%',
+        lineHeight: 14,
+        marginBottom: 15,
     },
-    SvgCard:{
-        position : 'auto',
-        top: -11,
-        
-    }
 })

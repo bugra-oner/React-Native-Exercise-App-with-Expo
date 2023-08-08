@@ -8,8 +8,10 @@ const typography = {
     cardSubtitle:13,
     workoutsCardTitle:12,
     workoutsCardSubtitle:8,
-    healthText:16,
-    healthInfo:14,
+    healthText:15,
+    healthInfo:12,
+    InfoTitle:14,
+    InfoText: 10,
 };
 
 export default typography;

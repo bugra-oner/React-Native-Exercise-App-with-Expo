@@ -34,6 +34,8 @@ export default function WorkoutsCard({ title, subTitle, onPress, image,buttonTex
       </View>
       <Button
       title={buttonText}
+      borderRadius={20}
+      onPress={onPress}
        />
     </View>
   );

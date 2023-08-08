@@ -3,9 +3,13 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Bu satırı ekledim
 import ExerciseService from '../../service/ExerciseService';
 import i18n from '../../i18n/i18n';
+import { useIsFocused } from '@react-navigation/native';
+
 
 const StatisticsScreen = () => {
-  const [level, setLevel] = useState(1);
+  const isFocused = useIsFocused();
+  const [workoutStatus, setWorkoutStatus] = useState({});
+  const [level, setLevel] = useState();
   const [UpperBodyLevel, setUpperBodyLevel] = useState(1);
   const [workout3Level, setWorkout3Level] = useState(1);
   const [totalWorkouts, setTotalWorkouts] = useState(0);
@@ -13,10 +17,8 @@ const StatisticsScreen = () => {
   const [completedWorkouts, setCompletedWorkouts] = useState(0);
 
   useEffect(() => {
-    
     getDataFromAsyncStorage(); // Bu satırı ekledim
-    
-  }, []);
+  }, [isFocused]);
 
   const getDataFromAsyncStorage = async () => {
     try {
@@ -26,7 +28,9 @@ const StatisticsScreen = () => {
       console.log(storedStatus,"storedStatusTest");
       if (storedStatus !== null) {
         const workoutStatus = JSON.parse(storedStatus);
+        setWorkoutStatus(workoutStatus);
         console.log(workoutStatus,'burayı dene')
+        console.log(workoutStatus['HomeFullBodyWorkout'].level)
         setLevel(workoutStatus['HomeFullBodyWorkout'].level);
         setCompletedWorkouts(workoutStatus['HomeFullBodyWorkout'].completedCount);
         setUpperBodyLevel(workoutStatus['UpperBodyWorkout'].level);
@@ -48,25 +52,29 @@ const StatisticsScreen = () => {
       }
     });
     setTotalReps(totalReps);
+ 
   };
   
-
-  const getTotalRepsForExercise = (exercise, level) => {
-    const totalRepsDone = exercise.reps.slice(0, level - 1).reduce((acc, rep) => acc + rep, 0);
-    return totalRepsDone * exercise.sets;
-  };
-
- 
-
 
   const renderItem = ({ item }) => (
     <View style={styles.exerciseItem}>
       <Text style={styles.exerciseName}>{item.name}</Text>
       <Text style={styles.exerciseReps}>
-        Total Reps: {getTotalRepsForExercise(item, level)}
+        Total Reps: {workoutStatus[item.name]?.totalReps || 0}
       </Text>
     </View>
   );
+  
+  const workoutTwoItem = ({ item }) => (
+    <View style={styles.exerciseItem}>
+      <Text style={styles.exerciseName}>{item.name}</Text>
+      <Text style={styles.exerciseReps}>
+        Total Reps: {workoutStatus[item.name]?.totalReps || 0}
+      </Text>
+    </View>
+  );
+
+
 
   return (
     <View style={styles.container}>
@@ -74,7 +82,7 @@ const StatisticsScreen = () => {
       <Text style={styles.statText}>{i18n.t('totalWorkouts')}: {completedWorkouts}</Text>
       <Text style={styles.statText}>{i18n.t('totalReps')}: {totalReps}</Text>
       <Text style={styles.statText}></Text>
-      <Text style={styles.statText}></Text>
+      <Text style={styles.statText}>Level for workout 1: {level}</Text>
       <Text style={styles.statText}>Level for Workout 2: {UpperBodyLevel}</Text>
       <Text style={styles.statText}>Level for Workout 3: {workout3Level}</Text>
 
@@ -130,6 +138,30 @@ const styles = StyleSheet.create({
 });
 
 export default StatisticsScreen;
+
+
+
+
+// const workoutTwoGetTotalRepsForExercise = (exercise, UpperBodyLevel) => {
+//   const totalRepsDone = exercise.reps.slice(0, level - 1).reduce((acc, rep) => acc + rep, 0);
+//   return totalRepsDone * exercise.sets;
+// };
+
+// const workoutTwoItem = ({ item }) => (
+//   <View style={styles.exerciseItem}>
+//     <Text style={styles.exerciseName}>{item.name}</Text>
+//     <Text style={styles.exerciseReps}>
+//       Total Reps: {getTotalRepsForExercise(item, UpperBodyLevel)}
+//     </Text>
+//   </View>
+// );
+
+
+// const getTotalRepsForExercise = (exercise, level) => {
+//   const totalRepsDone = exercise.reps.slice(0, level - 1).reduce((acc, rep) => acc + rep, 0);
+//   return totalRepsDone * exercise.sets;
+// };
+
 
 
 

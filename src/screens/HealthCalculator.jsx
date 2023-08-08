@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import CustomPicker from '../components/CustomPicker';
 
 import typography from '../constants/typography';
@@ -72,7 +74,7 @@ const HealthCalculator = () => {
     }
   };
 
-  const calculateDailyCalories = () => {
+  const calculateDailyCalories = async () => {
     const activityMultiplier = {
       sedentary: 1.2,
       lightlyActive: 1.375,
@@ -93,13 +95,13 @@ const HealthCalculator = () => {
     setDailyCalories(dailyCalories.toFixed(2));
   };
 
-  const calculateDailyWater = () => {
+  const calculateDailyWater = async () => {
     const waterPerKilogram = 38;
     const dailyWaterAmount = waterPerKilogram * weight;
     setDailyWater(dailyWaterAmount.toFixed(2));
   };
 
-  const handleCalculatePress = () => {
+  const handleCalculatePress =  async () => {
     if (!isFormValid()) {
       // Eğer form eksik ise hata mesajı gösterme veya gerekli işlemleri yapma
       alert('Lütfen tüm alanları doldurun.');
@@ -111,6 +113,19 @@ const HealthCalculator = () => {
     calculateDailyWater();
     const calculatedIdealWeight = calculateIdealWeight(); // Ideal kiloyu hesapla
     setIdealWeight(calculatedIdealWeight); // State'i güncelle
+    
+   
+  const calculatedData = {
+    bmi: bmi,
+    dailyCalories: dailyCalories,
+    dailyWater: dailyWater,
+    idealWeight: calculatedIdealWeight,
+  };
+  try {
+    await AsyncStorage.setItem('calculatedData', JSON.stringify(calculatedData));
+  } catch (error) {
+    console.log('Error saving data to AsyncStorage:', error);
+  }
   };
 
   const genders = [

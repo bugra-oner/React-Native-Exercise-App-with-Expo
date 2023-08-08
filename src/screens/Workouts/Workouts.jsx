@@ -7,8 +7,9 @@ import typography from '../../constants/typography'
 import WorkoutsCard from '../../components/Cards/WorkoutsCard';
 import CreaterCard from '../../components/Cards/CreateCard';
 import i18n from '../../i18n/i18n';
+import { navigate } from '../../navigation/navigationRef';
 
-export default function Workouts({ navigation }) {
+export default function Workouts() {
   return (
     <View style={styles.container}>
     <View style={styles.topHeader}>
@@ -19,17 +20,17 @@ export default function Workouts({ navigation }) {
         <WorkoutsCard 
           title="Tüm Vücut Antrenmanı"
           subTitle="Tüm büyük kas gruplarını çalıştırarak genel kondisyonu ve vücut şeklini geliştirir."
-          onPress={null}
+          onPress={() => navigate('Workout')}
           image="push_ups"
           buttonText="Başla"
         />
          <WorkoutsCard 
           title="Üst Vücut antremanı"
           subTitle="Göğüs, omuz, sırt ve kolları hedefler. Kasları güçlendirir, duruşu düzeltir ve üst vücudu şekillendirir."
-          onPress={null}
           image="push_ups"
           buttonText="Başla"
-        />
+          onPress={() => navigate('UpperBody')}
+          />
          <WorkoutsCard 
           title="Alt Vücut Antrenmanı"
           subTitle="Bacak, kalça ve alt karın bölgelerini hedefler. Dengeyi artırır, bacak kaslarını güçlendirir ve alt vücudu şekillendirir."

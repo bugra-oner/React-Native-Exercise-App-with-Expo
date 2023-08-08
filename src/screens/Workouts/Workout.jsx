@@ -16,6 +16,10 @@ let workoutStatus = {
     completedCount: 0,
     level: 1,
   },
+  "UpperBodyWorkout": {
+    completedCount: 0,
+    level: 1,
+  },
 };
 
 const WorkoutScreen = () => {

@@ -18,6 +18,8 @@ import Test from '../screens/HealthCalculator';
 
 import UpperBodyScreen from '../screens/Workouts/UpperBody';
 import BMICalculator from '../screens/BMICalculator';
+import Graph from '../screens/Graph/Graph';
+import HealthCalculator from '../screens/HealthCalculator';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -27,7 +29,6 @@ export default function BottomStackNavigator(){
         <Stack.Navigator
         screenOptions={{
             backgroundColor :'#ffff'
-            
         }}>
             <Stack.Screen
             name="BottomNavigator"
@@ -42,6 +43,7 @@ export default function BottomStackNavigator(){
                  <Stack.Screen name="TestScreen" component={Test} />
                  <Stack.Screen name="UpperBody" component={UpperBodyScreen} />
                  <Stack.Screen name="BMI" component={BMICalculator}/>
+                 <Stack.Screen name='HealthCalculator' component={HealthCalculator} />
         </Stack.Navigator>
     )
 }
@@ -80,12 +82,15 @@ export const BottomNavigator = () => {
             <Tab.Screen
              name="Statistic"
              component={Statistic}
+             
              options={{
                 tabBarLabel:"İstatistik",
                 headerShown:false,
                 tabBarIcon:({color,size}) => (
                     <Ionicons name="stats-chart" size={size} color={color} /> // Expo'nun yerleşik ikonunu kullanıyoruz
-          )}}/>
+          )}}
+            
+          />
                 <Stack.Screen name="Workouts" 
                     options={{
                         tabBarLabel:"Antrenman",
@@ -95,8 +100,17 @@ export const BottomNavigator = () => {
                             )}}
                             component={Workouts}
                             />  
-                <Stack.Screen name="Profil" component={Profil}
-                    options={{
+                      <Stack.Screen
+                        options={{
+                            tabBarLabel:'asdfasfsd',
+                            headerShown: false,
+                            tabBarIcon:({color,size}) => (
+                            <Ionicons name="man" size={size} color={color} /> 
+                            )    
+                         }}
+                        name='Graph' component={Graph} />
+                    <Stack.Screen name="Profil" component={Profil}
+                        options={{
                         tabBarLabel:"Profil",
                         headerShown: false,
                         tabBarIcon:({color,size}) => (
@@ -104,7 +118,6 @@ export const BottomNavigator = () => {
                             )    
                          }}
                         />
-                        <Stack.Screen name="Test" component={Test} />
         </Tab.Navigator>
     );
   };
