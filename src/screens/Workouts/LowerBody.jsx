@@ -11,8 +11,8 @@ const images = {
   squats: require('../../assets/squats.png'),
 };
 
-let fullBodyWorkout = {
-  "HomeFullBodyWorkout": {
+let LowerBodyWorkout = {
+  "HomeLowerBodyWorkout": {
     completedCount: 0,
     level: 1,
   },
@@ -53,18 +53,18 @@ const WorkoutScreen = () => {
 
   const getDataFromAsyncStorage = async () => {
     try {
-      const storedStatus = await AsyncStorage.getItem('@fullBodyWorkoutStatus');
+      const storedStatus = await AsyncStorage.getItem('@LowerBodyWorkoutStatus');
       console.log(storedStatus)
           if (storedStatus === null) {
             console.log('test1 ')
-        await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify({}));
+        await AsyncStorage.setItem('@LowerBodyWorkoutStatus', JSON.stringify({}));
       } else {
         console.log('test2 ')
-        const fullBodyWorkoutStatusData = JSON.parse(storedStatus)
-        console.log(fullBodyWorkoutStatusData,'test 2')
-        const currentLevel = fullBodyWorkoutStatusData['HomeFullBodyWorkout']?.level || 1;
+        const LowerBodyWorkoutData = JSON.parse(storedStatus)
+        console.log(LowerBodyWorkoutData,'test 2')
+        const currentLevel = LowerBodyWorkoutData['HomeLowerBodyWorkout']?.level || 1;
         setLevel(currentLevel);
-        // const completedExerciseStats = fullBodyWorkout[exercises[exerciseIndex].name];
+        // const completedExerciseStats = LowerBodyWorkout[exercises[exerciseIndex].name];
         // // if (completedExerciseStats) {
         // //   setTotalReps(completedExerciseStats.totalReps);
         // // }
@@ -73,7 +73,7 @@ const WorkoutScreen = () => {
       const savedExerciseIndex = await AsyncStorage.getItem('@exerciseIndex');
       const savedCurrentSet = await AsyncStorage.getItem('@currentSet');
       // const savedTotalReps = await AsyncStorage.getItem('@totalReps');
-      // setLevel(fullBodyWorkout['HomeFullBodyWorkout'].level);
+      // setLevel(LowerBodyWorkout['HomeLowerBodyWorkout'].level);
       if (savedExerciseIndex) setExerciseIndex(JSON.parse(savedExerciseIndex));
       if (savedCurrentSet) setCurrentSet(JSON.parse(savedCurrentSet));
       // if (savedTotalReps) setTotalReps(JSON.parse(savedTotalReps));
@@ -84,8 +84,8 @@ const WorkoutScreen = () => {
 
   const storeData = async () => {
     try {
-      await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify({
-        'HomeFullBodyWorkout' : {level}
+      await AsyncStorage.setItem('@LowerBodyWorkoutStatus', JSON.stringify({
+        'HomeLowerBodyWorkout' : {level}
       }));
       await AsyncStorage.setItem('@exerciseIndex', JSON.stringify(exerciseIndex));
       await AsyncStorage.setItem('@currentSet', JSON.stringify(currentSet));
@@ -119,15 +119,15 @@ const WorkoutScreen = () => {
 
     // Hareket istatistiklerini güncelle
     const completedExerciseName = exercises[exerciseIndex].name;
-    const completedExerciseStats = fullBodyWorkout[completedExerciseName] || { completedCount: 0, totalReps: 0,  };
+    const completedExerciseStats = LowerBodyWorkout[completedExerciseName] || { completedCount: 0, totalReps: 0,  };
     completedExerciseStats.completedCount += 1;
     completedExerciseStats.totalReps += repsInThisSet;
     
-    fullBodyWorkout[completedExerciseName] = completedExerciseStats;
+    LowerBodyWorkout[completedExerciseName] = completedExerciseStats;
 
     // Hafızada güncellenen istatistikleri sakla
     try {
-      await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify(fullBodyWorkout));
+      await AsyncStorage.setItem('@LowerBodyWorkoutStatus', JSON.stringify(LowerBodyWorkout));
     } catch (error) {
       console.error(error);
     }
@@ -149,9 +149,9 @@ const WorkoutScreen = () => {
         {
           text: 'It was easy for me',
           onPress: async () => {
-            fullBodyWorkout['HomeFullBodyWorkout'].completedCount += 1;
-            fullBodyWorkout['HomeFullBodyWorkout'].level = level + 1;
-            await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify(fullBodyWorkout));
+            LowerBodyWorkout['HomeLowerBodyWorkout'].completedCount += 1;
+            LowerBodyWorkout['HomeLowerBodyWorkout'].level = level + 1;
+            await AsyncStorage.setItem('@LowerBodyWorkoutStatus', JSON.stringify(LowerBodyWorkout));
             setLevel(level + 1);
             handleResetWorkout();
           }
@@ -159,8 +159,8 @@ const WorkoutScreen = () => {
         {
         text: 'It was just right',
           onPress: async () => {
-            fullBodyWorkout['HomeFullBodyWorkout'].completedCount += 1;
-            await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify(fullBodyWorkout));
+            LowerBodyWorkout['HomeLowerBodyWorkout'].completedCount += 1;
+            await AsyncStorage.setItem('@LowerBodyWorkoutStatus', JSON.stringify(LowerBodyWorkout));
             handleResetWorkout();
           }
         },
@@ -262,8 +262,3 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
-
-
-
-
-

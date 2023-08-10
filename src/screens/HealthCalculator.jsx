@@ -7,7 +7,10 @@ import CustomPicker from '../components/CustomPicker';
 
 import typography from '../constants/typography';
 
+import { useTranslation } from 'react-i18next';
 const HealthCalculator = () => {
+  const {t} = useTranslation()
+
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [age, setAge] = useState('');
@@ -107,14 +110,12 @@ const HealthCalculator = () => {
       alert('Lütfen tüm alanları doldurun.');
       return;
     }
-
     calculateBMI();
     calculateDailyCalories();
     calculateDailyWater();
     const calculatedIdealWeight = calculateIdealWeight(); // Ideal kiloyu hesapla
     setIdealWeight(calculatedIdealWeight); // State'i güncelle
-    
-   
+
   const calculatedData = {
     bmi: bmi,
     dailyCalories: dailyCalories,
@@ -129,29 +130,29 @@ const HealthCalculator = () => {
   };
 
   const genders = [
-    { label: 'Erkek', value: 'male' },
-    { label: 'Kadın', value: 'female' },
+    { label: t('Male'), value: 'male' },
+    { label: t('Female'), value: 'female' },
   ];
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sağlık Hesaplayıcı</Text>
+      <Text style={styles.title}>{t('HealthCalculator')}</Text>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Kilonuzu girin (kg)"
+          placeholder={t('InputKg')}
           onChangeText={(text) => setWeight(text)}
           keyboardType="numeric"
         />
         <TextInput
           style={styles.input}
-          placeholder="Boyunuzu girin (cm)"
+          placeholder={t('InputCm')}
           onChangeText={(text) => setHeight(text)}
           keyboardType="numeric"
         />
         <TextInput
           style={styles.input}
-          placeholder="Yaşınızı girin"
+          placeholder={t('InputOld')}
           onChangeText={(text) => setAge(text)}
           keyboardType="numeric"
         />
@@ -165,7 +166,7 @@ const HealthCalculator = () => {
           selectedValue={gender}
           onValueChange={value => setGender(value)}
         />
-        <Button title="Hesapla" onPress={handleCalculatePress} />
+        <Button title={t("Calculated")} onPress={handleCalculatePress} />
       </View>
       {bmi !== null && (
         <View style={styles.resultContainer}>
@@ -183,8 +184,7 @@ const HealthCalculator = () => {
         <Text style={styles.resultText}>İdeal Kilo: {idealWeight} kg</Text>
       )}
       <Text style={styles.infoText}>
-        Sağlığınızı kontrol etmek ve düzenli olarak egzersiz yapmak önemlidir. Dünya Sağlık Örgütü tarafından
-        belirlenen Vücut Kitle İndeksi kategorilerine göre değerlendirme yapılmıştır.
+        {t('DaoInfo')}
       </Text>
     </View>
   );

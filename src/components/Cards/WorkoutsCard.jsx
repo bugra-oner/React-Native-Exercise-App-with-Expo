@@ -10,7 +10,7 @@ const sitUpsImage = require('../../assets/sit_ups.png');
 const calfRaisesImage = require('../../assets/calf_raises.png');
 const squatsImage = require('../../assets/squats.png');
 
-export default function WorkoutsCard({ title, subTitle, onPress, image,buttonText }) {
+export default function WorkoutsCard({ title, subTitle, onPress, image,buttonText,level }) {
   // Burada gelen 'image' prop'unu kullanarak hangi resmi kullanacağınıza karar vermelisiniz
   let selectedImage = pushUpsImage; // Örnek olarak push-ups resmi varsayılan olarak ayarlandı
 
@@ -29,14 +29,21 @@ export default function WorkoutsCard({ title, subTitle, onPress, image,buttonTex
     <View style={styles.card}>
       <Image source={selectedImage} style={styles.image} />
       <View style={styles.contentContainer}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={[styles.title , level ? {fontSize: 15} : null ]}>{title}</Text>
         <Text style={styles.subTitle}>{subTitle}</Text>
       </View>
-      <Button
+      {level?
+      <View style={styles.circle}>
+        <Text style={styles.level}>
+        {level}
+        </Text>
+      </View> 
+      : <Button
       title={buttonText}
       borderRadius={20}
       onPress={onPress}
        />
+      }
     </View>
   );
 }
@@ -80,5 +87,18 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: typography.workoutsCardSubtitle,
     opacity: 0.7,
+  },
+  level:{
+    fontWeight: "bold",
+    fontSize : 14,
+    color: 'white'
+  },
+  circle:{
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: '#484F88',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

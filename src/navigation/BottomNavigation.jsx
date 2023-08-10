@@ -14,12 +14,14 @@ import History from '../screens/History'
 
 import Workouts from '../screens/Workouts/Workouts'
 import LevelSelector from '../screens/LevelSelector'
-import Test from '../screens/HealthCalculator';
+
 
 import UpperBodyScreen from '../screens/Workouts/UpperBody';
 import BMICalculator from '../screens/BMICalculator';
 import Graph from '../screens/Graph/Graph';
 import HealthCalculator from '../screens/HealthCalculator';
+import Test from '../screens/Profil/Test';
+import LowerBody from '../screens/Workouts/LowerBody';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -44,11 +46,13 @@ export default function BottomStackNavigator(){
                  <Stack.Screen name="UpperBody" component={UpperBodyScreen} />
                  <Stack.Screen name="BMI" component={BMICalculator}/>
                  <Stack.Screen name='HealthCalculator' component={HealthCalculator} />
+                 <Stack.Screen name= 'Test' component={Test} />
+                 <Stack.Screen name= 'LowerBody' component={LowerBody} />
+                 <Stack.Screen name="Workouts" component={Workouts} />
         </Stack.Navigator>
     )
 }
 
-    
 export const BottomNavigator = () => {
     return (
         <Tab.Navigator
@@ -82,24 +86,13 @@ export const BottomNavigator = () => {
             <Tab.Screen
              name="Statistic"
              component={Statistic}
-             
              options={{
                 tabBarLabel:"İstatistik",
                 headerShown:false,
                 tabBarIcon:({color,size}) => (
                     <Ionicons name="stats-chart" size={size} color={color} /> // Expo'nun yerleşik ikonunu kullanıyoruz
           )}}
-            
-          />
-                <Stack.Screen name="Workouts" 
-                    options={{
-                        tabBarLabel:"Antrenman",
-                        headerShown: false,
-                        tabBarIcon:({color,size}) => (
-                            <Ionicons name="barbell" size={size} color={color}  />
-                            )}}
-                            component={Workouts}
-                            />  
+/>
                       <Stack.Screen
                         options={{
                             tabBarLabel:'asdfasfsd',
@@ -121,9 +114,3 @@ export const BottomNavigator = () => {
         </Tab.Navigator>
     );
   };
-
-
-
-
-
-

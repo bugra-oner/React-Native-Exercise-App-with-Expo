@@ -9,34 +9,37 @@ import CreaterCard from '../../components/Cards/CreateCard';
 import i18n from '../../i18n/i18n';
 import { navigate } from '../../navigation/navigationRef';
 
+import { useTranslation } from 'react-i18next';
+
 export default function Workouts() {
+  const { t, i18n } = useTranslation();
   return (
     <View style={styles.container}>
     <View style={styles.topHeader}>
-    <Text style={styles.title}>Ekipmansız Egzersizler</Text>
-    <Text style={styles.subTitle}>Tümü</Text>
+    <Text style={styles.title}>{i18n.t('ExercisesWithoutEquipment')}</Text>
+    <Text style={styles.subTitle}>{i18n.t('All')}</Text>
     </View>
       <View style={styles.cardsContainer}>
         <WorkoutsCard 
-          title="Tüm Vücut Antrenmanı"
-          subTitle="Tüm büyük kas gruplarını çalıştırarak genel kondisyonu ve vücut şeklini geliştirir."
+          title={i18n.t('FullBodyWorkout')}
+          subTitle={i18n.t('FullBodyDesc')}
           onPress={() => navigate('Workout')}
           image="push_ups"
-          buttonText="Başla"
+          buttonText={t('Start')}
         />
          <WorkoutsCard 
-          title="Üst Vücut antremanı"
-          subTitle="Göğüs, omuz, sırt ve kolları hedefler. Kasları güçlendirir, duruşu düzeltir ve üst vücudu şekillendirir."
+          title= {i18n.t('UpperBodyWorkout')}
+          subTitle={i18n.t('UpperBodyDesc')}
           image="push_ups"
-          buttonText="Başla"
+          buttonText={t('Start')}
           onPress={() => navigate('UpperBody')}
           />
          <WorkoutsCard 
-          title="Alt Vücut Antrenmanı"
-          subTitle="Bacak, kalça ve alt karın bölgelerini hedefler. Dengeyi artırır, bacak kaslarını güçlendirir ve alt vücudu şekillendirir."
-          onPress={null}
+          title={i18n.t('LowerBodyWorkout')}
+          subTitle={i18n.t('LowerBodyDesc')}
+          onPress={() => navigate('LowerBody')}
           image="push_ups"
-          buttonText="Başla"
+          buttonText={t('Start')}
         />
       </View>
     </View>

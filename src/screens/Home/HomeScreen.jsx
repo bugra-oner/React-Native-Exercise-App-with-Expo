@@ -15,13 +15,21 @@ import IndexCard from '../../components/Cards/IndexCard'
 import WorkoutsCard from '../../components/Cards/WorkoutsCard';
 import { navigate } from '../../navigation/navigationRef';
 
+
+import { useTranslation } from 'react-i18next';
+
 export default function HomeScreen() {
+
+  const { t, i18n } = useTranslation();
+
   const [completedWorkouts,setCompletedWorkouts] = useState(0);
   const [level, setLevel] = useState(1);
   const [workout2Level, setWorkout2Level] = useState(1);
   const [workout3Level, setWorkout3Level] = useState(1);
   const [totalWorkouts, setTotalWorkouts] = useState(0);
   const [totalReps, setTotalReps] = useState(0);
+
+  
 
   const loadLevels = async () => {
     const level = await ExerciseService.getLevel('@save_level');
@@ -32,70 +40,76 @@ export default function HomeScreen() {
     setWorkout3Level(workout3Level);
   };
 
-  const calculateStatistics = () => {
-    const { totalWorkouts, totalReps } = ExerciseService.calculateStatistics();
-    setTotalWorkouts(totalWorkouts);
-    setTotalReps(totalReps);
-  };
+  // const calculateStatistics = () => {
+  //   const { totalWorkouts, totalReps } = ExerciseService.calculateStatistics();
+  //   setTotalWorkouts(totalWorkouts);
+  //   setTotalReps(totalReps);
+  // };
 
   useEffect(() => {
     const { totalWorkouts, totalReps } = ExerciseService.calculateStatistics();
     setTotalWorkouts(totalWorkouts);
     setTotalReps(totalReps);
-
     loadLevels();
-    calculateStatistics();
+    // calculateStatistics();
   }, []);
 
+  const loadData = async () => {}
+  
   return (
     <ScrollView style={styles.container}>
-      <CreaterCard  onPress={() => navigate('Workouts')}
+      <CreaterCard
+      marginTop="19%" 
+      onPress={() => navigate('Workouts')}
       />
-      <Text style={styles.title}>Genel Bakış</Text>
+      <Text style={styles.title}>{t('Overview')}</Text>
       <View style={styles.headerContainer}>
-        <SvgCard title="Tamamlanan" subTitle={`${totalWorkouts} Antrenman`} />
+        <SvgCard title={t('Completed')} subTitle={`${totalWorkouts}` + "" + t('Exercise')} />
         <View style={styles.buttonsContainer}>
         <ButtonCard  
         onPress={() => console.log('test')}
-        title="Program" subTitle={`${totalReps} Egzersiz`} />
+        title="Program" subTitle={"3" + " " + t(`Exercise`)} />
         <Spacing 
           size={15}
         />
         <ButtonCard  
           onPress={()=> console.log("test")}
-        title="Toplam" subTitle=" 360 tekrar" />
+        title={t('Total')} subTitle=" 360 tekrar" />
         </View>
       </View>
       <View style={styles.cardsContainer}>
       <View style={styles.workoutsHeader}>
-      <Text style={styles.workoutsTitle}>Ekipmansız Egzersizler</Text>
+      <Text style={styles.workoutsTitle}>{t('ExercisesWithoutEquipment')}</Text>
       <TouchableOpacity
       onPress={() => navigate('Workouts')}>
-      <Text style={styles.workoutsSubTitle}>Tümü</Text>
+      <Text style={styles.workoutsSubTitle}>{t('All')}</Text>
       </TouchableOpacity>
        </View>
         <WorkoutsCard 
-          title="Tüm Vücut Antrenmanı"
-          subTitle="Tüm büyük kas gruplarını çalıştırarak genel kondisyonu ve vücut şeklini geliştirir."
-          onPress={null}
+          title={t('FullBodyWorkout')}
+          subTitle={t('FullBodyDesc')}
+          onPress={() => navigate('Workout')}
           image="push_ups"
-          buttonText="Başla"
+          buttonText={t('Start')}
         />
          <WorkoutsCard 
-          title="Üst Vücut antremanı"
-          subTitle="Göğüs, omuz, sırt ve kolları hedefler. Kasları güçlendirir, duruşu düzeltir ve üst vücudu şekillendirir."
-          onPress={null}
+          title={t('UpperBodyWorkout')}
+          subTitle={t('UpperBodyDesc')}
+          onPress={() => navigate('UpperBody')}
           image="push_ups"
-          buttonText="Başla"
+          buttonText={t('Start')}
         />
          <WorkoutsCard 
-          title="Alt Vücut Antrenmanı"
-          subTitle="Bacak, kalça ve alt karın bölgelerini hedefler. Dengeyi artırır, bacak kaslarını güçlendirir ve alt vücudu şekillendirir."
+          title={t('LowerBodyWorkout')}
+          subTitle={t('LowerBodyDesc')}
           onPress={null}
           image="push_ups"
-          buttonText="Başla"
+          buttonText={t('Start')}
         />
       </View>
+      <Text style={styles.Foods}>
+        {t('Foods')}
+      </Text>
     </ScrollView>
   );
 }
@@ -152,6 +166,13 @@ const styles = StyleSheet.create({
       justifyContent: 'space-between',
       width : '90%',
       alignSelf: 'center'
+    },
+    Foods:{
+      marginLeft: '5%',
+      fontSize: typography.title,
+      color: colors.UiText,
+      fontWeight: '900',
+      marginBottom: 10,
     },
 })
 

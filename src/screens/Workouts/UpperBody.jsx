@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, Image, Button, Alert } from 'react-na
 import { ProgressBar } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ExerciseService from '../../service/ExerciseService';
-import i18n from '../../i18n/i18n';
+
 
 const images = {
   push_ups: require('../../assets/push_ups.png'),
@@ -13,10 +13,6 @@ const images = {
 };
 
 let workoutStatus = {
-  'HomeFullBodyWorkout': {
-    completedCount: 0,
-    level: 1,
-  },
   "UpperBodyWorkout": {
     completedCount: 0,
     level: 1,
@@ -54,16 +50,21 @@ const UpperBodyScreen = () => {
       return () => clearInterval(interval);
     }
   }, [isResting, restTime]);
-  // ctrl z test
+
   const getDataFromAsyncStorage = async () => {
     try {
       const storedStatus = await AsyncStorage.getItem('@upperBodyWorkoutStatus');
+      console.log(storedStatus)
       if (storedStatus === null) {
+        console.log('test1 ')
         await AsyncStorage.setItem('@upperBodyWorkoutStatus', JSON.stringify({}));
       } else {
+        console.log('test2 ')
         const upperBodyWorkoutStatusData = JSON.parse(storedStatus);
+        console.log(upperBodyWorkoutStatusData,'test 2')
         const currentLevel = upperBodyWorkoutStatusData['UpperBodyWorkout']?.level || 1;
         setLevel(currentLevel);
+        // Bu kısımda ilgili verileri çektiğinizden emin olun
       }
 
       const savedExerciseIndex = await AsyncStorage.getItem('@upperBodyExerciseIndex');
@@ -76,13 +77,13 @@ const UpperBodyScreen = () => {
     }
   };
 
-  const loadData = () => {
-    const currentExercises = ExerciseService.getUpperBodyExercises().map((exercise) => ({
-      ...exercise,
-      reps: ExerciseService.increaseRepsByLevel(exercise, level),
-    }));
-    setExercises(currentExercises);
-  };
+  // const loadData = () => {
+  //   const currentExercises = ExerciseService.getUpperBodyExercises().map((exercise) => ({
+  //     ...exercise,
+  //     reps: ExerciseService.increaseRepsByLevel(exercise, level),
+  //   }));
+  //   setExercises(currentExercises);
+  // };
 
   const storeData = async () => {
     try {
@@ -119,20 +120,20 @@ const UpperBodyScreen = () => {
   
     // Hareket istatistiklerini güncelle
     const completedExerciseName = exercises[exerciseIndex].name;
-    const completedExerciseStats = workoutStatus[completedExerciseName] || { completedCount: 0, totalReps: 0, totalSets: 0 };
-    completedExerciseStats.completedCount += 1;
-    completedExerciseStats.totalReps += repsInThisSet;
-    completedExerciseStats.totalSets += 1; // Yeni eklenen kısım
-    workoutStatus[completedExerciseName] = completedExerciseStats;
+  const completedExerciseStats = workoutStatus[completedExerciseName] || { completedCount: 0, totalReps: 0, totalSets: 0 };
+  completedExerciseStats.completedCount += 1;
+  completedExerciseStats.totalReps += repsInThisSet;
+  completedExerciseStats.totalSets += 1;
+  workoutStatus[completedExerciseName] = completedExerciseStats;
   
     // Hafızada güncellenen istatistikleri sakla
     try {
-      await AsyncStorage.setItem('@workoutStatus', JSON.stringify(workoutStatus));
+      await AsyncStorage.setItem('@upperBodyWorkoutStatus', JSON.stringify(workoutStatus));
+      // Bu kısımda fullBodyWorkoutStatus'a da aynı şekilde işlem yapabilirsiniz
     } catch (error) {
       console.error(error);
     }
   };
-  
 
   const handleResetWorkout = () => {
     setExerciseIndex(0);
@@ -149,19 +150,18 @@ const UpperBodyScreen = () => {
         {
           text: 'It was easy for me',
           onPress: async () => {
-            workoutStatus['UpperBodyWorkout'].completedCount +=1;
+            workoutStatus['UpperBodyWorkout'].completedCount +=  1;
             workoutStatus['UpperBodyWorkout'].level = level + 1;
-
-            await AsyncStorage.setItem('@workoutStatus',JSON.stringify(workoutStatus));
+            await AsyncStorage.setItem('@upperBodyWorkoutStatus', JSON.stringify(workoutStatus));
             setLevel(level + 1)
-            handleResetWorkout()
+            handleResetWorkout();
           }   
         },
         {
           text: 'It was just right',
           onPress: async () => {
             workoutStatus['UpperBodyWorkout'].completedCount +=1;
-            await AsyncStorage.setItem('@workoutStatus', JSON.stringify
+            await AsyncStorage.setItem('@upperBodyWorkoutStatus', JSON.stringify
             (workoutStatus));
             handleResetWorkout();
           },
@@ -179,7 +179,7 @@ const UpperBodyScreen = () => {
       <Text style={styles.text}>Level: {level}</Text>
       <Text style={styles.text}>Exercise: {exercise?.name}</Text>
       <View style={styles.setsContainer}>
-        {exercise?.reps.map((rep, index) => (
+        {exerciseReps.map((rep, index) => (
           <View
             key={index}
             style={[

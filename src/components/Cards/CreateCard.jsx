@@ -10,13 +10,13 @@ import colors from '../../constants/colors';
 import {useTranslation} from 'react-i18next';
 
 
-export default function CreaterCard({ onPress }) {
+export default function CreaterCard({ onPress,marginTop }) {
   const { t, i18n } = useTranslation();
   return (
         
         <LinearGradient 
         colors={[colors.gradientColor.color, colors.gradientColor.colorTwo]}
-        style={styles.container}
+        style={[styles.container,{marginTop: marginTop}]}
         >
         <View style={styles.topContainerView}>
           <Text style={styles.titleText}>
@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
         shadowRadius: 1.3208664655685425,
         borderRadius: 13.21,
         elevation: 1, // Use elevation to display shadow on Android
-        marginTop: "20%",
         alignSelf: "center",
         flexDirection: 'row'
         },
