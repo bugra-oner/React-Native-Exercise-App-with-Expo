@@ -8,6 +8,7 @@ export default function FoodsCard({}) {
     <View>
       <Text>FoodsCard</Text>
       <ThreeSubtitle />
+      <Text></Text>
     </View>
   )
 }
