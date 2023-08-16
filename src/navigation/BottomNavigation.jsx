@@ -1,4 +1,5 @@
 
+
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -22,6 +23,10 @@ import Graph from '../screens/Graph/Graph';
 import HealthCalculator from '../screens/HealthCalculator';
 import Test from '../screens/Profil/Test';
 import LowerBody from '../screens/Workouts/LowerBody';
+
+import WaterIntakeCalculator from '../screens/WaterIntakeCalculator';
+
+import CenterButton from '../components/CustomBottomTabBar';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -90,9 +95,24 @@ export const BottomNavigator = () => {
                 tabBarLabel:"İstatistik",
                 headerShown:false,
                 tabBarIcon:({color,size}) => (
-                    <Ionicons name="stats-chart" size={size} color={color} /> // Expo'nun yerleşik ikonunu kullanıyoruz
+                    <Ionicons name="stats-chart" size={size} color={color} /> 
           )}}
 />
+            {/* Ortadaki sekmeyi burada ekliyoruz */}
+            <Tab.Screen
+        name="CenterButton"
+        component={WaterIntakeCalculator} // Boş bir component
+        options={{
+          tabBarIcon: () => (
+            <CenterButton
+              onPress={() => {
+                // Yuvarlak butona basıldığında yapılacak işlem
+                console.log('Yuvarlak butona basıldı!');
+              }}
+            />
+          ),
+        }}
+      />
                       <Stack.Screen
                         options={{
                             tabBarLabel:'asdfasfsd',
@@ -101,7 +121,7 @@ export const BottomNavigator = () => {
                             <Ionicons name="man" size={size} color={color} /> 
                             )    
                          }}
-                        name='Graph' component={Graph} />
+                        name='Graph' component={Graph} /> 
                     <Stack.Screen name="Profil" component={Profil}
                         options={{
                         tabBarLabel:"Profil",
@@ -114,3 +134,6 @@ export const BottomNavigator = () => {
         </Tab.Navigator>
     );
   };
+
+  
+  

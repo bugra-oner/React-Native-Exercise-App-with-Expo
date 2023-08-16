@@ -107,9 +107,9 @@ export default function HomeScreen() {
           buttonText={t('Start')}
         />
       </View>
-      <Text style={styles.Foods}>
+      {/* <Text style={styles.Foods}>
         {t('Foods')}
-      </Text>
+      </Text> */}
     </ScrollView>
   );
 }

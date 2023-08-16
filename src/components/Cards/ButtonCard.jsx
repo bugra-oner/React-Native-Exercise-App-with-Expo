@@ -11,7 +11,6 @@ export default function ButtonCard({title,subTitle,onPress}) {
     style={styles.container}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subTitle}>{subTitle}</Text>
-
     </TouchableOpacity>
   );
 }

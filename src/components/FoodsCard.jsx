@@ -3,14 +3,20 @@ import React from 'react'
 
 import ThreeSubtitle from './ThreeSubtitle'
 
-export default function FoodsCard({}) {
+
+
+
+
+export default function FoodsCard({Left,Middle,Right,title}) {
   return (
-    <View>
-      <Text>FoodsCard</Text>
-      <ThreeSubtitle />
-      <Text></Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
+      <ThreeSubtitle Left={Left} Middle={Middle} Right={Right} />
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container:{},
+  title:{},
+})
