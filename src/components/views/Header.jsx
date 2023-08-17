@@ -4,6 +4,8 @@ import React from 'react';
 import CustomIcon from '../CustomIcon';
 import { hp, wp, fp } from '../../utils';
 
+
+
 export default function Header({
   LeftIconOnPress,
   title,
@@ -16,7 +18,7 @@ export default function Header({
 }) {
   return (
     <View style={styles.outBackground}>
-      <StatusBar backgroundColor="#1A1624" barStyle="light-content" />
+      <StatusBar backgroundColor='rgba(72, 79, 136, 0.8)' barStyle="light-content" />
       <View style={styles.header}>
         <TouchableOpacity onPress={LeftIconOnPress}>
           <CustomIcon name={LeftIcon} size={LeftIconSize} color="white" />
@@ -33,7 +35,7 @@ export default function Header({
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#1A1624',
+    backgroundColor: 'rgba(72, 79, 136, 0.8)',
     height: Platform.OS == 'ios' ? hp(11) : hp(7.5),
     flexDirection: 'row',
     justifyContent: 'space-between',

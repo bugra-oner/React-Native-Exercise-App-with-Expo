@@ -42,7 +42,12 @@
   "VeryActive" : "Very Active (Intense Exercise)",
   "SuperActive" :"Super Active (Professional Athletes)",
   "DaoInfo": "Checking your health and engaging in regular exercise are important. Evaluation is based on Body Mass Index categories established by the World Health Organization.",
-  "HealthCalculator": "Health Calculator"
+  "HealthCalculator": "Health Calculator",
+  "PersonelI": "Kişisel Bilgiler",
+  "Status": "Status",
+  "ReportSystem": "Comment/Report a Bug", 
+  "Notifications": "Notifications",
+  "Languages": "Language"
 }
 
   

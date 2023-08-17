@@ -42,6 +42,11 @@
     "VeryActive" : "Çok Aktif (Yoğun Egzersiz)",
     "SuperActive" :"Süper Aktif (Profosyonel Sporcular)",
     "DaoInfo": "Sağlığınızı kontrol etmek ve düzenli olarak egzersiz yapmak önemlidir. Dünya Sağlık Örgütü tarafından belirlenen Vücut Kitle İndeksi kategorilerine göre değerlendirme yapılmıştır.",
-    "HealthCalculator" : "Sağlık Hesaplayıcısı"
+    "HealthCalculator" : "Sağlık Hesaplayıcısı",
+    "PersonelI": "Kişisel Bilgiler",
+    "Status": "Durum",
+    "ReportSystem": "Görüş/Hata Bildir", 
+    "Notifications": "Bildirimler",
+    "Languages": "Dil"
   }
   

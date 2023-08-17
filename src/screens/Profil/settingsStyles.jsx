@@ -3,15 +3,16 @@
 import { StyleSheet } from 'react-native';
 
 
-import { hp,wp,fp } from '../../utils';
+import { hp, fp, wp } from '../../utils';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:  "d6d6cd"
+    backgroundColor: "white",
   },
   HeaderText: {
     fontSize: 18,
+    fontFamily: 'Gilroy-Bold',
     marginTop: hp(2.5),
     marginLeft: wp(6.5),
     color: 'black',

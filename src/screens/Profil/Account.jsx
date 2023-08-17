@@ -3,21 +3,27 @@ import React from 'react';
 import SpacingButton from '../../components/buttons/SpacingButton';
 import Header from '../../components/views/Header';
 
+import  { navigate } from '../../navigation/navigationRef';
 import styles from './styles';
 
+import { useTranslation } from 'react-i18next';
+
 export default function Account({ navigation }) {
+  const {t} = useTranslation();
   return (
     <>
       <Header
         title={'Kişisel Bilgiler'}
-        LeftIconOnPress={() => navigation.goBack()}
+        LeftIconOnPress={() => navigate("Workouts")}
         RightIconOnPress={() => navigation.navigate('Notifications')}
-        LeftIcon="chevron-left"
+        LeftIcon="weight-lifter"
         RightIcon="bell-outline"
         LeftIconSize={33}
       />
       <View style={styles.container}>
-        <Text style={styles.HeaderText}>Profil</Text>
+        <Text style={styles.HeaderText}>{t("PersonelI")}</Text>
+        <Text>afasdfas</Text>
+        <Text>asfasdfas</Text>
         <View style={styles.AccountContainer}>
           <SpacingButton
             special={true}
@@ -30,7 +36,7 @@ export default function Account({ navigation }) {
             label="Değiştir"
             labelStyle={styles.labelStyle}
             threeText={styles.threeText}
-            onPress={() => navigation.navigate('Name')}
+            onPress={() => navigate("Name")}
           />
           <SpacingButton
             text="Cinsiyet"
@@ -41,13 +47,13 @@ export default function Account({ navigation }) {
             label="Değiştir"
             labelStyle={styles.labelStyle}
             threeText={styles.threeText}
-            onPress={() => navigation.navigate('Gender')}
+            onPress={() => navigate("Gender")}
           />
         </View>
-        <Text style={styles.HeaderText}>Durum</Text>
+         <Text style={styles.HeaderText}>Durum</Text>
         <View style={styles.AccountContainer}>
           <SpacingButton
-            text="İlişki Durumu"
+            text={t("Languages")}
             style={styles.Button}
             textStyle={styles.ButtonText}
             iconName="chevron-right"
@@ -55,10 +61,10 @@ export default function Account({ navigation }) {
             label="Değiştir"
             labelStyle={styles.labelStyle}
             threeText={styles.threeText}
-            onPress={() => navigation.navigate('Relation')}
+            onPress={() =>  navigate("Languages")}
           />
           <SpacingButton
-            text="Doğum saati"
+            text={t("Notifications")}
             style={styles.LastButton}
             textStyle={styles.ButtonText}
             iconName="chevron-right"
@@ -66,20 +72,18 @@ export default function Account({ navigation }) {
             label="Değiştir"
             labelStyle={styles.labelStyle}
             threeText={styles.threeText}
-            onPress={() => navigation.navigate('Birthtime')}
+            onPress={() => console.log("Test")}
           />
-        </View>
-        {
+        </View> 
           <View style={styles.freezeAccountView}>
             <SpacingButton
-              text="Hesabi sil"
+              text={t("ReportSystem")}
               style={styles.LastButton}
               textStyle={styles.ButtonText}
               iconName="chevron-right"
               iconStyle={styles.iconStyle}
             />
           </View>
-        }
       </View>
     </>
   );

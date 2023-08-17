@@ -27,6 +27,11 @@ import LowerBody from '../screens/Workouts/LowerBody';
 import WaterIntakeCalculator from '../screens/WaterIntakeCalculator';
 import CenterButton from '../components/CustomBottomTabBar';
 import CustomTabIcon from '../components/CustomTabIcon';
+import Name from '../screens/Profil/Name';
+import Gender from '../screens/Profil/Gender';
+import ReportSystem from '../screens/Profil/ReportSystem';
+import Languages from '../screens/Profil/SelectLanguages';
+import Notifications from '../screens/Profil/Notifications';
 
 
 
@@ -38,8 +43,9 @@ export default function BottomStackNavigator(){
     return(
         <Stack.Navigator
         screenOptions={{
-            backgroundColor :'#ffff'
-        }}>
+          headerShown: false // Tüm ekranlarda başlığı gizle
+        }}
+        >
             <Stack.Screen
             name="BottomNavigator"
             options={{headerShown: false}}
@@ -57,6 +63,12 @@ export default function BottomStackNavigator(){
                  <Stack.Screen name= 'Test' component={Test} />
                  <Stack.Screen name= 'LowerBody' component={LowerBody} />
                  <Stack.Screen name="Workouts" component={Workouts} />
+                 <Stack.Screen  
+                 name="Name" component={Name} />
+                 <Stack.Screen name="Gender" component={Gender} />
+                 <Stack.Screen name="Report" component={ReportSystem} />
+                 <Stack.Screen name="Languages" component={Languages} />
+                 <Stack.Screen name="Notifications" component={Notifications} />
         </Stack.Navigator>
     )
 }
