@@ -36,6 +36,8 @@
     "react-native-modal-dropdown": "^1.0.2",
     "react-native-paper": "^5.10.0",
     "react-native-progress-circle": "^2.1.0",
+    "react-native-responsive-fontsize": "^0.5.1",
+    "react-native-responsive-screen": "^1.4.2",
     "react-native-svg": "^13.9.0",
     "react-native-web": "~0.19.6",
     "typescript": "^5.1.3"

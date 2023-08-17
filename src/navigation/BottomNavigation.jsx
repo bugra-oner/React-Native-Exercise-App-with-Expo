@@ -19,14 +19,17 @@ import LevelSelector from '../screens/LevelSelector'
 
 import UpperBodyScreen from '../screens/Workouts/UpperBody';
 import BMICalculator from '../screens/BMICalculator';
-import Graph from '../screens/Graph/Graph';
+import Graph from '../screens/Center/Graph';
 import HealthCalculator from '../screens/HealthCalculator';
 import Test from '../screens/Profil/Test';
 import LowerBody from '../screens/Workouts/LowerBody';
 
 import WaterIntakeCalculator from '../screens/WaterIntakeCalculator';
-
 import CenterButton from '../components/CustomBottomTabBar';
+import CustomTabIcon from '../components/CustomTabIcon';
+
+
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -58,12 +61,12 @@ export default function BottomStackNavigator(){
     )
 }
 
-export const BottomNavigator = () => {
+export const BottomNavigator = ({navigation}) => {
     return (
         <Tab.Navigator
         screenOptions={() => ({
         headerShown: false,
-        tabBarActiveTintColor: '#black',
+        tabBarActiveTintColor: 'black',
         tabBarInactiveTintColor: '#ffffff',
         tabBarStyle: {
           backgroundColor: '#484F88',
@@ -71,8 +74,9 @@ export const BottomNavigator = () => {
           height: Platform.OS == 'ios' ? 90 : 60,
           paddingTop: 5,
           paddingBottom: Platform.OS == 'ios' ? 25 : 5,
-          borderTopLeftRadius: 17,
-          borderTopRightRadius: 17,
+          borderEndStartRadius: 10,
+          borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
         },
         tabBarHideOnKeyboard: true,
         backgroundColor: '#ffff',
@@ -100,18 +104,15 @@ export const BottomNavigator = () => {
 />
             {/* Ortadaki sekmeyi burada ekliyoruz */}
             <Tab.Screen
-        name="CenterButton"
-        component={WaterIntakeCalculator} // Boş bir component
-        options={{
-          tabBarIcon: () => (
-            <CenterButton
-              onPress={() => {
-                // Yuvarlak butona basıldığında yapılacak işlem
-                console.log('Yuvarlak butona basıldı!');
-              }}
-            />
-          ),
-        }}
+            name="Center"
+            component={Graph} // Boş bir component
+            options={{
+              tabBarLabel:"",
+              tabBarIcon: ({color}) => (
+                <CenterButton color={color}
+                /> 
+              ),
+            }}
       />
                       <Stack.Screen
                         options={{
@@ -121,7 +122,7 @@ export const BottomNavigator = () => {
                             <Ionicons name="man" size={size} color={color} /> 
                             )    
                          }}
-                        name='Graph' component={Graph} /> 
+                        name='Graph' component={Test} /> 
                     <Stack.Screen name="Profil" component={Profil}
                         options={{
                         tabBarLabel:"Profil",

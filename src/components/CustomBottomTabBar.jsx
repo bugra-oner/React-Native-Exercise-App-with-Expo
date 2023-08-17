@@ -1,42 +1,61 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-const CenterButton = ({ onPress }) => {
+import { navigate } from '../navigation/navigationRef';
+
+import CustomTabIcon from './CustomTabIcon';
+
+const CenterButton = ({color}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.centerButton} onPress={onPress}>
-        <Ionicons name="add" size={32} color="white" />
-      </TouchableOpacity>
-      </View>
-   
+    <TouchableOpacity
+      style={styles.centerButton}
+      onPress={() => navigate('Center')}
+      activeOpacity={0.7} // Dokunma efektini ayarlar
+    >
+      <CustomTabIcon  color={color} source={require('../assets/centermuscle.png')} />
+    </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container:{
     backgroundColor: "white",
-    width:100,
-    height:100,
-  },
+    width: 90,
+    height:80,
+    alignItems: "center",
+    justifyContent:'center',
+    alignContent: 'center',
+    borderRadius: 50,
+    position: 'absolute',
+    bottom: 0, // Biraz daha yukarı taşıdı
+   
+   
+  },  
   centerButton: {
-    width: 60,
-    height: 60,
+    width: 80,
+    height: 80,
     backgroundColor: 'rgba(72, 79, 136, 0.8)',
-    borderRadius: 50, // Yuvarlak hale getiriyor
+    borderRadius: 40, // Yarıçapı genişletiyor
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    bottom: 10, // Dilediğiniz yükseklik ayarlayabilirsiniz
+    bottom: 4, // Biraz daha yukarı taşıdı
     alignSelf: 'center',
-    zIndex: 5, // Görünürlük düzeni için
-    shadowColor: 'white', // Beyaz bir gölge ekler
+    zIndex: 5,
+    shadowColor: 'black',
     shadowOpacity: 0.7,
-    shadowRadius: 6, // Gölge yuvarlaklığı
-    borderWidth: 5, // Beyaz kenarlık ekler
-    borderColor: 'white', // Kenarlık rengi
+    shadowRadius: 6,
+    elevation: 5, // Android için gölge
+  },
+  buttonText: {
+    marginTop: 5,
+    color: 'white',
+    fontSize: 12,
+    fontWeight: 'bold',
   },
 });
 
 export default CenterButton;
-

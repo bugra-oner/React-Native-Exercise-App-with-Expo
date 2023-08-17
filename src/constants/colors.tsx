@@ -8,7 +8,7 @@ const colors = {
         color: '#2c3e50',
         colorTwo : '#bdc3c7',
         colorThree: '#F3F5FF',
-        colorFour: '#484F88'
+        colorFour: '#484F88',
     },
     // Daha fazla renk ekleyebilirsiniz.
 };
