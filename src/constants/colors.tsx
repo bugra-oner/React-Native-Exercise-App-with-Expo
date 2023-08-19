@@ -9,6 +9,9 @@ const colors = {
         colorTwo : '#bdc3c7',
         colorThree: '#F3F5FF',
         colorFour: '#484F88',
+        workoutOne:'#283048',
+        workoutTwo: '#859398',
+        
     },
     settingColors: {
         button: '#d6d6cd',

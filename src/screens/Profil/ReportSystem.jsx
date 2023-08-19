@@ -221,7 +221,6 @@ const ModalStyles = StyleSheet.create({
     marginBottom: 9,
     textAlign: 'center',
     fontSize: 19,
-    fontFamily: 'Gilroy-Bold',
     color: '#1A1624',
   },
   input: {
@@ -232,7 +231,7 @@ const ModalStyles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     borderColor: '#000000',
-    fontFamily: 'Gilroy-Regular',
+   
     fontSize: 13,
     color: '#000000',
     opacity: 0.6,
@@ -242,7 +241,6 @@ const ModalStyles = StyleSheet.create({
     marginBottom: 10,
     textAlign: 'center',
     fontSize: 14,
-    fontFamily: 'Gilroy-Regular',
     color: '#1A1624',
     maxWidth: 300,
     lineHeight: 18,

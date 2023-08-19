@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import WorkoutsCard from '../../components/Cards/WorkoutsCard';
 
 import colors from '../../constants/colors';
 import { useTranslation } from 'react-i18next';
 import CreaterCard from '../../components/Cards/CreateCard';
+import Header from '../../components/views/Header';
 
-const StatisticsScreen = () => {
+const StatisticsScreen = ({navigation}) => {
    const {t, i18n } = useTranslation();
   const [fullBodyWorkoutStats, setFullBodyWorkoutStats] = useState(null);
   const [upperBodyWorkoutStats, setUpperBodyWorkoutStats] = useState(null);
@@ -43,8 +44,13 @@ const StatisticsScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}> {t('WorkoutStatistics')}</Text>
+    <>
+    <Header title={t('WorkoutStatistics')} 
+    LeftIcon='weight-lifter'
+    RightIconOnPress={() => navigation.navigate("Profil")}
+    />
+    <ScrollView style={styles.container}>
+    <View style={styles.center}>
       <Text style={styles.subTitle}>{t('ExercisesWithoutEquipment')}</Text>
       {fullBodyWorkoutStats && (
       <WorkoutsCard
@@ -65,12 +71,15 @@ const StatisticsScreen = () => {
       title={t('LowerBodyWorkout')}
       level={lowerBodyWorkoutStats.HomeLowerBodyWorkout.level || 1}
       subTitle={i18n.t('LowerBodyDesc')}
-      />
+           />
     )}
     <CreaterCard 
-      marginTop="5%"
+      marginTop="6%"
+      height= "25%"
     />
     </View>
+    </ScrollView>
+    </>
   );
 };
 
@@ -78,8 +87,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding: 10,
-    alignItems : 'center'
+  },
+  center:{
+    flex: 1,
+    alignItems: "center"
   },
   header: {
     marginVertical: 20,
@@ -98,8 +109,9 @@ const styles = StyleSheet.create({
   subTitle:{
     marginLeft: 10,
     alignSelf: 'flex-start',
-    marginVertical: 10,
+    marginVertical: 15,
     color: colors.UiText,
+    marginLeft: 25,
     fontSize: 15,
   }
 });

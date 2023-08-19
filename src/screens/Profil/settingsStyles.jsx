@@ -12,7 +12,7 @@ export default StyleSheet.create({
   },
   HeaderText: {
     fontSize: 18,
-    fontFamily: 'Gilroy-Bold',
+    
     marginTop: hp(2.5),
     marginLeft: wp(6.5),
     color: 'black',
@@ -29,7 +29,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   ButtonText: {
-    fontFamily: 'Gilroy-Medium',
+    
     color: 'black',
     fontSize: fp(1.8),
   },
@@ -41,7 +41,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   labelStyle: {
-    fontFamily: 'Gilroy-Medium',
+    
     color: 'black',
     fontSize: fp(1.5),
     alignSelf: 'center',

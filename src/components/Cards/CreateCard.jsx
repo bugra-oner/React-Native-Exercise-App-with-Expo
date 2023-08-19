@@ -10,13 +10,17 @@ import colors from '../../constants/colors';
 import {useTranslation} from 'react-i18next';
 
 
-export default function CreaterCard({ onPress,marginTop }) {
+export default function CreaterCard({ onPress,marginTop,
+  height = "17%"
+ }) {
   const { t, i18n } = useTranslation();
+
+
   return (
         
         <LinearGradient 
         colors={[colors.gradientColor.color, colors.gradientColor.colorTwo]}
-        style={[styles.container,{marginTop: marginTop}]}
+        style={[styles.container,{marginTop: marginTop ,height: height}]}
         >
         <View style={styles.topContainerView}>
           <Text style={styles.titleText}>
@@ -44,7 +48,6 @@ export default function CreaterCard({ onPress,marginTop }) {
 const styles = StyleSheet.create({
   container:{
         width: '90%',
-        height: '16%',
         shadowColor: '#7b7b82',
         shadowOpacity: 0.7,
         shadowRadius: 1.3208664655685425,

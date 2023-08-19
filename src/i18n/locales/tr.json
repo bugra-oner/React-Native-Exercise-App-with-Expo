@@ -47,6 +47,14 @@
     "Status": "Durum",
     "ReportSystem": "Görüş/Hata Bildir", 
     "Notifications": "Bildirimler",
-    "Languages": "Dil"
+    "Languages": "Diller",
+    "Language": "Dil",
+    "Homepage": "Anasayfa",
+    "CompleteSet": "Seti Tamamla",
+    "ResetWorkout": "Antremanı Sıfırla",
+    "CompleteExc": "Antremanı Tamamla",
+    "SkipRest": "Dinlenmeyi Atla"
+
+    
   }
   

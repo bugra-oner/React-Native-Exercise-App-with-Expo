@@ -22,8 +22,7 @@ export default function Account({ navigation }) {
       />
       <View style={styles.container}>
         <Text style={styles.HeaderText}>{t("PersonelI")}</Text>
-        <Text>afasdfas</Text>
-        <Text>asfasdfas</Text>
+        
         <View style={styles.AccountContainer}>
           <SpacingButton
             special={true}
@@ -50,7 +49,7 @@ export default function Account({ navigation }) {
             onPress={() => navigate("Gender")}
           />
         </View>
-         <Text style={styles.HeaderText}>Durum</Text>
+         <Text style={styles.HeaderText}>{t('Status')}</Text>
         <View style={styles.AccountContainer}>
           <SpacingButton
             text={t("Languages")}
@@ -72,7 +71,7 @@ export default function Account({ navigation }) {
             label="Değiştir"
             labelStyle={styles.labelStyle}
             threeText={styles.threeText}
-            onPress={() => console.log("Test")}
+            onPress={() => navigate("Notifications")}
           />
         </View> 
           <View style={styles.freezeAccountView}>
@@ -82,6 +81,7 @@ export default function Account({ navigation }) {
               textStyle={styles.ButtonText}
               iconName="chevron-right"
               iconStyle={styles.iconStyle}
+              onPress={() => navigate("Report")}
             />
           </View>
       </View>

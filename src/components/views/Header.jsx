@@ -10,16 +10,19 @@ export default function Header({
   LeftIconOnPress,
   title,
   RightIconOnPress,
-  LeftIcon = 'bell-outline',
+  LeftIcon = 'chevron-left',
   RightIcon = 'account-circle',
   LeftIconSize = 26,
   RightIconSize = 26,
   RightIconColor = '#fff',
+  DefaultColor = 'rgba(72,79,136,0.8)',
+  borderBottomLeftRadius=  17,
+  borderBottomRightRadius= 17,
 }) {
   return (
     <View style={styles.outBackground}>
-      <StatusBar backgroundColor='rgba(72, 79, 136, 0.8)' barStyle="light-content" />
-      <View style={styles.header}>
+      <StatusBar backgroundColor={DefaultColor} barStyle="light-content" />
+      <View style={[styles.header, {backgroundColor: DefaultColor,borderBottomLeftRadius: borderBottomLeftRadius ,borderBottomRightRadius }]}>
         <TouchableOpacity onPress={LeftIconOnPress}>
           <CustomIcon name={LeftIcon} size={LeftIconSize} color="white" />
         </TouchableOpacity>
@@ -35,19 +38,17 @@ export default function Header({
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: 'rgba(72, 79, 136, 0.8)',
     height: Platform.OS == 'ios' ? hp(11) : hp(7.5),
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottomLeftRadius: 17,
-    borderBottomRightRadius: 17,
+    
     paddingHorizontal: wp(5),
     paddingTop: Platform.OS == 'ios' ? hp(4) : hp(0),
   },
   headerText: {
     color: '#ffff',
     fontSize: fp(3.7),
-    fontFamily: 'Gilroy-Bold',
+    
   },
 });

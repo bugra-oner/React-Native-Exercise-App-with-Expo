@@ -21,17 +21,18 @@ import UpperBodyScreen from '../screens/Workouts/UpperBody';
 import BMICalculator from '../screens/BMICalculator';
 import Graph from '../screens/Center/Graph';
 import HealthCalculator from '../screens/HealthCalculator';
-import Test from '../screens/Profil/Test';
+
 import LowerBody from '../screens/Workouts/LowerBody';
 
-import WaterIntakeCalculator from '../screens/WaterIntakeCalculator';
 import CenterButton from '../components/CustomBottomTabBar';
-import CustomTabIcon from '../components/CustomTabIcon';
 import Name from '../screens/Profil/Name';
 import Gender from '../screens/Profil/Gender';
 import ReportSystem from '../screens/Profil/ReportSystem';
 import Languages from '../screens/Profil/SelectLanguages';
 import Notifications from '../screens/Profil/Notifications';
+
+import Info from '../screens/Informations/Info';
+import ProteinCalculator from '../screens/Protein';
 
 
 
@@ -56,11 +57,10 @@ export default function BottomStackNavigator(){
                  <Stack.Screen 
                  name="Workout" component={Workout} />
                  <Stack.Screen name="History" component={History} />
-                 <Stack.Screen name="TestScreen" component={Test} />
                  <Stack.Screen name="UpperBody" component={UpperBodyScreen} />
                  <Stack.Screen name="BMI" component={BMICalculator}/>
                  <Stack.Screen name='HealthCalculator' component={HealthCalculator} />
-                 <Stack.Screen name= 'Test' component={Test} />
+                 <Stack.Screen name= 'Info' component={Info} />
                  <Stack.Screen name= 'LowerBody' component={LowerBody} />
                  <Stack.Screen name="Workouts" component={Workouts} />
                  <Stack.Screen  
@@ -69,6 +69,7 @@ export default function BottomStackNavigator(){
                  <Stack.Screen name="Report" component={ReportSystem} />
                  <Stack.Screen name="Languages" component={Languages} />
                  <Stack.Screen name="Notifications" component={Notifications} />
+                 <Stack.Screen name= "Protein" component={ProteinCalculator} />
         </Stack.Navigator>
     )
 }
@@ -128,13 +129,13 @@ export const BottomNavigator = ({navigation}) => {
       />
                       <Stack.Screen
                         options={{
-                            tabBarLabel:'asdfasfsd',
+                            tabBarLabel:'Info',
                             headerShown: false,
                             tabBarIcon:({color,size}) => (
                             <Ionicons name="man" size={size} color={color} /> 
                             )    
                          }}
-                        name='Graph' component={Test} /> 
+                        name='Info' component={Info} /> 
                     <Stack.Screen name="Profil" component={Profil}
                         options={{
                         tabBarLabel:"Profil",

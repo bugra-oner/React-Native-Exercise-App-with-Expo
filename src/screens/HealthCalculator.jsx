@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text,  Button, StyleSheet } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import CustomPicker from '../components/CustomPicker';
 
 import typography from '../constants/typography';
+import colors from '../constants/colors';
 
 import { useTranslation } from 'react-i18next';
-const HealthCalculator = () => {
+
+import GradientInput from '../components/inputs/GradientInput';
+
+import Header from '../components/views/Header';
+import GradientButton from '../components/buttons/GradientButton';
+ 
+
+
+const HealthCalculator = ({navigation}) => {
   const {t} = useTranslation()
 
   const [weight, setWeight] = useState('');
@@ -120,10 +129,11 @@ const HealthCalculator = () => {
     bmi: bmi,
     dailyCalories: dailyCalories,
     dailyWater: dailyWater,
-    idealWeight: calculatedIdealWeight,
+    idealWeight: idealWeight,
   };
   try {
     await AsyncStorage.setItem('calculatedData', JSON.stringify(calculatedData));
+    console.log("test",calculatedData)
   } catch (error) {
     console.log('Error saving data to AsyncStorage:', error);
   }
@@ -135,22 +145,32 @@ const HealthCalculator = () => {
   ];
 
   return (
+    <>
+    <Header 
+    LeftIconOnPress={() => navigation.goBack()}
+    title={t('HealthCalculator')}
+    />
     <View style={styles.container}>
-      <Text style={styles.title}>{t('HealthCalculator')}</Text>
+    
       <View style={styles.inputContainer}>
-        <TextInput
+        <GradientInput
           style={styles.input}
           placeholder={t('InputKg')}
           onChangeText={(text) => setWeight(text)}
           keyboardType="numeric"
         />
-        <TextInput
+        <GradientInput 
+          placeholder={t('InputCm')}
+          onChangeText={(text) => setHeight(text)}
+          keyboardType="numeric"
+        />
+        <GradientInput
           style={styles.input}
           placeholder={t('InputCm')}
           onChangeText={(text) => setHeight(text)}
           keyboardType="numeric"
         />
-        <TextInput
+        <GradientInput
           style={styles.input}
           placeholder={t('InputOld')}
           onChangeText={(text) => setAge(text)}
@@ -159,6 +179,7 @@ const HealthCalculator = () => {
         <CustomPicker
           options={activityLevels}
           selectedValue={activityLevel}
+          
           onValueChange={value => setActivityLevel(value)}
         />
         <CustomPicker
@@ -166,7 +187,7 @@ const HealthCalculator = () => {
           selectedValue={gender}
           onValueChange={value => setGender(value)}
         />
-        <Button title={t("Calculated")} onPress={handleCalculatePress} />
+        <GradientButton title={t("Calculated")} onPress={handleCalculatePress} />
       </View>
       {bmi !== null && (
         <View style={styles.resultContainer}>
@@ -187,15 +208,16 @@ const HealthCalculator = () => {
         {t('DaoInfo')}
       </Text>
     </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
+    alignItems: "center",   
+    backgroundColor: '#ffffff',
+    marginTop: "30%"
   },
   title: {
     fontSize: 20,
@@ -204,11 +226,12 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: '80%',
     marginBottom: 10,
+   
   },
   input: {
     height: 40,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: colors.UiText,
     borderRadius: 5,
     marginBottom: 10,
     paddingHorizontal: 10,

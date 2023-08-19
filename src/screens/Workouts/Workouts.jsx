@@ -10,10 +10,13 @@ import i18n from '../../i18n/i18n';
 import { navigate } from '../../navigation/navigationRef';
 
 import { useTranslation } from 'react-i18next';
+import Header from '../../components/views/Header';
 
 export default function Workouts() {
   const { t, i18n } = useTranslation();
   return (
+    <>
+    <Header />
     <View style={styles.container}>
     <View style={styles.topHeader}>
     <Text style={styles.title}>{i18n.t('ExercisesWithoutEquipment')}</Text>
@@ -43,6 +46,7 @@ export default function Workouts() {
         />
       </View>
     </View>
+    </>
   );
 }
 

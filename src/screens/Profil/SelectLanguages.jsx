@@ -101,12 +101,12 @@ export default function Languages({ navigation }) {
     <View style={styles.container}>
       <Header
         RightIconOnPress={() => handleSaveLanguage()}
-        title={t('languages')}
+        title={t('Languages')}
         LeftIconOnPress={() => navigation.goBack()}
         LeftIcon="chevron-left"
         RightIcon="check"
       />
-      <Text style={styles.HeaderText}>Dil</Text>
+      <Text style={styles.HeaderText}>{t("Language")}</Text>
       {_renderButtonView()}
     </View>
   );
@@ -128,13 +128,13 @@ const styles = StyleSheet.create({
   },
   text: {
     marginLeft: wp(4),
-    fontFamily: 'Gilroy-Medium',
+    
     color: 'black',
     fontSize: fp(1.8),
   },
   HeaderText: {
     fontSize: 18,
-    fontFamily: 'Gilroy-Bold',
+   
     marginTop: hp(2.5),
     marginLeft: wp(6.5),
     color: 'black',

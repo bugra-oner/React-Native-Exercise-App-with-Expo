@@ -17,8 +17,9 @@ import { navigate } from '../../navigation/navigationRef';
 
 
 import { useTranslation } from 'react-i18next';
+import Header from '../../components/views/Header';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
 
   const { t, i18n } = useTranslation();
 
@@ -57,9 +58,15 @@ export default function HomeScreen() {
   const loadData = async () => {}
   
   return (
+    <>
+    <Header title={t("Homepage")}  
+    LeftIcon='weight-lifter'
+    RightIconOnPress={() => navigation.navigate("Profil")}
+      
+    />
     <ScrollView style={styles.container}>
       <CreaterCard
-      marginTop="19%" 
+      marginTop="10%" 
       onPress={() => navigate('Workouts')}
       />
       <Text style={styles.title}>{t('Overview')}</Text>
@@ -111,6 +118,7 @@ export default function HomeScreen() {
         {t('Foods')}
       </Text> */}
     </ScrollView>
+    </>
   );
 }
 
@@ -121,7 +129,7 @@ const styles = StyleSheet.create({
   },
   title:{
     marginLeft: '5%',
-    marginTop: '2%',
+    marginVertical:"2%",
     color: colors.UiText,
    fontSize : 15,
    fontWeight: 'bold',
@@ -133,9 +141,7 @@ const styles = StyleSheet.create({
     alignContent:'center',
     width: '100%',
     height : '25%',
-    marginTop : "1%",
     justifyContent:'space-around'
-
   },
     buttonsContainer: {
       flexDirection: 'column', // Satır düzeninde sıralamak için flex yönlendirme

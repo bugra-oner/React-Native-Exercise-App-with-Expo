@@ -1,14 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, View, Text, Button, Image, StyleSheet } from 'react-native';
+import { Alert, View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ProgressBar } from 'react-native-paper';
 import ExerciseService from '../../service/ExerciseService';
 
-const images = {
-  push_ups: require('../../assets/push_ups.png'),
-  sit_ups: require('../../assets/sit_ups.png'),
-  calf_raises: require('../../assets/calf_raises.png'),
-  squats: require('../../assets/squats.png'),
+import LottieView from 'lottie-react-native';
+
+import Header from '../../components/views/Header';
+import { useTranslation } from 'react-i18next';
+
+import LinearView from '../../components/views/LinearView';
+import colors from '../../constants/colors';
+
+
+import DoneButton from '../../components/buttons/DoneButton';
+import CancelButton from '../../components/buttons/CancelButton';
+import RestButton from '../../components/buttons/RestButton';
+
+
+
+const animations = {
+  push_ups: require('../../assets/animations/push_ups_animations.json'),
+  sit_ups: require('../../assets/animations/sit_ups_animation.json'),
+  triceps_dips: require('../../assets/animations/triceps_dips'),
+  squats: require('../../assets/animations/squad_animation.json'),
 };
 
 let fullBodyWorkout = {
@@ -18,7 +33,7 @@ let fullBodyWorkout = {
   },
 };
 
-const WorkoutScreen = () => {
+const WorkoutScreen = ({navigation}) => {
   const [level, setLevel] = useState(1);
   const [exerciseIndex, setExerciseIndex] = useState(0);
   const [currentSet, setCurrentSet] = useState(1);
@@ -172,10 +187,20 @@ const WorkoutScreen = () => {
 
   const exercise = exercises[exerciseIndex];
 
+  const {t} = useTranslation();
+
   return (
-    <View style={styles.container}>
+    <>
+    <Header  
+        borderBottomLeftRadius={0}
+        borderBottomRightRadius={0}
+        DefaultColor='#283048'
+       LeftIconOnPress={()=> navigation.goBack()}
+       RightIcon='atom-variant'
+      title={t('FullBodyWorkout')}/>
+      <LinearView>
       <Text style={styles.text}>Level: {level}</Text>
-      <Text style={styles.text}>Exercise: {exercise?.name}</Text>
+      <Text style={styles.text}>{t('Exercise')}: {exercise?.name}</Text>
       <View style={styles.setsContainer}>
         {exerciseReps.map((rep, index) => (
           <View
@@ -191,21 +216,25 @@ const WorkoutScreen = () => {
           </View>
         ))}
       </View>
-      <Image source={images[exercise.image]} style={styles.image} />
+      <LottieView source={animations[exercise.image]} autoPlay loop style={styles.image} 
+        
+      />
       <ProgressBar progress={currentSet / exercise.sets} color="#00ff00" />
       {isResting && <Text style={styles.restTimeText}>Rest Time: {restTime}</Text>}
       
       <View style={styles.buttonContainer}>
       {!isResting &&
         (exerciseIndex < exercises.length - 1 || currentSet < exercises[exerciseIndex].sets ?
-          <Button title="Complete Set" onPress={handleCompleteSet} /> :
-          <Button title="Complete Workout" onPress={handleCompleteWorkout} />
+          <DoneButton title={t("CompleteSet")}  onPress={handleCompleteSet} /> :
+          <DoneButton title={t("CompleteExc")}   onPress={handleCompleteWorkout} />
         )
       }
-      {isResting && <Button title="Skip Rest" onPress={() => setIsResting(false)} />}
-      <Button title="Reset Workout" onPress={handleResetWorkout} />
+      {isResting && <RestButton title={t("SkipRest")} onPress={() => setIsResting(false)} />}
+      <CancelButton  style={styles.button} title={t("ResetWorkout")} onPress={handleResetWorkout} />
     </View>
-      </View>
+      
+      </LinearView>
+      </>
     
   );
 }
@@ -213,21 +242,14 @@ const WorkoutScreen = () => {
 export default WorkoutScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#333',
-    paddingTop: 50,
-    paddingHorizontal: 20,
-  },
   text: {
     fontSize: 20,
-    color: '#fff',
-    marginBottom: 10,
+    color: '#ffffff',
   },
   setsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: 20,
+    marginVertical :"8%"
   },
   setTextContainer: {
     borderWidth: 1,
@@ -235,9 +257,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     marginRight: 10,
+    backgroundColor: 'rgba(72, 79, 136, 0.8)'
   },
   activeSetContainer: {
-    backgroundColor: '#d35400',
+    backgroundColor: 'green',
   },
   setText: {
     fontSize: 18,
@@ -247,20 +270,24 @@ const styles = StyleSheet.create({
     color: '#2c3e50',
   },
   image: {
-    width: '100%',
+    width: 200,
     height: 200,
     resizeMode: 'contain',
     marginBottom: 20,
+    alignSelf: "center",
   },
   restTimeText: {
     fontSize: 18,
-    color: '#fff',
+    color: 'white',
+    marginVertical: 20,
     marginTop: 10,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginVertical: 20,
   },
+ 
 });
 
 

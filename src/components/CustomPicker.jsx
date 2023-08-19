@@ -1,7 +1,6 @@
-// CustomPicker.js dosyası
-
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const CustomPicker = ({ options, selectedValue, onValueChange }) => {
   const [showOptions, setShowOptions] = useState(false);
@@ -12,12 +11,22 @@ const CustomPicker = ({ options, selectedValue, onValueChange }) => {
   };
 
   return (
-    <View style={styles.container}>
+   
+      <LinearGradient
+           // İstediğiniz renk geçişlerini belirleyebilirsiniz
+          colors={['#575ea8', '#83c29f']}
+        start={[0, 0]}
+       end={[1, 0]}
+       style={styles.gradientContainer}
+    >
+       
       <TouchableOpacity
         style={styles.selectedValue}
         onPress={() => setShowOptions(!showOptions)}
       >
-        <Text>{selectedValue}</Text>
+      
+          <Text style={styles.selectedText}>{selectedValue}</Text>
+        
       </TouchableOpacity>
       {showOptions && (
         <View style={styles.optionsContainer}>
@@ -30,27 +39,32 @@ const CustomPicker = ({ options, selectedValue, onValueChange }) => {
               <Text>{option.label}</Text>
             </TouchableOpacity>
           ))}
+          
         </View>
       )}
-    </View>
+      </LinearGradient>
+   
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 10,
+  gradientContainer: {
+    borderRadius: 10,
+    overflow: 'hidden',
+    marginVertical: 5,
+    elevation: 5,
   },
   selectedValue: {
     padding: 10,
-    borderWidth: 1,
-    borderColor: 'gray',
     borderRadius: 5,
+  },
+  selectedText: {
+    color: '#fff',
   },
   optionsContainer: {
     marginTop: 5,
-    borderWidth: 1,
-    borderColor: 'gray',
     borderRadius: 5,
+    backgroundColor: '#fff',
   },
   option: {
     padding: 10,
@@ -60,3 +74,4 @@ const styles = StyleSheet.create({
 });
 
 export default CustomPicker;
+

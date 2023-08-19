@@ -4,7 +4,7 @@ import ExerciseModel from "./ExerciseModel";
 let exercises = [
   { name: 'Push Ups', sets: 5, reps: [10, 12, 15, 10, 8], rate: 2, image: 'push_ups' },
   { name: 'Sit Ups', sets: 5, reps: [15, 20, 25, 20, 15], rate: 1, image: 'sit_ups' },
-  { name: 'Calf Raises', sets: 5, reps: [20, 25, 30, 25, 20], rate: 1, image: 'calf_raises' },
+  { name: 'Triceps Dips', sets: 5, reps: [20, 25, 30, 25, 20], rate: 1, image: 'triceps_dips'},
   { name: 'Squats', sets: 5, reps: [10, 15, 20, 15, 10], rate: 1, image: 'squats' },
 ];
 

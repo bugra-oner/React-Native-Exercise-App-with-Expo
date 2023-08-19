@@ -14,7 +14,7 @@ export default StyleSheet.create({
   },
   HeaderText: {
     fontSize: 15,
-    fontFamily: 'Gilroy-Bold',
+    
     marginTop: hp(2.5),
     marginLeft: wp(6.5),
     color: 'black',
@@ -22,7 +22,7 @@ export default StyleSheet.create({
   },
   SubHeaderText: {
     fontSize: 13,
-    fontFamily: 'Gilroy-Bold',
+    
     marginTop: hp(1),
     marginLeft: wp(6.5),
     color: 'black',
@@ -38,7 +38,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
     paddingLeft: wp(5),
     fontSize: fp(1.8),
-    fontFamily: 'Gilroy-SemiBold',
+    
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 0 },
     opacity: 0.68,
@@ -79,7 +79,6 @@ export default StyleSheet.create({
     marginRight: wp(2.9),
   },
   ButtonText: {
-    fontFamily: 'Gilroy-Medium',
     color: 'black',
     fontSize: fp(1.8),
   },

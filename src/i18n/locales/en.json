@@ -47,7 +47,13 @@
   "Status": "Status",
   "ReportSystem": "Comment/Report a Bug", 
   "Notifications": "Notifications",
-  "Languages": "Language"
+  "Languages": "Languages",
+  "Language": "Language",
+  "Homepage": "Homepage",
+  "CompleteSet": "Seti Tamamla",
+  "ResetWorkout": "Antremanı Sıfırla",
+  "CompleteExc": "Antremanı Tamamla",
+  "SkipRest": "Dinlenmeyi Atla",
 }
 
   

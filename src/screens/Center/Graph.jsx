@@ -7,12 +7,19 @@ import typography from '../../constants/typography'
 import colors from '../../constants/colors'
 
 
+import { useTranslation } from 'react-i18next'
+
 import IndexCard from '../../components/Cards/IndexCard'
 import InfoCard from '../../components/Cards/InfoCard'
 import { navigate } from '../../navigation/navigationRef'
+import Card from '../../components/Card'
+
+import CategoriesButton from '../../components/buttons/CategoriesButton'
+import Header from '../../components/views/Header'
 
 export default function Graph() {
   const [healthData,setHealthData] = useState({});
+  const {t} = useTranslation();
 
   useEffect(() => {
     // AsyncStorage'den kaydedilen veriyi al
@@ -34,18 +41,27 @@ export default function Graph() {
 
   
   return (
+    <>
+    <Header title={"Profilim"}/>
     <ScrollView style={styles.container}>
       <IndexCard 
+        unHealth={true}
         buttonTitle="Şimdi başla"
         title="Sağlık Hesaplayıcısı"
         subTitle="Vücut Kitle İndeksi, Kalori ve Su Hesabı."
         borderRadius={5}
         onPress={() => navigate('HealthCalculator')}
       />
-      <InfoCard 
-        title="Hidrasyonun Önemi"
-        description="Vücudun işlevlerini sürdürebilmesi için yeterli miktarda su tüketmek önemlidir. Hidrasyon, cildin sağlığını destekler, sindirim sistemi işlevini iyileştirir, enerji seviyelerini artırır ve daha fazlasını yapar."
-        imageSource={require('../../assets/calf_raises.png')} // Görsel yolunu buraya eklemelisiniz
+      <View style={styles.CategoriesButton}>
+      <CategoriesButton title={t("Cardio")}  name="walk" iconColor={"rgba(72, 79, 136, 0.8)"} size={30}
+      color={"#ae9b83"} />
+      <CategoriesButton  title={t("Strength")}  name="dumbbell" size={30} iconColor={"rgba(72, 79, 136, 0.8)"} color={"#ae7070"}/>
+      <CategoriesButton  title={t("Endurance")} name="horse-variant-fast" size={30} iconColor={"rgba(72, 79, 136, 0.8)"} color={"#35c3dc"}/>
+      <CategoriesButton  title={t("More")}  name="grain"  iconColor={"rgba(72, 79, 136, 0.8)"} size={30} color={"#7faedc"}/>
+      </View>
+      <Card title="Sağlık Sonuçları" icon="newspaper" subtitle="Durum" contentText="Vücut Kitle İndeksi"
+      bottomText1="Günlük Kalori İhtiyaci" bottomText2="Günlük Su İhtiyacı" bottomText3="İdeal Kilo" 
+
       />
       <View style={styles.container}>
       <Text style={styles.title}>Sağlık Sonuçları</Text>
@@ -57,12 +73,23 @@ export default function Graph() {
       {/* Diğer hesaplamaları da buraya ekleyebilirsiniz */}
     </View>
     </ScrollView>
+    </>
   )
 }
 
 const styles = StyleSheet.create({
     container:{
         flex : 1,
-        marginTop : 50,
+        marginVertical: 10,
     },
+    CategoriesButton:{
+      flexDirection : "row",
+      alignItems: "center",
+      alignContent:"center",
+      justifyContent:"center",
+      marginVertical: 20
+    },
+    title:{
+      fontSize: typography.title,
+    }
 });
