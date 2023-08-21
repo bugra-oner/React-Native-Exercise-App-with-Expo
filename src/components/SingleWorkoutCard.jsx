@@ -5,7 +5,7 @@ import colors from '../constants/colors';
 
 
 export default function SingleWorkoutCard({ title, description, imageSource, onPress,level }) {
- const hasLevel = typeof  level !== "undefined" ;
+ 
   
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
@@ -16,11 +16,7 @@ export default function SingleWorkoutCard({ title, description, imageSource, onP
         </View>
         <Image source={imageSource} style={styles.image} />
       </View>
-      {hasLevel && (
-        <View style={styles.levelContainer}>
-          <Text style={styles.level}>{level}</Text>
-        </View>
-      )}
+     
     </TouchableOpacity>
   );
 }
