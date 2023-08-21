@@ -7,15 +7,21 @@ import colors from '../../constants/colors';
 import { useTranslation } from 'react-i18next';
 import CreaterCard from '../../components/Cards/CreateCard';
 import Header from '../../components/views/Header';
+import SingleWorkoutCard from '../../components/SingleWorkoutCard';
 
 const StatisticsScreen = ({navigation}) => {
    const {t, i18n } = useTranslation();
   const [fullBodyWorkoutStats, setFullBodyWorkoutStats] = useState(null);
   const [upperBodyWorkoutStats, setUpperBodyWorkoutStats] = useState(null);
   const [lowerBodyWorkoutStats, setLowerBodyWorkoutStats] = useState(null);
+  const [squadWorkoutStats, setSquadWorkoutStats] = useState(null);
+  const [tricepsWorkoutStats, setTricepsWorkoutStats] = useState(null);
+  const [pushUpsWorkoutStats, setPushUpsWorkoutStats] = useState(null);
+  const [sitUpsWorkoutStats, setSitUpsWorkoutStats] = useState(null);
 
   useEffect(() => {
     getStatistics();
+   
   }, []);
 
   const getStatistics = async () => {
@@ -38,10 +44,34 @@ const StatisticsScreen = ({navigation}) => {
         setLowerBodyWorkoutStats(parsedLowerBodyStats);
         // console.log(lowerBodyWorkoutStats)
       }
+      const squadStats = await AsyncStorage.getItem('@singleSquadWorkoutStatus');
+      if (squadStats) {
+        const parsedSquadStats = JSON.parse(squadStats);
+        setSquadWorkoutStats(parsedSquadStats);
+      }
+
+      const tricepsStats = await AsyncStorage.getItem('@singleTricepsWorkoutStatus');
+      if (tricepsStats) {
+        const parsedTricepsStats = JSON.parse(tricepsStats);
+        setTricepsWorkoutStats(parsedTricepsStats);
+      }
+
+      const pushUpsStats = await AsyncStorage.getItem('@singlePushUpWorkoutStatus');
+     
+      if (pushUpsStats) {
+        const parsedPushUpsStats = JSON.parse(pushUpsStats);
+        setPushUpsWorkoutStats(parsedPushUpsStats);
+      }
+
+      const sitUpsStats = await AsyncStorage.getItem('@singleSitUpsWorkoutStatus');
+      if (sitUpsStats) {
+        const parsedSitUpsStats = JSON.parse(sitUpsStats);
+        setSitUpsWorkoutStats(parsedSitUpsStats);
+      }
     } catch (error) {
       console.error(error);
     }
-  };
+    };
 
   return (
     <>
@@ -73,6 +103,22 @@ const StatisticsScreen = ({navigation}) => {
       subTitle={i18n.t('LowerBodyDesc')}
            />
     )}
+    
+    {squadWorkoutStats && (
+      <SingleWorkoutCard 
+        
+      />)
+          }
+          {tricepsWorkoutStats && (
+            <Text>{t('Triceps Workout Level')}: {tricepsWorkoutStats.SingleTricepsWorkout?.level || 1}</Text>
+          )}
+          {pushUpsWorkoutStats && (
+            <Text>{t('Push Ups Workout Level')}: {pushUpsWorkoutStats.SinglePushUpWorkout?.level || 1}</Text>
+          )}
+          {sitUpsWorkoutStats && (
+            <Text>{t('Sit Ups Workout Level')}: {sitUpsWorkoutStats.SingleSitUpsWorkout?.level || 1}</Text>
+          )}
+
     <CreaterCard 
       marginTop="6%"
       height= "25%"
