@@ -3,7 +3,17 @@ import { View, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
-const Card = ({ title, icon, subtitle, contentText, bottomText1, bottomText2, bottomText3 }) => {
+const Card = ({
+  title,
+  icon,
+  subtitle,
+  contentText,
+  bottomTexts,
+  subTexts,
+  subTextIcons,
+  additionalText,
+  additionalIcon,
+}) => {
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -19,9 +29,26 @@ const Card = ({ title, icon, subtitle, contentText, bottomText1, bottomText2, bo
         <Text style={styles.subtitle}>{subtitle}</Text>
         <Text style={styles.contentText}>{contentText}</Text>
         <View style={styles.bottomContainer}>
-          <Text style={styles.bottomText}>{bottomText1}</Text>
-          <Text style={styles.bottomText}>{bottomText2}</Text>
-          <Text style={styles.bottomText}>{bottomText3}</Text>
+          <View style={styles.bottomTextContainer}>
+            {bottomTexts.map((bottomText, index) => (
+              <View style={styles.bottomTextItem} key={index}>
+                {/* <Ionicons name={bottomText.iconSize} size={1} color="#fff" /> */}
+                <Text style={styles.bottomText}>{bottomText.text}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+        <View style={styles.subTextsContainer}>
+          {subTexts.map((subText, index) => (
+            <View style={styles.subTextItem} key={index}>
+              <Ionicons name={subTextIcons[index]} size={14} color="#fff" />
+              <Text style={styles.subText}>{subText}</Text>
+            </View>
+          ))}
+        </View>
+        <View style={styles.additionalContainer}>
+          <Text style={styles.additionalText}>{additionalText}</Text>
+          <Ionicons name={additionalIcon} size={16} color="#fff" />
         </View>
       </LinearGradient>
     </View>
@@ -30,19 +57,22 @@ const Card = ({ title, icon, subtitle, contentText, bottomText1, bottomText2, bo
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
+    marginVertical: 5,
+    alignSelf: "center",
+    width: "94%"
   },
   gradientContainer: {
     borderRadius: 10,
     overflow: 'hidden',
     padding: 15,
     elevation: 5,
+    width : "100%"
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 5,
   },
   title: {
     fontSize: 18,
@@ -50,23 +80,60 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   subtitle: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#fff',
     marginBottom: 5,
   },
   contentText: {
     fontSize: 14,
     color: '#fff',
-    marginBottom: 10,
+    marginBottom: "5%",
   },
   bottomContainer: {
+    marginBottom: 5,
+  },
+  bottomTextContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+   
+    marginVertical: "2%"
+  },
+  bottomTextItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   bottomText: {
+    fontSize: 13,
+    color: '#fff',
+    
+  },
+  subTextsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  subTextItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  subText: {
     fontSize: 12,
     color: '#fff',
+    marginLeft: 3,
+  },
+  additionalContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  additionalText: {
+    fontSize: 12,
+    color: '#fff',
+    marginRight: 5,
   },
 });
 
 export default Card;
+

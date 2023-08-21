@@ -1,14 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useTransition } from 'react';
 import { Alert, View, Text, Button, Image, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ProgressBar } from 'react-native-paper';
 import ExerciseService from '../../service/ExerciseService';
+import LinearView from '../../components/views/LinearView';
 
-const images = {
-  push_ups: require('../../assets/push_ups.png'),
-  sit_ups: require('../../assets/sit_ups.png'),
-  calf_raises: require('../../assets/calf_raises.png'),
-  squats: require('../../assets/squats.png'),
+import LottieView from 'lottie-react-native';
+
+import Header from '../../components/views/Header';
+
+import RestButton from '../../components/buttons/RestButton';
+import CancelButton from '../../components/buttons/CancelButton';
+import DoneButton from '../../components/buttons/DoneButton';
+
+import { useTranslation } from 'react-i18next'
+
+const animations = {
+  Squad: require('../../assets/animations/squad_animation.json'),
+  SingleLeg: require('../../assets/animations/singleLed.json'),
+  Lunges: require('../../assets/animations/lunges.json'),
+  //asdf: require('../../assets/squats.png'),
 };
 
 let LowerBodyWorkout = {
@@ -18,13 +29,15 @@ let LowerBodyWorkout = {
   },
 };
 
-const WorkoutScreen = () => {
+const LowerBody = ({navigation}) => {
+  const {t} = useTranslation();
+
   const [level, setLevel] = useState(1);
   const [exerciseIndex, setExerciseIndex] = useState(0);
   const [currentSet, setCurrentSet] = useState(1);
   const [restTime, setRestTime] = useState(0);
   const [isResting, setIsResting] = useState(false);
-  const [exercises, setExercises] = useState(ExerciseService.getExercises());
+  const [exercises, setExercises] = useState(ExerciseService.getLowerBodyExercises());
   const [exerciseReps, setExerciseReps] = useState(ExerciseService.increaseRepsByLevel(exercises[0], level));
   const [totalReps, setTotalReps] = useState(0);
 
@@ -173,7 +186,15 @@ const WorkoutScreen = () => {
   const exercise = exercises[exerciseIndex];
 
   return (
-    <View style={styles.container}>
+    <>
+     <Header  
+    borderBottomLeftRadius={0}
+    borderBottomRightRadius={0}
+    DefaultColor='#283048'
+   LeftIconOnPress={()=> navigation.goBack()}
+   RightIcon='atom-variant'
+  title={t('Workout')}/>
+    <LinearView>
       <Text style={styles.text}>Level: {level}</Text>
       <Text style={styles.text}>Exercise: {exercise?.name}</Text>
       <View style={styles.setsContainer}>
@@ -191,26 +212,27 @@ const WorkoutScreen = () => {
           </View>
         ))}
       </View>
-      <Image source={images[exercise.image]} style={styles.image} />
+      <LottieView source={animations[exercise.image]} autoPlay loop style={styles.image} />
       <ProgressBar progress={currentSet / exercise.sets} color="#00ff00" />
       {isResting && <Text style={styles.restTimeText}>Rest Time: {restTime}</Text>}
       
       <View style={styles.buttonContainer}>
       {!isResting &&
         (exerciseIndex < exercises.length - 1 || currentSet < exercises[exerciseIndex].sets ?
-          <Button title="Complete Set" onPress={handleCompleteSet} /> :
-          <Button title="Complete Workout" onPress={handleCompleteWorkout} />
+          <DoneButton title="Complete Set" onPress={handleCompleteSet} /> :
+          <DoneButton title="Complete Workout" onPress={handleCompleteWorkout} />
         )
       }
-      {isResting && <Button title="Skip Rest" onPress={() => setIsResting(false)} />}
-      <Button title="Reset Workout" onPress={handleResetWorkout} />
+      {isResting && <RestButton title="Skip Rest" onPress={() => setIsResting(false)} />}
+      <CancelButton title="Reset Workout" onPress={handleResetWorkout} />
     </View>
-      </View>
+    </LinearView>
+    </>
     
   );
 }
 
-export default WorkoutScreen;
+export default LowerBody;
 
 const styles = StyleSheet.create({
   container: {
@@ -247,10 +269,11 @@ const styles = StyleSheet.create({
     color: '#2c3e50',
   },
   image: {
-    width: '100%',
+    width: 200,
     height: 200,
     resizeMode: 'contain',
     marginBottom: 20,
+    alignSelf: "center",
   },
   restTimeText: {
     fontSize: 18,
@@ -260,5 +283,6 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginVertical : 20,
   },
 });

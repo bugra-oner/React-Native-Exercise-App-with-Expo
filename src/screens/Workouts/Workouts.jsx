@@ -12,11 +12,14 @@ import { navigate } from '../../navigation/navigationRef';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/views/Header';
 
-export default function Workouts() {
+export default function Workouts({navigation}) {
   const { t, i18n } = useTranslation();
   return (
     <>
-    <Header />
+    <Header  
+      RightIcon='view-list'
+      LeftIconOnPress={() => navigation.goBack()}
+    title={t('Workouts')}/>
     <View style={styles.container}>
     <View style={styles.topHeader}>
     <Text style={styles.title}>{i18n.t('ExercisesWithoutEquipment')}</Text>
@@ -33,7 +36,7 @@ export default function Workouts() {
          <WorkoutsCard 
           title= {i18n.t('UpperBodyWorkout')}
           subTitle={i18n.t('UpperBodyDesc')}
-          image="push_ups"
+          image="sit_ups"
           buttonText={t('Start')}
           onPress={() => navigate('UpperBody')}
           />
@@ -41,7 +44,7 @@ export default function Workouts() {
           title={i18n.t('LowerBodyWorkout')}
           subTitle={i18n.t('LowerBodyDesc')}
           onPress={() => navigate('LowerBody')}
-          image="push_ups"
+          image="squats"
           buttonText={t('Start')}
         />
       </View>

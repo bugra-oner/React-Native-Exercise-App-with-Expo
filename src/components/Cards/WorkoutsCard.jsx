@@ -5,10 +5,10 @@ import colors from '../../constants/colors';
 import Button from '../Button';
 
 // Resimleri require ile içe aktarın
-const pushUpsImage = require('../../assets/push_ups.png');
-const sitUpsImage = require('../../assets/sit_ups.png');
-const calfRaisesImage = require('../../assets/calf_raises.png');
-const squatsImage = require('../../assets/squats.png');
+const pushUpsImage = require('../../assets/cards/ptWoman.jpg');
+const sitUpsImage = require('../../assets/cards/man.jpg');
+const calfRaisesImage = require('../../assets/cards/squad.jpg');
+const squatsImage = require('../../assets//cards/squad.jpg');
 
 export default function WorkoutsCard({ title, subTitle, onPress, image,buttonText,level }) {
   // Burada gelen 'image' prop'unu kullanarak hangi resmi kullanacağınıza karar vermelisiniz

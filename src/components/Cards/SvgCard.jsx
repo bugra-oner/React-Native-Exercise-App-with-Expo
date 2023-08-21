@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         alignItems : 'center',
         borderRadius: 13,
-        height: "80%",
+        height: 150,
         shadowOffset: {
             width: 0,
             height: 2,
@@ -51,11 +51,10 @@ const styles = StyleSheet.create({
         fontSize: typography.body,
         color: colors.subTitle,
         fontWeight: '700',
-        marginTop: "2%",
+        marginTop: 5,
     },
     SvgCard:{
         position : 'auto',
         top: -11,
-        
     }
 })

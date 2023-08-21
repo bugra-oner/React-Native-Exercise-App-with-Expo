@@ -232,7 +232,6 @@ const WorkoutScreen = ({navigation}) => {
       {isResting && <RestButton title={t("SkipRest")} onPress={() => setIsResting(false)} />}
       <CancelButton  style={styles.button} title={t("ResetWorkout")} onPress={handleResetWorkout} />
     </View>
-      
       </LinearView>
       </>
     

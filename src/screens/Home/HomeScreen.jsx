@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View,ScrollView,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,ScrollView,TouchableOpacity,Image } from 'react-native';
 import ExerciseService from '../../service/ExerciseService';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -18,6 +18,9 @@ import { navigate } from '../../navigation/navigationRef';
 
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/views/Header';
+import ImageCard from '../../components/Cards/ImageCard';
+import ProteinCard from '../../components/Cards/ProteinCard';
+import SingleWorkoutCard from '../../components/SingleWorkoutCard';
 
 export default function HomeScreen({navigation}) {
 
@@ -61,6 +64,7 @@ export default function HomeScreen({navigation}) {
     <>
     <Header title={t("Homepage")}  
     LeftIcon='weight-lifter'
+    RightIcon='home'
     RightIconOnPress={() => navigation.navigate("Profil")}
       
     />
@@ -103,21 +107,61 @@ export default function HomeScreen({navigation}) {
           title={t('UpperBodyWorkout')}
           subTitle={t('UpperBodyDesc')}
           onPress={() => navigate('UpperBody')}
-          image="push_ups"
+          image="sit_ups"
           buttonText={t('Start')}
         />
          <WorkoutsCard 
           title={t('LowerBodyWorkout')}
           subTitle={t('LowerBodyDesc')}
-          onPress={null}
-          image="push_ups"
+          onPress={() => navigate('LowerBody')}
+          image="squats"
           buttonText={t('Start')}
         />
       </View>
-      {/* <Text style={styles.Foods}>
+        {/* <Text style={styles.Foods}>
         {t('Foods')}
-      </Text> */}
-    </ScrollView>
+      </Text> 
+       <View style={styles.ProteinCardView}>
+      <ProteinCard />
+      </View>  */}
+      <ProteinCard />
+      <Text style={styles.singleExercisesTitle}>Single Exercises</Text>
+      <View>
+        <View style={styles.singleExerciseView}>
+      <View style={styles.singleExercisesRow}>
+        <SingleWorkoutCard 
+      title={t('PushUps')}
+      description={t('PushupDesc')}
+      imageSource={require('../../assets/cards/pushups.jpg')}
+      onPress={() => navigate('PushUps')}
+        />
+        <SingleWorkoutCard 
+      title={t('Squad')}
+      description={t('SquadDesc')}
+      imageSource={require('../../assets//cards/triceps.jpg')}
+      onPress={() => navigate('Squad')}
+        />
+       </View>
+        <View style={styles.singleExercisesRow}>
+        <SingleWorkoutCard 
+      title={t('SitUps')}
+      description={t('SitupsDesc')}
+      imageSource={require('../../assets/cards/situps.jpg')}
+      onPress={()=> navigate('SitUps')}
+       />
+        <SingleWorkoutCard 
+      title={t('TricepsDips')}
+      description={t('TricepsDesc')}
+      imageSource={require('../../assets//cards/triceps.jpg')}
+      onPress={() => navigate('Triceps')}
+      />
+      </View>
+  </View>
+</View>
+
+      <View style={styles.ExtraView}>
+      </View>
+    </ScrollView> 
     </>
   );
 }
@@ -129,7 +173,7 @@ const styles = StyleSheet.create({
   },
   title:{
     marginLeft: '5%',
-    marginVertical:"2%",
+    marginTop: 15,
     color: colors.UiText,
    fontSize : 15,
    fontWeight: 'bold',
@@ -140,7 +184,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignContent:'center',
     width: '100%',
-    height : '25%',
+    height : '15',
     justifyContent:'space-around'
   },
     buttonsContainer: {
@@ -167,7 +211,7 @@ const styles = StyleSheet.create({
       color: colors.UiText,
     },
     workoutsHeader:{
-      marginTop : 10,
+      marginVertical: 20,
       flexDirection: "row",
       justifyContent: 'space-between',
       width : '90%',
@@ -180,5 +224,34 @@ const styles = StyleSheet.create({
       fontWeight: '900',
       marginBottom: 10,
     },
+    ExtraView:{
+     height: 200,
+    },
+    proteinBarImage:{
+      width: 100,
+      height: 100,
+      alignSelf: "center",
+      borderRadius: 50,
+    },
+    singleExercisesTitle:{
+      marginLeft: '5%',
+      fontSize: typography.title,
+      color: colors.UiText,
+      fontWeight: '900',
+      marginVertical: 5,
+    },
+    singleExerciseView:{
+      alignItems : 'center',
+    },
+    singleExercises:{
+      justifyContent: 'center',
+      backgroundColor : 'red',
+    },
+    singleExercisesRow:{
+      flexDirection: 'row',
+      columnGap : 5,
+      marginVertical: 10,
+    }
+    
 })
 

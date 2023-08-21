@@ -7,11 +7,9 @@ import colors from '../../constants/colors';
 
 export default function LinearView({children}) {
   return (
-    
     <LinearGradient style={styles.container}
     colors={[colors.gradientColor.workoutOne, colors.gradientColor.workoutTwo]}
     >{children}</LinearGradient>
-    
   )
 }
 
@@ -19,6 +17,6 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         paddingHorizontal: 20,
-        paddingTop: 50,
+        paddingTop: "25%",
     }
 })

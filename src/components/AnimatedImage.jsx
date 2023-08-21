@@ -13,7 +13,6 @@ const AnimatedImage = ({ animationJson }) => {
     
   );
 };
-
 const styles = StyleSheet.create({
 
   animation:{

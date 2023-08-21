@@ -53,8 +53,19 @@
     "CompleteSet": "Seti Tamamla",
     "ResetWorkout": "Antremanı Sıfırla",
     "CompleteExc": "Antremanı Tamamla",
-    "SkipRest": "Dinlenmeyi Atla"
+    "SkipRest": "Dinlenmeyi Atla",
+    "ProteinCalculator":"Protein Hesaplayıcı",
+    "CalculateProtein": "Hesapla",
+    "DailyProteinAmount": "Günlük Alman gereken protein",
+    "Nutrition" : "Beslenme",
+    "PushUps": "Şınav",
+    "Squad": "Squad",
+    "SitUps": "Mekik",
+    "TricepsDips": "Arka Kol",
+    "TricepsDesc": "Kollarınızı çalıştırın. Her dip, daha fit kollar için",
+    "SquadDesc": "Bacak ve kalça gücünüzü artırın. Her squat, sağlam adımlar için",
+    "PushupDesc": "Gücünüzü vücut ağırlığıyla test edin. Her şınav, daha güçlü bir siz için.",
+    "SitupsDesc": "Çekirdek kaslarınızı güçlendirin. Her mekik, daha sıkı bir merkez için." 
 
-    
   }
   

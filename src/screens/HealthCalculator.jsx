@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text,  Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -14,11 +14,16 @@ import GradientInput from '../components/inputs/GradientInput';
 
 import Header from '../components/views/Header';
 import GradientButton from '../components/buttons/GradientButton';
- 
+const activityLevels = [
+  { label: 'Az Aktif (Ofis İşleri)', value: 'sedentary' },
+  { label: 'Hafif Aktif (Hafif Egzersiz)', value: 'lightlyActive' },
+  { label: 'Orta Aktif (Orta Derecede Egzersiz)', value: 'moderatelyActive' },
+  { label: 'Çok Aktif (Yoğun Egzersiz)', value: 'veryActive' },
+  { label: 'Süper Aktif (Profesyonel Sporcular)', value: 'superActive' },
+];
 
-
-const HealthCalculator = ({navigation}) => {
-  const {t} = useTranslation()
+const HealthCalculator = ({ navigation }) => {
+  const { t } = useTranslation();
 
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
@@ -36,24 +41,16 @@ const HealthCalculator = ({navigation}) => {
 
   const calculateIdealWeight = () => {
     const heightInCm = parseFloat(height);
-  
+
     let idealWeight = 0;
     if (gender === 'male') {
       idealWeight = heightInCm - 100 - ((heightInCm - 150) / 4);
     } else if (gender === 'female') {
       idealWeight = heightInCm - 100 - ((heightInCm - 150) / 2.5);
     }
-  
+
     return idealWeight.toFixed(2);
   };
-
-  const activityLevels = [
-    { label: 'Az Aktif (Ofis İşleri)', value: 'sedentary' },
-    { label: 'Hafif Aktif (Hafif Egzersiz)', value: 'lightlyActive' },
-    { label: 'Orta Aktif (Orta Derecede Egzersiz)', value: 'moderatelyActive' },
-    { label: 'Çok Aktif (Yoğun Egzersiz)', value: 'veryActive' },
-    { label: 'Süper Aktif (Profesyonel Sporcular)', value: 'superActive' },
-  ];
 
   const calculateBMI = () => {
     if (weight && height && age) {
@@ -83,10 +80,17 @@ const HealthCalculator = ({navigation}) => {
         value: calculatedBMI.toFixed(2),
         interpretation: interpretation,
       });
+
+      return {
+        value: calculatedBMI.toFixed(2),
+        interpretation: interpretation,
+      };
     }
+
+    return null;
   };
 
-  const calculateDailyCalories = async () => {
+  const calculateDailyCalories = () => {
     const activityMultiplier = {
       sedentary: 1.2,
       lightlyActive: 1.375,
@@ -95,7 +99,6 @@ const HealthCalculator = ({navigation}) => {
       superActive: 1.9,
     };
 
-    // Calculate BMR based on gender and Harris-Benedict equation
     let BMR = 0;
     if (gender === 'male') {
       BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
@@ -105,38 +108,46 @@ const HealthCalculator = ({navigation}) => {
 
     const dailyCalories = BMR * activityMultiplier[activityLevel];
     setDailyCalories(dailyCalories.toFixed(2));
+
+    return dailyCalories.toFixed(2);
   };
 
-  const calculateDailyWater = async () => {
+  const calculateDailyWater = () => {
     const waterPerKilogram = 38;
     const dailyWaterAmount = waterPerKilogram * weight;
     setDailyWater(dailyWaterAmount.toFixed(2));
+
+    return dailyWaterAmount.toFixed(2);
   };
 
-  const handleCalculatePress =  async () => {
+  const handleCalculatePress = async () => {
     if (!isFormValid()) {
-      // Eğer form eksik ise hata mesajı gösterme veya gerekli işlemleri yapma
       alert('Lütfen tüm alanları doldurun.');
       return;
     }
-    calculateBMI();
-    calculateDailyCalories();
-    calculateDailyWater();
-    const calculatedIdealWeight = calculateIdealWeight(); // Ideal kiloyu hesapla
-    setIdealWeight(calculatedIdealWeight); // State'i güncelle
 
-  const calculatedData = {
-    bmi: bmi,
-    dailyCalories: dailyCalories,
-    dailyWater: dailyWater,
-    idealWeight: idealWeight,
-  };
-  try {
-    await AsyncStorage.setItem('calculatedData', JSON.stringify(calculatedData));
-    console.log("test",calculatedData)
-  } catch (error) {
-    console.log('Error saving data to AsyncStorage:', error);
-  }
+    const calculatedIdealWeight = calculateIdealWeight();
+    setIdealWeight(calculatedIdealWeight);
+
+    const calculatedBMI = calculateBMI();
+    const calculatedDailyCalories = calculateDailyCalories();
+    const calculatedDailyWater = calculateDailyWater();
+
+    const calculatedData = {
+      bmi: calculatedBMI,
+      dailyCalories: calculatedDailyCalories,
+      dailyWater: calculatedDailyWater,
+      idealWeight: calculatedIdealWeight,
+    };
+
+    try {
+      await AsyncStorage.setItem('calculatedData', JSON.stringify(calculatedData));
+      console.log('Calculated data saved to AsyncStorage:', calculatedData);
+       // Verilerin güncellendiğini bildir
+       navigation.navigate('Graph', { updateHealthDataOnScreen: true });
+    } catch (error) {
+      console.log('Error saving data to AsyncStorage:', error);
+    }
   };
 
   const genders = [
@@ -146,68 +157,61 @@ const HealthCalculator = ({navigation}) => {
 
   return (
     <>
-    <Header 
-    LeftIconOnPress={() => navigation.goBack()}
-    title={t('HealthCalculator')}
-    />
-    <View style={styles.container}>
-    
-      <View style={styles.inputContainer}>
-        <GradientInput
-          style={styles.input}
-          placeholder={t('InputKg')}
-          onChangeText={(text) => setWeight(text)}
-          keyboardType="numeric"
-        />
-        <GradientInput 
-          placeholder={t('InputCm')}
-          onChangeText={(text) => setHeight(text)}
-          keyboardType="numeric"
-        />
-        <GradientInput
-          style={styles.input}
-          placeholder={t('InputCm')}
-          onChangeText={(text) => setHeight(text)}
-          keyboardType="numeric"
-        />
-        <GradientInput
-          style={styles.input}
-          placeholder={t('InputOld')}
-          onChangeText={(text) => setAge(text)}
-          keyboardType="numeric"
-        />
-        <CustomPicker
-          options={activityLevels}
-          selectedValue={activityLevel}
-          
-          onValueChange={value => setActivityLevel(value)}
-        />
-        <CustomPicker
-          options={genders}
-          selectedValue={gender}
-          onValueChange={value => setGender(value)}
-        />
-        <GradientButton title={t("Calculated")} onPress={handleCalculatePress} />
-      </View>
-      {bmi !== null && (
-        <View style={styles.resultContainer}>
-          <Text style={styles.resultText}>Vücut Kitle İndeksi: {bmi.value}</Text>
-          <Text style={styles.resultText}>Durum: {bmi.interpretation}</Text>
+      <Header
+        LeftIconOnPress={() => navigation.goBack()}
+        title={t('HealthCalculator')}
+      />
+      <View style={styles.container}>
+        <View style={styles.inputContainer}>
+          <GradientInput
+            style={styles.input}
+            placeholder={t('InputKg')}
+            onChangeText={(text) => setWeight(text)}
+            keyboardType="numeric"
+          />
+          <GradientInput
+            style={styles.input}
+            placeholder={t('InputCm')}
+            onChangeText={(text) => setHeight(text)}
+            keyboardType="numeric"
+          />
+          <GradientInput
+            style={styles.input}
+            placeholder={t('InputOld')}
+            onChangeText={(text) => setAge(text)}
+            keyboardType="numeric"
+          />
+          <CustomPicker
+            options={activityLevels}
+            selectedValue={activityLevel}
+            onValueChange={value => setActivityLevel(value)}
+          />
+          <CustomPicker
+            options={genders}
+            selectedValue={gender}
+            onValueChange={value => setGender(value)}
+          />
+          <GradientButton title={t("Calculated")} onPress={handleCalculatePress} />
         </View>
-      )}
-      {dailyCalories !== null && (
-        <Text style={styles.resultText}>Günlük Kalori İhtiyacı: {dailyCalories} kcal</Text>
-      )}
-      {dailyWater !== null && (
-        <Text style={styles.resultText}>Günlük Su İhtiyacı: {dailyWater} ml</Text>
-      )}
-      {idealWeight !== null && (
-        <Text style={styles.resultText}>İdeal Kilo: {idealWeight} kg</Text>
-      )}
-      <Text style={styles.infoText}>
-        {t('DaoInfo')}
-      </Text>
-    </View>
+        {bmi !== null && (
+          <View style={styles.resultContainer}>
+            <Text style={styles.resultText}>Vücut Kitle İndeksi: {bmi.value}</Text>
+            <Text style={styles.resultText}>Durum: {bmi.interpretation}</Text>
+          </View>
+        )}
+        {dailyCalories !== null && (
+          <Text style={styles.resultText}>Günlük Kalori İhtiyacı: {dailyCalories} kcal</Text>
+        )}
+        {dailyWater !== null && (
+          <Text style={styles.resultText}>Günlük Su İhtiyacı: {dailyWater} ml</Text>
+        )}
+        {idealWeight !== null && (
+          <Text style={styles.resultText}>İdeal Kilo: {idealWeight} kg</Text>
+        )}
+        <Text style={styles.infoText}>
+          {t('DaoInfo')}
+        </Text>
+      </View>
     </>
   );
 };
@@ -215,7 +219,7 @@ const HealthCalculator = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",   
+    alignItems: "center",
     backgroundColor: '#ffffff',
     marginTop: "30%"
   },
@@ -226,7 +230,6 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: '80%',
     marginBottom: 10,
-   
   },
   input: {
     height: 40,
@@ -254,5 +257,6 @@ const styles = StyleSheet.create({
 });
 
 export default HealthCalculator;
+
 
 

@@ -1,25 +1,25 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ExerciseModel from "./ExerciseModel";
 
+
 let exercises = [
-  { name: 'Push Ups', sets: 5, reps: [10, 12, 15, 10, 8], rate: 2, image: 'push_ups' },
-  { name: 'Sit Ups', sets: 5, reps: [15, 20, 25, 20, 15], rate: 1, image: 'sit_ups' },
-  { name: 'Triceps Dips', sets: 5, reps: [20, 25, 30, 25, 20], rate: 1, image: 'triceps_dips'},
-  { name: 'Squats', sets: 5, reps: [10, 15, 20, 15, 10], rate: 1, image: 'squats' },
+  { name: 'Push Ups', sets: 5, reps: [1, 2, 1, 2, 3], rate: 2, image: 'push_ups' },
+  { name: 'Sit Ups', sets: 5, reps: [4, 5, 4, 6, 10], rate: 1, image: 'sit_ups' },
+  { name: 'Triceps Dips', sets: 5, reps: [1, 3, 2, 3, 4], rate: 1, image: 'triceps_dips'},
+  { name: 'Squats', sets: 5, reps: [3, 5, 3, 5, 6], rate: 1, image: 'squats' },
 ];
 
 let upperBodyExercises = [
-  { name: 'Push Ups', sets: 5, reps: [10, 12, 15, 10, 8], rate: 2, image: 'push_ups' },
-  { name: 'Sit Ups', sets: 5, reps: [15, 20, 25, 20, 15], rate: 1, image: 'sit_ups' },
-  { name: 'Plank', sets: 5, reps: [20, 25, 30, 25, 20], rate: 1, image: 'calf_raises' },
-  { name: 'Cross Push Up', sets: 5, reps: [10, 15, 20, 15, 10], rate: 1, image: 'cross_push_ups' },
+  { name: 'Push Ups', sets: 5, reps: [1, 2, 1, 2, 3], rate: 2, image: 'push_ups' },
+  { name: 'Sit Ups', sets: 5, reps: [3, 4, 2, 5, 7], rate: 1, image: 'sit_ups' },
+  { name: 'Triceps Dips', sets: 5, reps: [1, 3, 2, 3, 4], rate: 1, image: 'triceps_dips' },
 ]
 
 let lowerBody = [
-  { name: 'Push Ups', sets: 5, reps: [10, 12, 15, 10, 8], rate: 2, image: 'push_ups' },
-  { name: 'Sit Ups', sets: 5, reps: [15, 20, 25, 20, 15], rate: 1, image: 'sit_ups' },
-  { name: 'Calf Raises', sets: 5, reps: [20, 25, 30, 25, 20], rate: 1, image: 'calf_raises' },
-  { name: 'Squats', sets: 5, reps: [10, 15, 20, 15, 10], rate: 1, image: 'squats' },
+  { name: 'Squad', sets: 5, reps: [3, 5, 3, 5, 2], rate: 1, image: 'Squad' },
+  { name: 'Single-Leg Chair Squat', sets: 5, reps: [3, 4, 2, 3, 4], rate: 1, image: 'SingleLeg' },
+  { name: 'Lunges', sets: 5, reps: [4, 6, 6, 4, 8], rate: 1, image: 'Lunges' },
+  //{ name: 'Squats', sets: 5, reps: [10, 15, 20, 15, 10], rate: 1, image: 'asdf' },
 ]
 
 let flexibleExercises = [
@@ -88,7 +88,25 @@ const getExercises = () => exercises;
 
 const getUpperBodyExercises = () => upperBodyExercises;
 
+const getLowerBodyExercises = () => lowerBody;
+
+let singleSquad = { name: 'Squad', sets: 5, reps: [3, 5, 3, 5, 2], rate: 1, image: 'Squad' }
+
+let singleSitups =  { name: 'Sit Ups', sets: 5, reps: [4, 4, 3, 5, 7], rate: 1, image: 'sit_ups' }
+
+let singleTriceps = { name: 'Triceps Dips', sets: 5, reps: [1, 2, 3, 3, 4], rate: 1, image: 'triceps_dips'}
+
+const getSingleSquad = () => singleSquad;
+
+const getSingleSitups = () =>  singleSitups;
+
+const getSingleTriceps = () => singleTriceps;
+
+
+
 export default {
+  getSingleTriceps,
+  getLowerBodyExercises,
   flexibleExercises,
   getExercises,
   updateAllExercises,
@@ -98,7 +116,8 @@ export default {
   getLevel,
   calculateStatistics,
   getUpperBodyExercises,
-  
+  getSingleSquad,
+  getSingleSitups,
 };
 
 

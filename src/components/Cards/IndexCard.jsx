@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     title:{
-        fontSize : typography.healthText,
+        fontSize : typography.healthTitle,
         color: colors.title,
         fontWeight: 'bold',
     },

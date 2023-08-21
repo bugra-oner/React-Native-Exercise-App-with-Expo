@@ -4,8 +4,6 @@ import React from 'react';
 import CustomIcon from '../CustomIcon';
 import { hp, wp, fp } from '../../utils';
 
-
-
 export default function Header({
   LeftIconOnPress,
   title,

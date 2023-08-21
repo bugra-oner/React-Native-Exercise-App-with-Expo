@@ -15,8 +15,6 @@ const styles = StyleSheet.create({
   container:{
     backgroundColor :'#484F88',
     borderRadius : 25,
-    
-    
   },
   text:{
     color : '#F3F5FF',

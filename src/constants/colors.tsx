@@ -4,6 +4,7 @@ const colors = {
     bottomColor: '#2a2d43',
     UiText:'#484F88',
     white: '#fff',
+    primary: '#484F88',
     gradientColor: {
         color: '#2c3e50',
         colorTwo : '#bdc3c7',

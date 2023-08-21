@@ -2,10 +2,10 @@ import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const GradientInput = ({ placeholder, onChangeText, keyboardType }) => {
+const GradientInput = ({ placeholder, onChangeText, keyboardType, colors }) => {
   return (
     <LinearGradient
-      colors={['#575ea8', '#83c29f']}
+      colors={colors || ['#575ea8', '#83c29f']} // Default renkler
       start={[0, 0]}
       end={[1, 0]}
       style={styles.gradientContainer}

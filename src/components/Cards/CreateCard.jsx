@@ -11,7 +11,7 @@ import {useTranslation} from 'react-i18next';
 
 
 export default function CreaterCard({ onPress,marginTop,
-  height = "17%"
+  height = 150
  }) {
   const { t, i18n } = useTranslation();
 

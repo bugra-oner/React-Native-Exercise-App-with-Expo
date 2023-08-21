@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import typography from '../../constants/typography';
 import colors from '../../constants/colors';
 
-export default function ButtonCard({title,subTitle,onPress}) {
+export default function ImageCard({title,subTitle,onPress,Image}) {
   return (
     <TouchableOpacity
     onPress={onPress} 
@@ -18,7 +18,7 @@ export default function ButtonCard({title,subTitle,onPress}) {
 const styles = StyleSheet.create({
   container: {
     width: 180.65,
-    padding: 25,
+    height: '44%',
     backgroundColor: '#F3F5FF',
     borderRadius: 13,
     borderColor: 'black',

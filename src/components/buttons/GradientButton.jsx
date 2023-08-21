@@ -2,11 +2,11 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const GradientButton = ({ title, onPress }) => {
+const GradientButton = ({ title, onPress, colors }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <LinearGradient
-        colors={['#606191', '#111111']}
+        colors={colors || ['#606191', '#111111']} // Default renkler
         start={[0, 0]}
         end={[1, 0]}
         style={styles.gradientContainer}

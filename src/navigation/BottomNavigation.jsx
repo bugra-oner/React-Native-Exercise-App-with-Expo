@@ -32,10 +32,11 @@ import Languages from '../screens/Profil/SelectLanguages';
 import Notifications from '../screens/Profil/Notifications';
 
 import Info from '../screens/Informations/Info';
-import ProteinCalculator from '../screens/Protein';
 
-
-
+import PushUp from '../screens/Single/PushUp';
+import SitUps from '../screens/Single/SitUps';
+import Squad from '../screens/Single/Squad';
+import Triceps from '../screens/Single/Triceps';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -69,7 +70,12 @@ export default function BottomStackNavigator(){
                  <Stack.Screen name="Report" component={ReportSystem} />
                  <Stack.Screen name="Languages" component={Languages} />
                  <Stack.Screen name="Notifications" component={Notifications} />
-                 <Stack.Screen name= "Protein" component={ProteinCalculator} />
+                 <Stack.Screen name="BottomNavigatorTest" component={BottomNavigator}/>
+                 <Stack.Screen name= "PushUps" component={PushUp} />
+                 <Stack.Screen name= "SitUps" component={SitUps} />
+                 <Stack.Screen name="Squad" component={Squad} />
+                 <Stack.Screen name="Triceps" component={Triceps}/>
+                 
         </Stack.Navigator>
     )
 }
@@ -117,7 +123,7 @@ export const BottomNavigator = ({navigation}) => {
 />
             {/* Ortadaki sekmeyi burada ekliyoruz */}
             <Tab.Screen
-            name="Center"
+            name="Graph"
             component={Graph} // Boş bir component
             options={{
               tabBarLabel:"",

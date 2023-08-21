@@ -11,7 +11,6 @@ const CustomPicker = ({ options, selectedValue, onValueChange }) => {
   };
 
   return (
-   
       <LinearGradient
            // İstediğiniz renk geçişlerini belirleyebilirsiniz
           colors={['#575ea8', '#83c29f']}
@@ -19,14 +18,11 @@ const CustomPicker = ({ options, selectedValue, onValueChange }) => {
        end={[1, 0]}
        style={styles.gradientContainer}
     >
-       
       <TouchableOpacity
         style={styles.selectedValue}
         onPress={() => setShowOptions(!showOptions)}
       >
-      
           <Text style={styles.selectedText}>{selectedValue}</Text>
-        
       </TouchableOpacity>
       {showOptions && (
         <View style={styles.optionsContainer}>
@@ -39,7 +35,6 @@ const CustomPicker = ({ options, selectedValue, onValueChange }) => {
               <Text>{option.label}</Text>
             </TouchableOpacity>
           ))}
-          
         </View>
       )}
       </LinearGradient>

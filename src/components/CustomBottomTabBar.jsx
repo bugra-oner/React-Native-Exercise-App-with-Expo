@@ -11,7 +11,7 @@ const CenterButton = ({color}) => {
     <View style={styles.container}>
     <TouchableOpacity
       style={styles.centerButton}
-      onPress={() => navigate('Center')}
+      onPress={() => navigate('Graph')}
       activeOpacity={0.7} // Dokunma efektini ayarlar
     >
       <CustomTabIcon  color={color} source={require('../assets/centermuscle.png')} />

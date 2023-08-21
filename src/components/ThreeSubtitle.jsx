@@ -10,7 +10,6 @@ export default function ThreeSubtitle({Left,Middle,Right}) {
     </View>
   )
 }
-
 const styles = StyleSheet.create({
   container:{},
   first:{},
