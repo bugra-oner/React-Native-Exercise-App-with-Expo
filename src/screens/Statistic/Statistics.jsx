@@ -103,25 +103,28 @@ const StatisticsScreen = ({navigation}) => {
       subTitle={i18n.t('LowerBodyDesc')}
            />
     )}
-    
+    </View>
+    <View>
+    <Text style={styles.Header}>
+      {t('SingleExercises')}
+    </Text>
     {squadWorkoutStats && (
-      <SingleWorkoutCard 
-        
+      <SingleWorkoutCard title={t('Squad')}
+       level={`t('SquadWorkoutLevel') : ${squadWorkoutStats.SingleSquadWorkout?.level || 1}`}
       />)
           }
           {tricepsWorkoutStats && (
-            <Text>{t('Triceps Workout Level')}: {tricepsWorkoutStats.SingleTricepsWorkout?.level || 1}</Text>
+            <Text>{t('TricepsWorkoutLevel')}: {tricepsWorkoutStats.SingleTricepsWorkout?.level || 1}</Text>
           )}
           {pushUpsWorkoutStats && (
-            <Text>{t('Push Ups Workout Level')}: {pushUpsWorkoutStats.SinglePushUpWorkout?.level || 1}</Text>
+            <Text>{t('PushUpsWorkoutLevel')}: {pushUpsWorkoutStats.SinglePushUpWorkout?.level || 1}</Text>
           )}
           {sitUpsWorkoutStats && (
-            <Text>{t('Sit Ups Workout Level')}: {sitUpsWorkoutStats.SingleSitUpsWorkout?.level || 1}</Text>
+            <Text>{t('SitUpsWorkoutLevel')}: {sitUpsWorkoutStats.SingleSitUpsWorkout?.level || 1}</Text>
           )}
-
     <CreaterCard 
       marginTop="6%"
-      height= "25%"
+      height= "30%"
     />
     </View>
     </ScrollView>
@@ -135,7 +138,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   center:{
-    flex: 1,
     alignItems: "center"
   },
   header: {
@@ -159,7 +161,15 @@ const styles = StyleSheet.create({
     color: colors.UiText,
     marginLeft: 25,
     fontSize: 15,
-  }
+  },
+  Header:{
+    marginLeft: 10,
+    alignSelf: 'flex-start',
+    marginVertical: 15,
+    color: colors.UiText,
+    marginLeft: 25,
+    fontSize: 15,
+  },
 });
 
 export default StatisticsScreen;
