@@ -66,5 +66,9 @@
     "SquadDesc": "Boost leg and hip strength. Each squat paves the way for firm steps.",
     "PushupDesc": "Test your strength with bodyweight. Each push-up is a step towards a stronger you.",
     "SitupsDesc": "Strengthen your core muscles. Each sit-up is a path to a tighter center.",
-    "SingleExercises": "Single Exercises"
+    "SingleExercises": "Single Exercises",
+    "SinglePushUpWorkout": "Push ups",
+    "SingleSquadWorkout": "Squad",
+    "SingleTricepsWorkout": "Triceps",
+    "SingleSitUpsWorkout" : "Situps"
 }

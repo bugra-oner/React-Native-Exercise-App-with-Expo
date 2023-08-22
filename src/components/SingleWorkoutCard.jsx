@@ -14,9 +14,15 @@ export default function SingleWorkoutCard({ title, description, imageSource, onP
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.description}>{description}</Text>
         </View>
-        <Image source={imageSource} style={styles.image} />
+        {level ? 
+        <View style={styles.levelContainer}>
+                <Text style={styles.Text}>
+          {level}
+        </Text></View> :   
+        <Image source={imageSource} style={styles.image} />  
+        }
+
       </View>
-     
     </TouchableOpacity>
   );
 }
@@ -29,10 +35,10 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     borderColor: 'black',
     shadowColor: '#000000', // Gölgenin rengini burada belirleyebilirsiniz
-    shadowOpacity: 0.7, // Gölgenin opaklığını burada belirleyebilirsiniz
-    shadowRadius: 6.604332447052002, // Gölgenin yuvarlaklık derecesini burada belirleyebilirsiniz
-    shadowOffset: { width: 1.3208664655685425, height: 1.3208664655685425 }, // Gölgenin konumunu burada belirleyebilirsiniz
-    elevation: 5, // Sadece Android için shadow (iOS bu prop'u kullanmaz)
+    shadowOpacity: 0.8, // Gölgenin opaklığını burada belirleyebilirsiniz
+    shadowRadius: 7.604332447052002, // Gölgenin yuvarlaklık derecesini burada belirleyebilirsiniz
+    shadowOffset: { width: 2.3208664655685425, height: 2.3208664655685425 }, // Gölgenin konumunu burada belirleyebilirsiniz
+    elevation: 15, // Sadece Android için shadow (iOS bu prop'u kullanmaz)
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -66,4 +72,17 @@ const styles = StyleSheet.create({
   withLevel: {
     backgroundColor: 'lightblue', // level prop'u varsa arka plan rengini değiştir
   },
+  levelContainer:{
+    width: 40,
+    height: 40,
+    backgroundColor: '#859398',
+    borderRadius: 20,
+    alignItems : 'center',
+    justifyContent: 'center',
+    marginLeft: 10,
+  },
+  Text:{
+    fontSize: 17,
+    color: "white"
+  }
 });

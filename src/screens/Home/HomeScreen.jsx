@@ -64,6 +64,7 @@ export default function HomeScreen({navigation}) {
     <>
     <Header title={t("Homepage")}  
     LeftIcon='weight-lifter'
+    LeftIconOnPress={() => navigation.navigate('Workouts')}
     RightIcon='home'
     RightIconOnPress={() => navigation.navigate("Profil")}
       

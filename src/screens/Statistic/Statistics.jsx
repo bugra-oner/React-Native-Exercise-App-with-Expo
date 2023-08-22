@@ -78,6 +78,7 @@ const StatisticsScreen = ({navigation}) => {
     <Header title={t('WorkoutStatistics')} 
     LeftIcon='weight-lifter'
     RightIconOnPress={() => navigation.navigate("Profil")}
+    LeftIconOnPress={() => navigation.navigate('Workouts')}
     />
     <ScrollView style={styles.container}>
     <View style={styles.center}>
@@ -108,23 +109,36 @@ const StatisticsScreen = ({navigation}) => {
     <Text style={styles.Header}>
       {t('SingleExercises')}
     </Text>
+    <View style={styles.containerRow}>
+    <View style={styles.rowContainerSingle}>
     {squadWorkoutStats && (
       <SingleWorkoutCard title={t('Squad')}
-       level={`t('SquadWorkoutLevel') : ${squadWorkoutStats.SingleSquadWorkout?.level || 1}`}
-      />)
-          }
-          {tricepsWorkoutStats && (
-            <Text>{t('TricepsWorkoutLevel')}: {tricepsWorkoutStats.SingleTricepsWorkout?.level || 1}</Text>
+       level={squadWorkoutStats.SingleSquadWorkout?.level || 1}
+       description={t('SquadDesc')}
+      />)}
+          {tricepsWorkoutStats && ( <SingleWorkoutCard title={t('Triceps')} 
+            level={tricepsWorkoutStats.SingleTricepsWorkout?.level || 1}
+            description={t('TricepsDesc')}
+          />
           )}
-          {pushUpsWorkoutStats && (
-            <Text>{t('PushUpsWorkoutLevel')}: {pushUpsWorkoutStats.SinglePushUpWorkout?.level || 1}</Text>
-          )}
+          </View>
+          <View style={styles.rowContainerSingle}>
+          {pushUpsWorkoutStats && ( <SingleWorkoutCard title={t('PushUps')}  
+          
+           level={pushUpsWorkoutStats.SinglePushUpWorkout?.level || 1} 
+           description={t('PushupDesc')}
+           />)}
+           
           {sitUpsWorkoutStats && (
-            <Text>{t('SitUpsWorkoutLevel')}: {sitUpsWorkoutStats.SingleSitUpsWorkout?.level || 1}</Text>
-          )}
+            <SingleWorkoutCard title={t('SitUps')}
+              description={t('SitupsDesc')}
+            level= {sitUpsWorkoutStats.SingleSitUpsWorkout?.level || 1}
+             />)}
+             </View>
+             </View>
     <CreaterCard 
       marginTop="6%"
-      height= "30%"
+      height= "23%"
     />
     </View>
     </ScrollView>
@@ -170,6 +184,14 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     fontSize: 15,
   },
+  rowContainerSingle:{
+    flexDirection : 'row',
+    columnGap: 15,
+    marginVertical: 10,
+  },
+  containerRow:{
+    alignItems : 'center'
+  }
 });
 
 export default StatisticsScreen;

@@ -66,7 +66,11 @@
     "SquadDesc": "Bacak ve kalça gücünüzü artırın. Her squat, sağlam adımlar için",
     "PushupDesc": "Gücünüzü vücut ağırlığıyla test edin. Her şınav, daha güçlü bir siz için.",
     "SitupsDesc": "Çekirdek kaslarınızı güçlendirin. Her mekik, daha sıkı bir merkez için." ,
-    "SingleExercies": "Tekli Egzersizler"
+    "SingleExercies": "Tekli Egzersizler",
+    "SinglePushUpWorkout": "Push ups",
+    "SingleSquadWorkout": "Squad",
+    "SingleTricepsWorkout": "Triceps",
+    "SingleSitupsWorkout" : "Situps"
 
   }
   

@@ -83,7 +83,7 @@ export default function Graph({navigation,route}) {
     <>
     <Header 
     LeftIcon='artstation'
-    RightIcon='graphql'
+    RightIconOnPress={() => navigation.navigate("Profil")}
     title={"Sağlık"}/>
     <ScrollView style={styles.container}>
       <IndexCard 

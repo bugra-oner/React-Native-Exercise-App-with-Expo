@@ -14,9 +14,8 @@ export default function Account({ navigation }) {
     <>
       <Header
         title={'Kişisel Bilgiler'}
-        LeftIconOnPress={() => navigate("Workouts")}
-        RightIconOnPress={() => navigation.navigate('Notifications')}
-        LeftIcon="weight-lifter"
+        LeftIconOnPress={() => navigation.goBack()}
+        RightIconOnPress={() => navigate('Notifications')}
         RightIcon="bell-outline"
         LeftIconSize={33}
       />

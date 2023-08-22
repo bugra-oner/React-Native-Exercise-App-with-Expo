@@ -75,6 +75,7 @@ export default function BottomStackNavigator(){
                  <Stack.Screen name= "SitUps" component={SitUps} />
                  <Stack.Screen name="Squad" component={Squad} />
                  <Stack.Screen name="Triceps" component={Triceps}/>
+                 <Stack.Screen name="Profil" component={Profil} />
                  
         </Stack.Navigator>
     )
@@ -111,6 +112,17 @@ export const BottomNavigator = ({navigation}) => {
                     tabBarIcon:({color,size}) => (
                     <Ionicons name="home" size={size} color={color} /> // Expo'nun yerleşik ikonunu kullanıyoruz
           )}}/>
+            {/* Ortadaki sekmeyi burada ekliyoruz */}
+            <Tab.Screen
+            name="Graph"
+            component={Graph} // Boş bir component
+            options={{
+              tabBarLabel:"",
+              tabBarIcon: ({color}) => (
+                <CenterButton color={color} /> 
+              ), }} 
+                
+              />
             <Tab.Screen
              name="Statistic"
              component={Statistic}
@@ -121,28 +133,9 @@ export const BottomNavigator = ({navigation}) => {
                     <Ionicons name="stats-chart" size={size} color={color} /> 
           )}}
 />
-            {/* Ortadaki sekmeyi burada ekliyoruz */}
-            <Tab.Screen
-            name="Graph"
-            component={Graph} // Boş bir component
-            options={{
-              tabBarLabel:"",
-              tabBarIcon: ({color}) => (
-                <CenterButton color={color}
-                /> 
-              ),
-            }}
-      />
-                      <Stack.Screen
-                        options={{
-                            tabBarLabel:'Info',
-                            headerShown: false,
-                            tabBarIcon:({color,size}) => (
-                            <Ionicons name="man" size={size} color={color} /> 
-                            )    
-                         }}
-                        name='Info' component={Info} /> 
-                    <Stack.Screen name="Profil" component={Profil}
+          
+                     
+                    {/* <Stack.Screen name="Profil" component={Profil}
                         options={{
                         tabBarLabel:"Profil",
                         headerShown: false,
@@ -150,7 +143,7 @@ export const BottomNavigator = ({navigation}) => {
                             <Ionicons name="man" size={size} color={color} /> 
                             )    
                          }}
-                        />
+                        /> */}
         </Tab.Navigator>
     );
   };
