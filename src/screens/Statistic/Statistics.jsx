@@ -1,135 +1,201 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-import ExerciseService from '../../service/ExerciseService';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import WorkoutsCard from '../../components/Cards/WorkoutsCard';
 
+import colors from '../../constants/colors';
+import { useTranslation } from 'react-i18next';
+import CreaterCard from '../../components/Cards/CreateCard';
+import Header from '../../components/views/Header';
+import SingleWorkoutCard from '../../components/SingleWorkoutCard';
 
-import i18n from '../../i18n/i18n';
-
-
-
-
-
-const StatisticsScreen = () => {
-  const [level, setLevel] = useState(1);
-  const [workout2Level, setWorkout2Level] = useState(1);
-  const [workout3Level, setWorkout3Level] = useState(1);
-  const [totalWorkouts, setTotalWorkouts] = useState(0);
-  const [totalReps, setTotalReps] = useState(0);
+const StatisticsScreen = ({navigation}) => {
+   const {t, i18n } = useTranslation();
+  const [fullBodyWorkoutStats, setFullBodyWorkoutStats] = useState(null);
+  const [upperBodyWorkoutStats, setUpperBodyWorkoutStats] = useState(null);
+  const [lowerBodyWorkoutStats, setLowerBodyWorkoutStats] = useState(null);
+  const [squadWorkoutStats, setSquadWorkoutStats] = useState(null);
+  const [tricepsWorkoutStats, setTricepsWorkoutStats] = useState(null);
+  const [pushUpsWorkoutStats, setPushUpsWorkoutStats] = useState(null);
+  const [sitUpsWorkoutStats, setSitUpsWorkoutStats] = useState(null);
 
   useEffect(() => {
-    loadLevels();
-    calculateStatistics();
+    getStatistics();
+   
   }, []);
 
-  const loadLevels = async () => {
+  const getStatistics = async () => {
     try {
-      const savedLevel = await ExerciseService.getLevel('@level');
-      const savedWorkout2Level = await ExerciseService.getLevel('@workout2Level');
-      const savedWorkout3Level = await ExerciseService.getLevel('@workout3Level');
+      const fullBodyStats = await AsyncStorage.getItem('@fullBodyWorkoutStatus');
+      const upperBodyStats = await AsyncStorage.getItem('@upperBodyWorkoutStatus');
+      const lowerBodyStats = await AsyncStorage.getItem('@LowerBodyWorkoutStatus');
+     
+      if (fullBodyStats) {
+        const parsedFullBodyStats = JSON.parse(fullBodyStats);
+        // console.log(parsedFullBodyStats);
+        setFullBodyWorkoutStats(parsedFullBodyStats);
+      }
+      if (upperBodyStats) {
+        const parsedUpperBodyStats = JSON.parse(upperBodyStats);
+        setUpperBodyWorkoutStats(parsedUpperBodyStats);
+      }
+      if(lowerBodyStats){
+        const parsedLowerBodyStats = JSON.parse(lowerBodyStats);
+        setLowerBodyWorkoutStats(parsedLowerBodyStats);
+        // console.log(lowerBodyWorkoutStats)
+      }
+      const squadStats = await AsyncStorage.getItem('@singleSquadWorkoutStatus');
+      if (squadStats) {
+        const parsedSquadStats = JSON.parse(squadStats);
+        setSquadWorkoutStats(parsedSquadStats);
+      }
 
-      setLevel(savedLevel);
-      setWorkout2Level(savedWorkout2Level);
-      setWorkout3Level(savedWorkout3Level);
+      const tricepsStats = await AsyncStorage.getItem('@singleTricepsWorkoutStatus');
+      if (tricepsStats) {
+        const parsedTricepsStats = JSON.parse(tricepsStats);
+        setTricepsWorkoutStats(parsedTricepsStats);
+      }
+
+      const pushUpsStats = await AsyncStorage.getItem('@singlePushUpWorkoutStatus');
+     
+      if (pushUpsStats) {
+        const parsedPushUpsStats = JSON.parse(pushUpsStats);
+        setPushUpsWorkoutStats(parsedPushUpsStats);
+      }
+
+      const sitUpsStats = await AsyncStorage.getItem('@singleSitUpsWorkoutStatus');
+      if (sitUpsStats) {
+        const parsedSitUpsStats = JSON.parse(sitUpsStats);
+        setSitUpsWorkoutStats(parsedSitUpsStats);
+      }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
-  };
-
-  const calculateStatistics = () => {
-    // Calculate total workouts
-    const totalWorkouts = (ExerciseService.getExercises()?.length || 0) + (ExerciseService.flexibleExercises?.length || 0);
-    setTotalWorkouts(totalWorkouts);
-
-    // Calculate total reps
-    let totalReps = 0;
-    ExerciseService.getExercises()?.forEach((exercise) => {
-      const totalRepsDone = exercise.reps.slice(0, level - 1).reduce((acc, rep) => acc + rep, 0);
-      totalReps += totalRepsDone * exercise.sets;
-    });
-
-    ExerciseService.flexibleExercises?.forEach((exercise) => {
-      const totalRepsDone = exercise.reps.slice(0, workout2Level - 1).reduce((acc, rep) => acc + rep, 0);
-      totalReps += totalRepsDone * exercise.sets;
-    });
-    
-    setTotalReps(totalReps);
-  };
-
-  const getTotalRepsForExercise = (exercise, level) => {
-    const totalRepsDone = exercise.reps.slice(0, level - 1).reduce((acc, rep) => acc + rep, 0);
-    return totalRepsDone * exercise.sets;
-  };
-
-  const renderItem = ({ item }) => (
-    <View style={styles.exerciseItem}>
-      <Text style={styles.exerciseName}>{item.name}</Text>
-      <Text style={styles.exerciseReps}>
-        Total Reps: {getTotalRepsForExercise(item, level)}
-      </Text>
-    </View>
-  );
+    };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{i18n.t('Statistic')}</Text>
-      <Text style={styles.statText}>{i18n.t('totalWorkouts')}: {totalWorkouts}</Text>
-      <Text style={styles.statText}>{i18n.t('totalReps')}: {totalReps} </Text>
-      <Text style={styles.statText}>Level for Workout 1: {level}</Text>
-      <Text style={styles.statText}>Level for Workout 2: {workout2Level}</Text>
-      <Text style={styles.statText}>Level for Workout 3: {workout3Level}</Text>
-
-      {/* Total Reps for Each Exercise */}
-      <Text style={styles.subtitle}>Total Reps for Each Exercise:</Text>
-      <FlatList
-        data={ExerciseService.getExercises()}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.name}
-        style={styles.list}
+    <>
+    <Header title={t('WorkoutStatistics')} 
+    LeftIcon='weight-lifter'
+    RightIconOnPress={() => navigation.navigate("Profil")}
+    LeftIconOnPress={() => navigation.navigate('Workouts')}
+    />
+    <ScrollView style={styles.container}>
+    <View style={styles.center}>
+      <Text style={styles.subTitle}>{t('ExercisesWithoutEquipment')}</Text>
+      {fullBodyWorkoutStats && (
+      <WorkoutsCard
+        title={t('FullBodyWorkout')}
+        subTitle={i18n.t('FullBodyDesc')}
+        level={fullBodyWorkoutStats.HomeFullBodyWorkout?.level || 1} 
+        />
+    )}
+    {upperBodyWorkoutStats && (
+      <WorkoutsCard
+      title={t('UpperBodyWorkout')} 
+      subTitle={i18n.t('UpperBodyDesc')}
+      level={upperBodyWorkoutStats.UpperBodyWorkout?.level || 1} 
       />
-      {/* Diğer istatistikler buraya eklenebilir */}
+    )}
+    {lowerBodyWorkoutStats &&(
+      <WorkoutsCard
+      title={t('LowerBodyWorkout')}
+      level={lowerBodyWorkoutStats.HomeLowerBodyWorkout.level || 1}
+      subTitle={i18n.t('LowerBodyDesc')}
+           />
+    )}
     </View>
+    <View>
+    <Text style={styles.Header}>
+      {t('SingleExercises')}
+    </Text>
+    <View style={styles.containerRow}>
+    <View style={styles.rowContainerSingle}>
+    {squadWorkoutStats && (
+      <SingleWorkoutCard title={t('Squad')}
+       level={squadWorkoutStats.SingleSquadWorkout?.level || 1}
+       description={t('SquadDesc')}
+      />)}
+          {tricepsWorkoutStats && ( <SingleWorkoutCard title={t('Triceps')} 
+            level={tricepsWorkoutStats.SingleTricepsWorkout?.level || 1}
+            description={t('TricepsDesc')}
+          />
+          )}
+          </View>
+          <View style={styles.rowContainerSingle}>
+          {pushUpsWorkoutStats && ( <SingleWorkoutCard title={t('PushUps')}  
+          
+           level={pushUpsWorkoutStats.SinglePushUpWorkout?.level || 1} 
+           description={t('PushupDesc')}
+           />)}
+           
+          {sitUpsWorkoutStats && (
+            <SingleWorkoutCard title={t('SitUps')}
+              description={t('SitupsDesc')}
+            level= {sitUpsWorkoutStats.SingleSitUpsWorkout?.level || 1}
+             />)}
+             </View>
+             </View>
+    <CreaterCard 
+      marginTop="6%"
+      height= "23%"
+    />
+    </View>
+    </ScrollView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#fff',
   },
-  title: {
+  center:{
+    alignItems: "center"
+  },
+  header: {
+    marginVertical: 20,
     fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
+    color: colors.UiText
+  },
+  section: {
     marginBottom: 20,
   },
-  statText: {
-    fontSize: 16,
-    marginBottom: 10,
-  },
-  subtitle: {
+  sectionHeader: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 5,
   },
-  list: {
-    marginBottom: 20,
+  subTitle:{
+    marginLeft: 10,
+    alignSelf: 'flex-start',
+    marginVertical: 15,
+    color: colors.UiText,
+    marginLeft: 25,
+    fontSize: 15,
   },
-  exerciseItem: {
-    borderBottomWidth: 1,
-    borderColor: '#ccc',
-    paddingVertical: 10,
+  Header:{
+    marginLeft: 10,
+    alignSelf: 'flex-start',
+    marginVertical: 15,
+    color: colors.UiText,
+    marginLeft: 25,
+    fontSize: 15,
   },
-  exerciseName: {
-    fontSize: 16,
-    fontWeight: 'bold',
+  rowContainerSingle:{
+    flexDirection : 'row',
+    columnGap: 15,
+    marginVertical: 10,
   },
-  exerciseReps: {
-    fontSize: 14,
-  },
+  containerRow:{
+    alignItems : 'center'
+  }
 });
 
 export default StatisticsScreen;
+
 
 
 

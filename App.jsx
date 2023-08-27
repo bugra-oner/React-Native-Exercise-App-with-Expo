@@ -1,7 +1,8 @@
 // App.js
 
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import BottomStackNavigator from './src/navigation/BottomNavigation';
+import { SafeAreaView } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -19,6 +20,8 @@ import i18n,{useSetLanguage} from './src/i18n/i18n';
 
 export default function App() {
   const isLanguageLoaded = useSetLanguage();
+ 
+
 
   if(!isLanguageLoaded){
     return null;
@@ -26,12 +29,13 @@ export default function App() {
 
   return (
     <I18nextProvider i18n={i18n}>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'white' }}>
     <NavigationContainer
-     ref={navigationRef}
-    >
+     ref={navigationRef}>
      <BottomStackNavigator />
      </NavigationContainer>
-    </I18nextProvider>
+     </SafeAreaView>
+         </I18nextProvider>
   );
 }
 
