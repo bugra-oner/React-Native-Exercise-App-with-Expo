@@ -142,11 +142,11 @@ const HealthCalculator = ({ navigation }) => {
 
     try {
       await AsyncStorage.setItem('calculatedData', JSON.stringify(calculatedData));
-      console.log('Calculated data saved to AsyncStorage:', calculatedData);
+     // console.log('Calculated data saved to AsyncStorage:', calculatedData);
        // Verilerin güncellendiğini bildir
        navigation.navigate('Graph', { updateHealthDataOnScreen: true });
     } catch (error) {
-      console.log('Error saving data to AsyncStorage:', error);
+      //console.log('Error saving data to AsyncStorage:', error);
     }
   };
 

@@ -57,7 +57,7 @@ export default function Languages({ navigation }) {
     i18n.changeLanguage(changeLanguage);
     try {
       await AsyncStorage.setItem('language', changeLanguage)
-      console.log('language changed', changeLanguage);
+     // console.log('language changed', changeLanguage);
     } catch (error) {
     }
   };

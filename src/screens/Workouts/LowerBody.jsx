@@ -67,14 +67,14 @@ const LowerBody = ({navigation}) => {
   const getDataFromAsyncStorage = async () => {
     try {
       const storedStatus = await AsyncStorage.getItem('@LowerBodyWorkoutStatus');
-      console.log(storedStatus)
+       //console.log(storedStatus)
           if (storedStatus === null) {
-            console.log('test1 ')
+            //console.log('test1 ')
         await AsyncStorage.setItem('@LowerBodyWorkoutStatus', JSON.stringify({}));
       } else {
-        console.log('test2 ')
+         //console.log('test2 ')
         const LowerBodyWorkoutData = JSON.parse(storedStatus)
-        console.log(LowerBodyWorkoutData,'test 2')
+         //console.log(LowerBodyWorkoutData,'test 2')
         const currentLevel = LowerBodyWorkoutData['HomeLowerBodyWorkout']?.level || 1;
         setLevel(currentLevel);
         // const completedExerciseStats = LowerBodyWorkout[exercises[exerciseIndex].name];

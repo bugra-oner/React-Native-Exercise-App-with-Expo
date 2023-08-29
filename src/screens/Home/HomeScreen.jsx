@@ -79,13 +79,11 @@ export default function HomeScreen({navigation}) {
         <SvgCard title={t('Completed')} subTitle={`${totalWorkouts}` + "" + t('Exercise')} />
         <View style={styles.buttonsContainer}>
         <ButtonCard  
-        onPress={() => console.log('test')}
         title="Program" subTitle={"3" + " " + t(`Exercise`)} />
         <Spacing 
           size={15}
         />
         <ButtonCard  
-          onPress={()=> console.log("test")}
         title={t('Total')} subTitle=" 360 tekrar" />
         </View>
       </View>
@@ -126,7 +124,7 @@ export default function HomeScreen({navigation}) {
       <ProteinCard />
       </View>  */}
       <ProteinCard />
-      <Text style={styles.singleExercisesTitle}>Single Exercises</Text>
+      <Text style={styles.singleExercisesTitle}>{t('SingleExercises')}</Text>
       <View>
         <View style={styles.singleExerciseView}>
       <View style={styles.singleExercisesRow}>
@@ -139,7 +137,7 @@ export default function HomeScreen({navigation}) {
         <SingleWorkoutCard 
       title={t('Squad')}
       description={t('SquadDesc')}
-      imageSource={require('../../assets//cards/triceps.jpg')}
+      imageSource={require('../../assets//cards/squad.jpg')}
       onPress={() => navigate('Squad')}
         />
        </View>

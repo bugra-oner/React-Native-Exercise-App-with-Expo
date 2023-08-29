@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: '#ffff',
-    fontSize: fp(3.7),
+    fontSize: fp(2.7),
     
   },
 });

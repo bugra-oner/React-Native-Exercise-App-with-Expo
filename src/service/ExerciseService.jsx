@@ -46,7 +46,7 @@ const getLevel = async (key) => {
       return Number(value);
     }
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 };
 

@@ -8,7 +8,6 @@ import { hp,wp,fp } from '../../utils';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:  "d6d6cd"
   },
   HeaderText: {
     fontSize: 18,
@@ -86,4 +85,21 @@ export default StyleSheet.create({
     shadowRadius: 4,
     elevation: 10,
   },
+  VersionContainer:{
+    position: 'absolute', // Diğer içeriklerden bağımsız konumlandırma
+    bottom: 50, // İsteğe bağlı, alt kenar boşluğu
+    alignSelf: 'center', // Yatayda ortala
+    alignItems: 'center', // Yatayda ortala
+  },
+  Logo:{
+    width: 80,
+    height: 80,
+    borderRadius: 20,
+    marginVertical: 10,
+  },
+  Version:{
+   alignSelf: 'center',
+   fontWeight : '800',
+  }
+    
 });

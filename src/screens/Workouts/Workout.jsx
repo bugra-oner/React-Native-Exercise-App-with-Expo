@@ -69,14 +69,14 @@ const WorkoutScreen = ({navigation}) => {
   const getDataFromAsyncStorage = async () => {
     try {
       const storedStatus = await AsyncStorage.getItem('@fullBodyWorkoutStatus');
-      console.log(storedStatus)
+      //console.log(storedStatus)
           if (storedStatus === null) {
-            console.log('test1 ')
+        //    console.log('test1 ')
         await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify({}));
       } else {
-        console.log('test2 ')
+        //console.log('test2 ')
         const fullBodyWorkoutStatusData = JSON.parse(storedStatus)
-        console.log(fullBodyWorkoutStatusData,'test 2')
+        //console.log(fullBodyWorkoutStatusData,'test 2')
         const currentLevel = fullBodyWorkoutStatusData['HomeFullBodyWorkout']?.level || 1;
         setLevel(currentLevel);
         // const completedExerciseStats = fullBodyWorkout[exercises[exerciseIndex].name];

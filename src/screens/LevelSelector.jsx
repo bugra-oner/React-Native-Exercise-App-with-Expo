@@ -15,7 +15,7 @@ export default function LevelSelector() {
         return Number(value);
       }
     } catch (error) {
-      console.log(error);
+     // console.log(error);
     }
   };
 
@@ -46,7 +46,7 @@ export default function LevelSelector() {
               await AsyncStorage.setItem('@level', String(level + 1));
               setLevel(level + 1);
             } catch (error) {
-              console.log(error);
+             // console.log(error);
             }
           } 
         }

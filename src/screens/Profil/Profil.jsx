@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { Text, View,Image } from 'react-native';
 import React from 'react';
 import SpacingButton from '../../components/buttons/SpacingButton';
 import Header from '../../components/views/Header';
@@ -21,7 +21,6 @@ export default function Profil({ navigation }) {
       />
       <View style={styles.container}>
         <Text style={styles.HeaderText}>{t("PersonelI")}</Text>
-        
         <View style={styles.AccountContainer}>
           <SpacingButton
             special={true}
@@ -90,6 +89,17 @@ export default function Profil({ navigation }) {
               iconStyle={styles.iconStyle}
               onPress={() => navigate("Policy")}
               />
+          </View>
+          <View>
+          </View>
+          <View style={styles.VersionContainer}>
+          <Image 
+            source={require('../../assets/logo.png')}
+            style={styles.Logo}
+          />
+          <Text style={styles.Version}>
+            {t("Version")} 1.0.0
+          </Text>
           </View>
       </View>
     </>

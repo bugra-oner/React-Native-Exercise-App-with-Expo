@@ -63,14 +63,14 @@ const UpperBodyScreen = ({navigation}) => {
   const getDataFromAsyncStorage = async () => {
     try {
       const storedStatus = await AsyncStorage.getItem('@upperBodyWorkoutStatus');
-      console.log(storedStatus)
+      //console.log(storedStatus)
       if (storedStatus === null) {
-        console.log('test1 ')
+        //console.log('test1 ')
         await AsyncStorage.setItem('@upperBodyWorkoutStatus', JSON.stringify({}));
       } else {
-        console.log('test2 ')
+        //console.log('test2 ')
         const upperBodyWorkoutStatusData = JSON.parse(storedStatus);
-        console.log(upperBodyWorkoutStatusData,'test 2')
+        //console.log(upperBodyWorkoutStatusData,'test 2')
         const currentLevel = upperBodyWorkoutStatusData['UpperBodyWorkout']?.level || 1;
         setLevel(currentLevel);
         // Bu kısımda ilgili verileri çektiğinizden emin olun

@@ -44,7 +44,7 @@ export default function Name({navigation}) {
         try {
           await AsyncStorage.setItem('userName', name);
         } catch (error) {
-          console.log('Async storage error:', error);
+          //console.log('Async storage error:', error);
         }
   
         setFirstName(name);

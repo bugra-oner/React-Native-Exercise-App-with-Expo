@@ -1,28 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import AnimatedLottieView from 'lottie-react-native';
 import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 function SplashScreen() {
   const navigation = useNavigation();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigation.navigate('null'); // Ana uygulamanın bulunduğu ekranın adını vermelisiniz
-    }, 2000); // 2 saniye
+      navigation.navigate('BottomNavigator'); // Ana uygulamanın bulunduğu ekranın adını vermelisiniz
+    }, 1750); // 2 saniye
 
     return () => clearTimeout(timeout);
   }, []);
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <LinearGradient
+      colors={['#e68a01', '#FFC107']}
+      style={styles.container} // İstediğiniz gradient renkleri
+      >
       <AnimatedLottieView
         source={require('../assets/animations/loading.json')}
         autoPlay
         loop
       />
-    </View>
+    </LinearGradient>
   );
 }
 
 export default SplashScreen;
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  });
+  

@@ -42,7 +42,7 @@ const Notification = ({ navigation }) => {
 
   const handleSaveSettings = () => {
     // burada bildirim ayarlarını kaydedebilirsiniz
-    console.log(notificationSettings);
+    //console.log(notificationSettings);
   };
 
   return (
