@@ -33,6 +33,7 @@ import Notifications from '../screens/Profil/Notifications';
 
 import Info from '../screens/Informations/Info';
 import Policy from '../screens/Policy';
+import SplashScreen from '../screens/SplashScreen';
 
 import PushUp from '../screens/Single/PushUp';
 import SitUps from '../screens/Single/SitUps';
@@ -49,6 +50,7 @@ export default function BottomStackNavigator(){
         screenOptions={{
           headerShown: false // Tüm ekranlarda başlığı gizle
         }}
+        initialRouteName='SplashScreen'
         >
             <Stack.Screen
             name="BottomNavigator"
@@ -79,7 +81,7 @@ export default function BottomStackNavigator(){
                  <Stack.Screen name="Triceps" component={Triceps}/>
                  <Stack.Screen name="Profil" component={Profil} />
                  <Stack.Screen name="Policy" component={Policy} />
-                 
+                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
         </Stack.Navigator>
     )
 }
@@ -104,7 +106,6 @@ export const BottomNavigator = ({navigation}) => {
         tabBarHideOnKeyboard: true,
         backgroundColor: '#ffff',
         })}
-      initialRouteName="Home"
         >
             <Tab.Screen
                 name="Home"
