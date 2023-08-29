@@ -20,7 +20,8 @@
     },
     "web": {},
     "plugins": [
-      "expo-localization"
+      "expo-localization",
+      "expo-router"
     ],
     "extra": {
       "eas": {

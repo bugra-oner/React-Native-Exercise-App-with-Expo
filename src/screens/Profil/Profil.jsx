@@ -94,7 +94,7 @@ export default function Profil({ navigation }) {
           </View>
           <View style={styles.VersionContainer}>
           <Image 
-            source={require('../../assets/logo.png')}
+            source={require('../../assets/version.png')}
             style={styles.Logo}
           />
           <Text style={styles.Version}>
