@@ -73,7 +73,7 @@ export default function Profil({ navigation }) {
             onPress={() => navigate("Notifications")}
           />
         </View> 
-          <View style={styles.freezeAccountView}>
+          <View style={styles.AccountContainer}>
             <SpacingButton
               text={t("ReportSystem")}
               style={styles.LastButton}
@@ -82,6 +82,14 @@ export default function Profil({ navigation }) {
               iconStyle={styles.iconStyle}
               onPress={() => navigate("Report")}
             />
+            <SpacingButton
+              text={t("Policy")}
+              style={styles.LastButton}
+              textStyle={styles.ButtonText}
+              iconName="chevron-right"
+              iconStyle={styles.iconStyle}
+              onPress={() => navigate("Policy")}
+              />
           </View>
       </View>
     </>

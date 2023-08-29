@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { useTranslation } from 'react-i18next';
 
 
@@ -51,8 +53,13 @@ export default function Languages({ navigation }) {
   */
   //Render Button View
 
-  const handleSaveLanguage = () => {
+  const handleSaveLanguage =  async () => {
     i18n.changeLanguage(changeLanguage);
+    try {
+      await AsyncStorage.setItem('language', changeLanguage)
+      console.log('language changed', changeLanguage);
+    } catch (error) {
+    }
   };
 
   const _renderButtonView = () => {

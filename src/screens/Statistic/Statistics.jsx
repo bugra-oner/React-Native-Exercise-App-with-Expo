@@ -138,7 +138,7 @@ const StatisticsScreen = ({navigation}) => {
              </View>
     <CreaterCard 
       marginTop="6%"
-      height= "23%"
+      height={140}
     />
     </View>
     </ScrollView>

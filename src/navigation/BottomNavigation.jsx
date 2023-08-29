@@ -32,11 +32,13 @@ import Languages from '../screens/Profil/SelectLanguages';
 import Notifications from '../screens/Profil/Notifications';
 
 import Info from '../screens/Informations/Info';
+import Policy from '../screens/Policy';
 
 import PushUp from '../screens/Single/PushUp';
 import SitUps from '../screens/Single/SitUps';
 import Squad from '../screens/Single/Squad';
 import Triceps from '../screens/Single/Triceps';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -76,6 +78,7 @@ export default function BottomStackNavigator(){
                  <Stack.Screen name="Squad" component={Squad} />
                  <Stack.Screen name="Triceps" component={Triceps}/>
                  <Stack.Screen name="Profil" component={Profil} />
+                 <Stack.Screen name="Policy" component={Policy} />
                  
         </Stack.Navigator>
     )
