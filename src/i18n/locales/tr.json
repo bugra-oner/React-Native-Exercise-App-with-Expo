@@ -66,7 +66,7 @@
     "SquadDesc": "Bacak ve kalça gücünüzü artırın. Her squat, sağlam adımlar için",
     "PushupDesc": "Gücünüzü vücut ağırlığıyla test edin. Her şınav, daha güçlü bir siz için.",
     "SitupsDesc": "Çekirdek kaslarınızı güçlendirin. Her mekik, daha sıkı bir merkez için." ,
-    "SingleExercies": "Tekli Egzersizler",
+    "SingleExercises": "Tekli Egzersizler",
     "SinglePushUpWorkout": "Push ups",
     "SingleSquadWorkout": "Squad",
     "SingleTricepsWorkout": "Triceps",
@@ -98,7 +98,7 @@
       "ChangesToThisPrivacyText": "Gizlilik Politikamızı zaman zaman güncelleyebilirim. Bu nedenle, herhangi bir değişiklik için bu sayfayı düzenli olarak gözden geçirmeniz önerilir. Herhangi bir değişikliği, yeni Gizlilik Politikasını bu sayfada yayınlayarak bildireceğim. \n \n Bu politika 2023-08-29 tarihinden itibaren geçerlidir.",
       "ContactUs": "İletişim",
       "ContactUsText": "Gizlilik Politikamla ilgili herhangi bir sorunuz veya öneriniz varsa, çekinmeden benimle boletroyapps@gmail.com adresinden iletişime geçebilirsiniz.",
-      "LogData": "Log Data",
-      "LogText": "I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third-party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.",
+      "LogData": "Günlük Verisi",
+      "LogText": "Sizlere bilgi vermek istiyorum ki, Hizmetimi kullandığınız her seferinde, uygulamada bir hata durumunda, üçüncü taraf ürünler aracılığıyla telefonunuzdan Günlük Verileri adı verilen veri ve bilgi topluyorum. Bu Günlük Verileri, cihazınızın İnternet Protokolü (“IP”) adresi, cihaz adı, işletim sistemi sürümü, Hizmetimi kullanırken uygulamanın yapılandırması, Hizmeti kullanma zamanı ve tarihi ve diğer istatistikler gibi bilgileri içerebilir."
   }
   

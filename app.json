@@ -1,12 +1,10 @@
 {
   "expo": {
-    "name": "for-better",
-    "slug": "for-better",
+    "name": "HomeFit",
+    "slug": "Home-Fit",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "assets": ["./assets/fonts"],
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
@@ -18,16 +16,16 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+      "package": "com.boletroy.HomeFit"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
+    "web": {},
     "plugins": [
       "expo-localization"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "f52537d0-aa92-4234-8be2-5141ba3c76b2"
+      }
+    }
   }
 }
