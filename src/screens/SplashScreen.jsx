@@ -10,14 +10,14 @@ function SplashScreen() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       navigation.navigate('BottomNavigator'); // Ana uygulamanın bulunduğu ekranın adını vermelisiniz
-    }, 1750); // 2 saniye
+    }, 1850); // 2 saniye
 
     return () => clearTimeout(timeout);
   }, []);
 
   return (
     <LinearGradient
-      colors={['#e68a01', '#FFC107']}
+      colors={['#b6b1aa', '#859398','#484F88','#2A4E47','#4e615b']}
       style={styles.container} // İstediğiniz gradient renkleri
       >
       <AnimatedLottieView

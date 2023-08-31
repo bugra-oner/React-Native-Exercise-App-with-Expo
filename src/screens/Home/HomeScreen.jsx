@@ -22,6 +22,10 @@ import ImageCard from '../../components/Cards/ImageCard';
 import ProteinCard from '../../components/Cards/ProteinCard';
 import SingleWorkoutCard from '../../components/SingleWorkoutCard';
 
+
+
+import { showMessage, hideMessage } from "react-native-flash-message";
+
 export default function HomeScreen({navigation}) {
 
   const { t, i18n } = useTranslation();
@@ -87,6 +91,7 @@ export default function HomeScreen({navigation}) {
         title={t('Total')} subTitle=" 360 tekrar" />
         </View>
       </View>
+      
       <View style={styles.cardsContainer}>
       <View style={styles.workoutsHeader}>
       <Text style={styles.workoutsTitle}>{t('ExercisesWithoutEquipment')}</Text>
@@ -95,10 +100,15 @@ export default function HomeScreen({navigation}) {
       <Text style={styles.workoutsSubTitle}>{t('All')}</Text>
       </TouchableOpacity>
        </View>
+       {/* navigate('Workout') */}
         <WorkoutsCard 
           title={t('FullBodyWorkout')}
           subTitle={t('FullBodyDesc')}
-          onPress={() => navigate('Workout')}
+          onPress={() => 
+            showMessage({
+            message: "Simple message",
+            type: "info",
+          })}
           image="push_ups"
           buttonText={t('Start')}
         />
@@ -160,6 +170,7 @@ export default function HomeScreen({navigation}) {
 
       <View style={styles.ExtraView}>
       </View>
+     
     </ScrollView> 
     </>
   );

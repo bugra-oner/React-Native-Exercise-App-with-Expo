@@ -9,6 +9,8 @@ import CreaterCard from '../../components/Cards/CreateCard';
 import Header from '../../components/views/Header';
 import SingleWorkoutCard from '../../components/SingleWorkoutCard';
 
+import { showMessage, hideMessage } from "react-native-flash-message";
+
 const StatisticsScreen = ({navigation}) => {
    const {t, i18n } = useTranslation();
   const [fullBodyWorkoutStats, setFullBodyWorkoutStats] = useState(null);

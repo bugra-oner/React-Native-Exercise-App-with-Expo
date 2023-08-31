@@ -22,6 +22,9 @@ const activityLevels = [
   { label: 'Süper Aktif (Profesyonel Sporcular)', value: 'superActive' },
 ];
 
+
+import { showMessage, hideMessage } from "react-native-flash-message";
+
 const HealthCalculator = ({ navigation }) => {
   const { t } = useTranslation();
 

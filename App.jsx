@@ -13,6 +13,7 @@ import  {navigationRef} from './src/navigation/navigationRef'
 import { I18nextProvider } from 'react-i18next';
 import i18n,{useSetLanguage} from './src/i18n/i18n';
 
+import FlashMessage from 'react-native-flash-message';
 
 export default function App() {
   const isLanguageLoaded = useSetLanguage();
@@ -30,6 +31,7 @@ export default function App() {
      ref={navigationRef}>
      <BottomStackNavigator />
      </NavigationContainer>
+     <FlashMessage position="top" />
      </SafeAreaView>
          </I18nextProvider>
   );
