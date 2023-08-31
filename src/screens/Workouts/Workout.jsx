@@ -12,6 +12,8 @@ import { useTranslation } from 'react-i18next';
 import LinearView from '../../components/views/LinearView';
 import colors from '../../constants/colors';
 
+import WorkoutCompletionModal from '../../components/modals/WorkoutModals';
+
 
 import DoneButton from '../../components/buttons/DoneButton';
 import CancelButton from '../../components/buttons/CancelButton';
@@ -42,7 +44,8 @@ const WorkoutScreen = ({navigation}) => {
   const [exercises, setExercises] = useState(ExerciseService.getExercises());
   const [exerciseReps, setExerciseReps] = useState(ExerciseService.increaseRepsByLevel(exercises[0], level));
   const [totalReps, setTotalReps] = useState(0);
-
+  const [modalVisible, setModalVisible] = useState(true);
+  
   useEffect(() => {
     getDataFromAsyncStorage();
   }, []);
@@ -118,7 +121,8 @@ const WorkoutScreen = ({navigation}) => {
         setExerciseIndex(exerciseIndex + 1);
         setCurrentSet(1);
       } else {
-        handleCompleteWorkout();
+        console.log("Burası ne zaman çalışıyor")
+        //handleLevelUp();
         return;
       }
     }
@@ -155,34 +159,24 @@ const WorkoutScreen = ({navigation}) => {
     setIsResting(false);
     // setTotalReps(0);
   };
+  const handleStayLevel =  async () => {
+    console.log("Stay Level")
+    fullBodyWorkout['HomeFullBodyWorkout'].completedCount += 1;
+    await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify(fullBodyWorkout));
+    handleResetWorkout();
+    setModalVisible(false);
 
-  const handleCompleteWorkout = () => {
-    Alert.alert(
-      'Workout Completed',
-      'How did you find the workout?',
-      [
-        {
-          text: 'It was easy for me',
-          onPress: async () => {
-            fullBodyWorkout['HomeFullBodyWorkout'].completedCount += 1;
-            fullBodyWorkout['HomeFullBodyWorkout'].level = level + 1;
-            await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify(fullBodyWorkout));
-            setLevel(level + 1);
-            handleResetWorkout();
-          }
-        },
-        {
-        text: 'It was just right',
-          onPress: async () => {
-            fullBodyWorkout['HomeFullBodyWorkout'].completedCount += 1;
-            await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify(fullBodyWorkout));
-            handleResetWorkout();
-          }
-        },
-        {text: 'Cancel', style: 'cancel'},
-      ],
-      {cancelable: true},
-    );
+
+  }
+
+  const handleLevelUp =  async () => {
+      console.log("Handle Level Up");
+      fullBodyWorkout['HomeFullBodyWorkout'].completedCount += 1;
+      fullBodyWorkout['HomeFullBodyWorkout'].level = level + 1;
+      await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify(fullBodyWorkout));
+      setLevel(level + 1);
+      handleResetWorkout();
+      setModalVisible(false);
   };
 
   const exercise = exercises[exerciseIndex];
@@ -226,12 +220,18 @@ const WorkoutScreen = ({navigation}) => {
       {!isResting &&
         (exerciseIndex < exercises.length - 1 || currentSet < exercises[exerciseIndex].sets ?
           <DoneButton title={t("CompleteSet")}  onPress={handleCompleteSet} /> :
-          <DoneButton title={t("CompleteExc")}   onPress={handleCompleteWorkout} />
+          <DoneButton title={t("CompleteExc")}   onPress={() => setModalVisible(true)} />
         )
       }
       {isResting && <RestButton title={t("SkipRest")} onPress={() => setIsResting(false)} />}
       <CancelButton  style={styles.button} title={t("ResetWorkout")} onPress={handleResetWorkout} />
     </View>
+       <WorkoutCompletionModal
+       visible={modalVisible}
+       onClose={() => setModalVisible(false)}
+       onEasy={() => handleLevelUp()}
+       onJustRight={() => handleStayLevel()}
+      />
       </LinearView>
       </>
     

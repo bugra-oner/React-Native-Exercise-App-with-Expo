@@ -18,7 +18,7 @@ const StatisticsScreen = ({navigation}) => {
   const [tricepsWorkoutStats, setTricepsWorkoutStats] = useState(null);
   const [pushUpsWorkoutStats, setPushUpsWorkoutStats] = useState(null);
   const [sitUpsWorkoutStats, setSitUpsWorkoutStats] = useState(null);
-
+  const [level,setLevel] = useState(null);
   useEffect(() => {
     getStatistics();
    
@@ -100,7 +100,7 @@ const StatisticsScreen = ({navigation}) => {
     {lowerBodyWorkoutStats &&(
       <WorkoutsCard
       title={t('LowerBodyWorkout')}
-      level={lowerBodyWorkoutStats.HomeLowerBodyWorkout.level || 1}
+      level={lowerBodyWorkoutStats.HomeLowerBodyWorkout?.level || 1}
       subTitle={i18n.t('LowerBodyDesc')}
            />
     )}

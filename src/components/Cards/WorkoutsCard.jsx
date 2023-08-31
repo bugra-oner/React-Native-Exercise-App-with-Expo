@@ -10,7 +10,9 @@ const sitUpsImage = require('../../assets/cards/man.jpg');
 const calfRaisesImage = require('../../assets/cards/squad.jpg');
 const squatsImage = require('../../assets//cards/squad.jpg');
 
-export default function WorkoutsCard({ title, subTitle, onPress, image,buttonText,level }) {
+export default function WorkoutsCard({ title, subTitle, onPress, image,buttonText,
+  level, 
+}) {
   // Burada gelen 'image' prop'unu kullanarak hangi resmi kullanacağınıza karar vermelisiniz
   let selectedImage = pushUpsImage; // Örnek olarak push-ups resmi varsayılan olarak ayarlandı
 
@@ -32,7 +34,7 @@ export default function WorkoutsCard({ title, subTitle, onPress, image,buttonTex
         <Text style={[styles.title , level ? {fontSize: 15} : null ]}>{title}</Text>
         <Text style={styles.subTitle}>{subTitle}</Text>
       </View>
-      {level?
+      {level? 
       <View style={styles.circle}>
         <Text style={styles.level}>
         {level}
