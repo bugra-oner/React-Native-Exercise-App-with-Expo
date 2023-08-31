@@ -72,7 +72,7 @@ export default function ReportSystem({ navigation }) {
           <View style={ModalStyles.modalView}>
             <Text style={ModalStyles.modalText}>Görüş bildir</Text>
             <Text style={ModalStyles.modalSubText}>
-              AURA'yı nasıl senin için daha güzel bir yer haline getirebiliriz?
+              Uygulamayı nasıl senin için daha güzel bir yer haline getirebiliriz?
             </Text>
             <TextInput
               style={ModalStyles.input}
