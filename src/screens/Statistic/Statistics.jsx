@@ -136,10 +136,14 @@ const StatisticsScreen = ({navigation}) => {
              />)}
              </View>
              </View>
+             <View style={styles.bottomView}>
+
+             
     <CreaterCard 
       marginTop="6%"
       height={140}
     />
+    </View>
     </View>
     </ScrollView>
     </>
@@ -152,7 +156,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   center:{
-    alignItems: "center"
+    alignItems: "center",
+   
   },
   header: {
     marginVertical: 20,
@@ -191,6 +196,10 @@ const styles = StyleSheet.create({
   },
   containerRow:{
     alignItems : 'center'
+  },
+  bottomView:{
+    marginVertical: 5,
+    height: 230,
   }
 });
 
