@@ -14,6 +14,10 @@ import GradientInput from '../components/inputs/GradientInput';
 
 import Header from '../components/views/Header';
 import GradientButton from '../components/buttons/GradientButton';
+
+
+
+
 const activityLevels = [
   { label: 'Az Aktif (Ofis İşleri)', value: 'sedentary' },
   { label: 'Hafif Aktif (Hafif Egzersiz)', value: 'lightlyActive' },
@@ -125,7 +129,11 @@ const HealthCalculator = ({ navigation }) => {
 
   const handleCalculatePress = async () => {
     if (!isFormValid()) {
-      alert('Lütfen tüm alanları doldurun.');
+      showMessage({
+        message: "Hello World",
+        description: "This is our second message",
+        type: "success",
+      });
       return;
     }
 
