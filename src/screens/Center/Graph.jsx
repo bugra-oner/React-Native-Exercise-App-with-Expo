@@ -20,7 +20,12 @@ import Card from '../../components/Card'
 import CategoriesButton from '../../components/buttons/CategoriesButton'
 import Header from '../../components/views/Header'
 
+import useFlashMessage from '../../hooks/FlashMessage'
+
+
+
 export default function Graph({navigation,route}) {
+  const { showFlashMessage } = useFlashMessage();
   const [healthData,setHealthData] = useState({});
   const {t} = useTranslation();
 
@@ -63,6 +68,7 @@ export default function Graph({navigation,route}) {
       try {
         const savedData = await AsyncStorage.getItem('calculatedData');
         if (savedData) {
+          
           setHealthData(JSON.parse(savedData));
         }
       } catch (error) {
@@ -74,6 +80,7 @@ export default function Graph({navigation,route}) {
   
     // Eğer ana ekran verileri güncellendi ise veriyi yeniden al
     if (route.params?.updateHealthDataOnScreen) {
+      showFlashMessage(`${t('SuccessHealth')}`, `${t('SuccessHealthDescription')}`, "success");
       fetchHealthData();
     }
   }, [route.params?.updateHealthDataOnScreen]);
@@ -84,13 +91,13 @@ export default function Graph({navigation,route}) {
     <Header 
     LeftIcon='artstation'
     RightIconOnPress={() => navigation.navigate("Profil")}
-    title={"Sağlık"}/>
+    title={`${t('Health')}`}/>
     <ScrollView style={styles.container}>
       <IndexCard 
         unHealth={true}
-        buttonTitle="Şimdi başla"
-        title="Sağlık Bilgilerini Bul"
-        subTitle="Vücut Kitle İndeksi, Kalori ve Su Hesabı."
+        buttonTitle={`${t('nowStart')}`}
+        title={`${t('healthInfoTitle')}`}
+        subTitle={`${t('healthInfoSubTitle')}`}
         borderRadius={5}
         onPress={() => navigate('HealthCalculator')}
       />
@@ -105,17 +112,17 @@ export default function Graph({navigation,route}) {
     title="Sağlık Sonuçları"
     icon="aperture-outline"
       subtitle="Durum"
-    contentText={`Vucüt Kitle İndeksi : ${healthData.bmi?.interpretation ? healthData.bmi?.interpretation : "" }`}
+    contentText={`${t("bmiContentText")} : ${healthData.bmi?.interpretation ? healthData.bmi?.interpretation : "" }`}
     bottomTexts={[
-    { text: `Günlük Kalori İhtiyacı`,  },
-    { text: "Günlük Su İhtiyacı",  },
-    { text: "İdeal Kilo",  },
+    { text: `${t("dailyCaloriesText")}`,  },
+    { text: `${t("dailyWaterText")}`,  },
+    { text: `${t("idealWeightText")}`,  },
   ]}
   subTexts={[` ${healthData.dailyCalories? healthData.dailyCalories : ""} ` ,
    `${healthData.dailyWater? healthData.dailyWater : ""}`,
    `${healthData.idealWeight? healthData.idealWeight : ""}`]}
       subTextIcons={["fast-food", "water", "man"]}
-      additionalText="Sağlık Bilgileri"
+      additionalText={`${t('HealthInfo')}`}
       additionalIcon="ios-add-circle-outline"
     />
   

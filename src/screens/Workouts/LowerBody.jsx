@@ -215,7 +215,7 @@ const LowerBody = ({navigation}) => {
     DefaultColor='#283048'
    LeftIconOnPress={()=> navigation.goBack()}
    RightIcon='atom-variant'
-  title={t('Workout')}/>
+  title={t('LowerBodyWorkout')}/>
     <LinearView>
       <Text style={styles.text}>Level: {level}</Text>
       <Text style={styles.text}>Exercise: {exercise?.name}</Text>

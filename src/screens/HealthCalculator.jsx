@@ -18,19 +18,21 @@ import GradientButton from '../components/buttons/GradientButton';
 
 
 
-const activityLevels = [
-  { label: 'Az Aktif (Ofis İşleri)', value: 'sedentary' },
-  { label: 'Hafif Aktif (Hafif Egzersiz)', value: 'lightlyActive' },
-  { label: 'Orta Aktif (Orta Derecede Egzersiz)', value: 'moderatelyActive' },
-  { label: 'Çok Aktif (Yoğun Egzersiz)', value: 'veryActive' },
-  { label: 'Süper Aktif (Profesyonel Sporcular)', value: 'superActive' },
-];
 
 
 import { showMessage, hideMessage } from "react-native-flash-message";
 
 const HealthCalculator = ({ navigation }) => {
   const { t } = useTranslation();
+
+  const activityLevels = [
+    { label: `${t('sedentary')}`, value: 'sedentary' },
+    { label: `${t('lightlyActive')}`, value: 'lightlyActive' },
+    { label: `${t('moderatelyActive')}`, value: 'moderatelyActive' },
+    { label: `${t('veryActive')}`, value: 'veryActive' },
+    { label: `${t('superActive')}`, value: 'superActive' },
+  ];
+  
 
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
@@ -63,24 +65,24 @@ const HealthCalculator = ({ navigation }) => {
     if (weight && height && age) {
       const heightInMeters = height / 100;
       const calculatedBMI = weight / (heightInMeters * heightInMeters);
-
+      
       let interpretation = '';
       if (calculatedBMI < 16) {
-        interpretation = 'Çok zayıf';
+        interpretation = `${t('veryThin')}`;
       } else if (calculatedBMI < 16.9) {
-        interpretation = 'Zayıf';
+        interpretation = `${t('thin')}`;
       } else if (calculatedBMI < 18.4) {
-        interpretation = 'Hafif zayıf';
+        interpretation = `${t('slightlyThin')}`;
       } else if (calculatedBMI < 24.9) {
-        interpretation = 'Normal';
+        interpretation = `${t('normalWeight')}`;
       } else if (calculatedBMI < 29.9) {
-        interpretation = 'Hafif kilolu';
+        interpretation = `${t('overweight')}`;
       } else if (calculatedBMI < 34.9) {
-        interpretation = 'Kilolu';
+        interpretation =`${t('obese')}`;
       } else if (calculatedBMI < 39.9) {
-        interpretation = 'Şişman';
+        interpretation = `${t('veryObese')}`;
       } else {
-        interpretation = 'Obez';
+        interpretation = `${t('obese')}`
       }
 
       setBMI({
@@ -130,9 +132,11 @@ const HealthCalculator = ({ navigation }) => {
   const handleCalculatePress = async () => {
     if (!isFormValid()) {
       showMessage({
-        message: "Hello World",
-        description: "This is our second message",
-        type: "success",
+        message: `${t('Error')}`,
+        description: `${t('ErrorFormNotValid')}`,
+        type: "danger",
+        backgroundColor: "#484F88",
+        icon: "danger"
       });
       return;
     }

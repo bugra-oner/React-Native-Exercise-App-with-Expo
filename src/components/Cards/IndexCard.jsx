@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     leftContainer:{
       marginHorizontal: 9,
-      width : '40%',
+      width : '44%',
       textAlign: 'center',
       alignItems: 'center',
     },

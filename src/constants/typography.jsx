@@ -12,7 +12,7 @@ const typography = {
     healthInfo:12,
     InfoTitle:14,
     InfoText: 10,
-    healthTitle: 15,
+    healthTitle: 14,
     workoutTitle: 13,
     workoutSubtitle: 8,
 };

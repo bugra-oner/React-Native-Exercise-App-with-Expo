@@ -24,9 +24,11 @@ import SingleWorkoutCard from '../../components/SingleWorkoutCard';
 
 
 
-import { showMessage, hideMessage } from "react-native-flash-message";
+import useFlashMessage from '../../hooks/FlashMessage';
 
 export default function HomeScreen({navigation}) {
+
+  const {showFlashMessage} =  useFlashMessage();
 
   const { t, i18n } = useTranslation();
 

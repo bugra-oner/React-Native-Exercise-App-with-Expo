@@ -5,9 +5,13 @@ import { LinearGradient } from 'expo-linear-gradient';
 const CustomPicker = ({ options, selectedValue, onValueChange }) => {
   const [showOptions, setShowOptions] = useState(false);
 
+  const selectedLabel = options.find((option) => option.value === selectedValue)?.label
+ 
+  
   const handleOptionPress = (value) => {
     onValueChange(value);
     setShowOptions(false);
+    console.log(value)
   };
 
   return (
@@ -22,7 +26,7 @@ const CustomPicker = ({ options, selectedValue, onValueChange }) => {
         style={styles.selectedValue}
         onPress={() => setShowOptions(!showOptions)}
       >
-          <Text style={styles.selectedText}>{selectedValue}</Text>
+          <Text style={styles.selectedText}>{selectedLabel}</Text>
       </TouchableOpacity>
       {showOptions && (
         <View style={styles.optionsContainer}>
