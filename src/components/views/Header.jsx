@@ -10,7 +10,7 @@ export default function Header({
   RightIconOnPress,
   LeftIcon = 'chevron-left',
   RightIcon = 'account-circle',
-  LeftIconSize = 26,
+  LeftIconSize = 29,
   RightIconSize = 26,
   RightIconColor = '#fff',
   DefaultColor = 'rgba(72,79,136,0.8)',

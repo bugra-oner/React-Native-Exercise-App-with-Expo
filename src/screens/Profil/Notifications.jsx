@@ -1,6 +1,6 @@
 import Header from '../../components/views/Header';
 
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { View, Text, StyleSheet, Switch, TouchableOpacity } from 'react-native';
 
 import { hp,fp,wp } from '../../utils';
@@ -28,7 +28,7 @@ const Notification = ({ navigation }) => {
 
   const { t } = useTranslation();
 
-  const {showFlashMessage} =  useFlashMessage();
+  const { showFlashMessage } =  useFlashMessage();
   
   const [notificationSettings, setNotificationSettings] = useState({
     notification1: false,
@@ -56,7 +56,10 @@ const Notification = ({ navigation }) => {
     //console.log(notificationSettings);
   };
 
-  showFlashMessage(`${t('DevelopmentInProgressTitle')}`, `${t('DevelopmentInProgress')}`, "warning");
+  useEffect(() => {
+    showFlashMessage(`${t('DevelopmentInProgressTitle')}`, `${t('DevelopmentInProgress')}`, "warning");
+  },[])
+  
 
   return (
     <View style={styles.container}>

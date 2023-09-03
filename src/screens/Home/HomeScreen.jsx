@@ -65,6 +65,10 @@ export default function HomeScreen({navigation}) {
   }, []);
 
   const loadData = async () => {}
+
+  const handleFlashMessage = async () =>{
+  showFlashMessage(`${t('DevelopmentInProgressTitle')}`, `${t('DevelopmentInProgress')}`, "warning")
+}
   
   return (
     <>
@@ -73,12 +77,11 @@ export default function HomeScreen({navigation}) {
     LeftIconOnPress={() => navigation.navigate('Workouts')}
     RightIcon='home'
     RightIconOnPress={() => navigation.navigate("Profil")}
-      
     />
     <ScrollView style={styles.container}>
       <CreaterCard
       marginTop="10%" 
-      onPress={() => navigate('Workouts')}
+      onPress={() => handleFlashMessage()}
       />
       <Text style={styles.title}>{t('Overview')}</Text>
       <View style={styles.headerContainer}>

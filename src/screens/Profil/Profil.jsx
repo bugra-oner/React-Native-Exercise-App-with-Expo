@@ -8,8 +8,17 @@ import styles from './styles';
 
 import { useTranslation } from 'react-i18next';
 
+import useFlashMessage from '../../hooks/FlashMessage';
+
 export default function Profil({ navigation }) {
   const {t} = useTranslation();
+
+  const { showFlashMessage } =  useFlashMessage();
+
+  const handleShowMessage =  async () => {
+    showFlashMessage(`${t('DevelopmentInProgressTitle')}`, `${t('DevelopmentInProgress')}`, "warning");
+  }
+
   return (
     <>
       <Header
@@ -79,7 +88,8 @@ export default function Profil({ navigation }) {
               textStyle={styles.ButtonText}
               iconName="chevron-right"
               iconStyle={styles.iconStyle}
-              onPress={() => navigate("Report")}
+              // onPress={() => navigate("Report")}
+              onPress={() => handleShowMessage()}
             />
             <SpacingButton
               text={t("Policy")}

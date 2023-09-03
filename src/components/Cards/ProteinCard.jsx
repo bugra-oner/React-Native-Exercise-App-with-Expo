@@ -60,7 +60,9 @@ const ProteinCard = () => {
         <GradientButton
           title={t('CalculateProtein')}
           onPress={calculateProteinAmount}
-          colors={['#8d684e', '#5d432c']} // Kahverengi tonları
+          colors={['#8d684e', '#5d432c']}
+          style={styles.GradientButton}
+           // Kahverengi tonları
         />
         {proteinAmount !== null && (
           <Text style={styles.resultText}>
@@ -115,6 +117,14 @@ const styles = StyleSheet.create({
     fontSize: typography.healthText,
     marginTop: 5,
     color: '#fff',
+  },
+  GradientButton:{
+    height: 45,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
+    backgroundColor: '#8d684e',
   },
 });
 
