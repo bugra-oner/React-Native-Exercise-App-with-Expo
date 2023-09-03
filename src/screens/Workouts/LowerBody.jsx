@@ -120,7 +120,7 @@ const LowerBody = ({navigation}) => {
         setExerciseIndex(exerciseIndex + 1);
         setCurrentSet(1);
       } else {
-        handleCompleteWorkout();
+        // handleCompleteWorkout();
         return;
       }
     }
