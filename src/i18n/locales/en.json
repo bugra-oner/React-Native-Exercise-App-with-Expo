@@ -133,5 +133,8 @@
     "HealthInfo": "Health Information",
     "healthInfoTitle": "Discover Health Information",
     "healthInfoSubTitle": "Body Mass Index, Calorie, and Water Calculations.",
-    "Health": "Health"
+    "Health": "Health",
+    "DevelopmentInProgress": "This area is under development, stay tuned for future updates!",
+    "DevelopmentInProgressTitle": "Development In Progress"
+
 }

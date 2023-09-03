@@ -5,7 +5,13 @@ import { View, Text, StyleSheet, Switch, TouchableOpacity } from 'react-native';
 
 import { hp,fp,wp } from '../../utils';
 
+import useFlashMessage from '../../hooks/FlashMessage';
+
+import { useTranslation } from 'react-i18next';
+
 const NotificationItem = ({ label, isChecked, toggleSwitch }) => (
+  
+
   <View style={styles.notificationItem}>
     <Text style={styles.notificationLabel}>{label}</Text>
     <Switch
@@ -19,6 +25,11 @@ const NotificationItem = ({ label, isChecked, toggleSwitch }) => (
 );
 
 const Notification = ({ navigation }) => {
+
+  const { t } = useTranslation();
+
+  const {showFlashMessage} =  useFlashMessage();
+  
   const [notificationSettings, setNotificationSettings] = useState({
     notification1: false,
     notification2: false,
@@ -44,6 +55,8 @@ const Notification = ({ navigation }) => {
     // burada bildirim ayarlarını kaydedebilirsiniz
     //console.log(notificationSettings);
   };
+
+  showFlashMessage(`${t('DevelopmentInProgressTitle')}`, `${t('DevelopmentInProgress')}`, "warning");
 
   return (
     <View style={styles.container}>
