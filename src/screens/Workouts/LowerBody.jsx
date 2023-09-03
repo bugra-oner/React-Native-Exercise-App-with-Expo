@@ -40,6 +40,8 @@ const LowerBody = ({navigation}) => {
   const [exercises, setExercises] = useState(ExerciseService.getLowerBodyExercises());
   const [exerciseReps, setExerciseReps] = useState(ExerciseService.increaseRepsByLevel(exercises[0], level));
   const [totalReps, setTotalReps] = useState(0);
+  const [modalVisible,setModalVisible] = useState(false);
+
 
   useEffect(() => {
     getDataFromAsyncStorage();
@@ -154,34 +156,52 @@ const LowerBody = ({navigation}) => {
     // setTotalReps(0);
   };
 
-  const handleCompleteWorkout = () => {
-    Alert.alert(
-      'Workout Completed',
-      'How did you find the workout?',
-      [
-        {
-          text: 'It was easy for me',
-          onPress: async () => {
+  const handleStayLevel =  async () => {
+    //console.log("Stay Level")
             LowerBodyWorkout['HomeLowerBodyWorkout'].completedCount += 1;
             LowerBodyWorkout['HomeLowerBodyWorkout'].level = level + 1;
             await AsyncStorage.setItem('@LowerBodyWorkoutStatus', JSON.stringify(LowerBodyWorkout));
             setLevel(level + 1);
             handleResetWorkout();
-          }
-        },
-        {
-        text: 'It was just right',
-          onPress: async () => {
+            setModalVisible(false);
+  }
+
+  const handleLevelUp =  async () => {
+    //console.log("Handle Level Up");
             LowerBodyWorkout['HomeLowerBodyWorkout'].completedCount += 1;
             await AsyncStorage.setItem('@LowerBodyWorkoutStatus', JSON.stringify(LowerBodyWorkout));
             handleResetWorkout();
-          }
-        },
-        {text: 'Cancel', style: 'cancel'},
-      ],
-      {cancelable: true},
-    );
-  };
+    setModalVisible(false);
+};
+
+  // const handleCompleteWorkout = () => {
+  //   Alert.alert(
+  //     'Workout Completed',
+  //     'How did you find the workout?',
+  //     [
+  //       {
+  //         text: 'It was easy for me',
+  //         onPress: async () => {
+  //           LowerBodyWorkout['HomeLowerBodyWorkout'].completedCount += 1;
+  //           LowerBodyWorkout['HomeLowerBodyWorkout'].level = level + 1;
+  //           await AsyncStorage.setItem('@LowerBodyWorkoutStatus', JSON.stringify(LowerBodyWorkout));
+  //           setLevel(level + 1);
+  //           handleResetWorkout();
+  //         }
+  //       },
+  //       {
+  //       text: 'It was just right',
+  //         onPress: async () => {
+  //           LowerBodyWorkout['HomeLowerBodyWorkout'].completedCount += 1;
+  //           await AsyncStorage.setItem('@LowerBodyWorkoutStatus', JSON.stringify(LowerBodyWorkout));
+  //           handleResetWorkout();
+  //         }
+  //       },
+  //       {text: 'Cancel', style: 'cancel'},
+  //     ],
+  //     {cancelable: true},
+  //   );
+  // };
 
   const exercise = exercises[exerciseIndex];
 
@@ -219,13 +239,19 @@ const LowerBody = ({navigation}) => {
       <View style={styles.buttonContainer}>
       {!isResting &&
         (exerciseIndex < exercises.length - 1 || currentSet < exercises[exerciseIndex].sets ?
-          <DoneButton title="Complete Set" onPress={handleCompleteSet} /> :
-          <DoneButton title="Complete Workout" onPress={handleCompleteWorkout} />
+          <DoneButton title={t("CompleteSet")} onPress={handleCompleteSet} /> :
+          <DoneButton title={t("CompleteExc")} onPress={() => setModalVisible(true)} />
         )
       }
-      {isResting && <RestButton title="Skip Rest" onPress={() => setIsResting(false)} />}
-      <CancelButton title="Reset Workout" onPress={handleResetWorkout} />
+      {isResting && <RestButton title={t("SkipRest")} onPress={() => setIsResting(false)} />}
+      <CancelButton title={t("ResetWorkout")} onPress={handleResetWorkout} />
     </View>
+    <WorkoutCompletionModal
+       visible={modalVisible}
+       onClose={() => setModalVisible(false)}
+       onEasy={() => handleLevelUp()}
+       onJustRight={() => handleStayLevel()}
+      />
     </LinearView>
     </>
     

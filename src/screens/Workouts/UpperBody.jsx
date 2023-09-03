@@ -12,6 +12,8 @@ import DoneButton from '../../components/buttons/DoneButton';
 import CancelButton from '../../components/buttons/CancelButton';
 import RestButton from '../../components/buttons/RestButton';
 
+import WorkoutCompletionModal from '../../components/modals/WorkoutModals';
+
 import { useTranslation } from 'react-i18next';
 
 const animations = {
@@ -37,6 +39,7 @@ const UpperBodyScreen = ({navigation}) => {
   const [exercises, setExercises] = useState(ExerciseService.getUpperBodyExercises());
   const [exerciseReps, setExerciseReps] = useState(ExerciseService.increaseRepsByLevel(exercises[0], level));
   const [totalReps, setTotalReps] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     getDataFromAsyncStorage();
@@ -82,7 +85,7 @@ const UpperBodyScreen = ({navigation}) => {
       if (savedExerciseIndex) setExerciseIndex(JSON.parse(savedExerciseIndex));
       if (savedCurrentSet) setCurrentSet(JSON.parse(savedCurrentSet));
     } catch (error) {
-      console.error(error);
+      //console.error(error);
     }
   };
 
@@ -101,7 +104,7 @@ const UpperBodyScreen = ({navigation}) => {
       await AsyncStorage.setItem('@upperBodyCurrentSet', JSON.stringify(currentSet));
     
     } catch (error) {
-      console.error(error);
+      //console.error(error);
     }
   };
 
@@ -140,9 +143,12 @@ const UpperBodyScreen = ({navigation}) => {
       await AsyncStorage.setItem('@upperBodyWorkoutStatus', JSON.stringify(workoutStatus));
       // Bu kısımda fullBodyWorkoutStatus'a da aynı şekilde işlem yapabilirsiniz
     } catch (error) {
-      console.error(error);
+      //console.error(error);
     }
   };
+
+
+  
 
   const handleResetWorkout = () => {
     setExerciseIndex(0);
@@ -151,35 +157,57 @@ const UpperBodyScreen = ({navigation}) => {
     setIsResting(false);
   };
 
-  const handleCompleteWorkout = () => {
-    Alert.alert(
-      'Workout Completed',
-      'How did you find the workout?',
-      [
-        {
-          text: 'It was easy for me',
-          onPress: async () => {
+  const handleStayLevel =  async () => {
+    //console.log("Stay Level")
+    workoutStatus['UpperBodyWorkout'].completedCount +=1;
+            await AsyncStorage.setItem('@upperBodyWorkoutStatus', JSON.stringify
+            (workoutStatus));
+            handleResetWorkout();
+            setModalVisible(false);
+  }
+
+  const handleLevelUp =  async () => {
+    //console.log("Handle Level Up");
             workoutStatus['UpperBodyWorkout'].completedCount +=  1;
             workoutStatus['UpperBodyWorkout'].level = level + 1;
             await AsyncStorage.setItem('@upperBodyWorkoutStatus', JSON.stringify(workoutStatus));
             setLevel(level + 1)
             handleResetWorkout();
-          }   
-        },
-        {
-          text: 'It was just right',
-          onPress: async () => {
-            workoutStatus['UpperBodyWorkout'].completedCount +=1;
-            await AsyncStorage.setItem('@upperBodyWorkoutStatus', JSON.stringify
-            (workoutStatus));
-            handleResetWorkout();
-          },
-        },
-        { text: 'Cancel', style: 'cancel' },
-      ],
-      { cancelable: true }
-    );
-  };
+            setModalVisible(false);
+};
+
+
+
+
+  // const handleCompleteWorkout = () => {
+  //   Alert.alert(
+  //     'Workout Completed',
+  //     'How did you find the workout?',
+  //     [
+  //       {
+  //         text: 'It was easy for me',
+  //         onPress: async () => {
+  //           workoutStatus['UpperBodyWorkout'].completedCount +=  1;
+  //           workoutStatus['UpperBodyWorkout'].level = level + 1;
+  //           await AsyncStorage.setItem('@upperBodyWorkoutStatus', JSON.stringify(workoutStatus));
+  //           setLevel(level + 1)
+  //           handleResetWorkout();
+  //         }   
+  //       },
+  //       {
+  //         text: 'It was just right',
+  //         onPress: async () => {
+  //           workoutStatus['UpperBodyWorkout'].completedCount +=1;
+  //           await AsyncStorage.setItem('@upperBodyWorkoutStatus', JSON.stringify
+  //           (workoutStatus));
+  //           handleResetWorkout();
+  //         },
+  //       },
+  //       { text: 'Cancel', style: 'cancel' },
+  //     ],
+  //     { cancelable: true }
+  //   );
+  // };
 
   const exercise = exercises[exerciseIndex];
 
@@ -217,13 +245,19 @@ const UpperBodyScreen = ({navigation}) => {
       <View style={styles.buttonContainer}>
         {!isResting &&
           (exerciseIndex < exercises.length - 1 || currentSet < exercises[exerciseIndex]?.sets ? (
-            <DoneButton title="Complete Set" onPress={handleCompleteSet} />
+            <DoneButton title={t("CompleteSet")} onPress={handleCompleteSet} />
           ) : (
-            <DoneButton title="Complete Workout" onPress={handleCompleteWorkout} />
+            <DoneButton title={t("CompleteExc")} onPress={() => setModalVisible(true)} />
           ))}
-        {isResting && <RestButton title="Skip Rest" onPress={() => setIsResting(false)} />}
-        <CancelButton title="Reset Workout" onPress={handleResetWorkout} />
+        {isResting && <RestButton title={t("SkipRest")} onPress={() => setIsResting(false)} />}
+        <CancelButton title={t("ResetWorkout")} onPress={handleResetWorkout} />
       </View>
+      <WorkoutCompletionModal
+       visible={modalVisible}
+       onClose={() => setModalVisible(false)}
+       onEasy={() => handleLevelUp()}
+       onJustRight={() => handleStayLevel()}
+      />
       </LinearView>
       </>
   );

@@ -44,7 +44,7 @@ const WorkoutScreen = ({navigation}) => {
   const [exercises, setExercises] = useState(ExerciseService.getExercises());
   const [exerciseReps, setExerciseReps] = useState(ExerciseService.increaseRepsByLevel(exercises[0], level));
   const [totalReps, setTotalReps] = useState(0);
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   
   useEffect(() => {
     getDataFromAsyncStorage();
@@ -121,7 +121,7 @@ const WorkoutScreen = ({navigation}) => {
         setExerciseIndex(exerciseIndex + 1);
         setCurrentSet(1);
       } else {
-        console.log("Burası ne zaman çalışıyor")
+       // console.log("Burası ne zaman çalışıyor")
         //handleLevelUp();
         return;
       }
@@ -160,17 +160,15 @@ const WorkoutScreen = ({navigation}) => {
     // setTotalReps(0);
   };
   const handleStayLevel =  async () => {
-    console.log("Stay Level")
+    //console.log("Stay Level")
     fullBodyWorkout['HomeFullBodyWorkout'].completedCount += 1;
     await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify(fullBodyWorkout));
     handleResetWorkout();
     setModalVisible(false);
-
-
   }
 
   const handleLevelUp =  async () => {
-      console.log("Handle Level Up");
+      //console.log("Handle Level Up");
       fullBodyWorkout['HomeFullBodyWorkout'].completedCount += 1;
       fullBodyWorkout['HomeFullBodyWorkout'].level = level + 1;
       await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify(fullBodyWorkout));

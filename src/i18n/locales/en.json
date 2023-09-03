@@ -107,6 +107,7 @@
     "WorkoutCompletedSubtitle": "How did you find the workout?",
     "WorkoutEasy": "It was easy for me",
     "WorkoutRight": "It was just right",
-    "Cancel": "Cancel"
+    "Cancel": "Cancel",
+    "RestTime": "Rest Time :"
 
 }

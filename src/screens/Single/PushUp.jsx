@@ -17,6 +17,8 @@ import DoneButton from '../../components/buttons/DoneButton';
 import CancelButton from '../../components/buttons/CancelButton';
 import RestButton from '../../components/buttons/RestButton';
 
+import WorkoutCompletionModal from '../../components/modals/WorkoutModals';
+
 
 
 const animations = {
@@ -39,6 +41,8 @@ const SinglePushUpWorkoutScreen = ({ navigation }) => {
   const [exercise] = useState(ExerciseService.getExercises()[exerciseIndex]);
   const [exerciseReps, setExerciseReps] = useState(ExerciseService.increaseRepsByLevel(exercise, level));
   const [totalReps, setTotalReps] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false)
+
 
   useEffect(() => {
     getDataFromAsyncStorage();
@@ -127,34 +131,51 @@ const SinglePushUpWorkoutScreen = ({ navigation }) => {
     setIsResting(false);
   };
 
-  const handleCompleteWorkout = () => {
-    Alert.alert(
-      'Workout Completed',
-      'How did you find the workout?',
-      [
-        {
-          text: 'It was easy for me',
-          onPress: async () => {
-            singlePushUpWorkout['SinglePushUpWorkout'].completedCount += 1;
-            singlePushUpWorkout['SinglePushUpWorkout'].level = level + 1;
-            await AsyncStorage.setItem('@singlePushUpWorkoutStatus', JSON.stringify(singlePushUpWorkout));
-            setLevel(level + 1);
-            handleResetWorkout();
-          }
-        },
-        {
-          text: 'It was just right',
-          onPress: async () => {
-            singlePushUpWorkout['SinglePushUpWorkout'].completedCount += 1;
-            await AsyncStorage.setItem('@singlePushUpWorkoutStatus', JSON.stringify(singlePushUpWorkout));
-            handleResetWorkout();
-          }
-        },
-        { text: 'Cancel', style: 'cancel' },
-      ],
-      { cancelable: true },
-    );
+  const handleStayLevel =  async () => {
+    //console.log("Stay Level")
+      singlePushUpWorkout['SinglePushUpWorkout'].completedCount += 1;
+      await AsyncStorage.setItem('@singlePushUpWorkoutStatus', JSON.stringify(singlePushUpWorkout));
+      setModalVisible(false);
   };
+
+  const handleLevelUp =  async () => {
+    //console.log("Handle Level Up");
+    fullBodyWorkout['HomeFullBodyWorkout'].completedCount += 1;
+    fullBodyWorkout['HomeFullBodyWorkout'].level = level + 1;
+    await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify(fullBodyWorkout));
+    setLevel(level + 1);
+    handleResetWorkout();
+    setModalVisible(false);
+};
+
+  // const handleCompleteWorkout = () => {
+  //   Alert.alert(
+  //     'Workout Completed',
+  //     'How did you find the workout?',
+  //     [
+  //       {
+  //         text: 'It was easy for me',
+  //         onPress: async () => {
+  //           singlePushUpWorkout['SinglePushUpWorkout'].completedCount += 1;
+  //           singlePushUpWorkout['SinglePushUpWorkout'].level = level + 1;
+  //           await AsyncStorage.setItem('@singlePushUpWorkoutStatus', JSON.stringify(singlePushUpWorkout));
+  //           setLevel(level + 1);
+  //           handleResetWorkout();
+  //         }
+  //       },
+  //       {
+  //         text: 'It was just right',
+  //         onPress: async () => {
+  //           singlePushUpWorkout['SinglePushUpWorkout'].completedCount += 1;
+  //           await AsyncStorage.setItem('@singlePushUpWorkoutStatus', JSON.stringify(singlePushUpWorkout));
+  //           handleResetWorkout();
+  //         }
+  //       },
+  //       { text: 'Cancel', style: 'cancel' },
+  //     ],
+  //     { cancelable: true },
+  //   );
+  // };
 
   const { t } = useTranslation();
 
@@ -188,18 +209,24 @@ const SinglePushUpWorkoutScreen = ({ navigation }) => {
         </View>
         <LottieView source={animations[exercise.image]} autoPlay loop style={styles.image} />
         <ProgressBar progress={currentSet / exercise.sets} color="#00ff00" />
-        {isResting && <Text style={styles.restTimeText}>Rest Time: {restTime}</Text>}
+        {isResting && <Text style={styles.restTimeText}>{t("RestTime")} {restTime}</Text>}
 
         <View style={styles.buttonContainer}>
           {!isResting &&
             (currentSet < exercise.sets ?
               <DoneButton title={t("CompleteSet")} onPress={handleCompleteSet} /> :
-              <DoneButton title={t("CompleteExc")} onPress={handleCompleteWorkout} />
+              <DoneButton title={t("CompleteExc")} onPress={() => setModalVisible(true)} />
             )
           }
           {isResting && <RestButton title={t("SkipRest")} onPress={() => setIsResting(false)} />}
           <CancelButton style={styles.button} title={t("ResetWorkout")} onPress={handleResetWorkout} />
         </View>
+        <WorkoutCompletionModal
+       visible={modalVisible}
+       onClose={() => setModalVisible(false)}
+       onEasy={() => handleLevelUp()}
+       onJustRight={() => handleStayLevel()}
+      />
       </LinearView>
     </>
   );

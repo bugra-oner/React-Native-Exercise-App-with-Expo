@@ -16,6 +16,8 @@ import DoneButton from '../../components/buttons/DoneButton';
 import CancelButton from '../../components/buttons/CancelButton';
 import RestButton from '../../components/buttons/RestButton';
 
+import WorkoutCompletionModal from '../../components/modals/WorkoutModals';
+
 const animations = {
   triceps_dips: require('../../assets/animations/triceps_dips')
 };
@@ -36,6 +38,7 @@ const SingleTricepsWorkoutScreen = ({ navigation }) => {
   const [exercise] = useState(ExerciseService.getSingleTriceps());
   const [exerciseReps, setExerciseReps] = useState(ExerciseService.increaseRepsByLevel(exercise, level));
   const [totalReps, setTotalReps] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false)
 
   useEffect(() => {
     getDataFromAsyncStorage();
@@ -124,34 +127,48 @@ const SingleTricepsWorkoutScreen = ({ navigation }) => {
     setIsResting(false);
   };
 
-  const handleCompleteWorkout = () => {
-    Alert.alert(
-      'Workout Completed',
-      'How did you find the workout?',
-      [
-        {
-          text: 'It was easy for me',
-          onPress: async () => {
-            singleTricepsWorkout['SingleTricepsWorkout'].completedCount += 1;
-            singleTricepsWorkout['SingleTricepsWorkout'].level = level + 1;
-            await AsyncStorage.setItem('@singleTricepsWorkoutStatus', JSON.stringify(singleTricepsWorkout));
-            setLevel(level + 1);
-            handleResetWorkout();
-          }
-        },
-        {
-          text: 'It was just right',
-          onPress: async () => {
-            singleTricepsWorkout['SingleTricepsWorkout'].completedCount += 1;
-            await AsyncStorage.setItem('@singleTricepsWorkoutStatus', JSON.stringify(singleTricepsWorkout));
-            handleResetWorkout();
-          }
-        },
-        { text: 'Cancel', style: 'cancel' },
-      ],
-      { cancelable: true },
-    );
+  const handleStayLevel = async () => {
+    singleTricepsWorkout['SingleTricepsWorkout'].completedCount += 1;
+    await AsyncStorage.setItem('@singleTricepsWorkoutStatus', JSON.stringify(singleTricepsWorkout));
+    handleResetWorkout();
   };
+  
+  const handleLevelUp = async() => {
+      singleTricepsWorkout['SingleTricepsWorkout'].completedCount += 1;
+     singleTricepsWorkout['SingleTricepsWorkout'].level = level + 1;
+     await AsyncStorage.setItem('@singleTricepsWorkoutStatus', JSON.stringify(singleTricepsWorkout));
+     setLevel(level + 1);
+     handleResetWorkout();
+  };
+
+  // const handleCompleteWorkout = () => {
+  //   Alert.alert(
+  //     'Workout Completed',
+  //     'How did you find the workout?',
+  //     [
+  //       {
+  //         text: 'It was easy for me',
+  //         onPress: async () => {
+  //           singleTricepsWorkout['SingleTricepsWorkout'].completedCount += 1;
+  //           singleTricepsWorkout['SingleTricepsWorkout'].level = level + 1;
+  //           await AsyncStorage.setItem('@singleTricepsWorkoutStatus', JSON.stringify(singleTricepsWorkout));
+  //           setLevel(level + 1);
+  //           handleResetWorkout();
+  //         }
+  //       },
+  //       {
+  //         text: 'It was just right',
+  //         onPress: async () => {
+  //           singleTricepsWorkout['SingleTricepsWorkout'].completedCount += 1;
+  //           await AsyncStorage.setItem('@singleTricepsWorkoutStatus', JSON.stringify(singleTricepsWorkout));
+  //           handleResetWorkout();
+  //         }
+  //       },
+  //       { text: 'Cancel', style: 'cancel' },
+  //     ],
+  //     { cancelable: true },
+  //   );
+  // };
 
   const { t } = useTranslation();
 
@@ -185,18 +202,24 @@ const SingleTricepsWorkoutScreen = ({ navigation }) => {
         </View>
         <LottieView source={animations[exercise.image]} autoPlay loop style={styles.image} />
         <ProgressBar progress={currentSet / exercise.sets} color="#00ff00" />
-        {isResting && <Text style={styles.restTimeText}>Rest Time: {restTime}</Text>}
+        {isResting && <Text style={styles.restTimeText}>{t("RestTime")} {restTime}</Text>}
 
         <View style={styles.buttonContainer}>
           {!isResting &&
             (currentSet < exercise.sets ?
               <DoneButton title={t("CompleteSet")} onPress={handleCompleteSet} /> :
-              <DoneButton title={t("CompleteExc")} onPress={handleCompleteWorkout} />
+              <DoneButton title={t("CompleteExc")} onPress={()=> setModalVisible(true)} />
             )
           }
           {isResting && <RestButton title={t("SkipRest")} onPress={() => setIsResting(false)} />}
           <CancelButton style={styles.button} title={t("ResetWorkout")} onPress={handleResetWorkout} />
         </View>
+        <WorkoutCompletionModal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}
+          onEasy={() => handleLevelUp()}
+          onJustRight={() => handleStayLevel()}
+          />
       </LinearView>
     </>
   );

@@ -17,6 +17,7 @@ import DoneButton from '../../components/buttons/DoneButton';
 import CancelButton from '../../components/buttons/CancelButton';
 import RestButton from '../../components/buttons/RestButton';
 
+import WorkoutCompletionModal from '../../components/modals/WorkoutModals';
 
 
 const animations = {
@@ -39,6 +40,8 @@ const SingleSquadWorkoutScreen = ({ navigation }) => {
   const [exercise] = useState(ExerciseService.getSingleSquad());
   const [exerciseReps, setExerciseReps] = useState(ExerciseService.increaseRepsByLevel(exercise, level));
   const [totalReps, setTotalReps] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false)
+
 
   useEffect(() => {
     getDataFromAsyncStorage();
@@ -127,34 +130,51 @@ const SingleSquadWorkoutScreen = ({ navigation }) => {
     setIsResting(false);
   };
 
-  const handleCompleteWorkout = () => {
-    Alert.alert(
-      'Workout Completed',
-      'How did you find the workout?',
-      [
-        {
-          text: 'It was easy for me',
-          onPress: async () => {
+  const handleStayLevel  =  async () => {
+             singleSquadWorkout['SingleSquadWorkout'].completedCount += 1;
+             await AsyncStorage.setItem('@singleSquadWorkoutStatus', JSON.stringify(singleSquadWorkout));
+             handleResetWorkout();
+             setModalVisible(false);
+
+  };
+
+  const handleLevelUp =  async () => {
             singleSquadWorkout['SingleSquadWorkout'].completedCount += 1;
             singleSquadWorkout['SingleSquadWorkout'].level = level + 1;
             await AsyncStorage.setItem('@singleSquadWorkoutStatus', JSON.stringify(singleSquadWorkout));
             setLevel(level + 1);
             handleResetWorkout();
-          }
-        },
-        {
-          text: 'It was just right',
-          onPress: async () => {
-            singleSquadWorkout['SingleSquadWorkout'].completedCount += 1;
-            await AsyncStorage.setItem('@singleSquadWorkoutStatus', JSON.stringify(singleSquadWorkout));
-            handleResetWorkout();
-          }
-        },
-        { text: 'Cancel', style: 'cancel' },
-      ],
-      { cancelable: true },
-    );
+            setModalVisible(false);
   };
+
+  // const handleCompleteWorkout = () => {
+  //   Alert.alert(
+  //     'Workout Completed',
+  //     'How did you find the workout?',
+  //     [
+  //       {
+  //         text: 'It was easy for me',
+  //         onPress: async () => {
+  //           singleSquadWorkout['SingleSquadWorkout'].completedCount += 1;
+  //           singleSquadWorkout['SingleSquadWorkout'].level = level + 1;
+  //           await AsyncStorage.setItem('@singleSquadWorkoutStatus', JSON.stringify(singleSquadWorkout));
+  //           setLevel(level + 1);
+  //           handleResetWorkout();
+  //         }
+  //       },
+  //       {
+  //         text: 'It was just right',
+  //         onPress: async () => {
+  //           singleSquadWorkout['SingleSquadWorkout'].completedCount += 1;
+  //           await AsyncStorage.setItem('@singleSquadWorkoutStatus', JSON.stringify(singleSquadWorkout));
+  //           handleResetWorkout();
+  //         }
+  //       },
+  //       { text: 'Cancel', style: 'cancel' },
+  //     ],
+  //     { cancelable: true },
+  //   );
+  // };
 
   const { t } = useTranslation();
 
@@ -188,18 +208,24 @@ const SingleSquadWorkoutScreen = ({ navigation }) => {
         </View>
         <LottieView source={animations[exercise.image]} autoPlay loop style={styles.image} />
         <ProgressBar progress={currentSet / exercise.sets} color="#00ff00" />
-        {isResting && <Text style={styles.restTimeText}>Rest Time: {restTime}</Text>}
+        {isResting && <Text style={styles.restTimeText}>{t("RestTime")} {restTime}</Text>}
 
         <View style={styles.buttonContainer}>
           {!isResting &&
             (currentSet < exercise.sets ?
               <DoneButton title={t("CompleteSet")} onPress={handleCompleteSet} /> :
-              <DoneButton title={t("CompleteExc")} onPress={handleCompleteWorkout} />
+              <DoneButton title={t("CompleteExc")} onPress={()=> setModalVisible(true)} />
             )
           }
           {isResting && <RestButton title={t("SkipRest")} onPress={() => setIsResting(false)} />}
           <CancelButton style={styles.button} title={t("ResetWorkout")} onPress={handleResetWorkout} />
         </View>
+        <WorkoutCompletionModal
+       visible={modalVisible}
+       onClose={() => setModalVisible(false)}
+       onEasy={() => handleLevelUp()}
+       onJustRight={() => handleStayLevel()}
+      />
       </LinearView>
     </>
   );

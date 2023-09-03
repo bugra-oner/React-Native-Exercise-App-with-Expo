@@ -100,15 +100,16 @@ export default function HomeScreen({navigation}) {
       <Text style={styles.workoutsSubTitle}>{t('All')}</Text>
       </TouchableOpacity>
        </View>
-       {/* navigate('Workout') */}
+       {/*  */}
         <WorkoutsCard 
           title={t('FullBodyWorkout')}
           subTitle={t('FullBodyDesc')}
           onPress={() => 
-            showMessage({
-            message: "Simple message",
-            type: "info",
-          })}
+            // showMessage({
+            // message: "Simple message",
+            // type: "info",
+            navigate('Workout')
+          }
           image="push_ups"
           buttonText={t('Start')}
         />
