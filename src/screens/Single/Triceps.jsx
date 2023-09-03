@@ -131,7 +131,7 @@ const SingleTricepsWorkoutScreen = ({ navigation }) => {
     singleTricepsWorkout['SingleTricepsWorkout'].completedCount += 1;
     await AsyncStorage.setItem('@singleTricepsWorkoutStatus', JSON.stringify(singleTricepsWorkout));
     handleResetWorkout();
-    setModalVisible(true);
+    setModalVisible(false);
   };
   
   const handleLevelUp = async() => {
@@ -140,7 +140,7 @@ const SingleTricepsWorkoutScreen = ({ navigation }) => {
      await AsyncStorage.setItem('@singleTricepsWorkoutStatus', JSON.stringify(singleTricepsWorkout));
      setLevel(level + 1);
      handleResetWorkout();
-     setModalVisible(true);
+     setModalVisible(false);
   };
 
   // const handleCompleteWorkout = () => {
