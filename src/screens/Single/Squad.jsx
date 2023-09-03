@@ -99,7 +99,7 @@ const SingleSquadWorkoutScreen = ({ navigation }) => {
     if (currentSet < exercise.sets) {
       setCurrentSet(currentSet + 1);
     } else {
-      handleCompleteWorkout();
+      //handleCompleteWorkout();
       return;
     }
 

@@ -13,6 +13,8 @@ import RestButton from '../../components/buttons/RestButton';
 import CancelButton from '../../components/buttons/CancelButton';
 import DoneButton from '../../components/buttons/DoneButton';
 
+import WorkoutCompletionModal from '../../components/modals/WorkoutModals';
+
 import { useTranslation } from 'react-i18next'
 
 const animations = {

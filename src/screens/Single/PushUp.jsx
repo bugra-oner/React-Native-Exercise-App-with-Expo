@@ -100,7 +100,7 @@ const SinglePushUpWorkoutScreen = ({ navigation }) => {
     if (currentSet < exercise.sets) {
       setCurrentSet(currentSet + 1);
     } else {
-      handleCompleteWorkout();
+     // handleCompleteWorkout();
       return;
     }
 
@@ -140,12 +140,12 @@ const SinglePushUpWorkoutScreen = ({ navigation }) => {
 
   const handleLevelUp =  async () => {
     //console.log("Handle Level Up");
-    fullBodyWorkout['HomeFullBodyWorkout'].completedCount += 1;
-    fullBodyWorkout['HomeFullBodyWorkout'].level = level + 1;
-    await AsyncStorage.setItem('@fullBodyWorkoutStatus', JSON.stringify(fullBodyWorkout));
-    setLevel(level + 1);
-    handleResetWorkout();
-    setModalVisible(false);
+      singlePushUpWorkout['SinglePushUpWorkout'].completedCount += 1;
+      singlePushUpWorkout['SinglePushUpWorkout'].level = level + 1;
+      await AsyncStorage.setItem('@singlePushUpWorkoutStatus', JSON.stringify(singlePushUpWorkout));
+      setLevel(level + 1);
+      handleResetWorkout();
+      setModalVisible(false);
 };
 
   // const handleCompleteWorkout = () => {
