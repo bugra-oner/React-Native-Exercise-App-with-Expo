@@ -11,7 +11,7 @@ const CustomPicker = ({ options, selectedValue, onValueChange }) => {
   const handleOptionPress = (value) => {
     onValueChange(value);
     setShowOptions(false);
-    console.log(value)
+    //console.log(value)
   };
 
   return (

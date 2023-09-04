@@ -17,7 +17,7 @@ function SplashScreen() {
 
   return (
     <LinearGradient
-      colors={['#b6b1aa', '#859398','#484F88','#2A4E47','#4e615b']}
+      colors={['#8fb9b7', '#859398','#484F88','#2A4E47','#4e615b']}
       style={styles.container} // İstediğiniz gradient renkleri
       >
       <AnimatedLottieView
