@@ -68,10 +68,10 @@ const WorkoutScreen = ({navigation}) => {
       const interval = setInterval(() => {
         setRestTime(restTime - 1);
       }, 1000);
-      
-      if (restTime === 0){
+
+      if (restTime < 2){
         setIsResting(false);
-        console.log("Rest Atlandı")
+        console.log("Rest Atlandı")// done.
       }
       return () =>   clearInterval(interval) 
 
