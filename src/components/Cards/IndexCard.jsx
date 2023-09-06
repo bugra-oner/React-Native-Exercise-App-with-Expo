@@ -9,6 +9,8 @@ import Woman from '../../assets/cards/woman.svg'
 import { LinearGradient } from 'expo-linear-gradient';
 import Button from '../Button'
 
+import { fp } from '../../utils'
+
 
 
 export default function IndexCard({title,subTitle,buttonTitle,borderRadius,onPress}) {

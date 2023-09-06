@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import typography from '../constants/typography';
 import colors from '../constants/colors';
 
+import { wp,fp,hp } from '../utils';
+
 
 export default function SingleWorkoutCard({ title, description, imageSource, onPress,level }) {
  
@@ -29,8 +31,8 @@ export default function SingleWorkoutCard({ title, description, imageSource, onP
 
 const styles = StyleSheet.create({
   container: {
-    width: 180.65,
-    padding: 25,
+    width: wp(44),
+    padding: 23,
     backgroundColor: '#F3F5FF',
     borderRadius: 13,
     borderColor: 'black',
@@ -82,7 +84,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   Text:{
-    fontSize: 17,
+    fontSize: fp(2),
     color: "white"
   }
 });

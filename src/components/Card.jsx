@@ -3,6 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
+import { fp } from '../utils';
+
 const Card = ({
   title,
   icon,
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   contentText: {
-    fontSize: 14,
+    fontSize: fp(2.1),
     color: '#fff',
     marginBottom: "5%",
   },
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bottomText: {
-    fontSize: 13,
+    fontSize: fp(1.6),
     color: '#fff',
     
   },

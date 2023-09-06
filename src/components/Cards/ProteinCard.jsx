@@ -9,6 +9,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import typography from '../../constants/typography';
 import { useTranslation } from 'react-i18next';
 
+import { wp } from '../../utils';
+
 const ProteinCard = () => {
   const { t } = useTranslation();
 
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     elevation: 5,
-    width: 360, // Kartın genişliği
+    width: wp(90), // Kartın genişliği
     alignSelf: 'center',
     flexDirection: 'row',
     marginVertical: 10,

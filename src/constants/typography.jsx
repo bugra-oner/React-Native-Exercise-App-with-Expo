@@ -1,3 +1,5 @@
+import { fp } from "../utils";
+
 const typography = {
     header: 20,
     title: 16,
@@ -8,11 +10,11 @@ const typography = {
     cardSubtitle:13,
     workoutsCardTitle:12,
     workoutsCardSubtitle:8,
-    healthText:10,
-    healthInfo:12,
+    healthText:fp(1.7),
+    healthInfo:fp(1.7),
     InfoTitle:14,
     InfoText: 10,
-    healthTitle: 14,
+    healthTitle: fp(1.8),
     workoutTitle: 13,
     workoutSubtitle: 8,
 };

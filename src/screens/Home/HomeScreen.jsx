@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View,ScrollView,TouchableOpacity,Image } from 'react-native';
 import ExerciseService from '../../service/ExerciseService';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Spacing from '../../components/views/Spacing';
 
@@ -11,17 +11,19 @@ import SvgCard from '../../components/Cards/SvgCard';
 import colors from '../../constants/colors';
 import typography from '../../constants/typography';
 import ButtonCard from '../../components/Cards/ButtonCard';
-import IndexCard from '../../components/Cards/IndexCard'
+// import IndexCard from '../../components/Cards/IndexCard'
 import WorkoutsCard from '../../components/Cards/WorkoutsCard';
 import { navigate } from '../../navigation/navigationRef';
 
 
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/views/Header';
-import ImageCard from '../../components/Cards/ImageCard';
+// import ImageCard from '../../components/Cards/ImageCard';
 import ProteinCard from '../../components/Cards/ProteinCard';
 import SingleWorkoutCard from '../../components/SingleWorkoutCard';
 
+
+import { wp } from '../../utils';
 
 
 import useFlashMessage from '../../hooks/FlashMessage';
@@ -133,12 +135,6 @@ export default function HomeScreen({navigation}) {
           buttonText={t('Start')}
         />
       </View>
-        {/* <Text style={styles.Foods}>
-        {t('Foods')}
-      </Text> 
-       <View style={styles.ProteinCardView}>
-      <ProteinCard />
-      </View>  */}
       <ProteinCard />
       <Text style={styles.singleExercisesTitle}>{t('SingleExercises')}</Text>
       <View>
@@ -173,10 +169,8 @@ export default function HomeScreen({navigation}) {
       </View>
   </View>
 </View>
-
       <View style={styles.ExtraView}>
       </View>
-     
     </ScrollView> 
     </>
   );
@@ -258,14 +252,19 @@ const styles = StyleSheet.create({
     },
     singleExerciseView:{
       alignItems : 'center',
+      marginVertical: 10,
+      width: '100%',
+      alignSelf: 'center',
+      borderRadius: 10,
+      justifyContent: 'center',
     },
     singleExercises:{
       justifyContent: 'center',
-      backgroundColor : 'red',
+      
     },
     singleExercisesRow:{
       flexDirection: 'row',
-      columnGap : 5,
+      columnGap : 10,
       marginVertical: 10,
     }
     

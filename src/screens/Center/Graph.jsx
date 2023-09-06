@@ -24,6 +24,8 @@ import useFlashMessage from '../../hooks/FlashMessage'
 
 
 
+
+
 export default function Graph({navigation,route}) {
   const { showFlashMessage } = useFlashMessage();
   const [healthData,setHealthData] = useState({});
@@ -125,7 +127,6 @@ export default function Graph({navigation,route}) {
       additionalText={`${t('HealthInfo')}`}
       additionalIcon="ios-add-circle-outline"
     />
-  
       {/* /* <View style={styles.container}>
       <Text style={styles.title}>Sağlık Sonuçları</Text>
       <Text>Vücut Kitle İndeksi: </Text>
@@ -134,8 +135,6 @@ export default function Graph({navigation,route}) {
       <Text>Günlük Su İhtiyacı: {healthData.dailyWater} ml</Text>
       <Text>İdeal Kilo: {healthData.idealWeight} kg</Text>
       Diğer hesaplamaları da buraya ekleyebilirsiniz</View> */}
-      
-    
     </ScrollView>
     </>
   )
