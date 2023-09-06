@@ -19,7 +19,8 @@ import DoneButton from '../../components/buttons/DoneButton';
 import CancelButton from '../../components/buttons/CancelButton';
 import RestButton from '../../components/buttons/RestButton';
 
-
+import { Audio } from 'expo-av';
+import styles from './style';
 
 const animations = {
   push_ups: require('../../assets/animations/push_ups_animations.json'),
@@ -60,12 +61,21 @@ const WorkoutScreen = ({navigation}) => {
   }, [level, exerciseIndex, currentSet, totalReps]);
 
   useEffect(() => {
+    console.log(isResting, "Resting" ,restTime)
     if (isResting && restTime > 0) {
+      console.log(isResting, "Resting" ,restTime)
+     
       const interval = setInterval(() => {
         setRestTime(restTime - 1);
       }, 1000);
+      
+      if (restTime === 0){
+        setIsResting(false);
+        console.log("Rest Atlandı")
+      }
+      return () =>   clearInterval(interval) 
 
-      return () => clearInterval(interval);
+     
     }
   }, [isResting, restTime]);
 
@@ -238,54 +248,7 @@ const WorkoutScreen = ({navigation}) => {
 
 export default WorkoutScreen;
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 20,
-    color: '#ffffff',
-  },
-  setsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical :"8%"
-  },
-  setTextContainer: {
-    borderWidth: 1,
-    borderColor: '#fff',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginRight: 10,
-    backgroundColor: 'rgba(72, 79, 136, 0.8)'
-  },
-  activeSetContainer: {
-    backgroundColor: 'green',
-  },
-  setText: {
-    fontSize: 18,
-    color: '#fff',
-  },
-  activeSetText: {
-    color: '#2c3e50',
-  },
-  image: {
-    width: 200,
-    height: 200,
-    resizeMode: 'contain',
-    marginBottom: 20,
-    alignSelf: "center",
-  },
-  restTimeText: {
-    fontSize: 18,
-    color: 'white',
-    marginVertical: 20,
-    marginTop: 10,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 20,
-  },
- 
-});
+
 
 
 

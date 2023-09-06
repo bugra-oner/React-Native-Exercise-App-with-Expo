@@ -3,6 +3,10 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import WorkoutsCard from '../../components/Cards/WorkoutsCard';
 
+
+
+import { useFocusEffect ,useIsFocused} from '@react-navigation/native';
+
 import colors from '../../constants/colors';
 import { useTranslation } from 'react-i18next';
 import CreaterCard from '../../components/Cards/CreateCard';
@@ -12,6 +16,13 @@ import SingleWorkoutCard from '../../components/SingleWorkoutCard';
 import { showMessage, hideMessage } from "react-native-flash-message";
 
 const StatisticsScreen = ({navigation}) => {
+
+  const isFocused = useIsFocused();
+
+  //console.log("Deneme",isFocused)
+
+
+  
    const {t, i18n } = useTranslation();
   const [fullBodyWorkoutStats, setFullBodyWorkoutStats] = useState(null);
   const [upperBodyWorkoutStats, setUpperBodyWorkoutStats] = useState(null);
@@ -21,12 +32,16 @@ const StatisticsScreen = ({navigation}) => {
   const [pushUpsWorkoutStats, setPushUpsWorkoutStats] = useState(null);
   const [sitUpsWorkoutStats, setSitUpsWorkoutStats] = useState(null);
   const [level,setLevel] = useState(null);
+
+  
+
   useEffect(() => {
     getStatistics();
-   
-  }, []);
+
+  }, [isFocused]);
 
   const getStatistics = async () => {
+    
     try {
       const fullBodyStats = await AsyncStorage.getItem('@fullBodyWorkoutStatus');
       const upperBodyStats = await AsyncStorage.getItem('@upperBodyWorkoutStatus');
@@ -99,7 +114,7 @@ const StatisticsScreen = ({navigation}) => {
       level={upperBodyWorkoutStats.UpperBodyWorkout?.level || 1} 
       />
     )}
-    {lowerBodyWorkoutStats &&(
+    {lowerBodyWorkoutStats && (
       <WorkoutsCard
       title={t('LowerBodyWorkout')}
       level={lowerBodyWorkoutStats.HomeLowerBodyWorkout?.level || 1}

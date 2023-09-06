@@ -10,7 +10,6 @@ import Header from '../../components/views/Header';
 import { useTranslation } from 'react-i18next';
 
 import LinearView from '../../components/views/LinearView';
-import colors from '../../constants/colors';
 
 
 import DoneButton from '../../components/buttons/DoneButton';
@@ -29,6 +28,9 @@ let singleSitUpsWorkout = {
     level: 1,
   },
 };
+
+
+import styles from './style';
 
 const SingleSitUpsWorkoutScreen = ({ navigation }) => {
   const [level, setLevel] = useState(1);
@@ -233,50 +235,4 @@ const SingleSitUpsWorkoutScreen = ({ navigation }) => {
 
 export default SingleSitUpsWorkoutScreen;
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 20,
-    color: '#ffffff',
-  },
-  setsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: "8%"
-  },
-  setTextContainer: {
-    borderWidth: 1,
-    borderColor: '#fff',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginRight: 10,
-    backgroundColor: 'rgba(72, 79, 136, 0.8)'
-  },
-  activeSetContainer: {
-    backgroundColor: 'green',
-  },
-  setText: {
-    fontSize: 18,
-    color: '#fff',
-  },
-  activeSetText: {
-    color: '#2c3e50',
-  },
-  image: {
-    width: 200,
-    height: 200,
-    resizeMode: 'contain',
-    marginBottom: 20,
-    alignSelf: "center",
-  },
-  restTimeText: {
-    fontSize: 18,
-    color: 'white',
-    marginVertical: 20,
-    marginTop: 10,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 20,
-  },
-});
+

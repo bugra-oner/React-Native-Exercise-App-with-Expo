@@ -15,6 +15,8 @@ import DoneButton from '../../components/buttons/DoneButton';
 
 import WorkoutCompletionModal from '../../components/modals/WorkoutModals';
 
+import styles from './style';
+
 import { useTranslation } from 'react-i18next'
 
 const animations = {
@@ -158,7 +160,7 @@ const LowerBody = ({navigation}) => {
     // setTotalReps(0);
   };
 
-  const handleStayLevel =  async () => {
+  const handleLevelUp =  async () => {
     //console.log("Stay Level")
             LowerBodyWorkout['HomeLowerBodyWorkout'].completedCount += 1;
             LowerBodyWorkout['HomeLowerBodyWorkout'].level = level + 1;
@@ -168,7 +170,7 @@ const LowerBody = ({navigation}) => {
             setModalVisible(false);
   }
 
-  const handleLevelUp =  async () => {
+  const handleStayLevel =  async () => {
     //console.log("Handle Level Up");
             LowerBodyWorkout['HomeLowerBodyWorkout'].completedCount += 1;
             await AsyncStorage.setItem('@LowerBodyWorkoutStatus', JSON.stringify(LowerBodyWorkout));
@@ -261,56 +263,3 @@ const LowerBody = ({navigation}) => {
 }
 
 export default LowerBody;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#333',
-    paddingTop: 50,
-    paddingHorizontal: 20,
-  },
-  text: {
-    fontSize: 20,
-    color: '#fff',
-    marginBottom: 10,
-  },
-  setsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginBottom: 20,
-  },
-  setTextContainer: {
-    borderWidth: 1,
-    borderColor: '#fff',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginRight: 10,
-  },
-  activeSetContainer: {
-    backgroundColor: '#d35400',
-  },
-  setText: {
-    fontSize: 18,
-    color: '#fff',
-  },
-  activeSetText: {
-    color: '#2c3e50',
-  },
-  image: {
-    width: 200,
-    height: 200,
-    resizeMode: 'contain',
-    marginBottom: 20,
-    alignSelf: "center",
-  },
-  restTimeText: {
-    fontSize: 18,
-    color: '#fff',
-    marginTop: 10,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical : 20,
-  },
-});

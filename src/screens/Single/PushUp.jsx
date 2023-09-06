@@ -19,7 +19,7 @@ import RestButton from '../../components/buttons/RestButton';
 
 import WorkoutCompletionModal from '../../components/modals/WorkoutModals';
 
-
+import styles from './style';
 
 const animations = {
   push_ups: require('../../assets/animations/push_ups_animations.json'),
@@ -234,52 +234,5 @@ const SinglePushUpWorkoutScreen = ({ navigation }) => {
 
 
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 20,
-    color: '#ffffff',
-  },
-  setsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginVertical: "8%"
-  },
-  setTextContainer: {
-    borderWidth: 1,
-    borderColor: '#fff',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginRight: 10,
-    backgroundColor: 'rgba(72, 79, 136, 0.8)'
-  },
-  activeSetContainer: {
-    backgroundColor: 'green',
-  },
-  setText: {
-    fontSize: 18,
-    color: '#fff',
-  },
-  activeSetText: {
-    color: '#2c3e50',
-  },
-  image: {
-    width: 200,
-    height: 200,
-    resizeMode: 'contain',
-    marginBottom: 20,
-    alignSelf: "center",
-  },
-  restTimeText: {
-    fontSize: 18,
-    color: 'white',
-    marginVertical: 20,
-    marginTop: 10,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 20,
-  },
-});
 
 export default SinglePushUpWorkoutScreen;

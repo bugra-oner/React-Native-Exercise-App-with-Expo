@@ -14,6 +14,8 @@ import RestButton from '../../components/buttons/RestButton';
 
 import WorkoutCompletionModal from '../../components/modals/WorkoutModals';
 
+import styles from './style';
+
 import { useTranslation } from 'react-i18next';
 
 const animations = {
@@ -263,58 +265,6 @@ const UpperBodyScreen = ({navigation}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#333',
-    paddingTop: 50,
-    paddingHorizontal: 20,
-  },
-  text: {
-    fontSize: 20,
-    color: '#fff',
-    marginBottom: 10,
-  },
-  setsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginBottom: 20,
-  },
-  setTextContainer: {
-    borderWidth: 1,
-    borderColor: '#fff',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginRight: 10,
-  },
-  activeSetContainer: {
-    backgroundColor: '#d35400',
-  },
-  setText: {
-    fontSize: 18,
-    color: '#fff',
-  },
-  activeSetText: {
-    color: '#2c3e50',
-  },
-  image: {
-    width: 200,
-    height: 200,
-    resizeMode: 'contain',
-    marginBottom: 20,
-    alignSelf: "center",
-  },
-  restTimeText: {
-    fontSize: 18,
-    color: '#fff',
-    marginTop: 10,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 20,
-  },
-});
 
 export default UpperBodyScreen;
 
