@@ -19,6 +19,8 @@ import RestButton from '../../components/buttons/RestButton';
 
 import WorkoutCompletionModal from '../../components/modals/WorkoutModals';
 
+import useRestTimer from '../../hooks/useRestTimer';
+
 
 const animations = {
   Squad: require('../../assets/animations/squad_animation.json'),
@@ -44,6 +46,8 @@ const SingleSquadWorkoutScreen = ({ navigation }) => {
   const [totalReps, setTotalReps] = useState(0);
   const [modalVisible, setModalVisible] = useState(false)
 
+  useRestTimer(isResting, restTime, setIsResting, setRestTime);
+
 
   useEffect(() => {
     getDataFromAsyncStorage();
@@ -58,15 +62,15 @@ const SingleSquadWorkoutScreen = ({ navigation }) => {
     storeData();
   }, [level, currentSet, totalReps]);
 
-  useEffect(() => {
-    if (isResting && restTime > 0) {
-      const interval = setInterval(() => {
-        setRestTime(restTime - 1);
-      }, 1000);
+  // useEffect(() => {
+  //   if (isResting && restTime > 0) {
+  //     const interval = setInterval(() => {
+  //       setRestTime(restTime - 1);
+  //     }, 1000);
 
-      return () => clearInterval(interval);
-    }
-  }, [isResting, restTime]);
+  //     return () => clearInterval(interval);
+  //   }
+  // }, [isResting, restTime]);
 
   const getDataFromAsyncStorage = async () => {
     try {

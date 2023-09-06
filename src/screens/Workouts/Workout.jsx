@@ -19,6 +19,9 @@ import DoneButton from '../../components/buttons/DoneButton';
 import CancelButton from '../../components/buttons/CancelButton';
 import RestButton from '../../components/buttons/RestButton';
 
+import useRestTimer from '../../hooks/useRestTimer';
+
+
 import { Audio } from 'expo-av';
 import styles from './style';
 
@@ -46,6 +49,9 @@ const WorkoutScreen = ({navigation}) => {
   const [exerciseReps, setExerciseReps] = useState(ExerciseService.increaseRepsByLevel(exercises[0], level));
   const [totalReps, setTotalReps] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
+
+  useRestTimer(isResting, restTime, setIsResting, setRestTime);
+
   
   useEffect(() => {
     getDataFromAsyncStorage();
@@ -60,24 +66,24 @@ const WorkoutScreen = ({navigation}) => {
     storeData();
   }, [level, exerciseIndex, currentSet, totalReps]);
 
-  useEffect(() => {
-    console.log(isResting, "Resting" ,restTime)
-    if (isResting && restTime > 0) {
-      console.log(isResting, "Resting" ,restTime)
+  // useEffect(() => {
+  //   console.log(isResting, "Resting" ,restTime)
+  //   if (isResting && restTime > 0) {
+  //     console.log(isResting, "Resting" ,restTime)
      
-      const interval = setInterval(() => {
-        setRestTime(restTime - 1);
-      }, 1000);
+  //     const interval = setInterval(() => {
+  //       setRestTime(restTime - 1);
+  //     }, 1000);
 
-      if (restTime < 2){
-        setIsResting(false);
-        console.log("Rest Atlandı")// done.
-      }
-      return () =>   clearInterval(interval) 
+  //     if (restTime < 2){
+  //       setIsResting(false);
+  //       console.log("Rest Atlandı")// done.
+  //     }
+  //     return () =>   clearInterval(interval) 
 
      
-    }
-  }, [isResting, restTime]);
+  //   }
+  // }, [isResting, restTime]);
 
   const getDataFromAsyncStorage = async () => {
     try {

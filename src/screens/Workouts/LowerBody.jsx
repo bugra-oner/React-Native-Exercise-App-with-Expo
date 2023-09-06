@@ -15,6 +15,9 @@ import DoneButton from '../../components/buttons/DoneButton';
 
 import WorkoutCompletionModal from '../../components/modals/WorkoutModals';
 
+import useRestTimer from '../../hooks/useRestTimer';
+
+
 import styles from './style';
 
 import { useTranslation } from 'react-i18next'
@@ -47,6 +50,8 @@ const LowerBody = ({navigation}) => {
   const [modalVisible,setModalVisible] = useState(false);
 
 
+  useRestTimer(isResting, restTime, setIsResting, setRestTime);
+
   useEffect(() => {
     getDataFromAsyncStorage();
   }, []);
@@ -60,15 +65,15 @@ const LowerBody = ({navigation}) => {
     storeData();
   }, [level, exerciseIndex, currentSet, totalReps]);
 
-  useEffect(() => {
-    if (isResting && restTime > 0) {
-      const interval = setInterval(() => {
-        setRestTime(restTime - 1);
-      }, 1000);
+  // useEffect(() => {
+  //   if (isResting && restTime > 0) {
+  //     const interval = setInterval(() => {
+  //       setRestTime(restTime - 1);
+  //     }, 1000);
 
-      return () => clearInterval(interval);
-    }
-  }, [isResting, restTime]);
+  //     return () => clearInterval(interval);
+  //   }
+  // }, [isResting, restTime]);
 
   const getDataFromAsyncStorage = async () => {
     try {
