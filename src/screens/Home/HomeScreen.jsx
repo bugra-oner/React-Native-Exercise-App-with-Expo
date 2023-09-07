@@ -28,11 +28,12 @@ import { wp } from '../../utils';
 
 import useFlashMessage from '../../hooks/FlashMessage';
 
-export default function HomeScreen({navigation}) {
+export default function HomeScreen({navigation,route}) {
 
   const {showFlashMessage} =  useFlashMessage();
 
   const { t, i18n } = useTranslation();
+
 
   const [completedWorkouts,setCompletedWorkouts] = useState(0);
   const [level, setLevel] = useState(1);
@@ -76,8 +77,12 @@ export default function HomeScreen({navigation}) {
 }
 
   useEffect(() => {
-    handleFlashMessage("Homepage","WorkoutCompletedTitle","success");
-  },[])
+    if (route.params && route.params.workoutStatus) {
+      handleFlashMessage("Homepage","WorkoutCompletedTitle","success");
+    }
+   
+    console.log(route.params)
+  },[route.params])
   
   return (
     <>

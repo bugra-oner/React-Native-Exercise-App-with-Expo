@@ -162,6 +162,7 @@ const WorkoutScreen = ({navigation}) => {
     setModalVisible(false);
   }
 
+
   const handleLevelUp =  async () => {
       //console.log("Handle Level Up");
       fullBodyWorkout['HomeFullBodyWorkout'].completedCount += 1;
@@ -170,7 +171,7 @@ const WorkoutScreen = ({navigation}) => {
       setLevel(level + 1);
       handleResetWorkout();
       setModalVisible(false);
-      
+      navigation.navigate('Home', {workoutStatus: true})
   };
 
   const exercise = exercises[exerciseIndex];

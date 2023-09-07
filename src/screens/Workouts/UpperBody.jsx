@@ -181,6 +181,7 @@ const UpperBodyScreen = ({navigation}) => {
             setLevel(level + 1)
             handleResetWorkout();
             setModalVisible(false);
+            navigation.navigate('Home', {workoutStatus: true})
 };
 
 
