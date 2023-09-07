@@ -67,8 +67,6 @@ export default function HomeScreen({navigation,route}) {
     // calculateStatistics();
   }, []);
 
-  
-
   const handleFlashMessage = async (firstTitle = 'DevelopmentInProgressTitle',
   secondTitle="DevelopmentInProgress",
   alert="warning"
@@ -80,8 +78,6 @@ export default function HomeScreen({navigation,route}) {
     if (route.params && route.params.workoutStatus) {
       handleFlashMessage("Homepage","WorkoutCompletedTitle","success");
     }
-   
-    console.log(route.params)
   },[route.params])
   
   return (

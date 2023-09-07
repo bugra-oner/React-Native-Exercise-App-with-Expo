@@ -73,7 +73,7 @@ export default function LevelSelector() {
         ))}
       </ScrollView>
       <View style={styles.buttonContainer}>
-        <Button title="Antrenmana başla" onPress={() => navigate('Workout')} />
+        {/* <Button title="Antrenmana başla" onPress={() => navigate('Workout')} /> */}
         <Button title="Seviye arttır" onPress={increaseLevel} />
       </View>
     </View>

@@ -10,7 +10,7 @@ function SplashScreen() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       navigation.navigate('BottomNavigator'); // Ana uygulamanın bulunduğu ekranın adını vermelisiniz
-    }, 1850); // 2 saniye
+    }, 2850); // 2 saniye
 
     return () => clearTimeout(timeout);
   }, []);
