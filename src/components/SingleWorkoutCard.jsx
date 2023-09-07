@@ -6,12 +6,14 @@ import colors from '../constants/colors';
 import { wp,fp,hp } from '../utils';
 
 
-export default function SingleWorkoutCard({ title, description, imageSource, onPress,level }) {
+export default function SingleWorkoutCard({ title, description, imageSource, onPress,level,
+  backgroundColor = '#F3F5FF'
+}) {
  
   
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
-      <View style={styles.contentContainer}>
+    <TouchableOpacity onPress={onPress} style={[styles.container,{backgroundColor : backgroundColor }]}>
+      <View style={[styles.contentContainer]}>
         <View style={styles.textContainer}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.description}>{description}</Text>
@@ -33,7 +35,6 @@ const styles = StyleSheet.create({
   container: {
     width: wp(44),
     padding: 23,
-    backgroundColor: '#F3F5FF',
     borderRadius: 13,
     borderColor: 'black',
     shadowColor: '#000000', // Gölgenin rengini burada belirleyebilirsiniz

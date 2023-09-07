@@ -177,6 +177,22 @@ export default function HomeScreen({navigation,route}) {
       </View>
   </View>
 </View>
+ <Text>Barfiks</Text>
+    <View style={styles.singleExercisesRow}>
+        <SingleWorkoutCard 
+      title={t('SitUps')}
+      description={t('SitupsDesc')}
+      imageSource={require('../../assets/cards/situps.jpg')}
+      onPress={()=> navigate('SitUps')}
+       />
+        <SingleWorkoutCard 
+      title={t('TricepsDips')}
+      description={t('TricepsDesc')}
+      imageSource={require('../../assets//cards/triceps.jpg')}
+      onPress={() => navigate('Triceps')}
+      backgroundColor={"#d3c1c1"}
+      />
+      </View>
       <View style={styles.ExtraView}>
       </View>
     </ScrollView> 
@@ -243,7 +259,7 @@ const styles = StyleSheet.create({
       marginBottom: 10,
     },
     ExtraView:{
-     height: 200,
+     height: 150,
     },
     proteinBarImage:{
       width: 100,
@@ -274,6 +290,8 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       columnGap : 10,
       marginVertical: 10,
+      alignContent: 'center',
+      alignSelf: 'center',
     }
     
 })
