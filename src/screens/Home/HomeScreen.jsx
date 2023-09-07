@@ -68,9 +68,16 @@ export default function HomeScreen({navigation}) {
 
   
 
-  const handleFlashMessage = async () =>{
-  showFlashMessage(`${t('DevelopmentInProgressTitle')}`, `${t('DevelopmentInProgress')}`, "warning")
+  const handleFlashMessage = async (firstTitle = 'DevelopmentInProgressTitle',
+  secondTitle="DevelopmentInProgress",
+  alert="warning"
+  ) =>{
+  showFlashMessage(`${t(firstTitle)}`, `${t(secondTitle)}`, alert)
 }
+
+  useEffect(() => {
+    handleFlashMessage("Homepage","WorkoutCompletedTitle","success");
+  },[])
   
   return (
     <>

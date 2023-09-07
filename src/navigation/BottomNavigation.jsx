@@ -43,6 +43,8 @@ import Squad from '../screens/Single/Squad';
 import Triceps from '../screens/Single/Triceps';
 
 
+
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -139,8 +141,6 @@ export const BottomNavigator = ({navigation}) => {
                     <Ionicons name="stats-chart" size={size} color={color} /> 
           )}}
 />
-          
-                     
                     {/* <Stack.Screen name="Profil" component={Profil}
                         options={{
                         tabBarLabel:"Profil",
@@ -150,6 +150,7 @@ export const BottomNavigator = ({navigation}) => {
                             )    
                          }}
                         /> */}
+                     
         </Tab.Navigator>
     );
   };
