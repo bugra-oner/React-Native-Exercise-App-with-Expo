@@ -177,7 +177,7 @@ export default function HomeScreen({navigation,route}) {
       </View>
   </View>
 </View>
- <Text>Barfiks</Text>
+ {/* <Text>Barfiks</Text>
     <View style={styles.singleExercisesRow}>
         <SingleWorkoutCard 
       title={t('SitUps')}
@@ -192,7 +192,7 @@ export default function HomeScreen({navigation,route}) {
       onPress={() => navigate('Triceps')}
       backgroundColor={"#d3c1c1"}
       />
-      </View>
+      </View> */}
       <View style={styles.ExtraView}>
       </View>
     </ScrollView> 
