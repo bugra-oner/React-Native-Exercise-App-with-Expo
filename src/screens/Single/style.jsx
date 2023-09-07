@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
       setsContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginBottom : hp(2)
+        marginTop: hp(2)
       },
       setTextContainer: {
         borderWidth: 1,

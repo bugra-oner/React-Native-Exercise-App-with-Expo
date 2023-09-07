@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import {  View, Text, TouchableOpacity, } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ProgressBar } from 'react-native-paper';
 import ExerciseService from '../../service/ExerciseService';
 
 import LottieView from 'lottie-react-native';
-
 import Header from '../../components/views/Header';
 import { useTranslation } from 'react-i18next';
 
 import LinearView from '../../components/views/LinearView';
-import colors from '../../constants/colors';
-
 import WorkoutCompletionModal from '../../components/modals/WorkoutModals';
-
 
 import DoneButton from '../../components/buttons/DoneButton';
 import CancelButton from '../../components/buttons/CancelButton';
 import RestButton from '../../components/buttons/RestButton';
-
 import useRestTimer from '../../hooks/useRestTimer';
 
 
-import { Audio } from 'expo-av';
 import styles from './style';
 
 const animations = {
@@ -50,6 +44,7 @@ const WorkoutScreen = ({navigation}) => {
   const [totalReps, setTotalReps] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
 
+
   useRestTimer(isResting, restTime, setIsResting, setRestTime);
 
   
@@ -66,24 +61,8 @@ const WorkoutScreen = ({navigation}) => {
     storeData();
   }, [level, exerciseIndex, currentSet, totalReps]);
 
-  // useEffect(() => {
-  //   console.log(isResting, "Resting" ,restTime)
-  //   if (isResting && restTime > 0) {
-  //     console.log(isResting, "Resting" ,restTime)
-     
-  //     const interval = setInterval(() => {
-  //       setRestTime(restTime - 1);
-  //     }, 1000);
-
-  //     if (restTime < 2){
-  //       setIsResting(false);
-  //       console.log("Rest Atlandı")// done.
-  //     }
-  //     return () =>   clearInterval(interval) 
-
-     
-  //   }
-  // }, [isResting, restTime]);
+  
+  
 
   const getDataFromAsyncStorage = async () => {
     try {
@@ -225,7 +204,6 @@ const WorkoutScreen = ({navigation}) => {
         ))}
       </View>
       <LottieView source={animations[exercise.image]} autoPlay loop style={styles.image} 
-        
       />
       <ProgressBar progress={currentSet / exercise.sets} color="#00ff00" />
       {isResting && <Text style={styles.restTimeText}>Rest Time: {restTime}</Text>}

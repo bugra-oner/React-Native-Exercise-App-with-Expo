@@ -66,7 +66,7 @@ export default function HomeScreen({navigation}) {
     // calculateStatistics();
   }, []);
 
-  const loadData = async () => {}
+  
 
   const handleFlashMessage = async () =>{
   showFlashMessage(`${t('DevelopmentInProgressTitle')}`, `${t('DevelopmentInProgress')}`, "warning")

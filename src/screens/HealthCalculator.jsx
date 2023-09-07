@@ -16,6 +16,7 @@ import Header from '../components/views/Header';
 import GradientButton from '../components/buttons/GradientButton';
 
 
+import { hp } from '../utils';
 
 
 
@@ -206,7 +207,7 @@ const HealthCalculator = ({ navigation }) => {
             selectedValue={gender}
             onValueChange={value => setGender(value)}
           />
-          <GradientButton title={t("Calculated")} onPress={handleCalculatePress} />
+          <GradientButton title={t("Calculated")} style={styles.GradientButton} onPress={handleCalculatePress} />
         </View>
         {bmi !== null && (
           <View style={styles.resultContainer}>
@@ -236,7 +237,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: '#ffffff',
-    marginTop: "30%"
+    justifyContent : "center"
   },
   title: {
     fontSize: 20,
@@ -269,6 +270,13 @@ const styles = StyleSheet.create({
     color: 'gray',
     maxWidth: "94%"
   },
+  GradientButton:{
+    height: hp(7),
+    borderRadius: 7,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: hp(1.2),
+  }
 });
 
 export default HealthCalculator;

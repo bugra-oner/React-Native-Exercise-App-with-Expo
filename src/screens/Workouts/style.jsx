@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
       setsContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
-        backgroundColor :"red',"
+        marginTop: hp(2)
       },
       setTextContainer: {
         borderWidth: 1,
@@ -51,6 +51,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginVertical : 15,
       },
+      test:{
+        backgroundColor : 'red',
+        width : 100,
+        height : 100,
+        borderRadius : 100,
+      }
 });
 
 export default styles;
