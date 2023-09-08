@@ -135,6 +135,7 @@
     "healthInfoSubTitle": "Body Mass Index, Calorie, and Water Calculations.",
     "Health": "Health",
     "DevelopmentInProgress": "This area is under development, stay tuned for future updates!",
-    "DevelopmentInProgressTitle": "Development In Progress"
+    "DevelopmentInProgressTitle": "Development In Progress",
+    "Gram" : "Grams"
 
 }

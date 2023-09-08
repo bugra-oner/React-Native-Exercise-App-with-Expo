@@ -26,6 +26,7 @@ const ProteinCard = () => {
   const saveProteinAmountToStorage = async (proteinAmount) => {
     try {
       await AsyncStorage.setItem('proteinAmount', proteinAmount.toString());
+      console.log('setProteinAmount', proteinAmount)
       //console.log('Protein amount saved to AsyncStorage:', proteinAmount);
     } catch (error) {
       //console.log('Error saving protein amount to AsyncStorage:', error);

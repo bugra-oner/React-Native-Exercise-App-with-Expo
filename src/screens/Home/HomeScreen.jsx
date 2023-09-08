@@ -5,7 +5,6 @@ import ExerciseService from '../../service/ExerciseService';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Spacing from '../../components/views/Spacing';
-
 import CreaterCard from '../../components/Cards/CreateCard';
 import SvgCard from '../../components/Cards/SvgCard';
 import colors from '../../constants/colors';
@@ -21,6 +20,7 @@ import Header from '../../components/views/Header';
 // import ImageCard from '../../components/Cards/ImageCard';
 import ProteinCard from '../../components/Cards/ProteinCard';
 import SingleWorkoutCard from '../../components/SingleWorkoutCard';
+import getProteinAmountFromStorage from '../../helpers/storageHelpers';
 
 
 import { wp } from '../../utils';
@@ -32,15 +32,14 @@ export default function HomeScreen({navigation,route}) {
 
   const {showFlashMessage} =  useFlashMessage();
 
-  const { t, i18n } = useTranslation();
-
-
+  const { t } = useTranslation();
   const [completedWorkouts,setCompletedWorkouts] = useState(0);
   const [level, setLevel] = useState(1);
   const [workout2Level, setWorkout2Level] = useState(1);
   const [workout3Level, setWorkout3Level] = useState(1);
   const [totalWorkouts, setTotalWorkouts] = useState(0);
   const [totalReps, setTotalReps] = useState(0);
+  const [protein, setProtein] = useState("")
 
   
 
@@ -53,18 +52,24 @@ export default function HomeScreen({navigation,route}) {
     setWorkout3Level(workout3Level);
   };
 
-  // const calculateStatistics = () => {
-  //   const { totalWorkouts, totalReps } = ExerciseService.calculateStatistics();
-  //   setTotalWorkouts(totalWorkouts);
-  //   setTotalReps(totalReps);
-  // };
-
+  getProteinAmountFromStorage()
+  .then((proteinAmount) => {
+    // proteinAmount değişkeni, AsyncStorage'den alınan protein miktarını içerecektir
+    // console.log('Protein Amount:', proteinAmount);
+    setProtein(proteinAmount)
+    // console.log(protein)
+    // console.log(typeof(protein))
+  })
+  .catch((error) => {
+    // Hata durumunda burası çalışır
+    console.error('Error:', error);
+  });
+  
   useEffect(() => {
     const { totalWorkouts, totalReps } = ExerciseService.calculateStatistics();
     setTotalWorkouts(totalWorkouts);
     setTotalReps(totalReps);
     loadLevels();
-    // calculateStatistics();
   }, []);
 
   const handleFlashMessage = async (firstTitle = 'DevelopmentInProgressTitle',
@@ -98,7 +103,7 @@ export default function HomeScreen({navigation,route}) {
         <SvgCard title={t('Completed')} subTitle={`${totalWorkouts}` + "" + t('Exercise')} />
         <View style={styles.buttonsContainer}>
         <ButtonCard  
-        title="Program" subTitle={"3" + " " + t(`Exercise`)} />
+        title="Protein" subTitle={`${protein != "" ? protein.slice(0,2) : 0}` + " " + t(`Gram`)} />
         <Spacing 
           size={15}
         />
