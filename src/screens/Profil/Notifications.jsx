@@ -90,9 +90,9 @@ const Notification = ({ navigation }) => {
         <Text style={styles.saveButtonText}>Kaydet</Text>
       </TouchableOpacity>
       
-      <TouchableOpacity style={styles.saveButton} onPress={() => navigation.navigate('Test')}>
+       <TouchableOpacity style={styles.saveButton} onPress={() => navigation.navigate('Test')}>
         <Text style={styles.saveButtonText}>TESTE GİT</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> 
       
     </View>
   );
