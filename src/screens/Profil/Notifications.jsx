@@ -89,6 +89,11 @@ const Notification = ({ navigation }) => {
       <TouchableOpacity style={styles.saveButton} onPress={handleSaveSettings}>
         <Text style={styles.saveButtonText}>Kaydet</Text>
       </TouchableOpacity>
+      
+      <TouchableOpacity style={styles.saveButton} onPress={() => navigation.navigate('Test')}>
+        <Text style={styles.saveButtonText}>TESTE GİT</Text>
+      </TouchableOpacity>
+      
     </View>
   );
 };

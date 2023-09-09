@@ -102,6 +102,7 @@ const StatisticsScreen = ({navigation}) => {
       <Text style={styles.subTitle}>{t('ExercisesWithoutEquipment')}</Text>
       {fullBodyWorkoutStats && (
       <WorkoutsCard
+        image={"push_ups"}
         title={t('FullBodyWorkout')}
         subTitle={i18n.t('FullBodyDesc')}
         level={fullBodyWorkoutStats.HomeFullBodyWorkout?.level || 1} 
@@ -109,6 +110,7 @@ const StatisticsScreen = ({navigation}) => {
     )}
     {upperBodyWorkoutStats && (
       <WorkoutsCard
+      image={"sit_ups"}
       title={t('UpperBodyWorkout')} 
       subTitle={i18n.t('UpperBodyDesc')}
       level={upperBodyWorkoutStats.UpperBodyWorkout?.level || 1} 
@@ -116,6 +118,7 @@ const StatisticsScreen = ({navigation}) => {
     )}
     {lowerBodyWorkoutStats && (
       <WorkoutsCard
+      image={"calf_raises"}
       title={t('LowerBodyWorkout')}
       level={lowerBodyWorkoutStats.HomeLowerBodyWorkout?.level || 1}
       subTitle={i18n.t('LowerBodyDesc')}

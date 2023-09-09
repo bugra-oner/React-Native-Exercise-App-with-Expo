@@ -42,6 +42,8 @@ import SitUps from '../screens/Single/SitUps';
 import Squad from '../screens/Single/Squad';
 import Triceps from '../screens/Single/Triceps';
 
+import Test from '../screens/Profil/Test';
+
 
 
 
@@ -86,6 +88,7 @@ export default function BottomStackNavigator(){
                  <Stack.Screen name="Profil" component={Profil} />
                  <Stack.Screen name="Policy" component={Policy} />
                  <Stack.Screen name="SplashScreen" component={SplashScreen} />
+                 <Stack.Screen name= "Test" component={Test} />
         </Stack.Navigator>
     )
 }
