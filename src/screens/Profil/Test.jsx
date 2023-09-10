@@ -11,7 +11,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-export default function Test() {
+export default function Test({navigation}) {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
@@ -53,6 +53,9 @@ export default function Test() {
           await schedulePushNotification();
         }}
       />
+      <Button title="Go back"
+      onPress={() => navigation.goBack()}
+      />
     </View>
   );
 }
@@ -60,8 +63,8 @@ export default function Test() {
 async function schedulePushNotification() {
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: "You've got mail! 📬",
-      body: 'Here is the notification body',
+      title: "Antreman Zamanı 📬",
+      body: 'Günlük antreman vaktini kaçırma!',
       data: { data: 'goes here' },
     },
     trigger: { seconds: 2 },

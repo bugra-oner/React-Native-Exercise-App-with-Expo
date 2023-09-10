@@ -9,7 +9,12 @@ import useFlashMessage from '../../hooks/FlashMessage';
 
 import { useTranslation } from 'react-i18next';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 const NotificationItem = ({ label, isChecked, toggleSwitch }) => (
+
+  
   
 
   <View style={styles.notificationItem}>
@@ -29,6 +34,11 @@ const Notification = ({ navigation }) => {
   const { t } = useTranslation();
 
   const { showFlashMessage } =  useFlashMessage();
+
+  useEffect(() => {
+    // showFlashMessage(`${t('DevelopmentInProgressTitle')}`, `${t('DevelopmentInProgress')}`, "warning");
+
+  },[])
   
   const [notificationSettings, setNotificationSettings] = useState({
     notification1: false,
@@ -39,7 +49,7 @@ const Notification = ({ navigation }) => {
 
   const _HeaderView = () => (
     <Header
-      title="Bildirimler"
+      title={t('Notifications')}
       LeftIconOnPress={() => navigation.goBack()}
       RightIconOnPress={() => navigation.navigate('Notifications')}
       LeftIcon="chevron-left"
@@ -48,41 +58,110 @@ const Notification = ({ navigation }) => {
     />
   );
   const handleToggleSwitch = (key) => {
-    setNotificationSettings({ ...notificationSettings, [key]: !notificationSettings[key] });
+        setNotificationSettings((prevSettings) => ({
+          notification1: key === 'notification1' && true,
+          notification2: key === 'notification2' && true,
+          notification3: key === 'notification3' && true,
+          notification4: key === 'notification4' && true,
+        }));
+      };
+   
+  
+
+  const handleSaveSettings = async () => {
+    try {
+      // Kullanıcının seçtiği bildirim aralığını alın
+      let selectedInterval = null;
+      if (notificationSettings.notification1) {
+        selectedInterval = 24; // 24 saat seçildi
+      } else if (notificationSettings.notification2) {
+        selectedInterval = 36; // 36 saat seçildi
+      } else if (notificationSettings.notification3) {
+        selectedInterval = 48; // 48 saat seçildi
+      }
+      else if(notificationSettings.notification4){
+        selectedInterval = false; 
+      }
+      console.log(notificationSettings.notification4); 
+  
+      // Seçilen bildirim aralığını saklayın
+      if (selectedInterval !== null) {
+        await AsyncStorage.setItem('notification_interval', selectedInterval.toString());
+      }
+
+      // Diğer bildirimleri otomatik olarak kapatın
+    setNotificationSettings((prevSettings) => ({
+      notification1: prevSettings.notification1 && selectedInterval === 24,
+      notification2: prevSettings.notification2 && selectedInterval === 36,
+      notification3: prevSettings.notification3 && selectedInterval === 48,
+      notification4: prevSettings.notification4,
+    }));
+
+    // Bildirimleri ayarları kaydedebilirsiniz
+     console.log(notificationSettings);
+  } catch (error) {
+    console.error('Bildirim ayarlarını kaydetme hatası:', error);
+  }
+
+}
+
+
+
+const getNotificationInterval = async () => {
+  try {
+    const interval = await AsyncStorage.getItem('notification_interval');
+    console.log(interval)
+    return interval ? parseInt(interval) : 24; // Varsayılan olarak 24 saat
+  } catch (error) {
+    console.error('Bildirim aralığı okuma hatası:', error);
+    return 24; // Varsayılan olarak 24 saat
+  }
+};
+  
+useEffect(() => {
+  // Sayfa açıldığında kaydedilen bildirim aralığını alın
+  const loadNotificationInterval = async () => {
+    const interval = await getNotificationInterval();
+    
+    // Seçilen bildirim aralığına göre switch işlemlerini ayarlayın
+    setNotificationSettings({
+      notification1: interval === 24,
+      notification2: interval === 36,
+      notification3: interval === 48,
+      notification4: notificationSettings.notification4,
+    });
   };
 
-  const handleSaveSettings = () => {
-    // burada bildirim ayarlarını kaydedebilirsiniz
-    //console.log(notificationSettings);
-  };
+  loadNotificationInterval();
+}, []);
 
-  useEffect(() => {
-    showFlashMessage(`${t('DevelopmentInProgressTitle')}`, `${t('DevelopmentInProgress')}`, "warning");
-  },[])
+
   
 
   return (
     <View style={styles.container}>
-      <_HeaderView />
+      <_HeaderView 
+        
+      />
       <Text style={styles.title}>... Kategori</Text>
       <NotificationItem
-        label="Bildirim 1"
+        label="24 Saate bir"
         isChecked={notificationSettings.notification1}
         toggleSwitch={() => handleToggleSwitch('notification1')}
       />
       <NotificationItem
-        label="Bildirim 2"
+        label="36 Saate bir"
         isChecked={notificationSettings.notification2}
         toggleSwitch={() => handleToggleSwitch('notification2')}
       />
       <NotificationItem
-        label="Bildirim 3"
+        label="48 Saate bir"
         isChecked={notificationSettings.notification3}
         toggleSwitch={() => handleToggleSwitch('notification3')}
       />
       <Text style={styles.title}>.... Kategori </Text>
       <NotificationItem
-        label="Bildirim 4"
+        label="Bildirimleri Kapat"
         isChecked={notificationSettings.notification4}
         toggleSwitch={() => handleToggleSwitch('notification4')}
       />
@@ -90,9 +169,9 @@ const Notification = ({ navigation }) => {
         <Text style={styles.saveButtonText}>Kaydet</Text>
       </TouchableOpacity>
       
-       <TouchableOpacity style={styles.saveButton} onPress={() => navigation.navigate('Test')}>
+       {/* <TouchableOpacity style={styles.saveButton} onPress={() => navigation.navigate('Test')}>
         <Text style={styles.saveButtonText}>TESTE GİT</Text>
-      </TouchableOpacity> 
+      </TouchableOpacity>  */}
       
     </View>
   );
