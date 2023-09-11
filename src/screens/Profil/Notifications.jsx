@@ -91,9 +91,9 @@ const Notification = ({ navigation }) => {
         selectedInterval = 48; // 48 saat seçildi
       }
       else if(notificationSettings.notification4){
-        selectedInterval = false; 
+        selectedInterval = 0; 
       }
-      console.log(notificationSettings.notification4); 
+      
   
       // Seçilen bildirim aralığını saklayın
       if (selectedInterval !== null) {
@@ -109,9 +109,9 @@ const Notification = ({ navigation }) => {
     }));
 
     // Bildirimleri ayarları kaydedebilirsiniz
-     console.log(notificationSettings);
+    //  console.log(notificationSettings);
   } catch (error) {
-    console.error('Bildirim ayarlarını kaydetme hatası:', error);
+    // console.error('Bildirim ayarlarını kaydetme hatası:', error);
   }
 
 }
@@ -121,10 +121,10 @@ const Notification = ({ navigation }) => {
 const getNotificationInterval = async () => {
   try {
     const interval = await AsyncStorage.getItem('notification_interval');
-    console.log(interval)
+    // console.log("interval",interval)
     return interval ? parseInt(interval) : 24; // Varsayılan olarak 24 saat
   } catch (error) {
-    console.error('Bildirim aralığı okuma hatası:', error);
+    // console.error('Bildirim aralığı okuma hatası:', error);
     return 24; // Varsayılan olarak 24 saat
   }
 };
@@ -132,14 +132,15 @@ const getNotificationInterval = async () => {
 useEffect(() => {
   // Sayfa açıldığında kaydedilen bildirim aralığını alın
   const loadNotificationInterval = async () => {
-    const interval = await getNotificationInterval();
+    const interval = await getNotificationInterval()
+    // console.log("interval, useEffect",interval)
     
     // Seçilen bildirim aralığına göre switch işlemlerini ayarlayın
     setNotificationSettings({
       notification1: interval === 24,
       notification2: interval === 36,
       notification3: interval === 48,
-      notification4: notificationSettings.notification4,
+      notification4: interval === 0,
     });
   };
 

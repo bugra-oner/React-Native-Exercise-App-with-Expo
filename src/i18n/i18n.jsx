@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 import en from './locales/en.json';
 import tr from './locales/tr.json';
+import es from './locales/es.json';
 
 const useSetLanguage = () => {
   const [isLanguageLoaded, setLanguageLoaded] = useState(false);
@@ -29,6 +30,7 @@ i18n.use(initReactI18next).init({
   resources: {
     en: { translation: en },
     tr: { translation: tr },
+    es : { translation: es},
   },
   lng: 'en', 
   fallbackLng: 'en',

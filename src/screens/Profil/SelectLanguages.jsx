@@ -85,6 +85,16 @@ export default function Languages({ navigation }) {
           />
         </TouchableOpacity>
         <View style={styles.separator}></View>
+        <TouchableOpacity style={styles.Button} onPress={() => setChangeLanguage('es')}>
+          <Text style={styles.text}>{t('Turkish')}</Text>
+          <MaterialCommunityIcons
+            style={{ marginRight: wp(3) }}
+            color={changeLanguage === 'es' ? 'green' : 'black'}
+            name={changeLanguage === 'es' ? 'check' : 'chevron-right'}
+            size={20}
+          />
+        </TouchableOpacity>
+        <View style={styles.separator}></View>
         {/*waiting for translation*/}
         {/*
         <TouchableOpacity style={styles.button} onPress={() => i18n.changeLanguage('tr')}>
@@ -160,7 +170,7 @@ const styles = StyleSheet.create({
   ButtonContainer: {
     backgroundColor: 'white',
     width: wp(90),
-    height: hp(10),
+    height: hp(15),
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
