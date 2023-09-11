@@ -135,6 +135,11 @@
       "Health": "Sağlık",
       "DevelopmentInProgress": "Burası geliştirme aşamasındadır, gelecek güncellemeleri takip et!",
       "DevelopmentInProgressTitle": "Geliştirme Sürecinde",
-      "Gram": "Gram"
+      "Gram": "Gram",
+      "Save": "Kaydet",
+      "AllClose": "Tümünü Kapat",
+      "24Hours": "24 Saate bir",
+      "36Hours": "36 Saate bir",
+      "48Hours" : "48 Saate bir"
   }
   

@@ -80,11 +80,11 @@ const styles = StyleSheet.create({
     backgroundColor : '#F3F5FF',
     borderRadius: 5,
     width: "60%",
-    height: "25%",
     textAlign : 'center',
     alignItems: 'center',
     justifyContent: 'center', // Aynı zamanda yazıyı yatayda ve dikeyde ortalayacağız
-    marginTop : '8%',
+    marginTop : '6%',
+    padding: 5,
   },
   buttonText:{
     color: '#3d4160',

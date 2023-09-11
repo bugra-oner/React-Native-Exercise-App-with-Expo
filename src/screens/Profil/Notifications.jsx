@@ -1,21 +1,32 @@
 import Header from '../../components/views/Header';
 
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useRef } from 'react';
 import { View, Text, StyleSheet, Switch, TouchableOpacity } from 'react-native';
 
 import { hp,fp,wp } from '../../utils';
 
 import useFlashMessage from '../../hooks/FlashMessage';
+import { useNotificationScheduling } from '../../hooks/useNotificationScheduling';
 
 import { useTranslation } from 'react-i18next';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import GradientButton from '../../components/buttons/GradientButton';
+
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 
 const NotificationItem = ({ label, isChecked, toggleSwitch }) => (
-
-  
-  
 
   <View style={styles.notificationItem}>
     <Text style={styles.notificationLabel}>{label}</Text>
@@ -31,14 +42,79 @@ const NotificationItem = ({ label, isChecked, toggleSwitch }) => (
 
 const Notification = ({ navigation }) => {
 
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
+  const { interval } = useNotificationScheduling(); 
+
+  useEffect(() => {
+  registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+
+    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      setNotification(notification);
+    });
+
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      //console.log(response);
+    });
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
+  
+async function schedulePushNotification() {
+  await Notifications.scheduleNotificationAsync({
+    content: {
+      title: "Antreman Zamanı 📬",
+      body: 'Günlük antreman vaktini kaçırma!',
+    },
+    trigger: { seconds: 2 },
+    repeat : true
+});
+}
+
+async function registerForPushNotificationsAsync() {
+  let token;
+
+  if (Platform.OS === 'android') {
+    await Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#FF231F7C',
+    });
+  }
+
+  if (Device.isDevice) {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      // alert('Failed to get push token for push notification!');
+      return;
+    }
+    // Learn more about projectId:
+    // https://docs.expo.dev/push-notifications/push-notifications-setup/#configure-projectid
+    token = (await Notifications.getExpoPushTokenAsync({ projectId: 'f52537d0-aa92-4234-8be2-5141ba3c76b2' })).data;
+    //console.log(token);
+  } else {
+    // alert('Must use physical device for Push Notifications');
+  }
+
+  return token;
+}
   const { t } = useTranslation();
 
   const { showFlashMessage } =  useFlashMessage();
 
-  useEffect(() => {
-    // showFlashMessage(`${t('DevelopmentInProgressTitle')}`, `${t('DevelopmentInProgress')}`, "warning");
-
-  },[])
+  
   
   const [notificationSettings, setNotificationSettings] = useState({
     notification1: false,
@@ -93,12 +169,16 @@ const Notification = ({ navigation }) => {
       else if(notificationSettings.notification4){
         selectedInterval = 0; 
       }
-      
-  
-      // Seçilen bildirim aralığını saklayın
-      if (selectedInterval !== null) {
-        await AsyncStorage.setItem('notification_interval', selectedInterval.toString());
+
+       try {
+        if (selectedInterval !== null) {
+          await AsyncStorage.setItem('notification_interval', selectedInterval.toString());
+          schedulePushNotification();
+        }
+      } catch (error) {
+        console.error('Bildirim ayarlarını kaydetme hatası:', error);
       }
+      
 
       // Diğer bildirimleri otomatik olarak kapatın
     setNotificationSettings((prevSettings) => ({
@@ -110,6 +190,7 @@ const Notification = ({ navigation }) => {
 
     // Bildirimleri ayarları kaydedebilirsiniz
     //  console.log(notificationSettings);
+    showFlashMessage(`${t('DevelopmentInProgressTitle')}`, `${t('DevelopmentInProgress')}`, "warning");
   } catch (error) {
     // console.error('Bildirim ayarlarını kaydetme hatası:', error);
   }
@@ -155,32 +236,31 @@ useEffect(() => {
       <_HeaderView 
         
       />
-      <Text style={styles.title}>... Kategori</Text>
+      <Text style={styles.title}>Antremanları Hatırlat</Text>
       <NotificationItem
-        label="24 Saate bir"
+        label={t('24Hours')}
         isChecked={notificationSettings.notification1}
         toggleSwitch={() => handleToggleSwitch('notification1')}
       />
       <NotificationItem
-        label="36 Saate bir"
+        label={t('24Hours')}
         isChecked={notificationSettings.notification2}
         toggleSwitch={() => handleToggleSwitch('notification2')}
       />
       <NotificationItem
-        label="48 Saate bir"
+        label={t('48Hours')}
         isChecked={notificationSettings.notification3}
         toggleSwitch={() => handleToggleSwitch('notification3')}
       />
-      <Text style={styles.title}>.... Kategori </Text>
+      <Text style={styles.title}>t{'AllClose'}</Text>
       <NotificationItem
-        label="Bildirimleri Kapat"
+        label={t('AllClose')}
         isChecked={notificationSettings.notification4}
         toggleSwitch={() => handleToggleSwitch('notification4')}
       />
-      <TouchableOpacity style={styles.saveButton} onPress={handleSaveSettings}>
-        <Text style={styles.saveButtonText}>Kaydet</Text>
-      </TouchableOpacity>
-      
+      <GradientButton style={styles.saveButton} onPress={handleSaveSettings}
+          title={t('Save')}
+      />
        {/* <TouchableOpacity style={styles.saveButton} onPress={() => navigation.navigate('Test')}>
         <Text style={styles.saveButtonText}>TESTE GİT</Text>
       </TouchableOpacity>  */}
@@ -207,9 +287,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#a1a1a1',
+    backgroundColor: '#a879e6',
     width: wp(90),
-    height: hp(5.5),
+    height: hp(5.9),
     borderRadius: 15,
     marginTop: hp(2),
     shadowColor: 'black',
@@ -228,8 +308,8 @@ const styles = StyleSheet.create({
   },
   saveButton: {
     backgroundColor: '#2E8B57',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
+    paddingVertical: 6,
+    paddingHorizontal: 20,
     borderRadius: 8,
     marginTop: 24,
     alignSelf: 'center',

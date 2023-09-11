@@ -136,7 +136,12 @@
     "Health": "Health",
     "DevelopmentInProgress": "This area is under development, stay tuned for future updates!",
     "DevelopmentInProgressTitle": "Development In Progress",
-    "Gram" : "Grams"
+    "Gram" : "Grams",
+    "Save": "Save",
+    "AllClose": "Disable all",
+    "24Hours": "Every 24 hours",
+    "36Hours": "Every 36 hours",
+    "48Hours": "Every 48 hours"
     
 
 }
