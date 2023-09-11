@@ -234,9 +234,8 @@ useEffect(() => {
   return (
     <View style={styles.container}>
       <_HeaderView 
-        
       />
-      <Text style={styles.title}>Antremanları Hatırlat</Text>
+      <Text style={styles.title}>{t('Remind About Workouts')}</Text>
       <NotificationItem
         label={t('24Hours')}
         isChecked={notificationSettings.notification1}
@@ -252,7 +251,7 @@ useEffect(() => {
         isChecked={notificationSettings.notification3}
         toggleSwitch={() => handleToggleSwitch('notification3')}
       />
-      <Text style={styles.title}>t{'AllClose'}</Text>
+      <Text style={styles.title}>{t('AllClose')}</Text>
       <NotificationItem
         label={t('AllClose')}
         isChecked={notificationSettings.notification4}

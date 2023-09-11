@@ -13,7 +13,7 @@ export default function Account({ navigation }) {
   return (
     <>
       <Header
-        title={'Kişisel Bilgiler'}
+        title={'PersonelI'}
         LeftIconOnPress={() => navigation.goBack()}
         RightIconOnPress={() => navigate('Notifications')}
         RightIcon="bell-outline"

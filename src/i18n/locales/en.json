@@ -141,7 +141,8 @@
     "AllClose": "Disable all",
     "24Hours": "Every 24 hours",
     "36Hours": "Every 36 hours",
-    "48Hours": "Every 48 hours"
+    "48Hours": "Every 48 hours",
+    "Reminder" : "Remind About Workouts"
     
 
 }
