@@ -58,14 +58,25 @@ const Notification = ({ navigation }) => {
     />
   );
   const handleToggleSwitch = (key) => {
-        setNotificationSettings((prevSettings) => ({
-          notification1: key === 'notification1' && true,
-          notification2: key === 'notification2' && true,
-          notification3: key === 'notification3' && true,
-          notification4: key === 'notification4' && true,
-        }));
-      };
-   
+    if (key === 'notification4') {
+      // "Bildirimleri Kapat" seçeneği seçildiğinde diğer bildirimleri kapat
+      setNotificationSettings((prevSettings) => ({
+        notification1: false,
+        notification2: false,
+        notification3: false,
+        notification4: !prevSettings.notification4, // "Bildirimleri Kapat" seçeneği durumunu tersine çevir
+      }));
+    } else {
+      // Diğer bildirimler seçildiğinde "Bildirimleri Kapat" seçeneğini kapat
+      setNotificationSettings((prevSettings) => ({
+        notification1: key === 'notification1'  && !prevSettings.notification1,
+        notification2: key === 'notification2' && !prevSettings.notification2,
+        notification3: key === 'notification3'&& !prevSettings.notification3,
+        notification4: false, // Diğer bildirimler seçildiğinde "Bildirimleri Kapat" seçeneğini kapat
+      }));
+    }
+  };
+  
   
 
   const handleSaveSettings = async () => {
