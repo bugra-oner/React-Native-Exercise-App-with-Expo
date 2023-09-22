@@ -32,7 +32,7 @@ export default StyleSheet.create({
   input: {
     width: wp(90),
     height: hp(5.5),
-    backgroundColor: "white",
+    backgroundColor: "#ffffff",
     borderRadius: 5,
     marginTop: hp(1.5),
     alignSelf: 'center',

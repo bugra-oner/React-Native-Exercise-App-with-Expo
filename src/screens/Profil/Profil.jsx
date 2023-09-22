@@ -81,6 +81,7 @@ export default function Profil({ navigation }) {
             onPress={() => navigate("Notifications")}
           />
         </View> 
+        <Text style={styles.HeaderText}>{t('Other')}</Text>
           <View style={styles.AccountContainer}>
             <SpacingButton
               text={t("ReportSystem")}
@@ -108,7 +109,7 @@ export default function Profil({ navigation }) {
             style={styles.Logo}
           />
           <Text style={styles.Version}>
-            {t("Version")} 1.0.4
+            {t("Version")} 1.0.6
           </Text>
           </View>
       </View>

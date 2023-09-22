@@ -213,8 +213,8 @@ const WorkoutScreen = ({navigation}) => {
       <View style={styles.buttonContainer}>
       {!isResting &&
         (exerciseIndex < exercises.length - 1 || currentSet < exercises[exerciseIndex].sets ?
-          <DoneButton title={t("CompleteSet")}  onPress={handleCompleteSet} /> :
-          <DoneButton title={t("CompleteExc")}   onPress={() => setModalVisible(true)} />
+          <DoneButton title={t("CompleteSet")} fontSize={17}  onPress={handleCompleteSet} /> :
+          <DoneButton title={t("CompleteExc")} fontSize={13}  onPress={() => setModalVisible(true)} />
         )
       }
       {isResting && <RestButton title={t("SkipRest")} onPress={() => setIsResting(false)} />}

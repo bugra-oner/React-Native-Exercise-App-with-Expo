@@ -21,7 +21,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomColor: '#d6d6cd',
+    borderBottomColor: '#cdd3d6',
     borderBottomWidth: wp(0.26),
     borderStyle: 'solid',
     alignSelf: 'center',
@@ -46,7 +46,7 @@ export default StyleSheet.create({
     opacity: 0.5,
   },
   AccountContainer: {
-    backgroundColor: 'white',
+    backgroundColor: '#F5F5FF',
     width: wp(90),
     height: hp(10),
     borderRadius: 20,
@@ -92,14 +92,15 @@ export default StyleSheet.create({
     alignItems: 'center', // Yatayda ortala
   },
   Logo:{
-    width: 80,
-    height: 80,
+    width: wp(16),
+    height: hp(9),
     borderRadius: 20,
-    marginVertical: 10,
+    marginVertical: 5,
   },
   Version:{
    alignSelf: 'center',
-   fontWeight : '800',
+   fontWeight : '700',
+   fontSize:  fp(2),
   }
     
 });

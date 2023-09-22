@@ -8,7 +8,7 @@ import { hp, fp, wp } from '../../utils';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#ffffff",
   },
   HeaderText: {
     fontSize: 18,
