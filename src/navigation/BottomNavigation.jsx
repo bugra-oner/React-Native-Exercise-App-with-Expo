@@ -37,7 +37,11 @@ import SitUps from "../screens/Single/SitUps";
 import Squad from "../screens/Single/Squad";
 import Triceps from "../screens/Single/Triceps";
 
+
 import Discover from "../screens/Discover/Discover";
+import RestScreen from "../screens/Coach/RestScreen";
+import FitScreen from "../screens/Coach/FitScreen";
+import WorkOutScreen from "../screens/Coach/WorkoutScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -78,6 +82,10 @@ export default function BottomStackNavigator() {
       <Stack.Screen name="Profil" component={Profil} />
       <Stack.Screen name="Policy" component={Policy} />
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
+
+      <Stack.Screen name="Rest" component={RestScreen} />
+      <Stack.Screen name="Fit" component={FitScreen} />
+      <Stack.Screen name="WorkoutScreen" component={WorkOutScreen} />
     </Stack.Navigator>
   );
 }
@@ -155,8 +163,6 @@ export const BottomNavigator = ({ navigation }) => {
                             )    
                          }}
                         /> */}
-     
-      
       <Tab.Screen
         name="Profil"
         component={Profil}

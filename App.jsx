@@ -1,30 +1,29 @@
 // App.js
 
-import React,{useEffect, useState} from 'react';
+import React from 'react';
 import BottomStackNavigator from './src/navigation/BottomNavigation';
 import { SafeAreaView } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
-import AnimatedLottieView from 'lottie-react-native';
-
 import  {navigationRef} from './src/navigation/navigationRef'
 
 
 import { I18nextProvider } from 'react-i18next';
 import i18n,{useSetLanguage} from './src/i18n/i18n';
-
 import FlashMessage from 'react-native-flash-message';
+
+// Context
+import { FitnessContext } from './src/Context';
 
 export default function App() {
   const isLanguageLoaded = useSetLanguage();
  
-
-
   if(!isLanguageLoaded){
     return null;
   }
 
   return (
+    <FitnessContext>
     <I18nextProvider i18n={i18n}>
     <SafeAreaView style={{flex: 1, backgroundColor: 'white' }}>
     <NavigationContainer
@@ -34,7 +33,6 @@ export default function App() {
      <FlashMessage position="top" />
      </SafeAreaView>
          </I18nextProvider>
+         </FitnessContext>
   );
 }
-
-
