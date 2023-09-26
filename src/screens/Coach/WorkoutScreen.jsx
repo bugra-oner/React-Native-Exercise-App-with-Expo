@@ -18,7 +18,7 @@ const WorkOutScreen = () => {
   const navigation = useNavigation();
   const { completed, setCompleted } = useContext(FitnessItems);
 
-  console.log(route.params);
+  //console.log(route.params);
   return (
     <>
       <ScrollView

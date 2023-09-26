@@ -109,7 +109,7 @@ export default function Profil({ navigation }) {
             style={styles.Logo}
           />
           <Text style={styles.Version}>
-            {t("Version")} 1.0.6
+            {t("Version")} 1.0.7
           </Text>
           </View>
       </View>

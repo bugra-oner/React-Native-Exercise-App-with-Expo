@@ -5,10 +5,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import colors from '../../constants/colors';
 
-export default function LinearView({children}) {
+export default function LinearView({children,colorsOne,colorsTwo}) {
   return (
     <LinearGradient style={styles.container}
-    colors={[colors.gradientColor.workoutOne, colors.gradientColor.workoutTwo]}
+    colors={[colorsOne ?  colorsOne : colors.gradientColor.workoutOne,colorsTwo ? colorsTwo : colors.gradientColor.workoutTwo]}
     >{children}</LinearGradient>
   )
 }

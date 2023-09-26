@@ -34,7 +34,7 @@ import {
     return (
       <SafeAreaView>
         <Image
-          style={{ width: "100%", height: 370 }}
+          style={{ width: "100%", height: 500 }}
           source={current.image }
         />
   
