@@ -30,8 +30,7 @@ export default function Workouts({ navigation }) {
        
         <GradientImage 
         colorsOne={"#FBD786"}
-        colorsTwo={"#a77d5f"}
-
+        colorsTwo={"#816c5c"}
         />
         <View style={styles.cardsContainer}>
           <WorkoutsCard
