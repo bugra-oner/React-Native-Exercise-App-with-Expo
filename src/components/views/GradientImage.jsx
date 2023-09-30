@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         marginHorizontal: hp(3),
     },
     TextView:{
-      width: wp(30),
+      width: wp(36),
       height : hp(14),
       alignSelf: 'center',
       justifyContent: 'center',

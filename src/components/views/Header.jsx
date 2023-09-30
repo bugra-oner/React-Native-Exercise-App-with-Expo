@@ -13,7 +13,7 @@ export default function Header({
   LeftIconSize = 29,
   RightIconSize = 26,
   RightIconColor = '#fff',
-  DefaultColor = 'rgba(72,79,136,0.8)',
+  DefaultColor = 'rgba(80,80,136,0.8)',
   borderBottomLeftRadius=  17,
   borderBottomRightRadius= 17,
 }) {

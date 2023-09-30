@@ -27,7 +27,6 @@ export default function Workouts({ navigation }) {
         title={t("Workouts")}
       />
       <ScrollView style={styles.container}>
-       
         <GradientImage 
         colorsOne={"#FBD786"}
         colorsTwo={"#816c5c"}
@@ -94,7 +93,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    marginBottom: 40,
+    marginBottom: 10,
   },
   title: {
     fontSize: typography.title,
