@@ -37,6 +37,7 @@ const CoachScreen = () => {
             alignItems: "center",
             justifyContent: "space-between",
             marginTop: 20,
+            
           }}
         >
           <View>
