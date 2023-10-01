@@ -12,11 +12,8 @@ const CoachScreen = () => {
   const {t} = useTranslation()
 
   const {
-   
     minutes,
-  
     calories,
-
     workout,
   } = useContext(FitnessItems);
 

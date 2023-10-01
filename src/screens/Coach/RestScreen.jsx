@@ -9,19 +9,22 @@ const RestScreen = () => {
   const [timeLeft, setTimeLeft] = useState(3);
 
   const startTime = () => {
-    setTimeout(() => {
+     timer = setTimeout(() => {
       if (timeLeft <= 0) {
         navigation.goBack();
-        clearTimeout(timer);
+        console.log("bu ne 1");
+      } else {
+        setTimeLeft(timeLeft - 1);
+        startTime(); // Yeni bir zamanlayıcı başlat
       }
-      setTimeLeft(timeLeft - 1);
     }, 1000);
   };
+
   useEffect(() => {
     startTime();
-    //clean up
+    // Clean up
     return () => clearTimeout(timer);
-  });
+  }, [timeLeft]); // timeLeft bağımlılığını izle
   return (
     <SafeAreaView>
       <Image

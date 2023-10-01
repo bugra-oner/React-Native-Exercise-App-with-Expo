@@ -23,8 +23,8 @@ export default function App() {
   }
 
   return (
-    <FitnessContext>
     <I18nextProvider i18n={i18n}>
+    <FitnessContext>
     <SafeAreaView style={{flex: 1, backgroundColor: 'white' }}>
     <NavigationContainer
      ref={navigationRef}>
@@ -32,7 +32,7 @@ export default function App() {
      </NavigationContainer>
      <FlashMessage position="top" />
      </SafeAreaView>
-         </I18nextProvider>
          </FitnessContext>
+         </I18nextProvider>
   );
 }

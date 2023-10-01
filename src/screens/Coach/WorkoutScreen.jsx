@@ -18,6 +18,8 @@ const WorkOutScreen = () => {
   const navigation = useNavigation();
   const { completed, setCompleted } = useContext(FitnessItems);
 
+  //Antremanların bulunduğu ekran
+
   //console.log(route.params);
   return (
     <>
