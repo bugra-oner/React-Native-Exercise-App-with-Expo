@@ -17,5 +17,7 @@ const typography = {
     healthTitle: fp(1.8),
     workoutTitle: 13,
     workoutSubtitle: 8,
+    workoutGifName: fp(4),
+    workoutGifSets: fp(6)
 };
 export default typography;

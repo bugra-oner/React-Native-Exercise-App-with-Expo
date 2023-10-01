@@ -4,6 +4,12 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 import { FitnessItems } from "../../Context";
 
+import { fp, hp, wp } from "../../utils";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import typography from "../../constants/typography";
+
 const FitScreen = () => {
   const route = useRoute();
   //  console.log(route.params);
@@ -27,37 +33,46 @@ const FitScreen = () => {
   } = useContext(FitnessItems);
 
   console.log(completed, "completed excersise");
+
+  // Her bir setin süresi ve kalori tüketimi ile ilgili verilere sahipseniz,
+  // bu işlevi kullanarak antrenmanın toplam süresini ve yakılan kaloriyi hesaplayabilirsiniz.
+
+  const handleWorkoutCompletion = async () => {
+    // Antrenman tamamlandığında istatistikleri güncelle
+    console.log(
+      minutes,
+      "minute",
+      calories,
+      "calories",
+      "workout",
+      workout,
+      "completed",
+      completed
+    );
+
+    // AsyncStorage kullanarak istatistikleri sakla
+    try {
+      await AsyncStorage.setItem("workout", newWorkoutCount.toString());
+      await AsyncStorage.setItem("calories", newCalories.toString());
+      await AsyncStorage.setItem("minutes", newMinutes.toString());
+      await AsyncStorage.setItem("completed", newHours.toString());
+      // İstatistikler başarıyla saklandı
+    } catch (error) {
+      console.error("Istatistikleri saklama hatası:", error);
+    }
+
+    navigation.navigate("CoachScreen");
+  };
+
   return (
     <SafeAreaView>
-      <Image style={{ width: "100%", height: 500 }} source={current.image} />
-
-      <Text
-        style={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginTop: 30,
-          fontSize: 30,
-          fontWeight: "bold",
-        }}
-      >
-        {current.name}
-      </Text>
-
-      <Text
-        style={{
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginTop: 30,
-          fontSize: 38,
-          fontWeight: "bold",
-        }}
-      >
-        x{current.sets}
-      </Text>
+      <Image style={styles.gif} source={current.image} />
+      <Text style={styles.workoutName}>{current.name}</Text>
+      <Text style={styles.sets}>x{current.sets}</Text>
       {index + 1 >= excersise.length ? (
         <Pressable
           onPress={() => {
-             navigation.navigate("CoachScreen");
+            handleWorkoutCompletion();
           }}
           style={{
             backgroundColor: "blue",
@@ -128,7 +143,7 @@ const FitScreen = () => {
           disabled={index === 0}
           onPress={() => {
             navigation.navigate("Rest");
-            
+
             setTimeout(() => {
               setIndex(index - 1);
             }, 2000);
@@ -150,7 +165,7 @@ const FitScreen = () => {
         {index + 1 >= excersise.length ? (
           <Pressable
             onPress={() => {
-               navigation.navigate("CoachScreen");
+              navigation.navigate("CoachScreen");
             }}
             style={{
               backgroundColor: "green",
@@ -203,3 +218,24 @@ const FitScreen = () => {
 };
 
 export default FitScreen;
+
+const styles = StyleSheet.create({
+  gif: {
+    width: wp(100),
+    height: hp(40),
+  },
+  workoutName: {
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 30,
+    fontSize: typography.workoutGifName,
+    fontWeight: "bold",
+  },
+  sets: {
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: 30,
+    fontSize: typography.workoutGifSets,
+    fontWeight: "bold",
+  },
+});
