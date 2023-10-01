@@ -51,11 +51,11 @@ const FitScreen = () => {
     );
 
     // AsyncStorage kullanarak istatistikleri sakla
+    // const fixedCalories = calories.toFixed(2);
     try {
-      await AsyncStorage.setItem("workout", newWorkoutCount.toString());
-      await AsyncStorage.setItem("calories", newCalories.toString());
-      await AsyncStorage.setItem("minutes", newMinutes.toString());
-      await AsyncStorage.setItem("completed", newHours.toString());
+      await AsyncStorage.setItem("workout", workout.toString());
+      await AsyncStorage.setItem("calories", calories.toString());
+      await AsyncStorage.setItem("minutes", minutes.toString());
       // İstatistikler başarıyla saklandı
     } catch (error) {
       console.error("Istatistikleri saklama hatası:", error);

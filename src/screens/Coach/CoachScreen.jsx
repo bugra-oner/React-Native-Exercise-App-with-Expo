@@ -64,13 +64,12 @@ const CoachScreen = () => {
                 fontSize: 18,
               }}
             >
-              {calories}
+              {calories.toFixed(0)}
             </Text>
             <Text style={{ color: "#D0D0D0", fontSize: 17, marginTop: 6 }}>
               KCAL
             </Text>
           </View>
-
           <View>
             <Text
               style={{
@@ -80,7 +79,7 @@ const CoachScreen = () => {
                 fontSize: 18,
               }}
             >
-              {minutes}
+              {minutes.toFixed(0)}
             </Text>
             <Text style={{ color: "#D0D0D0", fontSize: 17, marginTop: 6 }}>
               MINS
