@@ -21,7 +21,6 @@ const CoachScreen = () => {
     <>
     <Header title={t('Workouts')}/>
     <ScrollView>
-    
       <View
         style={{
           padding: 10,
