@@ -124,7 +124,7 @@ export const BottomNavigator = ({ navigation }) => {
       />
       {/* Ortadaki sekmeyi burada ekliyoruz */}
       <Tab.Screen
-      name= "Antrenör"
+      name= "CoachScreen"
       component={CoachScreen}
       options={{
           tabBarLabel: "Antrenör",

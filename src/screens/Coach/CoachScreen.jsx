@@ -20,7 +20,7 @@ const CoachScreen = () => {
   return (
     <>
     <Header title={t('Workouts')}/>
-    <ScrollView >
+    <ScrollView>
     
       <View
         style={{

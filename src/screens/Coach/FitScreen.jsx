@@ -57,7 +57,7 @@ const FitScreen = () => {
       {index + 1 >= excersise.length ? (
         <Pressable
           onPress={() => {
-             //navigation.navigate("CoachScreen");
+             navigation.navigate("CoachScreen");
           }}
           style={{
             backgroundColor: "blue",
@@ -150,7 +150,7 @@ const FitScreen = () => {
         {index + 1 >= excersise.length ? (
           <Pressable
             onPress={() => {
-              // navigation.navigate("CoachScreen");
+               navigation.navigate("CoachScreen");
             }}
             style={{
               backgroundColor: "green",
