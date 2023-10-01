@@ -32,7 +32,7 @@ const FitScreen = () => {
     workout,
   } = useContext(FitnessItems);
 
-  console.log(completed, "completed excersise");
+  //console.log(completed, "completed excersise");
 
   // Her bir setin süresi ve kalori tüketimi ile ilgili verilere sahipseniz,
   // bu işlevi kullanarak antrenmanın toplam süresini ve yakılan kaloriyi hesaplayabilirsiniz.

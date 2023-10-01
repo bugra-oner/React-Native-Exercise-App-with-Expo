@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
-import { fp } from '../utils';
+import { fp,hp,wp } from '../utils';
 
 const Card = ({
   title,
@@ -43,14 +43,14 @@ const Card = ({
         <View style={styles.subTextsContainer}>
           {subTexts.map((subText, index) => (
             <View style={styles.subTextItem} key={index}>
-              <Ionicons name={subTextIcons[index]} size={14} color="#fff" />
+              <Ionicons name={subTextIcons[index]} size={16} color="#fff" />
               <Text style={styles.subText}>{subText}</Text>
             </View>
           ))}
         </View>
         <View style={styles.additionalContainer}>
           <Text style={styles.additionalText}>{additionalText}</Text>
-          <Ionicons name={additionalIcon} size={16} color="#fff" />
+          <Ionicons name={additionalIcon} size={18} color="#fff" />
         </View>
       </LinearGradient>
     </View>
@@ -61,14 +61,16 @@ const styles = StyleSheet.create({
   container: {
     marginVertical: 5,
     alignSelf: "center",
-    width: "94%"
+    width: "94%",
+    height : hp(40)
   },
   gradientContainer: {
     borderRadius: 10,
     overflow: 'hidden',
     padding: 15,
     elevation: 5,
-    width : "100%"
+    width : "100%",
+    
   },
   header: {
     flexDirection: 'row',
@@ -80,6 +82,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#fff',
     fontWeight: 'bold',
+   
   },
   subtitle: {
     fontSize: 15,
@@ -90,6 +93,7 @@ const styles = StyleSheet.create({
     fontSize: fp(2.1),
     color: '#fff',
     marginBottom: "5%",
+    
   },
   bottomContainer: {
     marginBottom: 5,
@@ -98,22 +102,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-   
-    marginVertical: "2%"
+    marginVertical: "2%",
+    
   },
   bottomTextItem: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   bottomText: {
-    fontSize: fp(1.6),
+    fontSize: fp(1.4),
     color: '#fff',
-    
+    fontWeight: '700'
   },
   subTextsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginBottom: hp(0.5),
   },
   subTextItem: {
     flexDirection: 'row',

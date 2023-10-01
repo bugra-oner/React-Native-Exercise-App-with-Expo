@@ -14,7 +14,7 @@ const typography = {
     healthInfo:fp(1.7),
     InfoTitle:14,
     InfoText: 10,
-    healthTitle: fp(1.8),
+    healthTitle: fp(2),
     workoutTitle: 13,
     workoutSubtitle: 8,
     workoutGifName: fp(4),

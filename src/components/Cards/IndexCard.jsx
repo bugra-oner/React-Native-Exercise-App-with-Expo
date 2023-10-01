@@ -9,7 +9,7 @@ import Woman from '../../assets/cards/woman.svg'
 import { LinearGradient } from 'expo-linear-gradient';
 import Button from '../Button'
 
-import { fp } from '../../utils'
+import { fp,hp,wp } from '../../utils'
 
 
 
@@ -42,37 +42,38 @@ const styles = StyleSheet.create({
     container:{
         justifyContent: 'space-between',
         flexDirection : 'row',
-        marginVertical: 10,
+        marginVertical: 5,
         alignItems : 'center',
-        width: '94%',
+        width : wp(94),
+        height: hp(21),
         alignSelf: 'center',
-        borderRadius: 16,
+        borderRadius: 20,
         shadowOffset: {
             width: 0,
             height: 3,
           },
           shadowOpacity: 0.25,
           shadowRadius: 3.84,
-          elevation: 6,  // This adds shadow to Android and is optional
+          elevation: 10,  // This adds shadow to Android and is optional
     },
     leftContainer:{
-      marginHorizontal: 9,
-      width : '44%',
-      textAlign: 'center',
+      marginHorizontal: 5,
+      width : '46%',
       alignItems: 'center',
     },
     title:{
         fontSize : typography.healthTitle,
         color: colors.title,
-        fontWeight: 'bold',
+        fontWeight: '800',
+        maxWidth: '100%',
     },
     subTitle:{
         fontSize: typography.healthInfo,
         color: colors.UiText,
-        fontWeight: '400',
-        marginTop: "2%",
-        maxWidth: '90%',
+        fontWeight: '500',
+        marginTop: hp(0.5),
+        maxWidth: '100%',
         lineHeight: 14,
-        marginBottom: 15,
+        marginBottom: 13,
     },
 })

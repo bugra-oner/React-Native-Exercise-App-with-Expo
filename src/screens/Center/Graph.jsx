@@ -23,6 +23,8 @@ import Header from '../../components/views/Header'
 import useFlashMessage from '../../hooks/FlashMessage'
 
 
+import { fp,hp,wp } from '../../utils'
+
 
 
 
@@ -142,9 +144,10 @@ export default function Graph({navigation,route}) {
 
 const styles = StyleSheet.create({
     container:{
-        flex : 1,
+       height : hp(100),
         marginVertical: 10,
     },
+    
     CategoriesButton:{
       flexDirection : "row",
       alignItems: "center",
