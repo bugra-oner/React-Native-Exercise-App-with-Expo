@@ -14,7 +14,7 @@ export default function GradientImage({colorsOne, colorsTwo ,source,text}) {
     >
       <Image resizeMode="cover"  style={styles.image} source={require('../../assets/spartan-woman.png')} />
       <View style={styles.TextView}>
-      <Text style={styles.Text}>Antreman yaptıkça</Text>
+      <Text style={styles.Text}></Text>
       <Text style={styles.Text}>artan tekrar sayısı</Text>
       </View>
       </LinearGradient>

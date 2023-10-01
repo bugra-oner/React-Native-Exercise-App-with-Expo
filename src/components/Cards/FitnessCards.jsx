@@ -42,13 +42,13 @@ const FitnessCards = () => {
             color="black"
           />
           <MaterialCommunityIcons
-            style={{ position: "absolute", color: "#ffffff", bottom: 15,left:40 }}
+            style={{ position: "absolute", color: "#000000", bottom: 15,left:40 }}
             name="lightning-bolt"
             size={23}
             color="black"
           />
           <MaterialCommunityIcons
-            style={{ position: "absolute", color: "#ffffff", bottom: 15,left:60 }}
+            style={{ position: "absolute", color: "#000000", bottom: 15,left:60 }}
             name="lightning-bolt"
             size={23}
             color="black"
