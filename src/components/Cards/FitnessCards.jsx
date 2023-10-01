@@ -27,7 +27,7 @@ const FitnessCards = () => {
             style={{
               position: "absolute",
               color: "white",
-              fontSize: 16,
+              fontSize: 17,
               fontWeight: "bold",
               left: 20,
               top: 20,
@@ -38,7 +38,19 @@ const FitnessCards = () => {
           <MaterialCommunityIcons
             style={{ position: "absolute", color: "#ffffff", bottom: 15,left:20 }}
             name="lightning-bolt"
-            size={24}
+            size={23}
+            color="black"
+          />
+          <MaterialCommunityIcons
+            style={{ position: "absolute", color: "#ffffff", bottom: 15,left:40 }}
+            name="lightning-bolt"
+            size={23}
+            color="black"
+          />
+          <MaterialCommunityIcons
+            style={{ position: "absolute", color: "#ffffff", bottom: 15,left:60 }}
+            name="lightning-bolt"
+            size={23}
             color="black"
           />
         </Pressable>
