@@ -8,7 +8,7 @@ const FitnessCards = () => {
   const FitnessData = fitness;
   const navigation = useNavigation();
   return (
-    <View>
+    <View style={styles.container}>
       {FitnessData.map((item, key) => (
         <Pressable
         onPress={() => navigation.navigate("WorkoutScreen",{
@@ -20,7 +20,7 @@ const FitnessCards = () => {
           key={key}
         >
           <Image
-            style={{ width: "95%", height: 140, borderRadius: 7,backgroundColor: 'red' }}
+            style={{ width: "96%", height: 120, borderRadius: 10, opacity: 0.8 }}
             source={item.image}
           />
           <Text
@@ -38,21 +38,34 @@ const FitnessCards = () => {
           <MaterialCommunityIcons
             style={{ position: "absolute", color: "#ffffff", bottom: 15,left:20 }}
             name="lightning-bolt"
-            size={23}
+            size={24}
             color="black"
           />
           <MaterialCommunityIcons
             style={{ position: "absolute", color: "#000000", bottom: 15,left:40 }}
             name="lightning-bolt"
-            size={23}
+            size={24}
             color="black"
           />
           <MaterialCommunityIcons
             style={{ position: "absolute", color: "#000000", bottom: 15,left:60 }}
             name="lightning-bolt"
-            size={23}
+            size={24}
             color="black"
           />
+          <MaterialCommunityIcons
+            style={{ position: "absolute", color: "#000000", bottom: 15,left:80 }}
+            name="lightning-bolt"
+            size={24}
+            color="black"
+          />
+          <MaterialCommunityIcons
+            style={{ position: "absolute", color: "#000000", bottom: 15,left:100 }}
+            name="lightning-bolt"
+            size={24}
+            color="black"
+          />
+          
         </Pressable>
       ))}
     </View>
@@ -61,4 +74,11 @@ const FitnessCards = () => {
 
 export default FitnessCards;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container:{
+    backgroundColor: '#575e97',
+    borderRadius: 30,
+    padding : 8,
+    width: '100%',
+  },
+});

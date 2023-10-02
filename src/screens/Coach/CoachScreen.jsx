@@ -8,6 +8,8 @@ import Header from "../../components/views/Header";
 import { useTranslation } from "react-i18next";
 
 
+import StatsImage from "../../components/views/StatsImage";
+
 const CoachScreen = () => {
   const {t} = useTranslation()
 
@@ -27,17 +29,15 @@ const CoachScreen = () => {
           width: "100%",
         }}
       >
-        <Text style={{ color: "white", fontWeight: "bold", fontSize: 18 }}>
-          Workouts
-        </Text>
-
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
-            marginTop: 20,
-            
+            marginVertical: 15,
+            backgroundColor : '#6f759c',
+            borderRadius: 10,
+            padding : 10,
           }}
         >
           <View>
@@ -45,29 +45,28 @@ const CoachScreen = () => {
               style={{
                 textAlign: "center",
                 fontWeight: "bold",
-                color: "white",
+                color: "#000000",
                 fontSize: 18,
               }}
             >
               {workout}
             </Text>
-            <Text style={{ color: "#D0D0D0", fontSize: 17, marginTop: 6 }}>
+            <Text style={{ color: "#000000", fontSize: 17, marginTop: 6 }}>
               WORKOUTS
             </Text>
           </View>
-
           <View>
             <Text
               style={{
-                textAlign: "center",
+              textAlign: "center",
                 fontWeight: "bold",
-                color: "white",
+                color: "#000000",
                 fontSize: 18,
               }}
             >
               {calories}
             </Text>
-            <Text style={{ color: "#D0D0D0", fontSize: 17, marginTop: 6 }}>
+            <Text style={{ color: "#000000", fontSize: 17, marginTop: 6 }}>
               KCAL
             </Text>
           </View>
@@ -76,30 +75,19 @@ const CoachScreen = () => {
               style={{
                 textAlign: "center",
                 fontWeight: "bold",
-                color: "white",
+                color: "#000000",
                 fontSize: 18,
               }}
             >
               {minutes}
             </Text>
-            <Text style={{ color: "#D0D0D0", fontSize: 17, marginTop: 6 }}>
+            <Text style={{ color: "#000000", fontSize: 17, marginTop: 6 }}>
               MINS
             </Text>
           </View>
         </View>
-
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <Image
-            style={{
-              width: "90%",
-              height: 120,
-              marginTop: 20,
-              borderRadius: 7,
-            }}
-            source={require('../../data/fitnessImages/gold2.png')}
-          />
-        </View>
         <FitnessCards />
+        <StatsImage/>
       </View>
     </ScrollView>
     </>

@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
+import Header from '../../components/views/Header'
+
 export default function Discover() {
   return (
     <View>
-      <Text>Discover</Text>
+    <Header title={'Keşfet'}
+    />
+      
     </View>
   )
 }

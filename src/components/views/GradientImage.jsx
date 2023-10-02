@@ -7,17 +7,20 @@ import colors from '../../constants/colors';
 import { hp,fp,wp } from '../../utils';
 
 
-export default function GradientImage({colorsOne, colorsTwo ,source,text}) {
+export default function GradientImage({colorsOne, colorsTwo ,textOne,textTwo,textThree}) {
   return (
-    <LinearGradient style={styles.container}
+    <>
+      <LinearGradient style={styles.container}
     colors={[colorsOne ?  colorsOne : colors.gradientColor.workoutOne, colorsTwo ? colorsTwo : colors.gradientColor.workoutTwo]}
     >
       <Image resizeMode="cover"  style={styles.image} source={require('../../assets/spartan-woman.png')} />
       <View style={styles.TextView}>
-      <Text style={styles.Text}></Text>
-      <Text style={styles.Text}></Text>
+      <Text style={styles.Text}>{textOne}</Text>
+      <Text style={styles.Text}>{textTwo}</Text>
+      <Text style={styles.Text}>{textThree}</Text>
       </View>
       </LinearGradient>
+    </>
   )
 }
 
@@ -26,7 +29,7 @@ const styles = StyleSheet.create({
             width: wp(90),
             height  : hp(14),
             alignSelf : 'center',
-            marginVertical : hp(5),
+            marginVertical : hp(4),
             flexDirection: 'row',
             borderRadius : 15,
       
@@ -34,15 +37,17 @@ const styles = StyleSheet.create({
     image:{
         width: wp(30),
         height : hp(14),
-        marginHorizontal: hp(3),
+        marginLeft: hp(2.2)
     },
     TextView:{
-      width: wp(36),
+      width: wp(51),
       height : hp(14),
       alignSelf: 'center',
       justifyContent: 'center',
+
     },
     Text:{
       textAlign: 'center',
+      fontWeight : '900',
     }
 })

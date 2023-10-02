@@ -2,12 +2,12 @@ export default [
     {
       id: "0",
       image: require('./fitnessImages/fullBody.jpg'),
-      name: "FULL BODY",
+      name: "FULL BODY BEGINNER",
       description: "7x4 CHALLENGE",
       excersises: [
         {
           id: "10",
-          image:require('./sworkit-jumping-jack.webp'),
+          image:require('./19cf2a4428446429_EXAMPLE.crossjacks.gif'),
           name: "JUMPING JACKS",
           sets:12,
         },

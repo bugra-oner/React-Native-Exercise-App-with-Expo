@@ -109,13 +109,11 @@ export default function HomeScreen({ navigation, route }) {
           />
           <View style={styles.buttonsContainer}>
             <ButtonCard
-              title="Protein"
-              subTitle={
-                `${protein != "" ? protein.slice(0, 2) : 0}` + " " + t(`Gram`)
-              }
+              title={t("Calories")}
+              subTitle={`${calories}`}
             />
             <Spacing size={15} />
-            <ButtonCard title={t("Total")} subTitle=" 360 tekrar" />
+            <ButtonCard title={t("TotalMinute")} subTitle={`${minutes}`} />
           </View>
         </View>
 

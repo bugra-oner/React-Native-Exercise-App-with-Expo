@@ -12,7 +12,6 @@ const colors = {
         colorFour: '#484F88',
         workoutOne:'#283048',
         workoutTwo: '#859398',
-        
     },
     settingColors: {
         button: '#d6d6cd',
@@ -38,6 +37,14 @@ const colors = {
         color2: '#2A4E47',
         color3: '#1A1624',
       },
+      coachScreen: {
+        colors0: '#905022',
+        color1: '#806510',
+        color2: '#edb675',
+        color3: '#edb675',
+        color4: '#806510',
+        color5: '#905022',
+      }
     // Daha fazla renk ekleyebilirsiniz.
 };
 

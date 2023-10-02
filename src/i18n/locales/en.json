@@ -143,7 +143,9 @@
     "36Hours": "Every 36 hours",
     "48Hours": "Every 48 hours",
     "Reminder" : "Remind About Workouts",
-    "Other" :"Other"
+    "Other" :"Other",
+    "Calories": "Calories",
+    "TotalMinute": "Total Minute"
     
 
 }

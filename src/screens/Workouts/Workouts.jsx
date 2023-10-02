@@ -27,7 +27,7 @@ export default function Workouts({ navigation }) {
         title={t("Workouts")}
       />
       <ScrollView style={styles.container}>
-        <GradientImage 
+      <GradientImage 
         colorsOne={"#FBD786"}
         colorsTwo={"#816c5c"}
         />
@@ -84,6 +84,9 @@ export default function Workouts({ navigation }) {
             />
           </View>
         </View>
+        <View
+        style={styles.emptyContainer} 
+        ></View>
       </ScrollView>
     </>
   );
@@ -156,4 +159,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignSelf: 'center',
   },
+  emptyContainer:{
+    height: 50,
+  }
 });
