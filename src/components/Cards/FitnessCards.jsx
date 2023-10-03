@@ -16,6 +16,7 @@ const FitnessCards = ({ difficulty, backgroundColor, first, stars }) => {
               image: item.image,
               excersises: item.excersises,
               id: item.id,
+              name: item.name,
             })
           }
           style={{ alignItems: "center", justifyContent: "center", margin: 10 }}
@@ -34,7 +35,7 @@ const FitnessCards = ({ difficulty, backgroundColor, first, stars }) => {
           {key === 0 && first === true && (
             <View style={styles.recommendedTag}>
               <Text style={styles.recommendedTagText}>
-                Yeni Başlayanlar için önerilen
+                Başlangıç için ideal
               </Text>
             </View>
           )}
@@ -166,16 +167,18 @@ const styles = StyleSheet.create({
   },
   recommendedTag: {
     position: "absolute",
-    top: 35,
-    right: -45,
+    top: 30,
+    right: -49,
     backgroundColor: "green", // Etiket arka plan rengi
     paddingHorizontal: 6,
     paddingVertical: 1,
-    borderRadius: 50,
+    borderRadius: 100,
     transform: [{ rotate: "45deg" }],
+    width: 170,
   },
   recommendedTagText: {
     color: "white",
-    fontWeight: "500",
+    fontWeight: "800",
+    textAlign: "center",
   },
 });

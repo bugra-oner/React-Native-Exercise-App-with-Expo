@@ -16,11 +16,13 @@ const FitScreen = () => {
   const navigation = useNavigation();
   const [index, setIndex] = useState(0);
   const excersise = route.params.excersises;
-  console.log(" test", excersise);
+  console.log("params", route.params);
+  console.log("test", excersise);
   const current = excersise[index];
   //{"id": "10", "image": 23, "name": "JUMPING JACKS", "sets": 12} first excersise
   console.log(current, "first excersise");
-
+  console.log(current, "first excersise");
+  console.log("excersise");
   const {
     completed,
     setCompleted,
@@ -58,7 +60,7 @@ const FitScreen = () => {
       await AsyncStorage.setItem("minutes", minutes.toString());
       // İstatistikler başarıyla saklandı
     } catch (error) {
-      console.error("Istatistikleri saklama hatası:", error);
+      //console.error("Istatistikleri saklama hatası:", error);
     }
 
     navigation.navigate("CoachScreen");
