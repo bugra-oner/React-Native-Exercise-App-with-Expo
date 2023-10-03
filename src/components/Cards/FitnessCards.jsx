@@ -4,7 +4,7 @@ import fitness from "../../data/fitness";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-const FitnessCards = ({ difficulty, backgroundColor, first }) => {
+const FitnessCards = ({ difficulty, backgroundColor, first, stars }) => {
   const FitnessData = fitness;
   const navigation = useNavigation();
   return (
@@ -137,6 +137,18 @@ const FitnessCards = ({ difficulty, backgroundColor, first }) => {
             size={22}
             color="#ffffff"
             style={{ position: "absolute", bottom: 15, right: 77 }}
+          />
+          <MaterialCommunityIcons
+            name="star"
+            size={22}
+            color="#ffffff"
+            style={{ position: "absolute", bottom: 15, right: 107 }}
+          />
+          <MaterialCommunityIcons
+            name="star"
+            size={22}
+            color="#ffffff"
+            style={{ position: "absolute", bottom: 15, right: 137 }}
           />
         </Pressable>
       ))}
