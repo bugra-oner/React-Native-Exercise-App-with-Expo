@@ -1,5 +1,12 @@
-import { StyleSheet, Text, View, SafeAreaView, Image,ScrollView } from "react-native";
-import React ,{useContext} from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  ScrollView,
+} from "react-native";
+import React, { useContext } from "react";
 import FitnessCards from "../../components/Cards/FitnessCards";
 import { FitnessItems } from "../../Context";
 
@@ -7,89 +14,58 @@ import Header from "../../components/views/Header";
 
 import { useTranslation } from "react-i18next";
 
-
 import StatsImage from "../../components/views/StatsImage";
 
 const CoachScreen = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
-  const {
-    minutes,
-    calories,
-    workout,
-  } = useContext(FitnessItems);
+  const { minutes, calories, workout } = useContext(FitnessItems);
+
+  const image = require("../../assets/zeus.jpg");
+  const basicWorkoutImage = require("../../assets/twoWoman.jpg");
+
+  const twoWorkoutImage = require("../../assets/kolaykedi.png");
 
   return (
     <>
-    <Header title={t('Workouts')}/>
-    <ScrollView>
-      <View
-        style={{
-          padding: 10,
-          width: "100%",
-        }}
-      >
+      <Header title={t("Workouts")} />
+      <ScrollView>
         <View
           style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginVertical: 15,
-            backgroundColor : '#6f759c',
-            borderRadius: 10,
-            padding : 10,
+            padding: 20,
+            width: "100%",
           }}
         >
-          <View>
-            <Text
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                color: "#000000",
-                fontSize: 18,
-              }}
-            >
-              {workout}
-            </Text>
-            <Text style={{ color: "#000000", fontSize: 17, marginTop: 6 }}>
-              WORKOUTS
-            </Text>
-          </View>
-          <View>
-            <Text
-              style={{
-              textAlign: "center",
-                fontWeight: "bold",
-                color: "#000000",
-                fontSize: 18,
-              }}
-            >
-              {calories}
-            </Text>
-            <Text style={{ color: "#000000", fontSize: 17, marginTop: 6 }}>
-              KCAL
-            </Text>
-          </View>
-          <View>
-            <Text
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                color: "#000000",
-                fontSize: 18,
-              }}
-            >
-              {minutes}
-            </Text>
-            <Text style={{ color: "#000000", fontSize: 17, marginTop: 6 }}>
-              MINS
-            </Text>
-          </View>
+          <StatsImage
+            colorsZero={"#484F88"}
+            colorsOne={"#283048"}
+            colorsTwo={"#2c3e50"}
+            colorsThree={"#2c3e50"}
+            colorsFour={"#283048"}
+            colorsFive={"#484F88"}
+            imageSource={basicWorkoutImage}
+          />
+          <FitnessCards
+            first={true}
+            difficulty={0}
+            backgroundColor={"#484F88"}
+          />
+
+          <StatsImage
+            colorsZero={"#2f4b49"}
+            colorsOne={"#2f4b49"}
+            colorsTwo={"#829477"}
+            colorsThree={"#829477"}
+            colorsFour={"#2f4b49"}
+            colorsFive={"#2f4b49"}
+            imageSource={twoWorkoutImage}
+          />
+          <FitnessCards difficulty={1} backgroundColor={"#2c3e50"} />
+
+          <StatsImage imageSource={image} />
+          <FitnessCards difficulty={2} backgroundColor={"#edb675"} />
         </View>
-        <FitnessCards />
-        <StatsImage/>
-      </View>
-    </ScrollView>
+      </ScrollView>
     </>
   );
 };

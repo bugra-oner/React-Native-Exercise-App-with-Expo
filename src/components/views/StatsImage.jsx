@@ -16,6 +16,7 @@ export default function StatsImage({
   textOne,
   textTwo,
   textThree,
+  imageSource,
 }) {
   return (
     <>
@@ -27,13 +28,13 @@ export default function StatsImage({
           colorsTwo ? colorsTwo : colors.coachScreen.color2,
           colorsThree ? colorsThree : colors.coachScreen.color3,
           colorsFour ? colorsFour : colors.coachScreen.color4,
-          colorsFive ? colorsFive: colors.coachScreen.color5,
+          colorsFive ? colorsFive : colors.coachScreen.color5,
         ]}
       >
         <Image
           resizeMode="cover"
           style={styles.image}
-          source={require("../../assets/zeus.jpg")}
+          source={imageSource}
         />
       </LinearGradient>
     </>
@@ -64,11 +65,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "900",
   },
-  textOne:{
+  textOne: {
     position: "absolute",
   },
-  textTwo:{
-    position : "absolute",
-    marginLeft : 15,
-  }
+  textTwo: {
+    position: "absolute",
+    marginLeft: 15,
+  },
 });
