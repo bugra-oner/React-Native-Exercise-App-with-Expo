@@ -24,7 +24,7 @@ const CoachScreen = () => {
   const image = require("../../assets/zeus.jpg");
   const basicWorkoutImage = require("../../assets/twoWoman.jpg");
 
-  const twoWorkoutImage = require("../../assets/kolaykedi.png");
+  const twoWorkoutImage = require("../../assets/.jpg");
 
   return (
     <>
