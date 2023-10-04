@@ -16,13 +16,13 @@ const FitScreen = () => {
   const navigation = useNavigation();
   const [index, setIndex] = useState(0);
   const excersise = route.params.excersises;
-  console.log("params", route.params);
+
+  //Workout name route.params.name
+  console.log("params", route.params.name);
   console.log("test", excersise);
   const current = excersise[index];
   //{"id": "10", "image": 23, "name": "JUMPING JACKS", "sets": 12} first excersise
-  console.log(current, "first excersise");
-  console.log(current, "first excersise");
-  console.log("excersise");
+
   const {
     completed,
     setCompleted,
@@ -58,6 +58,18 @@ const FitScreen = () => {
       await AsyncStorage.setItem("workout", workout.toString());
       await AsyncStorage.setItem("calories", calories.toString());
       await AsyncStorage.setItem("minutes", minutes.toString());
+      // BURADA ANTREMAN İSMİNE AIT DEĞERİ 1 artırmamız lazım
+      // Antrenmanın adını alın
+      const exerciseName = route.params.name;
+
+      // Antrenmanın mevcut değerini alın veya 0 olarak ayarlayın
+      const currentExerciseCount =
+        (await AsyncStorage.getItem(exerciseName)) || "0";
+
+      // Mevcut değeri 1 artırın ve yeni değeri saklayın
+      const newExerciseCount = parseInt(currentExerciseCount) + 1;
+      await AsyncStorage.setItem(exerciseName, newExerciseCount.toString());
+
       // İstatistikler başarıyla saklandı
     } catch (error) {
       //console.error("Istatistikleri saklama hatası:", error);

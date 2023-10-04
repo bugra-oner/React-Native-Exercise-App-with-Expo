@@ -17,7 +17,6 @@ const WorkOutScreen = () => {
   //   console.log(route.params);
   const navigation = useNavigation();
   const { completed, setCompleted } = useContext(FitnessItems);
-  
 
   //console.log(route.params);
   return (
@@ -44,10 +43,7 @@ const WorkOutScreen = () => {
             style={{ margin: 10, flexDirection: "row", alignItems: "center" }}
             key={index}
           >
-             <Image
-                style={{ width: 90, height: 90 }}
-                source={item.image}
-              /> 
+            <Image style={{ width: 90, height: 90 }} source={item.image} />
 
             <View style={{ marginLeft: 10 }}>
               <Text style={{ fontSize: 17, fontWeight: "bold", width: 170 }}>
@@ -75,6 +71,7 @@ const WorkOutScreen = () => {
         onPress={() => {
           navigation.navigate("Fit", {
             excersises: route.params.excersises,
+            name: route.params.name,
           });
           setCompleted([]);
         }}

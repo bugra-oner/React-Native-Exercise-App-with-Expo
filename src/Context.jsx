@@ -1,9 +1,8 @@
-import React, { createContext, useState,useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 const FitnessItems = createContext();
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 
 const FitnessContext = ({ children }) => {
   const [completed, setCompleted] = useState([]);
@@ -50,4 +49,4 @@ const FitnessContext = ({ children }) => {
   );
 };
 
-export {FitnessContext,FitnessItems}
+export { FitnessContext, FitnessItems };

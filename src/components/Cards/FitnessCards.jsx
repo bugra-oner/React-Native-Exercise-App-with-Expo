@@ -1,12 +1,41 @@
 import { StyleSheet, Text, View, Pressable, Image } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import fitness from "../../data/fitness";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-const FitnessCards = ({ difficulty, backgroundColor, first, stars }) => {
-  const FitnessData = fitness;
+import AsyncStorage from "@react-native-async-storage/async-storage";
+//Burada async storagedeki egzersizi getireceğiz fakat  maplarken verip kontrol etmemiz gerekiyor aslında sırayla getireceğiz gibi
+// Böyle bir şey mümkün mü bilmiyorum
+
+const FitnessCards = ({
+  difficulty,
+  backgroundColor,
+  first,
+  stars,
+  data,
+  workoutCompleted,
+}) => {
+  const FitnessData = data;
   const navigation = useNavigation();
+  const [exerciseCounts, setExerciseCounts] = useState({});
+
+  useEffect(() => {
+    // Fitness kartları oluşturulduğunda, her antrenmanın yapılma sayısını alın
+    const fetchExerciseCounts = async () => {
+      const counts = {};
+      for (const item of FitnessData) {
+        const exerciseName = item.name;
+        const currentExerciseCount =
+          (await AsyncStorage.getItem(exerciseName)) || "0";
+        counts[exerciseName] = currentExerciseCount;
+      }
+      setExerciseCounts(counts);
+    };
+
+    fetchExerciseCounts();
+  }, [FitnessData, workoutCompleted]);
+
   return (
     <View style={[styles.container, { backgroundColor: backgroundColor }]}>
       {FitnessData.map((item, key) => (
@@ -25,9 +54,9 @@ const FitnessCards = ({ difficulty, backgroundColor, first, stars }) => {
           <Image
             style={{
               width: "96%",
-              height: 130,
+              height: 150,
               borderRadius: 10,
-              opacity: 0.8,
+              opacity: 0.7,
             }}
             source={item.image}
           />
@@ -44,10 +73,10 @@ const FitnessCards = ({ difficulty, backgroundColor, first, stars }) => {
             style={{
               position: "absolute",
               color: "white",
-              fontSize: 17,
+              fontSize: 18,
               fontWeight: "bold",
-              left: 20,
-              top: 20,
+              left: 21,
+              top: 22,
             }}
           >
             {item.name}
@@ -56,13 +85,13 @@ const FitnessCards = ({ difficulty, backgroundColor, first, stars }) => {
             style={{
               position: "absolute",
               color: "white",
-              fontSize: 17,
+              fontSize: 11,
               fontWeight: "bold",
-              left: 20,
-              top: 20,
+              left: key === 0 ? 63 : 32,
+              top: 45,
             }}
           >
-            {item.name}
+            20 Egzersiz 10dk
           </Text>
 
           <MaterialCommunityIcons
@@ -121,36 +150,25 @@ const FitnessCards = ({ difficulty, backgroundColor, first, stars }) => {
             color="black"
           />
 
-          <MaterialCommunityIcons
-            name="star"
-            size={22}
-            color="#ffffff"
-            style={{ position: "absolute", bottom: 15, right: 17 }}
-          />
-          <MaterialCommunityIcons
-            name="star"
-            size={22}
-            color="#ffffff"
-            style={{ position: "absolute", bottom: 15, right: 47 }}
-          />
-          <MaterialCommunityIcons
-            name="star"
-            size={22}
-            color="#ffffff"
-            style={{ position: "absolute", bottom: 15, right: 77 }}
-          />
-          <MaterialCommunityIcons
-            name="star"
-            size={22}
-            color="#ffffff"
-            style={{ position: "absolute", bottom: 15, right: 107 }}
-          />
-          <MaterialCommunityIcons
-            name="star"
-            size={22}
-            color="#ffffff"
-            style={{ position: "absolute", bottom: 15, right: 137 }}
-          />
+          {/* Kart içeriği */}
+          {/* Yıldızları belirleme */}
+          {[1, 2, 3, 4, 5].map((starIndex) => (
+            <MaterialCommunityIcons
+              key={starIndex}
+              name="star"
+              size={22}
+              color={
+                parseInt(exerciseCounts[item.name]) >= starIndex
+                  ? "#ffffff"
+                  : "#000000"
+              }
+              style={{
+                position: "absolute",
+                bottom: 15,
+                right: 170 - 30 * starIndex,
+              }}
+            />
+          ))}
         </Pressable>
       ))}
     </View>

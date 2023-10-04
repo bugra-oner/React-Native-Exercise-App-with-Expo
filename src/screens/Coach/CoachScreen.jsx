@@ -16,6 +16,9 @@ import { useTranslation } from "react-i18next";
 
 import StatsImage from "../../components/views/StatsImage";
 
+//Data
+import fitness from "../../data/fitness";
+
 const CoachScreen = () => {
   const { t } = useTranslation();
 
@@ -32,7 +35,7 @@ const CoachScreen = () => {
       <ScrollView>
         <View
           style={{
-            padding: 20,
+            padding: 10,
             width: "100%",
           }}
         >
@@ -49,8 +52,8 @@ const CoachScreen = () => {
             first={true}
             difficulty={0}
             backgroundColor={"#484F88"}
+            data={fitness}
           />
-
           <StatsImage
             colorsZero={"#2f4b49"}
             colorsOne={"#2f4b49"}
@@ -60,10 +63,29 @@ const CoachScreen = () => {
             colorsFive={"#2f4b49"}
             imageSource={twoWorkoutImage}
           />
-          <FitnessCards difficulty={1} backgroundColor={"#2c3e50"} />
-
+          <FitnessCards
+            difficulty={1}
+            backgroundColor={"#2c3e50"}
+            data={fitness}
+          />
           <StatsImage imageSource={image} />
-          <FitnessCards difficulty={2} backgroundColor={"#edb675"} />
+          <FitnessCards
+            difficulty={2}
+            backgroundColor={"#a0a7ad"}
+            data={fitness}
+          />
+          <StatsImage imageSource={image} />
+          <FitnessCards
+            difficulty={3}
+            backgroundColor={"#f3af5c"}
+            data={fitness}
+          />
+          <StatsImage imageSource={image} />
+          <FitnessCards
+            difficulty={4}
+            backgroundColor={"#bd6e0f"}
+            data={fitness}
+          />
         </View>
       </ScrollView>
     </>
