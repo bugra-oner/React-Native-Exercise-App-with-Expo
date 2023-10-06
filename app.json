@@ -17,7 +17,7 @@
     },
     "android": {
       "package": "com.boletroy.HomeFit",
-      "versionCode": 7,
+      "versionCode": 8,
       "icon": "./assets/images/icon.png"
     },
     "web": {},

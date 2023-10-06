@@ -75,7 +75,7 @@ const FitScreen = () => {
       //console.error("Istatistikleri saklama hatası:", error);
     }
 
-    navigation.navigate("CoachScreen");
+    navigation.navigate("CoachScreen", { workoutComplete: true });
   };
 
   return (

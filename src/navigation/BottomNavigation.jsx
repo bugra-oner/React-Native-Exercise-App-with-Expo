@@ -37,7 +37,6 @@ import SitUps from "../screens/Single/SitUps";
 import Squad from "../screens/Single/Squad";
 import Triceps from "../screens/Single/Triceps";
 
-
 import Discover from "../screens/Discover/Discover";
 import RestScreen from "../screens/Coach/RestScreen";
 import FitScreen from "../screens/Coach/FitScreen";
@@ -96,7 +95,7 @@ export const BottomNavigator = ({ navigation }) => {
       screenOptions={() => ({
         headerShown: false,
         tabBarActiveTintColor: "black",
-        tabBarInactiveTintColor: "#ffffff",
+        tabBarInactiveTintColor: "#FAF8F1",
         tabBarStyle: {
           backgroundColor: "#484F88",
           borderTopColor: "transparent",
@@ -108,7 +107,6 @@ export const BottomNavigator = ({ navigation }) => {
           borderTopRightRadius: 30,
         },
         tabBarHideOnKeyboard: true,
-        backgroundColor: "#ffff",
       })}
     >
       <Tab.Screen
@@ -124,9 +122,9 @@ export const BottomNavigator = ({ navigation }) => {
       />
       {/* Ortadaki sekmeyi burada ekliyoruz */}
       <Tab.Screen
-      name= "CoachScreen"
-      component={CoachScreen}
-      options={{
+        name="CoachScreen"
+        component={CoachScreen}
+        options={{
           tabBarLabel: "Antrenör",
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
@@ -142,7 +140,7 @@ export const BottomNavigator = ({ navigation }) => {
           tabBarIcon: ({ color }) => <CenterButton color={color} />,
         }}
       />
-       
+
       <Tab.Screen
         name="Discover"
         component={Discover}

@@ -13,9 +13,6 @@ export default function StatsImage({
   colorsFour,
   colorsZero,
   colorsFive,
-  textOne,
-  textTwo,
-  textThree,
   imageSource,
 }) {
   return (
@@ -30,12 +27,10 @@ export default function StatsImage({
           colorsFour ? colorsFour : colors.coachScreen.color4,
           colorsFive ? colorsFive : colors.coachScreen.color5,
         ]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
       >
-        <Image
-          resizeMode="cover"
-          style={styles.image}
-          source={imageSource}
-        />
+        <Image resizeMode="cover" style={styles.image} source={imageSource} />
       </LinearGradient>
     </>
   );
@@ -53,23 +48,6 @@ const styles = StyleSheet.create({
     width: wp(42),
     height: hp(16),
     alignSelf: "center",
-    borderRadius: 50,
-  },
-  TextView: {
-    width: wp(51),
-    height: hp(14),
-    alignSelf: "center",
-    justifyContent: "center",
-  },
-  Text: {
-    textAlign: "center",
-    fontWeight: "900",
-  },
-  textOne: {
-    position: "absolute",
-  },
-  textTwo: {
-    position: "absolute",
-    marginLeft: 15,
+    borderRadius: 60,
   },
 });

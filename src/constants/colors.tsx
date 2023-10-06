@@ -38,12 +38,12 @@ const colors = {
         color3: '#1A1624',
       },
       coachScreen: {
-        colors0: '#905022',
-        color1: '#806510',
+        colors0: '#906900',
+        color1: '#fff',
         color2: '#edb675',
         color3: '#edb675',
-        color4: '#806510',
-        color5: '#905022',
+        color4: '#fff',
+        color5: '#906900',
       }
     // Daha fazla renk ekleyebilirsiniz.
 };

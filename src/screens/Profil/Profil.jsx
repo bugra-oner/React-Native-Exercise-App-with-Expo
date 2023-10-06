@@ -1,30 +1,34 @@
-import { Text, View,Image } from 'react-native';
-import React from 'react';
-import SpacingButton from '../../components/buttons/SpacingButton';
-import Header from '../../components/views/Header';
+import { Text, View, Image } from "react-native";
+import React from "react";
+import SpacingButton from "../../components/buttons/SpacingButton";
+import Header from "../../components/views/Header";
 
-import  { navigate } from '../../navigation/navigationRef';
-import styles from './styles';
+import { navigate } from "../../navigation/navigationRef";
+import styles from "./styles";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-import useFlashMessage from '../../hooks/FlashMessage';
+import useFlashMessage from "../../hooks/FlashMessage";
 
 export default function Profil({ navigation }) {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
-  const { showFlashMessage } =  useFlashMessage();
+  const { showFlashMessage } = useFlashMessage();
 
-  const handleShowMessage =  async () => {
-    showFlashMessage(`${t('DevelopmentInProgressTitle')}`, `${t('DevelopmentInProgress')}`, "warning");
-  }
+  const handleShowMessage = async () => {
+    showFlashMessage(
+      `${t("DevelopmentInProgressTitle")}`,
+      `${t("DevelopmentInProgress")}`,
+      "warning"
+    );
+  };
 
   return (
     <>
       <Header
-        title={'Kişisel Bilgiler'}
+        title={"Kişisel Bilgiler"}
         LeftIconOnPress={() => navigation.goBack()}
-        RightIconOnPress={() => navigate('Notifications')}
+        RightIconOnPress={() => navigate("Notifications")}
         RightIcon="bell-outline"
         LeftIconSize={33}
       />
@@ -56,7 +60,7 @@ export default function Profil({ navigation }) {
             onPress={() => navigate("Gender")}
           />
         </View>
-         <Text style={styles.HeaderText}>{t('Status')}</Text>
+        <Text style={styles.HeaderText}>{t("Status")}</Text>
         <View style={styles.AccountContainer}>
           <SpacingButton
             text={t("Languages")}
@@ -67,7 +71,7 @@ export default function Profil({ navigation }) {
             label="Değiştir"
             labelStyle={styles.labelStyle}
             threeText={styles.threeText}
-            onPress={() =>  navigate("Languages")}
+            onPress={() => navigate("Languages")}
           />
           <SpacingButton
             text={t("Notifications")}
@@ -80,38 +84,35 @@ export default function Profil({ navigation }) {
             threeText={styles.threeText}
             onPress={() => navigate("Notifications")}
           />
-        </View> 
-        <Text style={styles.HeaderText}>{t('Other')}</Text>
-          <View style={styles.AccountContainer}>
-            <SpacingButton
-              text={t("ReportSystem")}
-              style={styles.LastButton}
-              textStyle={styles.ButtonText}
-              iconName="chevron-right"
-              iconStyle={styles.iconStyle}
-              // onPress={() => navigate("Report")}
-              onPress={() => handleShowMessage()}
-            />
-            <SpacingButton
-              text={t("Policy")}
-              style={styles.LastButton}
-              textStyle={styles.ButtonText}
-              iconName="chevron-right"
-              iconStyle={styles.iconStyle}
-              onPress={() => navigate("Policy")}
-              />
-          </View>
-          <View>
-          </View>
-          <View style={styles.VersionContainer}>
-          <Image 
-            source={require('../../assets/version.jpg')}
+        </View>
+        <Text style={styles.HeaderText}>{t("Other")}</Text>
+        <View style={styles.AccountContainer}>
+          <SpacingButton
+            text={t("ReportSystem")}
+            style={styles.LastButton}
+            textStyle={styles.ButtonText}
+            iconName="chevron-right"
+            iconStyle={styles.iconStyle}
+            // onPress={() => navigate("Report")}
+            onPress={() => handleShowMessage()}
+          />
+          <SpacingButton
+            text={t("Policy")}
+            style={styles.LastButton}
+            textStyle={styles.ButtonText}
+            iconName="chevron-right"
+            iconStyle={styles.iconStyle}
+            onPress={() => navigate("Policy")}
+          />
+        </View>
+        <View></View>
+        <View style={styles.VersionContainer}>
+          <Image
+            source={require("../../assets/version.jpg")}
             style={styles.Logo}
           />
-          <Text style={styles.Version}>
-            {t("Version")} 1.0.8
-          </Text>
-          </View>
+          <Text style={styles.Version}>{t("Version")} 1.0.9</Text>
+        </View>
       </View>
     </>
   );

@@ -2,8 +2,8 @@ export default [
   {
     id: "0",
     image: require("./fitnessImages/fullBody.jpg"),
-    name: "FULL BODY SEMI-BEGINNER",
-    timing: [9, 11],
+    name: "FULL BODY ADVANCED BEGINNER",
+    timing: [9, 10.4],
     description: "7x4 CHALLENGE",
     excersises: [
       {
@@ -16,7 +16,7 @@ export default [
         id: "20",
         image: require("./decline-pushups.gif"),
         name: "DECLINE PUSH-UPS",
-        sets: 4,
+        sets: 8,
       },
       {
         id: "11",
@@ -41,18 +41,6 @@ export default [
         image: require("./pushup.gif"),
         name: "PUSH-UPS",
         sets: 6,
-      },
-      {
-        id: "101",
-        image: require("./lowerBody/standing-calf-raise.gif"),
-        name: "Standing Calf Raise",
-        sets: 20,
-      },
-      {
-        id: "102",
-        image: require("./lowerBody/standing-calf-raise.gif"),
-        name: "Standing Calf Raise",
-        sets: 25,
       },
       {
         id: "92",
@@ -83,7 +71,7 @@ export default [
   {
     id: "1",
     image: require("./fitnessImages/ABS.jpg"),
-    name: "ABS  SEMI-BEGINNER",
+    name: "ABS  ADVANCED BEGINNER",
     timing: [9, 10.4],
     description: "7x4 CHALLENGE",
     excersises: [
@@ -122,7 +110,7 @@ export default [
   {
     id: "2",
     image: require("./fitnessImages/Arm.jpg"),
-    name: "ARM SEMI-BEGINNER",
+    name: "ARM ADVANCED BEGINNER",
     timing: [9, 10.4],
     description: "7x4 CHALLENGE",
     excersises: [
@@ -173,7 +161,7 @@ export default [
   {
     id: "3",
     image: require("./fitnessImages/Chest.jpg"),
-    name: "CHEST SEMI-BEGINNER",
+    name: "CHEST ADVANCED BEGINNER",
     timing: [9, 10.4],
     description: "7x4 CHALLENGE",
     excersises: [

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Pressable, Image } from "react-native";
 import React, { useState, useEffect } from "react";
-import fitness from "../../data/fitness";
+import { Platform } from "react-native";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
@@ -23,6 +24,7 @@ const FitnessCards = ({
   useEffect(() => {
     // Fitness kartları oluşturulduğunda, her antrenmanın yapılma sayısını alın
     const fetchExerciseCounts = async () => {
+      console.log("Fetch");
       const counts = {};
       for (const item of FitnessData) {
         const exerciseName = item.name;
@@ -69,31 +71,33 @@ const FitnessCards = ({
             </View>
           )}
           {/* Diğer içerikler */}
-          <Text
-            style={{
-              position: "absolute",
-              color: "white",
-              fontSize: 18,
-              fontWeight: "bold",
-              left: 21,
-              top: 22,
-            }}
-          >
-            {item.name}
-          </Text>
-          <Text
-            style={{
-              position: "absolute",
-              color: "white",
-              fontSize: 11,
-              fontWeight: "bold",
-              left: key === 0 ? 63 : 32,
-              top: 45,
-            }}
-          >
-            20 Egzersiz 10dk
-          </Text>
-
+          <View style={styles.TextView}>
+            <Text
+              style={{
+                // position: "absolute",
+                color: "white",
+                fontSize: 17,
+                fontWeight: "bold",
+                // left: 21,
+                // top: 22,
+              }}
+            >
+              {item.name}
+            </Text>
+            <Text
+              style={{
+                // position: "absolute",
+                color: "#ffffff",
+                fontSize: 14,
+                fontWeight: "bold",
+                // left: key === 0 ? 63 : 40,
+                // top: 45,
+                // textAlign: "center",
+              }}
+            >
+              {item.timing[0]} Egzersiz {item.timing[1]} Dakika
+            </Text>
+          </View>
           <MaterialCommunityIcons
             style={{
               position: "absolute",
@@ -182,6 +186,17 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     padding: 5,
     width: "100%",
+    ...Platform.select({
+      ios: {
+        shadowColor: "black",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+      },
+      android: {
+        elevation: 10,
+      },
+    }),
   },
   recommendedTag: {
     position: "absolute",
@@ -198,5 +213,10 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "800",
     textAlign: "center",
+  },
+  TextView: {
+    position: "absolute",
+    left: 23,
+    top: 20,
   },
 });
