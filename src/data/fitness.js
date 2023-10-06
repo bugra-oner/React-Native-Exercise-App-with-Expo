@@ -199,7 +199,7 @@ export default [
     id: "3",
     image: require("./fitnessImages/Chest.jpg"),
     name: "CHEST SEMI-BEGINNER",
-    timing: [9, 10.4],
+    timing: [6, 8],
     description: "7x4 CHALLENGE",
     excersises: [
       {
@@ -232,7 +232,7 @@ export default [
       //   name: "HINDU PUSH-UPS",
       //   sets: 5,
       // },
-      
+
       {
         id: "23",
         image: require("./hinduPushups.gif"),
