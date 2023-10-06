@@ -3,7 +3,7 @@ export default [
     id: "0",
     image: require("./fitnessImages/fullBody.jpg"),
     name: "FULL BODY SEMI-BEGINNER",
-    timing: [9, 11],
+    timing: [10, 13],
     description: "7x4 CHALLENGE",
     excersises: [
       {
@@ -84,14 +84,20 @@ export default [
     id: "1",
     image: require("./fitnessImages/ABS.jpg"),
     name: "ABS  SEMI-BEGINNER",
-    timing: [9, 10.4],
+    timing: [6, 9],
     description: "7x4 CHALLENGE",
     excersises: [
+      // {
+      //   id: "90",
+      //   image: require("./19cf2a4428446429_EXAMPLE.crossjacks.gif"),
+      //   name: "JUMPING JACKS",
+      //   sets: 12,
+      // },
       {
         id: "90",
-        image: require("./19cf2a4428446429_EXAMPLE.crossjacks.gif"),
-        name: "JUMPING JACKS",
-        sets: 12,
+        image: require("./abs/abs.gif"),
+        name: "Sit ups",
+        sets: 8,
       },
       {
         id: "91",
@@ -100,32 +106,51 @@ export default [
         sets: 10,
       },
       {
+        id: "90",
+        image: require("./abs/abs.gif"),
+        name: "Sit ups",
+        sets: 12,
+      },
+      {
         id: "92",
         image: require("./f4b0f3093fcadd64968e4c46d1767b50.gif"),
         name: "HEEL TOUCH",
         sets: 20,
       },
       {
+        id: "90",
+        image: require("./abs/abs.gif"),
+        name: "Sit ups",
+        sets: 12,
+      },
+      {
         id: "94",
         image: require("./plank.gif"),
         name: "PLANK",
         sets: 10,
+        second: 30,
       },
-      {
-        id: "95",
-        image: require("./straight-leg-raise.gif"),
-        name: "LEG RAISES",
-        sets: 14,
-      },
+      // {
+      //   id: "95",
+      //   image: require("./straight-leg-raise.gif"),
+      //   name: "LEG RAISES",
+      //   sets: 14,
+      // },
     ],
   },
   {
     id: "2",
     image: require("./fitnessImages/Arm.jpg"),
     name: "ARM SEMI-BEGINNER",
-    timing: [9, 10.4],
+    timing: [7, 10],
     description: "7x4 CHALLENGE",
     excersises: [
+      {
+        id: "69",
+        image: require("./isinma/jumping-jacks-.gif"),
+        name: "JUMPING JACKS",
+        sets: 12,
+      },
       {
         id: "70",
         image: require("./arm-raises.gif"),
@@ -133,28 +158,28 @@ export default [
         sets: 8,
       },
       {
+        id: "74",
+        image: require("./dumbell_curl.gif"),
+        name: "DUMBELL CURL",
+        sets: 11,
+      },
+      {
         id: "71",
         image: require("./triceps-dips.gif"),
         name: "TRICEP DIPS",
         sets: 12,
       },
-      {
-        id: "72",
-        image: require("./DIAMOND_PUSHUP_MOTIFIED.gif"),
-        name: "DIAMOND PUSHUP",
-        sets: 10,
-      },
+      // {
+      //   id: "72",
+      //   image: require("./DIAMOND_PUSHUP_MOTIFIED.gif"),
+      //   name: "DIAMOND PUSHUP",
+      //   sets: 10,
+      // },
       {
         id: "73",
         image: require("./pushup.gif"),
         name: "PUSH-UPS",
-        sets: 10,
-      },
-      {
-        id: "74",
-        image: require("./dumbell_curl.gif"),
-        name: "DUMBELL CURL",
-        sets: 11,
+        sets: 6,
       },
       {
         id: "75",
@@ -178,40 +203,53 @@ export default [
     description: "7x4 CHALLENGE",
     excersises: [
       {
-        id: "20",
-        image: require("./decline-pushups.gif"),
-        name: "DECLINE PUSH-UPS",
-        sets: 12,
-      },
-      {
-        id: "21",
-        image: require("./hinduPushups.gif"),
-        name: "HINDU PUSH-UPS",
-        sets: 5,
-      },
-      {
         id: "22",
         image: require("./shoulderStrech.gif"),
         name: "SHOULDER STRETCH",
         sets: 5,
       },
       {
+        id: "20",
+        image: require("./decline-pushups.gif"),
+        name: "DECLINE PUSH-UPS",
+        sets: 12,
+      },
+      {
+        id: "11",
+        image: require("./incline.gif"),
+        name: "INCLINE PUSH-UPS",
+        sets: 6,
+      },
+      {
+        id: "11",
+        image: require("./incline.gif"),
+        name: "INCLINE PUSH-UPS",
+        sets: 6,
+      },
+      // {
+      //   id: "21",
+      //   image: require("./hinduPushups.gif"),
+      //   name: "HINDU PUSH-UPS",
+      //   sets: 5,
+      // },
+      
+      {
         id: "23",
         image: require("./hinduPushups.gif"),
         name: "Hindu Push ups",
         sets: 4,
       },
-      {
-        id: "25",
-        image: require("./pushupRotation.gif"),
-        name: "PUSH-UP & ROTATION",
-        sets: 12,
-      },
+      // {
+      //   id: "25",
+      //   image: require("./pushupRotation.gif"),
+      //   name: "PUSH-UP & ROTATION",
+      //   sets: 6,
+      // },
       {
         id: "26",
         image: require("./burpess.gif"),
         name: "BURPEES",
-        sets: 10,
+        sets: 6,
       },
     ],
   },
