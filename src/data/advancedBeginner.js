@@ -196,9 +196,15 @@ export default [
     id: "2",
     image: require("./fitnessImages/Arm.jpg"),
     name: "ARM ADVANCED BEGINNER",
-    timing: [9, 10.4],
+    timing: [10, 16],
     description: "7x4 CHALLENGE",
     excersises: [
+      {
+        id: "69",
+        image: require("./isinma/jumping-jacks-.gif"),
+        name: "JUMPING JACKS",
+        sets: 12,
+      },
       {
         id: "70",
         image: require("./arm-raises.gif"),
@@ -206,28 +212,34 @@ export default [
         sets: 8,
       },
       {
-        id: "71",
-        image: require("./triceps-dips.gif"),
-        name: "TRICEP DIPS",
-        sets: 12,
-      },
-      {
         id: "72",
-        image: require("./DIAMOND_PUSHUP_MOTIFIED.gif"),
-        name: "DIAMOND PUSHUP",
-        sets: 10,
-      },
-      {
-        id: "73",
-        image: require("./pushup.gif"),
-        name: "PUSH-UPS",
-        sets: 10,
+        image: require("./dumbell_curl.gif"),
+        name: "DUMBELL CURL",
+        sets: 12,
       },
       {
         id: "74",
         image: require("./dumbell_curl.gif"),
         name: "DUMBELL CURL",
-        sets: 11,
+        sets: 12,
+      },
+      {
+        id: "71",
+        image: require("./triceps-dips.gif"),
+        name: "TRICEP DIPS",
+        sets: 12,
+      },
+      // {
+      //   id: "72",
+      //   image: require("./DIAMOND_PUSHUP_MOTIFIED.gif"),
+      //   name: "DIAMOND PUSHUP",
+      //   sets: 10,
+      // },
+      {
+        id: "73",
+        image: require("./pushup.gif"),
+        name: "PUSH-UPS",
+        sets: 10,
       },
       {
         id: "75",
@@ -236,10 +248,22 @@ export default [
         sets: 5,
       },
       {
+        id: "112",
+        image: require("./pushup.gif"),
+        name: "PUSH-UPS",
+        sets: 10,
+      },
+      {
         id: "76",
         image: require("./tricep-kick-back.gif"),
         name: "TRICEP LIFT",
         sets: 8,
+      },
+      {
+        id: "111",
+        image: require("./dumbell_curl.gif"),
+        name: "DUMBELL CURL",
+        sets: 12,
       },
     ],
   },
@@ -247,11 +271,23 @@ export default [
     id: "3",
     image: require("./fitnessImages/Chest.jpg"),
     name: "CHEST ADVANCED BEGINNER",
-    timing: [9, 10.4],
+    timing: [8, 12],
     description: "7x4 CHALLENGE",
     excersises: [
       {
-        id: "20",
+        id: "22",
+        image: require("./shoulderStrech.gif"),
+        name: "SHOULDER STRETCH",
+        sets: 12,
+      },
+      {
+        id: "102",
+        image: require("./decline-pushups.gif"),
+        name: "DECLINE PUSH-UPS",
+        sets: 12,
+      },
+      {
+        id: "109",
         image: require("./decline-pushups.gif"),
         name: "DECLINE PUSH-UPS",
         sets: 12,
@@ -259,26 +295,27 @@ export default [
       {
         id: "21",
         image: require("./hinduPushups.gif"),
-        name: "HINDU PUSH-UPS",
+        name: "HINDU PUSH UPS",
         sets: 5,
       },
-      {
-        id: "22",
-        image: require("./shoulderStrech.gif"),
-        name: "SHOULDER STRETCH",
-        sets: 5,
-      },
+
       {
         id: "23",
         image: require("./hinduPushups.gif"),
-        name: "Hindu Push ups",
-        sets: 4,
+        name: "HINDU PUSH UPS",
+        sets: 5,
       },
       {
         id: "25",
         image: require("./pushupRotation.gif"),
         name: "PUSH-UP & ROTATION",
         sets: 12,
+      },
+      {
+        id: "113",
+        image: require("./pushup.gif"),
+        name: "PUSH UPS",
+        sets: 10,
       },
       {
         id: "26",
