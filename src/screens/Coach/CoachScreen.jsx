@@ -29,11 +29,15 @@ const CoachScreen = () => {
   console.log(route.params);
 
   const { minutes, calories, workout } = useContext(FitnessItems);
-  const image = require("../../assets/zeus.jpg");
+
+  //Images Beginners
+  const hera = require("../../assets/cards/hera.jpg");
+  const advancedBeginnerImage = require("../../assets/cards/vikingSoldier.jpg");
   const romanHuman = require("../../assets/cards/basicHuman.jpg");
+  //
+  const image = require("../../assets/zeus.jpg");
   const midlevelImage = require("../../assets/cards/midLevel.jpg");
   const basicWorkoutImage = require("../../assets/twoWoman.jpg");
-  const hera = require("../../assets/cards/hera.jpg");
 
   const hard = require("../../assets/cards/hard.jpg");
 
@@ -61,6 +65,7 @@ const CoachScreen = () => {
           data={fitness}
           workoutCompleted={route.params}
         />
+        {/*Beginners*/}
         <StatsImage
           colorsZero={"#bba8a0"}
           colorsOne={"#a58a7f"}
@@ -76,6 +81,24 @@ const CoachScreen = () => {
           data={beginner}
           workoutCompleted={route.params}
         />
+        {/*Beginners*/}
+        <StatsImage
+          colorsZero={"#71503c"}
+          colorsOne={"#dfdcdc"}
+          colorsTwo={"#4b453c"}
+          colorsThree={"#4b453c"}
+          colorsFour={"#dfdcdc"}
+          colorsFive={"#71503c"}
+          imageSource={advancedBeginnerImage}
+        />
+        <FitnessCards
+          difficulty={2}
+          backgroundColor={"#9c9c9c"}
+          data={advancedBeginner}
+          workoutCompleted={route.params}
+        />
+
+        {/* Advanced Beginner's finished*/}
         <StatsImage
           colorsZero={"#8d99a1"}
           colorsOne={"#ffffff"}

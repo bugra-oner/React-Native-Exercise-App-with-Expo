@@ -45,13 +45,13 @@ export default [
       {
         id: "101",
         image: require("./lowerBody/standing-calf-raise.gif"),
-        name: "Standing Calf Raise",
+        name: "STANDING CALF RAISE",
         sets: 20,
       },
       {
         id: "102",
         image: require("./lowerBody/standing-calf-raise.gif"),
-        name: "Standing Calf Raise",
+        name: "STANDING CALF RAISE",
         sets: 25,
       },
       {
@@ -96,7 +96,7 @@ export default [
       {
         id: "90",
         image: require("./abs/abs.gif"),
-        name: "Sit ups",
+        name: "SIT UPS",
         sets: 8,
       },
       {
@@ -108,7 +108,7 @@ export default [
       {
         id: "90",
         image: require("./abs/abs.gif"),
-        name: "Sit ups",
+        name: "SIT UPS",
         sets: 12,
       },
       {
@@ -120,16 +120,17 @@ export default [
       {
         id: "90",
         image: require("./abs/abs.gif"),
-        name: "Sit ups",
+        name: "SIT UPS",
         sets: 12,
       },
       {
         id: "94",
-        image: require("./plank.gif"),
-        name: "PLANK",
+        image: require("./abs/abs.gif"),
+        name: "SIT UPS",
         sets: 10,
         second: 30,
       },
+      
       // {
       //   id: "95",
       //   image: require("./straight-leg-raise.gif"),
@@ -236,7 +237,7 @@ export default [
       {
         id: "23",
         image: require("./hinduPushups.gif"),
-        name: "Hindu Push ups",
+        name: "HINDU PUSH-UPS",
         sets: 4,
       },
       // {
