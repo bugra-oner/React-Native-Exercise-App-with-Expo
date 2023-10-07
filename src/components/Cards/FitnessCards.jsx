@@ -101,40 +101,41 @@ const FitnessCards = ({
           <MaterialCommunityIcons
             style={{
               position: "absolute",
-              color: "#ffffff",
+              color: difficulty >= 0 ? "#ffffff" : "black",
               bottom: 15,
               left: 20,
+              opacity: difficulty === 0 ? 0.5 : 1,
             }}
             name="lightning-bolt"
             size={24}
-            color="black"
           />
           <MaterialCommunityIcons
             style={{
               position: "absolute",
-              color: difficulty >= 1 ? "white" : "black",
+              color: difficulty >= 2 ? "#ffffff" : "black",
               bottom: 15,
               left: 40,
+              opacity: difficulty === 2 ? 0.4 : 1,
             }}
             name="lightning-bolt"
             size={24}
-            color="black"
-          />
-          <MaterialCommunityIcons
-            style={{
-              position: "absolute",
-              color: difficulty >= 2 ? "white" : "black",
-              bottom: 15,
-              left: 60,
-            }}
-            name="lightning-bolt"
-            size={24}
-            color="black"
           />
           <MaterialCommunityIcons
             style={{
               position: "absolute",
               color: difficulty >= 3 ? "white" : "black",
+              bottom: 15,
+              left: 60,
+              opacity: difficulty === 3 ? 0.4 : 1,
+            }}
+            name="lightning-bolt"
+            size={24}
+            color="black"
+          />
+          <MaterialCommunityIcons
+            style={{
+              position: "absolute",
+              color: difficulty >= 5 ? "white" : "black",
               bottom: 15,
               left: 80,
             }}
@@ -145,7 +146,7 @@ const FitnessCards = ({
           <MaterialCommunityIcons
             style={{
               position: "absolute",
-              color: difficulty >= 4 ? "white" : "black",
+              color: difficulty >= 5 ? "white" : "black",
               bottom: 15,
               left: 100,
             }}
@@ -165,6 +166,32 @@ const FitnessCards = ({
                 parseInt(exerciseCounts[item.name]) >= starIndex
                   ? "#ffffff"
                   : "#000000"
+              }
+              /*
+              ! 1. Star index = 0 ,  2. Star index = 1,  3.Star = 2,  4.Star index = 4, 5.Star index = 5 
+              ! exerciseCounts[ExerciseName] >= starIndex'ten büyük ise  Beyaz yap değil ise siyah yap.
+
+              * 1[FullBodyWorkout] => 0(1.Yıldız) Beyaz geri kalan yıldızlar siyah yani antreman 
+              * bir kere tamamlandı.  - Burası okey
+
+              * Antreman hiç yapılmamışsa 5 siyah yıldız var , 1 kere antreman yapılınca, 
+              * 1.beyaz oluyor kalan 4 siyah oluyor  - Burası da okey
+
+              ?  Yukarıdaki işlemler çalışıyor,
+              ?  Amaç 3 kere antreman yapıldıysa 1. yıldız beyaz 2.gri(opacity verilerek),
+              ?  4.antreman yapıldığında 2 yıldız da beyaz, kalan 3 yıldız siyah
+              ?  Burada amaç 5x1 = antreman yaptırmak yerine 5x2= 10 antreman yaptırmak 
+
+              *  (exerciseCounts[item.name]) = 4[FullBodyWorkout], [1, 2, 3, 4, 5].map((starIndex) =>
+              *   4 kere  FullBody > 1. Yıldız beyaz 2.Yıldız beyaz geri kalan 3 yıldız siyah
+              *   3 kere Squad > 1.Yıldız beyaz 2.yıldız gri saydam kalanlar siyah 
+              *   6 kere > 3. yıldız dahil beyaz kalanlar siyah 
+
+              
+                
+              */
+              opacity={
+                parseInt(exerciseCounts[item.name]) >= starIndex * 2 ? 0 : 1
               }
               style={{
                 position: "absolute",

@@ -66,6 +66,8 @@ const CoachScreen = () => {
           workoutCompleted={route.params}
         />
         {/*Beginners*/}
+        {/*Two lighting*/}
+
         <StatsImage
           colorsZero={"#bba8a0"}
           colorsOne={"#a58a7f"}
@@ -81,7 +83,10 @@ const CoachScreen = () => {
           data={beginner}
           workoutCompleted={route.params}
         />
+
+        {/*Three lighting*/}
         {/*Beginners*/}
+
         <StatsImage
           colorsZero={"#71503c"}
           colorsOne={"#dfdcdc"}
@@ -109,7 +114,7 @@ const CoachScreen = () => {
           imageSource={midlevelImage}
         />
         <FitnessCards
-          difficulty={2}
+          difficulty={2.5}
           backgroundColor={"#7e92a0"}
           data={advancedBeginner}
           workoutCompleted={route.params}
@@ -131,7 +136,7 @@ const CoachScreen = () => {
           imageSource={hard}
         />
         <FitnessCards
-          difficulty={4}
+          difficulty={3.5}
           backgroundColor={"#3b3d47"}
           data={fitness}
           workoutCompleted={route.params}
