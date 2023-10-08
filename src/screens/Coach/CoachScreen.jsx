@@ -22,6 +22,9 @@ import fitness from "../../data/fitness";
 import beginner from "../../data/beginner";
 import advancedBeginner from "../../data/advancedBeginner";
 
+//Data intermediate
+import IntermediateBeginner from "../../data/IntermediateBeginner";
+
 const CoachScreen = () => {
   const { t } = useTranslation();
   const route = useRoute();
@@ -37,8 +40,6 @@ const CoachScreen = () => {
   //
   const image = require("../../assets/zeus.jpg");
   const midlevelImage = require("../../assets/cards/midLevel.jpg");
-  const basicWorkoutImage = require("../../assets/twoWoman.jpg");
-
   const hard = require("../../assets/cards/hard.jpg");
 
   return (
@@ -104,6 +105,7 @@ const CoachScreen = () => {
         />
 
         {/* Advanced Beginner's finished*/}
+        {/* Intermediate */}
         <StatsImage
           colorsZero={"#8d99a1"}
           colorsOne={"#ffffff"}
@@ -116,9 +118,10 @@ const CoachScreen = () => {
         <FitnessCards
           difficulty={2.5}
           backgroundColor={"#7e92a0"}
-          data={advancedBeginner}
+          data={IntermediateBeginner}
           workoutCompleted={route.params}
         />
+        {/* Intermediate Finished */}
         <StatsImage imageSource={image} />
         <FitnessCards
           difficulty={3}
@@ -126,6 +129,7 @@ const CoachScreen = () => {
           data={fitness}
           workoutCompleted={route.params}
         />
+        {/* Intermediate Advanced */}
         <StatsImage
           colorsZero={"#343d43"}
           colorsOne={"#a2adb6"}
@@ -135,6 +139,7 @@ const CoachScreen = () => {
           colorsFive={"#343d43"}
           imageSource={hard}
         />
+
         <FitnessCards
           difficulty={3.5}
           backgroundColor={"#3b3d47"}

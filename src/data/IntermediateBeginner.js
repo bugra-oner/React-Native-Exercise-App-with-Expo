@@ -2,8 +2,8 @@ export default [
   {
     id: "0",
     image: require("./fitnessImages/fullBody.jpg"),
-    name: "FULL BODY ADVANCED BEGINNER",
-    timing: [18, 28],
+    name: "FULL BODY INTERMEDIATE BEGINNER",
+    timing: [18, 30],
     description: "7x4 CHALLENGE",
     excersises: [
       {
@@ -22,90 +22,90 @@ export default [
         id: "11",
         image: require("./incline.gif"),
         name: "INCLINE PUSH-UPS",
-        sets: 8,
+        sets: 12,
       },
       {
         id: "110",
         image: require("./pushup.gif"),
-        name: "PUSH-UPS",
-        sets: 10,
+        name: "PUSH UPS",
+        sets: 12,
       },
       {
         id: "120",
         image: require("./incline.gif"),
         name: "INCLINE PUSH-UPS",
-        sets: 10,
+        sets: 12,
+      },
+      {
+        id: "107",
+        image: require("./pushup.gif"),
+        name: "PUSH UPS",
+        sets: 12,
       },
       {
         id: "13",
         image: require("./wide-arm-push-up.gif"),
-        name: "WIDE ARM PUSH-UPS",
-        sets: 10,
+        name: "WIDE ARM PUSH UPS",
+        sets: 12,
       },
       {
         id: "100",
         image: require("./pushup.gif"),
         name: "PUSH-UPS",
-        sets: 10,
+        sets: 12,
+      },
+      {
+        id: "90",
+        image: require("./wide-arm-push-up.gif"),
+        name: "WIDE ARM PUSH UPS",
+        sets: 12,
       },
       {
         id: "101",
         image: require("./lowerBody/standing-calf-raise.gif"),
         name: "STANDING CALF RAISE",
-        sets: 30,
+        sets: 35,
       },
       {
         id: "106",
         image: require("./lowerBody/wall-squat-isometric.gif"),
         name: "WALL SQUAD ISOMETRIC",
-        sets: 8,
+        sets: 12,
       },
       {
         id: "103",
         image: require("./lowerBody/standing-calf-raise.gif"),
         name: "STANDING CALF RAISE",
-        sets: 30,
+        sets: 35,
       },
       {
         id: "111",
         image: require("./lowerBody/wall-squat-isometric.gif"),
         name: "WALL SQUAD ISOMETRIC",
-        sets: 8,
+        sets: 12,
       },
       {
         id: "104",
         image: require("./lowerBody/standing-calf-raise.gif"),
         name: "STANDING CALF RAISE",
-        sets: 30,
+        sets: 35,
       },
       {
         id: "108",
         image: require("./lowerBody/wall-squat-isometric.gif"),
         name: "WALL SQUAD ISOMETRIC",
-        sets: 8,
+        sets: 12,
       },
       {
         id: "105",
         image: require("./lowerBody/standing-calf-raise.gif"),
         name: "STANDING CALF RAISE",
-        sets: 30,
+        sets: 35,
       },
       {
         id: "106",
         image: require("./lowerBody/wall-squat-isometric.gif"),
         name: "WALL SQUAD ISOMETRIC",
-        sets: 8,
-      },
-      {
-        id: "90",
-        image: require("./abs/abs.gif"),
-        name: "SIT UPS",
-        sets: 12,
-      },
-      {
-        id: "107",
-        image: require("./abs/abs.gif"),
-        name: "SIT UPS",
         sets: 12,
       },
       // {
@@ -131,16 +131,10 @@ export default [
   {
     id: "1",
     image: require("./fitnessImages/ABS.jpg"),
-    name: "ABS  ADVANCED BEGINNER",
-    timing: [8, 14],
+    name: "ABS  INTERMEDIATE BEGINNER",
+    timing: [10, 16],
     description: "7x4 CHALLENGE",
     excersises: [
-      {
-        id: "90",
-        image: require("./abs/abs.gif"),
-        name: "SIT UPS",
-        sets: 12,
-      },
       {
         id: "91",
         image: require("./1827be178c019b1dc6f8a8d8b4a7b0b8.gif"),
@@ -151,13 +145,31 @@ export default [
         id: "90",
         image: require("./abs/abs.gif"),
         name: "SIT UPS",
-        sets: 15,
+        sets: 12,
       },
       {
         id: "92",
         image: require("./f4b0f3093fcadd64968e4c46d1767b50.gif"),
         name: "HEEL TOUCH",
         sets: 20,
+      },
+      {
+        id: "95",
+        image: require("./straight-leg-raise.gif"),
+        name: "LEG RAISES",
+        sets: 5,
+      },
+      {
+        id: "90",
+        image: require("./abs/abs.gif"),
+        name: "SIT UPS",
+        sets: 15,
+      },
+      {
+        id: "91",
+        image: require("./1827be178c019b1dc6f8a8d8b4a7b0b8.gif"),
+        name: "MOUNTAIN CLIMBERS",
+        sets: 16,
       },
       {
         id: "90",
@@ -195,8 +207,8 @@ export default [
   {
     id: "2",
     image: require("./fitnessImages/Arm.jpg"),
-    name: "ARM ADVANCED BEGINNER",
-    timing: [10, 16],
+    name: "ARM INTERMEDIATE BEGINNER",
+    timing: [12, 18],
     description: "7x4 CHALLENGE",
     excersises: [
       {
@@ -218,11 +230,36 @@ export default [
         sets: 12,
       },
       {
+        id: "70",
+        image: require("./arm-raises.gif"),
+        name: "ARM RAISES",
+        sets: 8,
+      },
+      {
         id: "74",
         image: require("./dumbell_curl.gif"),
         name: "DUMBELL CURL",
         sets: 12,
       },
+      {
+        id: "70",
+        image: require("./arm-raises.gif"),
+        name: "ARM RAISES",
+        sets: 8,
+      },
+      {
+        id: "111",
+        image: require("./dumbell_curl.gif"),
+        name: "DUMBELL CURL",
+        sets: 12,
+      },
+      {
+        id: "76",
+        image: require("./tricep-kick-back.gif"),
+        name: "TRICEP LIFT",
+        sets: 8,
+      },
+
       {
         id: "71",
         image: require("./triceps-dips.gif"),
@@ -253,25 +290,13 @@ export default [
         name: "PUSH-UPS",
         sets: 10,
       },
-      {
-        id: "76",
-        image: require("./tricep-kick-back.gif"),
-        name: "TRICEP LIFT",
-        sets: 8,
-      },
-      {
-        id: "111",
-        image: require("./dumbell_curl.gif"),
-        name: "DUMBELL CURL",
-        sets: 12,
-      },
     ],
   },
   {
     id: "3",
     image: require("./fitnessImages/Chest.jpg"),
-    name: "CHEST ADVANCED BEGINNER",
-    timing: [9, 14],
+    name: "CHEST INTERMEDIATE BEGINNER",
+    timing: [8, 12],
     description: "7x4 CHALLENGE",
     excersises: [
       {
@@ -296,14 +321,19 @@ export default [
         id: "21",
         image: require("./hinduPushups.gif"),
         name: "HINDU PUSH UPS",
-        sets: 5,
+        sets: 6,
       },
-
+      {
+        id: "113",
+        image: require("./pushup.gif"),
+        name: "PUSH UPS",
+        sets: 12,
+      },
       {
         id: "23",
         image: require("./hinduPushups.gif"),
         name: "HINDU PUSH UPS",
-        sets: 5,
+        sets: 6,
       },
       {
         id: "25",
