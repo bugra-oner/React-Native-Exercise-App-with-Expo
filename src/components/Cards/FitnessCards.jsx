@@ -135,7 +135,7 @@ const FitnessCards = ({
           <MaterialCommunityIcons
             style={{
               position: "absolute",
-              color: difficulty >= 5 ? "white" : "black",
+              color: difficulty >= 4 ? "white" : "black",
               bottom: 15,
               left: 80,
             }}
