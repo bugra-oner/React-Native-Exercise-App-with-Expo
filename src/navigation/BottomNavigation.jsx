@@ -103,8 +103,8 @@ export const BottomNavigator = ({ navigation }) => {
           paddingTop: 5,
           paddingBottom: Platform.OS == "ios" ? 25 : 5,
           borderEndStartRadius: 10,
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30,
+          borderTopLeftRadius: 5,
+          borderTopRightRadius: 5,
         },
         tabBarHideOnKeyboard: true,
       })}

@@ -50,150 +50,142 @@ const CoachScreen = () => {
   return (
     <ScrollView
       style={{
-        marginBottom: 10,
+        backgroundColor: "rgba(80,80,136,0.8)",
+        padding: 10,
       }}
     >
-      <LinearView
-        colorsOne="#rgba(80,80,136,0.8)"
-        colorsTwo="#ffffff"
-        startOne={0}
-        startTwo={1}
-        endOne={2}
-        endTwo={2}
-      >
-        <StatsImage
-          colorsZero={"#494b4d"}
-          colorsOne={"(rgb(254,239,239)"}
-          colorsTwo={"rgb(157,100,100)"}
-          colorsThree={"rgb(157,100,100)"}
-          colorsFour={"rgb(241, 241, 241)"}
-          colorsFive={"#494b4d"}
-          imageSource={hera}
-        />
-        <FitnessCards
-          first={true}
-          difficulty={0}
-          backgroundColor={"rgb(216, 213, 213)"}
-          data={fitness}
-          workoutCompleted={route.params}
-        />
-        {/*Beginners*/}
-        {/*Two lighting*/}
+      <StatsImage
+        colorsZero={"#494b4d"}
+        colorsOne={"(rgb(254,239,239)"}
+        colorsTwo={"rgb(157,100,100)"}
+        colorsThree={"rgb(157,100,100)"}
+        colorsFour={"rgb(241, 241, 241)"}
+        colorsFive={"#494b4d"}
+        imageSource={hera}
+      />
+      <FitnessCards
+        first={true}
+        difficulty={0}
+        backgroundColor={"rgb(216, 213, 213)"}
+        data={fitness}
+        workoutCompleted={route.params}
+      />
+      {/*Beginners*/}
+      {/*Two lighting*/}
 
-        <StatsImage
-          colorsZero={"#424a4a"}
-          colorsOne={"#rgb(241, 241, 241)"}
-          colorsTwo={"#c99e5e"}
-          colorsThree={"#c99e5e"}
-          colorsFour={"#rgb(241, 241, 241)"}
-          colorsFive={"#424a4a"}
-          imageSource={beginnerImage}
-        />
-        <FitnessCards
-          difficulty={1}
-          backgroundColor={"rgb(199, 184, 184)"}
-          data={beginner}
-          workoutCompleted={route.params}
-        />
+      <StatsImage
+        colorsZero={"#424a4a"}
+        colorsOne={"#rgb(241, 241, 241)"}
+        colorsTwo={"#c99e5e"}
+        colorsThree={"#c99e5e"}
+        colorsFour={"#rgb(241, 241, 241)"}
+        colorsFive={"#424a4a"}
+        imageSource={beginnerImage}
+      />
+      <FitnessCards
+        difficulty={1}
+        backgroundColor={"rgb(199, 184, 184)"}
+        data={beginner}
+        workoutCompleted={route.params}
+      />
 
-        {/*Three lighting*/}
-        {/*Beginners*/}
+      {/*Three lighting*/}
+      {/*Beginners*/}
 
-        <StatsImage
-          colorsZero={"#71503c"}
-          colorsOne={"#dfdcdc"}
-          colorsTwo={"#4b453c"}
-          colorsThree={"#4b453c"}
-          colorsFour={"#dfdcdc"}
-          colorsFive={"#71503c"}
-          imageSource={romanHuman}
-        />
-        <FitnessCards
-          difficulty={2}
-          backgroundColor={"#9c9c9c"}
-          data={advancedBeginner}
-          workoutCompleted={route.params}
-        />
-        {/* Advanced Beginner's finished*/}
+      <StatsImage
+        colorsZero={"#71503c"}
+        colorsOne={"#dfdcdc"}
+        colorsTwo={"#4b453c"}
+        colorsThree={"#4b453c"}
+        colorsFour={"#dfdcdc"}
+        colorsFive={"#71503c"}
+        imageSource={romanHuman}
+      />
+      <FitnessCards
+        difficulty={2}
+        backgroundColor={"#9c9c9c"}
+        data={advancedBeginner}
+        workoutCompleted={route.params}
+      />
+      {/* Advanced Beginner's finished*/}
 
-        {/* Intermediate  Beginner*/}
-        <StatsImage
-          colorsZero={"#71503c"}
-          colorsOne={"#dfdcdc"}
-          colorsTwo={"#4b453c"}
-          colorsThree={"#4b453c"}
-          colorsFour={"#dfdcdc"}
-          colorsFive={"#71503c"}
-          imageSource={beginnerMidImage}
-        />
-        <FitnessCards
-          difficulty={2.5}
-          backgroundColor={"#9c9c9c"}
-          data={IntermediateBeginner}
-          workoutCompleted={route.params}
-        />
-        {/* Intermediate MidLevel */}
-        <StatsImage imageSource={image} />
-        <FitnessCards
-          difficulty={3}
-          backgroundColor={"#dbb88d"}
-          data={Intermediate}
-          workoutCompleted={route.params}
-        />
-        {/* Mid level Advanced */}
-        <StatsImage
-          colorsZero={"#71503c"}
-          colorsOne={"#dfdcdc"}
-          colorsTwo={"#4b453c"}
-          colorsThree={"#4b453c"}
-          colorsFour={"#dfdcdc"}
-          colorsFive={"#71503c"}
-          imageSource={midLevel}
-        />
-        <FitnessCards
-          difficulty={3.5}
-          backgroundColor={"#9c9c9c"}
-          data={IntermediateBeginner}
-          workoutCompleted={route.params}
-        />
+      {/* Intermediate  Beginner*/}
+      <StatsImage
+        colorsZero={"#71503c"}
+        colorsOne={"#dfdcdc"}
+        colorsTwo={"#4b453c"}
+        colorsThree={"#4b453c"}
+        colorsFour={"#dfdcdc"}
+        colorsFive={"#71503c"}
+        imageSource={beginnerMidImage}
+      />
+      <FitnessCards
+        difficulty={2.5}
+        backgroundColor={"#9c9c9c"}
+        data={IntermediateBeginner}
+        workoutCompleted={route.params}
+      />
+      {/* Intermediate MidLevel */}
+      <StatsImage imageSource={image} />
+      <FitnessCards
+        difficulty={3}
+        backgroundColor={"#dbb88d"}
+        data={Intermediate}
+        workoutCompleted={route.params}
+      />
+      {/* Mid level Advanced */}
+      <StatsImage
+        colorsZero={"#71503c"}
+        colorsOne={"#dfdcdc"}
+        colorsTwo={"#4b453c"}
+        colorsThree={"#4b453c"}
+        colorsFour={"#dfdcdc"}
+        colorsFive={"#71503c"}
+        imageSource={midLevel}
+      />
+      <FitnessCards
+        difficulty={3.5}
+        backgroundColor={"#9c9c9c"}
+        data={IntermediateBeginner}
+        workoutCompleted={route.params}
+      />
 
-        {/*Mid Level Finished */}
+      {/*Mid Level Finished */}
 
-        <StatsImage
-          colorsZero={"#7a8288"}
-          colorsOne={"#ffffff"}
-          colorsTwo={"#8d8787"}
-          colorsThree={"#8d8787"}
-          colorsFour={"#ffffff"}
-          colorsFive={"#7a8288"}
-          imageSource={advancedMidLevel}
-        />
-        <FitnessCards
-          difficulty={4}
-          backgroundColor={"#7e92a0"}
-          data={IntermediateBeginner}
-          workoutCompleted={route.params}
-        />
-        {/* Intermediate Finished */}
+      <StatsImage
+        colorsZero={"#7a8288"}
+        colorsOne={"#ffffff"}
+        colorsTwo={"#8d8787"}
+        colorsThree={"#8d8787"}
+        colorsFour={"#ffffff"}
+        colorsFive={"#7a8288"}
+        imageSource={advancedMidLevel}
+      />
+      <FitnessCards
+        difficulty={4}
+        backgroundColor={"#7e92a0"}
+        data={IntermediateBeginner}
+        workoutCompleted={route.params}
+      />
+      {/* Intermediate Finished */}
 
-        {/* Intermediate Advanced */}
-        <StatsImage
-          colorsZero={"#000000"}
-          colorsOne={"#fbcea3"}
-          colorsTwo={"#000000"}
-          colorsThree={"#000000"}
-          colorsFour={"#fbcea3"}
-          colorsFive={"#000000"}
-          imageSource={hard}
-        />
+      {/* Intermediate Advanced */}
+      <StatsImage
+        colorsZero={"#000000"}
+        colorsOne={"#fbcea3"}
+        colorsTwo={"#000000"}
+        colorsThree={"#000000"}
+        colorsFour={"#fbcea3"}
+        colorsFive={"#000000"}
+        imageSource={hard}
+      />
 
-        <FitnessCards
-          difficulty={5}
-          backgroundColor={"#33343d"}
-          data={fitness}
-          workoutCompleted={route.params}
-        />
-      </LinearView>
+      <FitnessCards
+        difficulty={5}
+        backgroundColor={"#33343d"}
+        data={fitness}
+        workoutCompleted={route.params}
+      />
     </ScrollView>
   );
 };
