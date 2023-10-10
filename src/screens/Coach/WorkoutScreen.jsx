@@ -78,6 +78,7 @@ const WorkOutScreen = () => {
                   color="green"
                 />
               ) : null}
+              <View style={styles.border} />
             </Pressable>
           ))}
         </LinearView>
@@ -134,11 +135,17 @@ const styles = StyleSheet.create({
     margin: hp(3),
     flexDirection: "row",
     alignItems: "center",
-    borderBottomWidth: 1,
   },
   itemNameText: {
     fontSize: 17,
     fontWeight: "bold",
     width: wp(55),
+  },
+  border: {
+    width: wp(90),
+    position: "absolute",
+    borderBottomWidth: 0.6,
+    opacity: 0.3,
+    bottom: -7,
   },
 });
