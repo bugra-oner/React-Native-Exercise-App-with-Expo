@@ -59,7 +59,7 @@ const FitnessCards = ({
               width: "96%",
               height: 150,
               borderRadius: 10,
-              opacity: 0.7,
+              opacity: 0.8,
             }}
             source={item.image}
           />
@@ -105,7 +105,7 @@ const FitnessCards = ({
               color: difficulty >= 0 ? "#ffffff" : "black",
               bottom: 15,
               left: 20,
-              opacity: difficulty === 0 ? 0.5 : 1,
+              opacity: difficulty === 0 ? 0.6 : 1,
             }}
             name="lightning-bolt"
             size={24}
@@ -116,7 +116,7 @@ const FitnessCards = ({
               color: difficulty >= 2 ? "#ffffff" : "black",
               bottom: 15,
               left: 40,
-              opacity: difficulty === 2 ? 0.4 : 1,
+              opacity: difficulty === 2 ? 0.6 : 1,
             }}
             name="lightning-bolt"
             size={24}
@@ -127,7 +127,7 @@ const FitnessCards = ({
               color: difficulty >= 3 ? "white" : "black",
               bottom: 15,
               left: 60,
-              opacity: difficulty === 3 ? 0.4 : 1,
+              opacity: difficulty === 3 ? 0.5 : 1,
             }}
             name="lightning-bolt"
             size={24}

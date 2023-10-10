@@ -26,6 +26,7 @@ import advancedBeginner from "../../data/advancedBeginner";
 import IntermediateBeginner from "../../data/IntermediateBeginner";
 import Intermediate from "../../data/Intermediate";
 
+import LinearView from "../../components/views/LinearView";
 
 const CoachScreen = () => {
   const { t } = useTranslation();
@@ -45,15 +46,20 @@ const CoachScreen = () => {
   const midLevel = require("../../assets/cards/intermade.jpg");
   const image = require("../../assets/zeus.jpg");
   const hard = require("../../assets/cards/hard.jpg");
-  
 
   return (
-    <ScrollView>
-      <View
-        style={{
-          padding: 10,
-          width: "100%",
-        }}
+    <ScrollView
+      style={{
+        marginBottom: 10,
+      }}
+    >
+      <LinearView
+        colorsOne="#rgba(80,80,136,0.8)"
+        colorsTwo="#ffffff"
+        startOne={0}
+        startTwo={1}
+        endOne={2}
+        endTwo={2}
       >
         <StatsImage
           colorsZero={"#494b4d"}
@@ -152,7 +158,7 @@ const CoachScreen = () => {
         />
 
         {/*Mid Level Finished */}
-        
+
         <StatsImage
           colorsZero={"#7a8288"}
           colorsOne={"#ffffff"}
@@ -169,7 +175,7 @@ const CoachScreen = () => {
           workoutCompleted={route.params}
         />
         {/* Intermediate Finished */}
-        
+
         {/* Intermediate Advanced */}
         <StatsImage
           colorsZero={"#000000"}
@@ -187,7 +193,7 @@ const CoachScreen = () => {
           data={fitness}
           workoutCompleted={route.params}
         />
-      </View>
+      </LinearView>
     </ScrollView>
   );
 };

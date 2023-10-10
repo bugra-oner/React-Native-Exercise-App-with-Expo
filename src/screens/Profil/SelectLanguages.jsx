@@ -1,20 +1,17 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { useTranslation } from 'react-i18next';
-
+import { useTranslation } from "react-i18next";
 
 // custom component
-import colors from '../../constants/colors';
+import colors from "../../constants/colors";
 // import Past from '../../../assets/images/Past.svg';
-import { hp,wp,fp } from '../../utils';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Header from '../../components/views/Header';
+import { hp, wp, fp } from "../../utils";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Header from "../../components/views/Header";
 //import { lang } from 'moment';
-
-
 
 export default function Languages({ navigation }) {
   const { t, i18n } = useTranslation();
@@ -53,44 +50,52 @@ export default function Languages({ navigation }) {
   */
   //Render Button View
 
-  const handleSaveLanguage =  async () => {
+  const handleSaveLanguage = async () => {
     i18n.changeLanguage(changeLanguage);
     try {
-      await AsyncStorage.setItem('language', changeLanguage)
-     // console.log('language changed', changeLanguage);
-    } catch (error) {
-    }
+      await AsyncStorage.setItem("language", changeLanguage);
+      // console.log('language changed', changeLanguage);
+    } catch (error) {}
   };
 
   const _renderButtonView = () => {
     return (
       <View style={styles.ButtonContainer}>
-        <TouchableOpacity style={styles.Button} onPress={() => setChangeLanguage('en')}>
-          <Text style={styles.text}>{t('English')}</Text>
+        <TouchableOpacity
+          style={styles.Button}
+          onPress={() => setChangeLanguage("en")}
+        >
+          <Text style={styles.text}>{t("English")}</Text>
           <MaterialCommunityIcons
             style={{ marginRight: wp(3) }}
-            color={changeLanguage === 'en' ? 'green' : 'black'}
-            name={changeLanguage === 'en' ? 'check' : 'chevron-right'}
+            color={changeLanguage === "en" ? "green" : "black"}
+            name={changeLanguage === "en" ? "check" : "chevron-right"}
             size={20}
           />
         </TouchableOpacity>
         <View style={styles.separator}></View>
-        <TouchableOpacity style={styles.Button} onPress={() => setChangeLanguage('tr')}>
-          <Text style={styles.text}>{t('Turkish')}</Text>
+        <TouchableOpacity
+          style={styles.Button}
+          onPress={() => setChangeLanguage("tr")}
+        >
+          <Text style={styles.text}>{t("Turkish")}</Text>
           <MaterialCommunityIcons
             style={{ marginRight: wp(3) }}
-            color={changeLanguage === 'tr' ? 'green' : 'black'}
-            name={changeLanguage === 'tr' ? 'check' : 'chevron-right'}
+            color={changeLanguage === "tr" ? "green" : "black"}
+            name={changeLanguage === "tr" ? "check" : "chevron-right"}
             size={20}
           />
         </TouchableOpacity>
         <View style={styles.separator}></View>
-        <TouchableOpacity style={styles.Button} onPress={() => setChangeLanguage('es')}>
-          <Text style={styles.text}>{t('Turkish')}</Text>
+        <TouchableOpacity
+          style={styles.Button}
+          onPress={() => setChangeLanguage("es")}
+        >
+          <Text style={styles.text}>{t("Spanish")}</Text>
           <MaterialCommunityIcons
             style={{ marginRight: wp(3) }}
-            color={changeLanguage === 'es' ? 'green' : 'black'}
-            name={changeLanguage === 'es' ? 'check' : 'chevron-right'}
+            color={changeLanguage === "es" ? "green" : "black"}
+            name={changeLanguage === "es" ? "check" : "chevron-right"}
             size={20}
           />
         </TouchableOpacity>
@@ -118,7 +123,7 @@ export default function Languages({ navigation }) {
     <View style={styles.container}>
       <Header
         RightIconOnPress={() => handleSaveLanguage()}
-        title={t('Languages')}
+        title={t("Languages")}
         LeftIconOnPress={() => navigation.goBack()}
         LeftIcon="chevron-left"
         RightIcon="check"
@@ -137,46 +142,46 @@ const styles = StyleSheet.create({
   linearGradient: {
     marginVertical: 20,
     marginHorizontal: 20,
-    width: '90%',
+    width: "90%",
     borderRadius: 14,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   text: {
     marginLeft: wp(4),
-    
-    color: 'black',
+
+    color: "black",
     fontSize: fp(1.8),
   },
   HeaderText: {
     fontSize: 18,
-   
+
     marginTop: hp(2.5),
     marginLeft: wp(6.5),
-    color: 'black',
+    color: "black",
   },
   Button: {
     width: wp(90),
     height: hp(4.6),
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomColor: '#d6d6cd',
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomColor: "#d6d6cd",
     borderBottomWidth: wp(0.26),
-    borderStyle: 'solid',
-    alignSelf: 'center',
+    borderStyle: "solid",
+    alignSelf: "center",
   },
   ButtonContainer: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     width: wp(90),
     height: hp(15),
     borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
     marginTop: hp(2.3),
-    shadowColor: 'black',
+    shadowColor: "black",
     opacity: 0.64,
     shadowOffset: { width: 25, height: 25 },
     shadowOpacity: 1,

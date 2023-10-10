@@ -5,7 +5,16 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import colors from "../../constants/colors";
 
-export default function LinearView({ children, colorsOne, colorsTwo, style }) {
+export default function LinearView({
+  children,
+  colorsOne,
+  colorsTwo,
+  style,
+  startOne,
+  startTwo,
+  endOne,
+  endTwo,
+}) {
   return (
     <LinearGradient
       style={[style ? style : styles.container]}
@@ -13,6 +22,8 @@ export default function LinearView({ children, colorsOne, colorsTwo, style }) {
         colorsOne ? colorsOne : colors.gradientColor.workoutOne,
         colorsTwo ? colorsTwo : colors.gradientColor.workoutTwo,
       ]}
+      start={[startOne, startTwo]}
+      end={[endOne, endTwo]}
     >
       {children}
     </LinearGradient>

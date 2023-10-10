@@ -63,7 +63,14 @@ const WorkOutScreen = () => {
 
           {route.params.excersises.map((item, index) => (
             <Pressable style={styles.workoutView} key={index}>
-              <Image style={{ width: 90, height: 90 }} source={item.image} />
+              <Image
+                style={{
+                  width: 90,
+                  height: 90,
+                  opacity: 0.8,
+                }}
+                source={item.image}
+              />
               <View style={{ marginLeft: 15 }}>
                 <Text style={styles.itemNameText}>{item.name}</Text>
                 <Text style={{ marginTop: 5, fontSize: 18, color: "gray" }}>
