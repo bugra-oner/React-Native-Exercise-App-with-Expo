@@ -41,16 +41,16 @@ const FitScreen = () => {
 
   const handleWorkoutCompletion = async () => {
     // Antrenman tamamlandığında istatistikleri güncelle
-    console.log(
-      minutes,
-      "minute",
-      calories,
-      "calories",
-      "workout",
-      workout,
-      "completed",
-      completed
-    );
+    //console.log(
+    //  minutes,
+    //  "minute",
+    //  calories,
+    //  "calories",
+    //  "workout",
+    //  workout,
+    //  "completed",
+    //  completed
+    //);
 
     // AsyncStorage kullanarak istatistikleri sakla
     // const fixedCalories = calories.toFixed(2);
@@ -235,7 +235,7 @@ export default FitScreen;
 const styles = StyleSheet.create({
   gif: {
     width: wp(100),
-    height: hp(40),
+    height: hp(45),
   },
   workoutName: {
     marginLeft: "auto",
@@ -251,4 +251,7 @@ const styles = StyleSheet.create({
     fontSize: typography.workoutGifSets,
     fontWeight: "bold",
   },
+  skip:{
+    
+  }
 });

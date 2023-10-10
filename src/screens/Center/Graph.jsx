@@ -1,37 +1,31 @@
-import { StyleSheet, Text, View,ScrollView,Image} from 'react-native'
-import React,{useState,useEffect} from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
+import React, { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
-import typography from '../../constants/typography'
-import colors from '../../constants/colors'
+import typography from "../../constants/typography";
+import colors from "../../constants/colors";
 
 // import { useIsFocused } from '@react-navigation/native';
 // import { CommonActions } from '@react-navigation/native';
 
+import { useTranslation } from "react-i18next";
 
-import { useTranslation } from 'react-i18next'
+import IndexCard from "../../components/Cards/IndexCard";
+import InfoCard from "../../components/Cards/InfoCard";
+import { navigate } from "../../navigation/navigationRef";
+import Card from "../../components/Card";
 
-import IndexCard from '../../components/Cards/IndexCard'
-import InfoCard from '../../components/Cards/InfoCard'
-import { navigate } from '../../navigation/navigationRef'
-import Card from '../../components/Card'
+import CategoriesButton from "../../components/buttons/CategoriesButton";
+import Header from "../../components/views/Header";
 
-import CategoriesButton from '../../components/buttons/CategoriesButton'
-import Header from '../../components/views/Header'
+import useFlashMessage from "../../hooks/FlashMessage";
 
-import useFlashMessage from '../../hooks/FlashMessage'
+import { fp, hp, wp } from "../../utils";
 
-
-import { fp,hp,wp } from '../../utils'
-
-
-
-
-export default function Graph({navigation,route}) {
+export default function Graph({ navigation, route }) {
   const { showFlashMessage } = useFlashMessage();
-  const [healthData,setHealthData] = useState({});
-  const {t} = useTranslation();
+  const [healthData, setHealthData] = useState({});
+  const { t } = useTranslation();
 
   // useEffect(() => {
   //   // AsyncStorage'den kaydedilen veriyi al
@@ -70,66 +64,96 @@ export default function Graph({navigation,route}) {
     // AsyncStorage'den kaydedilen veriyi al
     const fetchHealthData = async () => {
       try {
-        const savedData = await AsyncStorage.getItem('calculatedData');
+        const savedData = await AsyncStorage.getItem("calculatedData");
         if (savedData) {
-          
           setHealthData(JSON.parse(savedData));
         }
       } catch (error) {
-        console.log('Error fetching data from AsyncStorage:', error);
+        console.log("Error fetching data from AsyncStorage:", error);
       }
     };
-  
+
     fetchHealthData();
-  
+
     // Eğer ana ekran verileri güncellendi ise veriyi yeniden al
     if (route.params?.updateHealthDataOnScreen) {
-      showFlashMessage(`${t('SuccessHealth')}`, `${t('SuccessHealthDescription')}`, "success");
+      showFlashMessage(
+        `${t("SuccessHealth")}`,
+        `${t("SuccessHealthDescription")}`,
+        "success"
+      );
       fetchHealthData();
     }
   }, [route.params?.updateHealthDataOnScreen]);
 
-  
   return (
     <>
-    <Header 
-    LeftIcon='artstation'
-    RightIconOnPress={() => navigation.navigate("Profil")}
-    title={`${t('Health')}`}/>
-    <ScrollView style={styles.container}>
-      <IndexCard 
-        unHealth={true}
-        buttonTitle={`${t('nowStart')}`}
-        title={`${t('healthInfoTitle')}`}
-        subTitle={`${t('healthInfoSubTitle')}`}
-        borderRadius={5}
-        onPress={() => navigate('HealthCalculator')}
+      <Header
+        LeftIcon="artstation"
+        RightIconOnPress={() => navigation.navigate("Profil")}
+        title={`${t("Health")}`}
       />
-      <View style={styles.CategoriesButton}>
-      <CategoriesButton title={t("Cardio")}  name="walk" iconColor={"rgba(72, 79, 136, 0.8)"} size={30}
-      color={"#ae9b83"} />
-      <CategoriesButton  title={t("Strength")}  name="dumbbell" size={30} iconColor={"rgba(72, 79, 136, 0.8)"} color={"#ae7070"}/>
-      <CategoriesButton  title={t("Endurance")} name="horse-variant-fast" size={30} iconColor={"rgba(72, 79, 136, 0.8)"} color={"#35c3dc"}/>
-      <CategoriesButton  title={t("More")}  name="grain"  iconColor={"rgba(72, 79, 136, 0.8)"} size={30} color={"#7faedc"}/>
-      </View>
-      <Card
-    title="Sağlık Sonuçları"
-    icon="aperture-outline"
-      subtitle="Durum"
-    contentText={`${t("bmiContentText")} : ${healthData.bmi?.interpretation ? healthData.bmi?.interpretation : "" }`}
-    bottomTexts={[
-    { text: `${t("dailyCaloriesText")}`,  },
-    { text: `${t("dailyWaterText")}`,  },
-    { text: `${t("idealWeightText")}`,  },
-  ]}
-  subTexts={[` ${healthData.dailyCalories? healthData.dailyCalories : ""} ` ,
-   `${healthData.dailyWater? healthData.dailyWater : ""}`,
-   `${healthData.idealWeight? healthData.idealWeight : ""}`]}
-      subTextIcons={["fast-food", "water", "man"]}
-      additionalText={`${t('HealthInfo')}`}
-      additionalIcon="ios-add-circle-outline"
-    />
-      {/* /* <View style={styles.container}>
+      <ScrollView style={styles.container}>
+        <IndexCard
+          unHealth={true}
+          buttonTitle={`${t("nowStart")}`}
+          title={`${t("healthInfoTitle")}`}
+          subTitle={`${t("healthInfoSubTitle")}`}
+          borderRadius={5}
+          onPress={() => navigate("HealthCalculator")}
+        />
+        <View style={styles.CategoriesButton}>
+          <CategoriesButton
+            title={t("Cardio")}
+            name="walk"
+            iconColor={"rgba(72, 79, 136, 0.8)"}
+            size={30}
+            color={"#ae9b83"}
+          />
+          <CategoriesButton
+            title={t("Strength")}
+            name="dumbbell"
+            size={30}
+            iconColor={"rgba(72, 79, 136, 0.8)"}
+            color={"#ae7070"}
+          />
+          <CategoriesButton
+            title={t("Endurance")}
+            name="horse-variant-fast"
+            size={30}
+            iconColor={"rgba(72, 79, 136, 0.8)"}
+            color={"#35c3dc"}
+          />
+          <CategoriesButton
+            title={t("More")}
+            name="grain"
+            iconColor={"rgba(72, 79, 136, 0.8)"}
+            size={30}
+            color={"#7faedc"}
+          />
+        </View>
+        <Card
+          title="Sağlık Sonuçları"
+          icon="aperture-outline"
+          subtitle="Durum"
+          contentText={`${t("bmiContentText")} : ${
+            healthData.bmi?.interpretation ? healthData.bmi?.interpretation : ""
+          }`}
+          bottomTexts={[
+            { text: `${t("dailyCaloriesText")}` },
+            { text: `${t("dailyWaterText")}` },
+            { text: `${t("idealWeightText")}` },
+          ]}
+          subTexts={[
+            ` ${healthData.dailyCalories ? healthData.dailyCalories : ""} `,
+            `${healthData.dailyWater ? healthData.dailyWater : ""}`,
+            `${healthData.idealWeight ? healthData.idealWeight : ""}`,
+          ]}
+          subTextIcons={["fast-food", "water", "man"]}
+          additionalText={`${t("HealthInfo")}`}
+          additionalIcon="ios-add-circle-outline"
+        />
+        {/* /* <View style={styles.container}>
       <Text style={styles.title}>Sağlık Sonuçları</Text>
       <Text>Vücut Kitle İndeksi: </Text>
       <Text>Durum: {healthData.bmi?.interpretation ? healthData.bmi?.interpretation: "" } </Text>
@@ -137,25 +161,25 @@ export default function Graph({navigation,route}) {
       <Text>Günlük Su İhtiyacı: {healthData.dailyWater} ml</Text>
       <Text>İdeal Kilo: {healthData.idealWeight} kg</Text>
       Diğer hesaplamaları da buraya ekleyebilirsiniz</View> */}
-    </ScrollView>
+      </ScrollView>
     </>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-    container:{
-       height : hp(100),
-        marginVertical: 10,
-    },
-    
-    CategoriesButton:{
-      flexDirection : "row",
-      alignItems: "center",
-      alignContent:"center",
-      justifyContent:"center",
-      marginVertical: 20
-    },
-    title:{
-      fontSize: typography.title,
-    }
+  container: {
+    height: hp(100),
+    marginVertical: 10,
+  },
+
+  CategoriesButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignContent: "center",
+    justifyContent: "center",
+    marginVertical: 20,
+  },
+  title: {
+    fontSize: typography.title,
+  },
 });

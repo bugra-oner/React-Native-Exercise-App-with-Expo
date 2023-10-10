@@ -32,7 +32,7 @@ const WorkOutScreen = () => {
     <>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{ backgroundColor: "white", marginTop: 0 }}
+        style={{ backgroundColor: "black", marginTop: 0 }}
       >
         <Image
           style={{ width: "100%", height: 170 }}
@@ -104,7 +104,7 @@ const WorkOutScreen = () => {
           setCompleted([]);
         }}
         style={{
-          backgroundColor: "#59c02a",
+          backgroundColor: "#7d2ac0",
           padding: 10,
           marginLeft: "auto",
           marginRight: "auto",
@@ -118,7 +118,7 @@ const WorkOutScreen = () => {
             textAlign: "center",
             color: "white",
             fontSize: 15,
-            fontWeight: "600",
+            fontWeight: "700",
           }}
         >
           {t("Start")}
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     color: "white",
     padding: 4,
     paddingLeft: 12,
+    fontWeight: "bold",
   },
   workoutView: {
     margin: hp(3),
