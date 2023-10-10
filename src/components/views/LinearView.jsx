@@ -10,10 +10,11 @@ export default function LinearView({
   colorsOne,
   colorsTwo,
   style,
-  startOne,
-  startTwo,
-  endOne,
-  endTwo,
+  customGradient,
+  startOne = 0,
+  startTwo = 0,
+  endOne = 0,
+  endTwo = 1,
 }) {
   return (
     <LinearGradient

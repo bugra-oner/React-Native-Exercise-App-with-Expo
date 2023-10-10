@@ -47,8 +47,12 @@ const WorkOutScreen = () => {
           color="white"
         />
         <LinearView
-          colorsOne="#d7d7ec"
+          colorsOne="#ded0ff"
           colorsTwo="#ffff"
+          startOne={0}
+          startTwo={0}
+          endOne={0}
+          endTwo={1}
           style={styles.LinearView}
         >
           {/* Top Text View */}

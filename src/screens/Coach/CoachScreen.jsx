@@ -51,7 +51,7 @@ const CoachScreen = () => {
     <ScrollView
       style={{
         backgroundColor: "rgba(80,80,136,0.8)",
-        padding: 10,
+        padding: 15,
       }}
     >
       <StatsImage

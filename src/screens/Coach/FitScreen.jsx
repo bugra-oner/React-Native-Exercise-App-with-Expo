@@ -157,7 +157,6 @@ const FitScreen = () => {
           disabled={index === 0}
           onPress={() => {
             navigation.navigate("Rest");
-
             setTimeout(() => {
               setIndex(index - 1);
             }, 2000);
