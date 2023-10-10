@@ -145,7 +145,8 @@
     "Reminder" : "Remind About Workouts",
     "Other" :"Other",
     "Calories": "Calories",
-    "TotalMinute": "Total Minute"
+    "TotalMinute": "Total Minute",
+    "Minute": "Minute"
     
 
 }

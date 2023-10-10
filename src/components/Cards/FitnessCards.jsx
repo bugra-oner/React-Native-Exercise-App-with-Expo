@@ -24,7 +24,7 @@ const FitnessCards = ({
   useEffect(() => {
     // Fitness kartları oluşturulduğunda, her antrenmanın yapılma sayısını alın
     const fetchExerciseCounts = async () => {
-      console.log("Fetch");
+      //console.log("Fetch");
       const counts = {};
       for (const item of FitnessData) {
         const exerciseName = item.name;
@@ -48,6 +48,7 @@ const FitnessCards = ({
               excersises: item.excersises,
               id: item.id,
               name: item.name,
+              timing: item.timing
             })
           }
           style={{ alignItems: "center", justifyContent: "center", margin: 10 }}

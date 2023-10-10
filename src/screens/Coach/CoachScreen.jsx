@@ -67,7 +67,7 @@ const CoachScreen = () => {
         <FitnessCards
           first={true}
           difficulty={0}
-          backgroundColor={"rgb(241, 241, 241)"}
+          backgroundColor={"rgb(216, 213, 213)"}
           data={fitness}
           workoutCompleted={route.params}
         />
