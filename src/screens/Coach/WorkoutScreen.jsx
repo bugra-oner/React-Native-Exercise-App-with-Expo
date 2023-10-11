@@ -25,8 +25,8 @@ const WorkOutScreen = () => {
   const { completed, setCompleted } = useContext(FitnessItems);
 
   const { t } = useTranslation();
-
-  //console.log(route.params);
+  console.log(route.params)
+  let name = route.params.desc;
 
   return (
     <>
@@ -64,18 +64,34 @@ const WorkOutScreen = () => {
             </Text>
           </View>
           {/* Top Text View */}
-
+          <View style={styles.BalloonsView}>
+            <View style={styles.balloon}>
+              <Text style={styles.balloonText}>{name}</Text>
+            </View>
+            <View style={styles.balloon}>
+              <Text style={styles.balloonText}>
+                <Ionicons
+                  style={{ marginRight: 5 }}
+                  name="alarm"
+                  color="#7d2ac0"
+                />{" "}
+                {route.params.timing[0]} {t("Exercise")}
+              </Text>
+            </View>
+            <View style={styles.balloon}>
+              <Text style={styles.balloonText}>
+                <Ionicons name="play-circle" color="#7d2ac0" />{" "}
+                {route.params.timing[1]} {t("Minute")}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.border} />
+          <Text style={styles.workoutTitle}>{t("WorkoutActivity")}</Text>
           {route.params.excersises.map((item, index) => (
             <Pressable style={styles.workoutView} key={index}>
-              <Image
-                style={{
-                  width: 90,
-                  height: 90,
-                  opacity: 0.8,
-                }}
-                source={item.image}
-              />
-              <View style={{ marginLeft: 15 }}>
+              <Image style={styles.workoutImage} source={item.image} />
+
+              <View style={{ marginLeft: wp(4) }}>
                 <Text style={styles.itemNameText}>{item.name}</Text>
                 <Text style={{ marginTop: 5, fontSize: 18, color: "gray" }}>
                   x{item.sets}
@@ -89,7 +105,6 @@ const WorkOutScreen = () => {
                   color="green"
                 />
               ) : null}
-              <View style={styles.border} />
             </Pressable>
           ))}
         </LinearView>
@@ -100,6 +115,7 @@ const WorkOutScreen = () => {
           navigation.navigate("Fit", {
             excersises: route.params.excersises,
             name: route.params.name,
+            timings: route.params.timing,
           });
           setCompleted([]);
         }}
@@ -144,9 +160,42 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   workoutView: {
-    margin: hp(3),
+    marginHorizontal: hp(2),
+    height: hp(17),
     flexDirection: "row",
     alignItems: "center",
+    backgroundColor: "#F3F5FF",
+    borderRadius: 30,
+    borderColor: "black",
+    shadowColor: "#000000",
+    shadowOpacity: 0.7,
+    shadowRadius: 6.604332447052002,
+    shadowOffset: { width: 1.3208664655685425, height: 1.3208664655685425 },
+    elevation: 5,
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    marginVertical: hp(2),
+  },
+  BalloonsView: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: wp(2),
+    marginTop: 15,
+  },
+  balloonText: {
+    fontSize: fp(1.7),
+    color: "#7d2ac0",
+    fontWeight: "bold",
+  },
+  balloon: {
+    width: wp(30),
+    height: hp(5.2),
+    backgroundColor: "white",
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 2,
+    borderColor: "rgba(80,80,136,0.8)",
   },
   itemNameText: {
     fontSize: 17,
@@ -155,9 +204,21 @@ const styles = StyleSheet.create({
   },
   border: {
     width: wp(90),
-    position: "absolute",
-    borderBottomWidth: 0.6,
-    opacity: 0.3,
-    bottom: -7,
+    alignSelf: "center",
+    borderBottomWidth: 1,
+    opacity: 0.4,
+    marginTop: hp(2),
+  },
+  workoutImage: {
+    width: wp(26),
+    height: hp(14),
+    opacity: 0.8,
+  },
+  workoutTitle: {
+    fontSize: fp(2.5),
+    color: "black",
+    marginHorizontal: wp(5),
+    marginTop: hp(2.2),
+    fontWeight: "bold",
   },
 });

@@ -4,7 +4,7 @@ export default [
     image: require("./fitnessImages/fullBody.jpg"),
     name: "FULL BODY BEGINNER",
     timing: [18, 25],
-    description: "7x4 CHALLENGE",
+    description: "Beginner",
     excersises: [
       {
         id: "10",
@@ -133,7 +133,7 @@ export default [
     image: require("./fitnessImages/ABS.jpg"),
     name: "ABS  BEGINNER",
     timing: [8, 12],
-    description: "7x4 CHALLENGE",
+    description: "Beginner",
     excersises: [
       {
         id: "90",
@@ -197,7 +197,7 @@ export default [
     image: require("./fitnessImages/Arm.jpg"),
     name: "ARM BEGINNER",
     timing: [9, 15],
-    description: "7x4 CHALLENGE",
+    description: "Beginner",
     excersises: [
       {
         id: "69",
@@ -267,7 +267,7 @@ export default [
     image: require("./fitnessImages/Chest.jpg"),
     name: "CHEST BEGINNER",
     timing: [7, 10],
-    description: "7x4 CHALLENGE",
+    description: "Beginner",
     excersises: [
       {
         id: "22",

@@ -48,7 +48,8 @@ const FitnessCards = ({
               excersises: item.excersises,
               id: item.id,
               name: item.name,
-              timing: item.timing
+              timing: item.timing,
+              desc: item.description,
             })
           }
           style={{ alignItems: "center", justifyContent: "center", margin: 10 }}
