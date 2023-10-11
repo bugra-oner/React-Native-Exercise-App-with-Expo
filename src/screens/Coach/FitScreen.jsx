@@ -21,7 +21,7 @@ const FitScreen = () => {
   const excersise = route.params.excersises;
 
   const totalExercises = route.params.timings[0];
-  console.log("test", totalExercises);
+
   //Workout name route.params.name
   //console.log("params", route.params.name);
   //console.log("test", excersise);
