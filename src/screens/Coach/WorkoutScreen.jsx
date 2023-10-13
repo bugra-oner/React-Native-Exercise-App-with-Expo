@@ -25,7 +25,7 @@ const WorkOutScreen = () => {
   const { completed, setCompleted } = useContext(FitnessItems);
 
   const { t } = useTranslation();
-  console.log(route.params)
+  console.log(route.params);
   let name = route.params.desc;
 
   return (
@@ -132,7 +132,7 @@ const WorkOutScreen = () => {
         <Text
           style={{
             textAlign: "center",
-            color: "white",
+            color: "#e70000",
             fontSize: 15,
             fontWeight: "700",
           }}
@@ -175,6 +175,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 10,
     marginVertical: hp(2),
+    // borderWidth: 1,
+    // borderColor: "black",
   },
   BalloonsView: {
     flexDirection: "row",
