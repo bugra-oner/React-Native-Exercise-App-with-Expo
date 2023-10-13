@@ -6,6 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { fp, wp } from "../../utils";
 //Burada async storagedeki egzersizi getireceğiz fakat  maplarken verip kontrol etmemiz gerekiyor aslında sırayla getireceğiz gibi
 // Böyle bir şey mümkün mü bilmiyorum
 
@@ -204,19 +205,20 @@ const styles = StyleSheet.create({
   },
   recommendedTag: {
     position: "absolute",
-    top: 30,
-    right: -49,
+    top: 20,
+    right: -25,
     backgroundColor: "green", // Etiket arka plan rengi
     paddingHorizontal: 6,
     paddingVertical: 1,
     borderRadius: 100,
     transform: [{ rotate: "45deg" }],
-    width: 170,
+    width: wp(30),
   },
   recommendedTagText: {
     color: "white",
     fontWeight: "800",
     textAlign: "center",
+    fontSize: fp(1.5),
   },
   TextView: {
     position: "absolute",
