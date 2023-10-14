@@ -6,17 +6,18 @@ import { fp, hp, wp } from "../../utils";
 
 const RestScreen = ({}) => {
   const route = useRoute();
-  console.log(route.params.index);
+  // console.log(route.params.index);
   //console.log(route.params);
+  let index = route.params.index;
   const navigation = useNavigation();
   let timer = 0;
-  const [timeLeft, setTimeLeft] = useState(3);
+  const [timeLeft, setTimeLeft] = useState(10 + index + 1 * 2);
 
   const startTime = () => {
     timer = setTimeout(() => {
       if (timeLeft <= 0) {
         navigation.goBack();
-        console.log("bu ne 1");
+        // console.log("bu ne 1");
       } else {
         setTimeLeft(timeLeft - 1);
         startTime(); // Yeni bir zamanlayıcı başlat
