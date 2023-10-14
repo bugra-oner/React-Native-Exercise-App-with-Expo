@@ -32,7 +32,7 @@ const CoachScreen = () => {
   const { t } = useTranslation();
   const route = useRoute();
 
-  console.log(route.params);
+  //console.log(route.params);
 
   const { minutes, calories, workout } = useContext(FitnessItems);
 

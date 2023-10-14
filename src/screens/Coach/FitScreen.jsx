@@ -76,6 +76,8 @@ const FitScreen = () => {
       const newExerciseCount = parseInt(currentExerciseCount) + 1;
       await AsyncStorage.setItem(exerciseName, newExerciseCount.toString());
 
+      setCompleted("");
+
       // İstatistikler başarıyla saklandı
     } catch (error) {
       //console.error("Istatistikleri saklama hatası:", error);
@@ -97,8 +99,20 @@ const FitScreen = () => {
         style={{ flex: 1 }}
       >
         <Text style={styles.workoutName}>{current.name}</Text>
-        <Text style={{ color: "black", fontSize: fp(3), textAlign: "center" }}>
-          {index + 1}. {t("Exercise")} {totalExercises}{" "}
+        <Text
+          style={{
+            color: "black",
+            fontSize: fp(2.7),
+            textAlign: "center",
+            marginTop: hp(2),
+            opacity: 0.4,
+          }}
+        >
+          {index + 1}.
+          <Text style={{ fontSize: fp(1.7), position: "absolute" }}>
+            ({totalExercises}){" "}
+          </Text>{" "}
+          {t("Exercise")}
         </Text>
         <Text style={styles.sets}>x{current.sets}</Text>
         {index + 1 >= excersise.length ? (
@@ -113,7 +127,11 @@ const FitScreen = () => {
         ) : (
           <Pressable
             onPress={() => {
-              navigation.navigate("Rest");
+              navigation.navigate("Rest", {
+                index,
+              });
+              // console.log("Burası ilk rest");
+
               setCompleted([...completed, current.name]);
               setWorkout(workout + 1);
               setMinutes(minutes + 2.5);
@@ -132,7 +150,8 @@ const FitScreen = () => {
           <Pressable
             disabled={index === 0}
             onPress={() => {
-              navigation.navigate("Rest");
+              navigation.navigate("Rest", { index });
+              // console.log("Burası");
               setTimeout(() => {
                 setIndex(index - 1);
               }, 2000);
@@ -153,7 +172,7 @@ const FitScreen = () => {
           ) : (
             <Pressable
               onPress={() => {
-                navigation.navigate("Rest");
+                navigation.navigate("Rest", { index });
                 setTimeout(() => {
                   setIndex(index + 1);
                 }, 2000);
@@ -191,7 +210,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   doneButton: {
-    backgroundColor: "blue",
+    backgroundColor: "#0000ff53",
     marginLeft: "auto",
     marginRight: "auto",
     marginTop: 30,
@@ -206,7 +225,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   skipButton: {
-    backgroundColor: "green",
+    backgroundColor: "#0080006f",
     padding: 10,
     borderRadius: 20,
     marginHorizontal: 20,
@@ -218,7 +237,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   prevButton: {
-    backgroundColor: "green",
+    backgroundColor: "#0080006f",
     padding: 10,
     borderRadius: 20,
     marginHorizontal: 20,
@@ -235,6 +254,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: "auto",
     marginRight: "auto",
-    backgroundColor: "red",
   },
 });

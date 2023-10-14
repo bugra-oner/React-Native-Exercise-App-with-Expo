@@ -99,7 +99,7 @@ const WorkOutScreen = () => {
               </View>
               {completed.includes(item.name) ? (
                 <AntDesign
-                  style={{ marginLeft: wp(2) }}
+                  style={styles.checkIcon}
                   name="checkcircle"
                   size={fp(4)}
                   color="green"
@@ -109,37 +109,38 @@ const WorkOutScreen = () => {
           ))}
         </LinearView>
       </ScrollView>
-
-      <Pressable
-        onPress={() => {
-          navigation.navigate("Fit", {
-            excersises: route.params.excersises,
-            name: route.params.name,
-            timings: route.params.timing,
-          });
-          setCompleted([]);
-        }}
-        style={{
-          backgroundColor: "#7d2ac0",
-          padding: 10,
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginVertical: 20,
-          width: 120,
-          borderRadius: 6,
-        }}
-      >
-        <Text
+      <View style={styles.bottomView}>
+        <Pressable
+          onPress={() => {
+            navigation.navigate("Fit", {
+              excersises: route.params.excersises,
+              name: route.params.name,
+              timings: route.params.timing,
+            });
+            setCompleted([]);
+          }}
           style={{
-            textAlign: "center",
-            color: "#e70000",
-            fontSize: 15,
-            fontWeight: "700",
+            backgroundColor: "#7d2ac0",
+            padding: 10,
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginVertical: 20,
+            width: 120,
+            borderRadius: 6,
           }}
         >
-          {t("Start")}
-        </Text>
-      </Pressable>
+          <Text
+            style={{
+              textAlign: "center",
+              color: "white",
+              fontSize: 15,
+              fontWeight: "700",
+            }}
+          >
+            {t("Start")}
+          </Text>
+        </Pressable>
+      </View>
     </>
   );
 };
@@ -222,5 +223,15 @@ const styles = StyleSheet.create({
     marginHorizontal: wp(5),
     marginTop: hp(2.2),
     fontWeight: "bold",
+  },
+  bottomView: {
+    backgroundColor: "rgba(80,80,136,0.8)",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  checkIcon: {
+    position: "absolute",
+    right: wp(5),
+    bottom: hp(3),
   },
 });

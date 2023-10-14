@@ -1,17 +1,19 @@
 import { StyleSheet, Text, View, SafeAreaView, Image } from "react-native";
 import React, { useState, useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-import { fp,hp,wp } from "../../utils";
+import { fp, hp, wp } from "../../utils";
 
-
-const RestScreen = () => {
+const RestScreen = ({}) => {
+  const route = useRoute();
+  console.log(route.params.index);
+  //console.log(route.params);
   const navigation = useNavigation();
   let timer = 0;
-  const [timeLeft, setTimeLeft] = useState(1);
+  const [timeLeft, setTimeLeft] = useState(3);
 
   const startTime = () => {
-     timer = setTimeout(() => {
+    timer = setTimeout(() => {
       if (timeLeft <= 0) {
         navigation.goBack();
         console.log("bu ne 1");
@@ -63,8 +65,8 @@ const RestScreen = () => {
 export default RestScreen;
 
 const styles = StyleSheet.create({
-  image:{
+  image: {
     width: wp(100),
-    height:hp(50),
+    height: hp(50),
   },
 });
