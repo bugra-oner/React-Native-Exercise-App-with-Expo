@@ -1,7 +1,7 @@
 export default [
   {
     id: "0",
-    image: require("./fitnessImages/fullBody.jpg"),
+    image: require("./fitnessImages/fullbody2.png"),
     name: "FULL BODY BEGINNER",
     timing: [18, 25],
     description: "Beginner",
@@ -130,7 +130,7 @@ export default [
   },
   {
     id: "1",
-    image: require("./fitnessImages/ABS.jpg"),
+    image: require("./fitnessImages/absbegginer.jpg"),
     name: "ABS  BEGINNER",
     timing: [8, 12],
     description: "Beginner",
@@ -194,7 +194,7 @@ export default [
   },
   {
     id: "2",
-    image: require("./fitnessImages/Arm.jpg"),
+    image: require("./fitnessImages/armarm.jpg"),
     name: "ARM BEGINNER",
     timing: [9, 15],
     description: "Beginner",
@@ -264,7 +264,7 @@ export default [
   },
   {
     id: "3",
-    image: require("./fitnessImages/Chest.jpg"),
+    image: require("./fitnessImages/chestdark.jpg"),
     name: "CHEST BEGINNER",
     timing: [7, 10],
     description: "Beginner",
@@ -311,7 +311,7 @@ export default [
         name: "HINDU PUSH-UPS",
         sets: 5,
       },
-      
+
       // {
       //   id: "25",
       //   image: require("./pushupRotation.gif"),

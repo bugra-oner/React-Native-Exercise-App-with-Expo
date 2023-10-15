@@ -111,7 +111,7 @@ export default function Profil({ navigation }) {
             source={require("../../assets/version.jpg")}
             style={styles.Logo}
           />
-          <Text style={styles.Version}>{t("Version")} 1.0.9</Text>
+          <Text style={styles.Version}>{t("Version")} 1.1.0</Text>
         </View>
       </View>
     </>

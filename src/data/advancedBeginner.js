@@ -1,7 +1,7 @@
 export default [
   {
     id: "0",
-    image: require("./fitnessImages/fullBody.jpg"),
+    image: require("./fitnessImages/fullbody3.png"),
     name: "FULL BODY ADVANCED BEGINNER",
     timing: [18, 28],
     description: "Beginner",
@@ -130,7 +130,7 @@ export default [
   },
   {
     id: "1",
-    image: require("./fitnessImages/ABS.jpg"),
+    image: require("./fitnessImages/advancedabs.jpg"),
     name: "ABS  ADVANCED BEGINNER",
     timing: [8, 14],
     description: "Beginner",
@@ -194,7 +194,7 @@ export default [
   },
   {
     id: "2",
-    image: require("./fitnessImages/Arm.jpg"),
+    image: require("./fitnessImages/arminter.jpg"),
     name: "ARM ADVANCED BEGINNER",
     timing: [10, 16],
     description: "Beginner",
@@ -269,7 +269,7 @@ export default [
   },
   {
     id: "3",
-    image: require("./fitnessImages/Chest.jpg"),
+    image: require("./fitnessImages/chest-training.jpg"),
     name: "CHEST ADVANCED BEGINNER",
     timing: [9, 14],
     description: "Beginner",

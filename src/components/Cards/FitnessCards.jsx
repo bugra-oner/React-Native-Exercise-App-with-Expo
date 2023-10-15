@@ -5,8 +5,10 @@ import { Platform } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
+import { useTranslation } from "react-i18next";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { fp, wp } from "../../utils";
+import { fp, hp, wp } from "../../utils";
 //Burada async storagedeki egzersizi getireceğiz fakat  maplarken verip kontrol etmemiz gerekiyor aslında sırayla getireceğiz gibi
 // Böyle bir şey mümkün mü bilmiyorum
 
@@ -39,6 +41,8 @@ const FitnessCards = ({
     fetchExerciseCounts();
   }, [FitnessData, workoutCompleted]);
 
+  const { t } = useTranslation();
+
   return (
     <View style={[styles.container, { backgroundColor: backgroundColor }]}>
       {FitnessData.map((item, key) => (
@@ -58,8 +62,8 @@ const FitnessCards = ({
         >
           <Image
             style={{
-              width: "96%",
-              height: 150,
+              width: "98%",
+              height: hp(19),
               borderRadius: 10,
               opacity: 0.8,
             }}
@@ -79,7 +83,7 @@ const FitnessCards = ({
               style={{
                 // position: "absolute",
                 color: "white",
-                fontSize: 17,
+                fontSize: fp(2.2),
                 fontWeight: "bold",
                 // left: 21,
                 // top: 22,
@@ -91,14 +95,14 @@ const FitnessCards = ({
               style={{
                 // position: "absolute",
                 color: "#ffffff",
-                fontSize: 14,
+                fontSize: fp(1.8),
                 fontWeight: "bold",
                 // left: key === 0 ? 63 : 40,
                 // top: 45,
                 // textAlign: "center",
               }}
             >
-              {item.timing[0]} Egzersiz {item.timing[1]} Dakika
+              {item.timing[0]} {t("Exercise")} {item.timing[1]} {t("Minute")}
             </Text>
           </View>
           <MaterialCommunityIcons

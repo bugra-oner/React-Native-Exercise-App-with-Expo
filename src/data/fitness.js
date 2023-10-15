@@ -82,7 +82,7 @@ export default [
   },
   {
     id: "1",
-    image: require("./fitnessImages/ABS.jpg"),
+    image: require("./fitnessImages/ABG-Beginner.jpg"),
     name: "ABS  SEMI-BEGINNER",
     timing: [6, 9],
     description: "Beginner",
