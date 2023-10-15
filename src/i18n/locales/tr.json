@@ -150,5 +150,6 @@
       "WorkoutActivity": "Egzersiz Aktivitesi",
       "Skip":"Geç",
       "Prev":"Önceki",
-      "BreakTime": "Dinlenme Zamanı!"
+      "BreakTime": "Dinlenme Zamanı!",
+      "NextMovement": "Sıradaki Hareket"
   }

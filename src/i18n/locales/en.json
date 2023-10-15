@@ -151,5 +151,6 @@
     "WorkoutActivity": "Workout Activity",
     "Skip":"Skip",
     "Prev":"Prev",
-    "BreakTime": "Time for a break!"
+    "BreakTime": "Time for a break!",
+    "NextMovement":"Next Move"
 }

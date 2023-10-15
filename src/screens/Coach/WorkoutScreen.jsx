@@ -25,7 +25,7 @@ const WorkOutScreen = () => {
   const { completed, setCompleted } = useContext(FitnessItems);
 
   const { t } = useTranslation();
-  console.log(route.params);
+  //console.log(route.params);
   let name = route.params.desc;
 
   return (

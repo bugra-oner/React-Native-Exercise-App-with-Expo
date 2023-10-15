@@ -1,5 +1,5 @@
-import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import React from "react";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
 const RestButton = ({ title, onPress, style }) => {
   return (
@@ -11,15 +11,15 @@ const RestButton = ({ title, onPress, style }) => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#7d83b0',
+    backgroundColor: "#7d83b0",
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
   },
 });

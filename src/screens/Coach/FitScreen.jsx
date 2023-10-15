@@ -34,7 +34,9 @@ const FitScreen = () => {
   //console.log("test", excersise);
 
   const current = excersise[index];
+
   const currentNext = excersise[index + 1];
+
   const currentPrev = excersise[index - 1];
   //{"id": "10", "image": 23, "name": "JUMPING JACKS", "sets": 12} first excersise
 
@@ -139,8 +141,9 @@ const FitScreen = () => {
           <Pressable
             onPress={() => {
               navigation.navigate("Rest", {
-                index,
+                index: index + 1,
                 current: currentNext,
+                length: excersise.length,
               });
               // console.log("Burası ilk rest");
 
@@ -162,7 +165,11 @@ const FitScreen = () => {
           <Pressable
             disabled={index === 0}
             onPress={() => {
-              navigation.navigate("Rest", { index, current: currentPrev });
+              navigation.navigate("Rest", {
+                index: index + 1,
+                current: currentPrev,
+                length: excersise.length,
+              });
               // console.log("Burası");
               setTimeout(() => {
                 setIndex(index - 1);
@@ -178,6 +185,7 @@ const FitScreen = () => {
                 navigation.navigate("CoachScreen", {
                   index,
                   current: currentNext,
+                  length: excersise.length,
                 });
               }}
               style={styles.skipButton}
@@ -188,8 +196,9 @@ const FitScreen = () => {
             <Pressable
               onPress={() => {
                 navigation.navigate("Rest", {
-                  index,
+                  index: index + 1,
                   current: currentNext,
+                  length: excersise.length,
                 });
                 setTimeout(() => {
                   setIndex(index + 1);

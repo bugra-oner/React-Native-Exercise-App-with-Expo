@@ -19,10 +19,31 @@ const RestScreen = ({}) => {
   //console.log(route.params);
   let index = route.params.index;
   let current = route.params.current;
-  console.log(current);
+  let length = route.params.length;
+  // console.log(current);
   const navigation = useNavigation();
   let timer = 0;
-  const [timeLeft, setTimeLeft] = useState(10 + index + 1 * 2);
+
+  console.log("index", index);
+  console.log("length", length);
+
+  const calculateRestTime = (index) => {
+    if (index === 0) {
+      return 15; // Index 0 için dinlenme süresi
+    } else if (index >= 1 && index <= 8) {
+      return 25 + index * 3; // Index 1-10 arası için dinlenme süresi
+    } else if (index === length - 1) {
+      return 30;
+    } else {
+      // Diğer durumlar için varsayılan dinlenme süresi
+      return 15 + (index + 1) * 2;
+    }
+  };
+  // console.log("restTimeCalculated", calculateRestTime(index));
+
+  const [timeLeft, setTimeLeft] = useState(calculateRestTime(index));
+
+  //console.log(timeLeft);
   const startTime = () => {
     timer = setTimeout(() => {
       if (timeLeft <= 0) {
@@ -54,11 +75,11 @@ const RestScreen = ({}) => {
         <TextSection
           styleTitle={styles.Title}
           styleContent={styles.Content}
-          title="Sıradaki Hareket"
+          title={t("NextMovement")}
           content={current.name}
         />
         <Text
-          style={{ alignSelf: "center", fontSize: fp(3), fontWeight: "800" }}
+          style={{ alignSelf: "center", fontSize: fp(3.5), fontWeight: "800" }}
         >
           {current.sets}x
         </Text>
@@ -71,9 +92,9 @@ const RestScreen = ({}) => {
         </View>
         <Text
           style={{
-            fontSize: 30,
+            fontSize: fp(5),
             fontWeight: "800",
-            marginTop: hp(3),
+            marginTop: hp(0.5),
             textAlign: "center",
           }}
         >
@@ -92,8 +113,13 @@ const RestScreen = ({}) => {
           onPress={() => setTimeLeft(timeLeft + 20)}
           title={"+20"}
           style={styles.GradientButton}
+          textStyle={styles.textStyleGradient}
         />
-        <RestButton title={t("SkipRest")} style={styles.RestButton} />
+        <RestButton
+          title={t("SkipRest")}
+          onPress={() => navigation.goBack()}
+          style={styles.RestButton}
+        />
       </LinearView>
     </SafeAreaView>
   );
@@ -108,7 +134,7 @@ const styles = StyleSheet.create({
     width: wp(92),
     height: hp(40),
     borderRadius: 15,
-    marginTop: hp(3),
+    marginTop: hp(1.5),
     alignItems: "center",
   },
 
@@ -125,6 +151,16 @@ const styles = StyleSheet.create({
   GradientButton: {
     width: wp(50),
     alignSelf: "center",
+    marginVertical: hp(2),
+    borderRadius: 10,
+    textAlign: "center",
+    alignItems: "center",
+  },
+  textStyleGradient: {
+    fontSize: fp(3),
+    color: "white",
+    fontWeight: "bold",
+    padding: hp(0.5),
   },
   Title: {
     textAlign: "center",

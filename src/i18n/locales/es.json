@@ -150,5 +150,6 @@
     "WorkoutActivity": "Actividad de entrenamiento",
     "Skip": "Skip",
     "Prev": "Prev",
-    "BreakTime": "Break time"
+    "BreakTime": "Descanso",
+    "NextMovement": "próximo movimiento"
 }
