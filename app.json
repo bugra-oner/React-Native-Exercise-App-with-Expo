@@ -2,7 +2,7 @@
   "expo": {
     "name": "HomeFit",
     "slug": "Home-Fit",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "splash": {
@@ -17,7 +17,7 @@
     },
     "android": {
       "package": "com.boletroy.HomeFit",
-      "versionCode": 10,
+      "versionCode": 11,
       "icon": "./assets/images/icon.png"
     },
     "web": {},
