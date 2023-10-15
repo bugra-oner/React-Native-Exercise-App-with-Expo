@@ -66,6 +66,7 @@ const FitnessCards = ({
               height: hp(19),
               borderRadius: 10,
               opacity: 0.8,
+              resizeMode: "stretch",
             }}
             source={item.image}
           />

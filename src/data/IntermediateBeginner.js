@@ -130,7 +130,7 @@ export default [
   },
   {
     id: "1",
-    image: require("./fitnessImages/ABS.jpg"),
+    image: require("./fitnessImages/absemibeginner.jpg"),
     name: "ABS  INTERMEDIATE BEGINNER",
     timing: [10, 16],
     description: "INTERMEDIATE",
@@ -206,7 +206,7 @@ export default [
   },
   {
     id: "2",
-    image: require("./fitnessImages/Arm.jpg"),
+    image: require("./fitnessImages/armwhite.jpg"),
     name: "ARM INTERMEDIATE BEGINNER",
     timing: [12, 18],
     description: "INTERMEDIATE",
@@ -294,7 +294,7 @@ export default [
   },
   {
     id: "3",
-    image: require("./fitnessImages/Chest.jpg"),
+    image: require("./fitnessImages/chest-workout.png"),
     name: "CHEST INTERMEDIATE BEGINNER",
     timing: [8, 12],
     description: "INTERMEDIATE",
