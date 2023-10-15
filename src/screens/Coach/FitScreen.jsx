@@ -1,4 +1,11 @@
-import { StyleSheet, Text, SafeAreaView, Image, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  Image,
+  Pressable,
+  View,
+} from "react-native";
 import React, { useState, useContext } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
@@ -27,6 +34,8 @@ const FitScreen = () => {
   //console.log("test", excersise);
 
   const current = excersise[index];
+  const currentNext = excersise[index + 1];
+  const currentPrev = excersise[index - 1];
   //{"id": "10", "image": 23, "name": "JUMPING JACKS", "sets": 12} first excersise
 
   const {
@@ -88,7 +97,6 @@ const FitScreen = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Image style={styles.gif} source={current.image} />
       <LinearView
         colorsOne="#cbbee9d4"
         colorsTwo="#a7a7a7"
@@ -98,6 +106,9 @@ const FitScreen = () => {
         endTwo={1}
         style={{ flex: 1 }}
       >
+        <View style={styles.gifView}>
+          <Image style={styles.gif} source={current.image} />
+        </View>
         <Text style={styles.workoutName}>{current.name}</Text>
         <Text
           style={{
@@ -122,13 +133,14 @@ const FitScreen = () => {
             }}
             style={styles.doneButton}
           >
-            <Text style={styles.doneText}>DONE</Text>
+            <Text style={styles.doneText}>{t("CompleteExc")}</Text>
           </Pressable>
         ) : (
           <Pressable
             onPress={() => {
               navigation.navigate("Rest", {
                 index,
+                current: currentNext,
               });
               // console.log("Burası ilk rest");
 
@@ -142,7 +154,7 @@ const FitScreen = () => {
             }}
             style={styles.doneButton}
           >
-            <Text style={styles.doneText}>DONE</Text>
+            <Text style={styles.doneText}>{t("CompleteSet")}</Text>
           </Pressable>
         )}
 
@@ -150,7 +162,7 @@ const FitScreen = () => {
           <Pressable
             disabled={index === 0}
             onPress={() => {
-              navigation.navigate("Rest", { index });
+              navigation.navigate("Rest", { index, current: currentPrev });
               // console.log("Burası");
               setTimeout(() => {
                 setIndex(index - 1);
@@ -158,28 +170,34 @@ const FitScreen = () => {
             }}
             style={styles.prevButton}
           >
-            <Text style={styles.prevText}>PREV</Text>
+            <Text style={styles.prevText}>{t("Prev")}</Text>
           </Pressable>
           {index + 1 >= excersise.length ? (
             <Pressable
               onPress={() => {
-                navigation.navigate("CoachScreen");
+                navigation.navigate("CoachScreen", {
+                  index,
+                  current: currentNext,
+                });
               }}
               style={styles.skipButton}
             >
-              <Text style={styles.skipText}>SKIP</Text>
+              <Text style={styles.skipText}>{t("Skip")}</Text>
             </Pressable>
           ) : (
             <Pressable
               onPress={() => {
-                navigation.navigate("Rest", { index });
+                navigation.navigate("Rest", {
+                  index,
+                  current: currentNext,
+                });
                 setTimeout(() => {
                   setIndex(index + 1);
                 }, 2000);
               }}
               style={styles.skipButton}
             >
-              <Text style={styles.skipText}>SKIP</Text>
+              <Text style={styles.skipText}>{t("Skip")}</Text>
             </Pressable>
           )}
         </Pressable>
@@ -191,21 +209,30 @@ const FitScreen = () => {
 export default FitScreen;
 
 const styles = StyleSheet.create({
+  gifView: {
+    alignSelf: "center",
+    overflow: "hidden", // GIF içeriğini çerçevenin içine sığdırmak için
+    width: wp(94),
+    height: hp(42),
+    borderRadius: 15,
+    marginTop: hp(5),
+    alignItems: "center",
+  },
   gif: {
-    width: wp(100),
-    height: hp(46),
+    width: wp(94),
+    height: hp(42),
   },
   workoutName: {
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: 30,
+    marginTop: 15,
     fontSize: typography.workoutGifName,
     fontWeight: "bold",
   },
   sets: {
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: 30,
+    marginTop: hp(1.2),
     fontSize: typography.workoutGifSets,
     fontWeight: "bold",
   },
@@ -213,15 +240,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#0000ff53",
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: 30,
+    marginTop: hp(1),
     borderRadius: 20,
     padding: 10,
-    width: 150,
+    width: 180,
   },
   doneText: {
     textAlign: "center",
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 18,
     color: "white",
   },
   skipButton: {

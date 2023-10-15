@@ -148,7 +148,8 @@
     "TotalMinute": "Total Minute",
     "Minute": "Minute",
     "Spanish":"Spanish",
-    "WorkoutActivity": "Workout Activity"
-    
-
+    "WorkoutActivity": "Workout Activity",
+    "Skip":"Skip",
+    "Prev":"Prev",
+    "BreakTime": "Time for a break!"
 }

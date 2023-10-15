@@ -15,25 +15,25 @@ export default [
       {
         id: "20",
         image: require("./decline-pushups.gif"),
-        name: "DECLINE PUSH-UPS",
+        name: "DECLINE PUSH UPS",
         sets: 4,
       },
       {
         id: "11",
         image: require("./incline.gif"),
-        name: "INCLINE PUSH-UPS",
+        name: "INCLINE PUSH UPS",
         sets: 6,
       },
       {
         id: "99",
         image: require("./pushup.gif"),
-        name: "PUSH-UPS",
+        name: "PUSH UPS",
         sets: 6,
       },
       {
         id: "13",
         image: require("./wide-arm-push-up.gif"),
-        name: "WIDE ARM PUSH-UPS",
+        name: "WIDE ARM PUSH UPS",
         sets: 4,
       },
       {
@@ -130,7 +130,7 @@ export default [
         sets: 10,
         second: 30,
       },
-      
+
       // {
       //   id: "95",
       //   image: require("./straight-leg-raise.gif"),
@@ -212,19 +212,19 @@ export default [
       {
         id: "20",
         image: require("./decline-pushups.gif"),
-        name: "DECLINE PUSH-UPS",
+        name: "DECLINE PUSH UPS",
         sets: 12,
       },
       {
         id: "11",
         image: require("./incline.gif"),
-        name: "INCLINE PUSH-UPS",
+        name: "INCLINE PUSH UPS",
         sets: 6,
       },
       {
         id: "11",
         image: require("./incline.gif"),
-        name: "INCLINE PUSH-UPS",
+        name: "INCLINE PUSH UPS",
         sets: 6,
       },
       // {
@@ -237,7 +237,7 @@ export default [
       {
         id: "23",
         image: require("./hinduPushups.gif"),
-        name: "HINDU PUSH-UPS",
+        name: "HINDU PUSH UPS",
         sets: 4,
       },
       // {

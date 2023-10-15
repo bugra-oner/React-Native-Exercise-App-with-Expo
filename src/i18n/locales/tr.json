@@ -147,6 +147,8 @@
       "TotalMinute": "Toplam Dakika",
       "Minute": "Dakika",
       "Spanish": "Ispanyolca",
-      "WorkoutActivity": "Egzersiz Aktivitesi"
+      "WorkoutActivity": "Egzersiz Aktivitesi",
+      "Skip":"Geç",
+      "Prev":"Önceki",
+      "BreakTime": "Dinlenme Zamanı!"
   }
-  
