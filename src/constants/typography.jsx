@@ -18,6 +18,6 @@ const typography = {
     workoutTitle: 13,
     workoutSubtitle: 8,
     workoutGifName: fp(4),
-    workoutGifSets: fp(6)
+    workoutGifSets: fp(7)
 };
 export default typography;

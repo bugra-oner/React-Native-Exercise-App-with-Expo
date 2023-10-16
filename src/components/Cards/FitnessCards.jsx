@@ -74,7 +74,7 @@ const FitnessCards = ({
           {key === 0 && first === true && (
             <View style={styles.recommendedTag}>
               <Text style={styles.recommendedTagText}>
-                Başlangıç için ideal
+                {t("StartingIdeal")}
               </Text>
             </View>
           )}

@@ -24,8 +24,8 @@ const RestScreen = ({}) => {
   const navigation = useNavigation();
   let timer = 0;
 
-  console.log("index", index);
-  console.log("length", length);
+  // console.log("index", index);
+  // console.log("length", length);
 
   const calculateRestTime = (index) => {
     if (index === 0) {
@@ -72,17 +72,6 @@ const RestScreen = ({}) => {
         endTwo={1}
         style={{ flex: 1 }}
       >
-        <TextSection
-          styleTitle={styles.Title}
-          styleContent={styles.Content}
-          title={t("NextMovement")}
-          content={current.name}
-        />
-        <Text
-          style={{ alignSelf: "center", fontSize: fp(3.5), fontWeight: "800" }}
-        >
-          {current.sets}x
-        </Text>
         <View style={styles.gifView}>
           <Image
             // resizeMode="contain"
@@ -90,36 +79,61 @@ const RestScreen = ({}) => {
             style={styles.image}
           />
         </View>
-        <Text
-          style={{
-            fontSize: fp(5),
-            fontWeight: "800",
-            marginTop: hp(0.5),
-            textAlign: "center",
-          }}
-        >
-          {t("BreakTime")}
-        </Text>
-        <Text
-          style={{
-            fontSize: fp(5),
-            fontWeight: "bold",
-            textAlign: "center",
-          }}
-        >
-          {timeLeft}
-        </Text>
-        <GradientButton
-          onPress={() => setTimeLeft(timeLeft + 20)}
-          title={"+20"}
-          style={styles.GradientButton}
-          textStyle={styles.textStyleGradient}
-        />
-        <RestButton
-          title={t("SkipRest")}
-          onPress={() => navigation.goBack()}
-          style={styles.RestButton}
-        />
+        <View style={styles.bottomContainer}>
+          <TextSection
+            styleTitle={styles.Title}
+            styleContent={styles.Content}
+            title={t("NextMovement")}
+            content={current.name}
+          />
+          <Text
+            style={{
+              fontSize: fp(2.7),
+              fontWeight: "800",
+              bottom: hp(3.8),
+              left: wp(86),
+              position: "relative",
+              backgroundColor: "red",
+            }}
+          >
+            {current.sets}x
+          </Text>
+          <View style={styles.middleText}>
+            <Text
+              style={{
+                fontSize: fp(4.4),
+                fontWeight: "800",
+                marginTop: hp(4),
+                textAlign: "center",
+              }}
+            >
+              {t("BreakTime")}
+            </Text>
+            <Text
+              style={{
+                fontSize: fp(6),
+                fontWeight: "bold",
+                textAlign: "center",
+                marginTop: hp(1),
+              }}
+            >
+              {timeLeft}s
+            </Text>
+          </View>
+          <View style={styles.bottomView}>
+            <GradientButton
+              onPress={() => setTimeLeft(timeLeft + 20)}
+              title={"+20"}
+              style={styles.GradientButton}
+              textStyle={styles.textStyleGradient}
+            />
+            <RestButton
+              title={t("SkipRest")}
+              onPress={() => navigation.goBack()}
+              style={styles.RestButton}
+            />
+          </View>
+        </View>
       </LinearView>
     </SafeAreaView>
   );
@@ -131,16 +145,15 @@ const styles = StyleSheet.create({
   gifView: {
     alignSelf: "center",
     overflow: "hidden", // GIF içeriğini çerçevenin içine sığdırmak için
-    width: wp(92),
-    height: hp(40),
-    borderRadius: 15,
-    marginTop: hp(1.5),
+    width: wp(96),
+    height: hp(41),
+    borderRadius: 20,
+    marginTop: hp(2.5),
     alignItems: "center",
   },
-
   image: {
-    width: wp(92),
-    height: hp(40),
+    width: wp(96),
+    height: hp(41),
     alignSelf: "center",
     backgroundColor: "transparent",
   },
@@ -151,7 +164,7 @@ const styles = StyleSheet.create({
   GradientButton: {
     width: wp(50),
     alignSelf: "center",
-    marginVertical: hp(2),
+    marginVertical: hp(1.8),
     borderRadius: 10,
     textAlign: "center",
     alignItems: "center",
@@ -160,17 +173,29 @@ const styles = StyleSheet.create({
     fontSize: fp(3),
     color: "white",
     fontWeight: "bold",
-    padding: hp(0.5),
+    padding: hp(1),
+  },
+  bottomContainer: {
+    flex: 1,
+  },
+  middleText: {
+    alignItems: "center",
+    alignSelf: "center",
+  },
+  bottomView: {
+    position: "absolute",
+    // backgroundColor: "#000000",
+    alignSelf: "center",
+    marginBottom: hp(0.5),
+    bottom: hp(2),
   },
   Title: {
-    textAlign: "center",
-    marginTop: hp(4),
+    marginLeft: wp(8),
     fontSize: fp(4),
     fontWeight: "bold",
   },
   Content: {
-    textAlign: "center",
-    marginVertical: hp(0.8),
+    marginLeft: wp(8.5),
     fontSize: fp(2.3),
     fontWeight: "700",
   },

@@ -19,6 +19,8 @@ import typography from "../../constants/typography";
 import LinearView from "../../components/views/LinearView";
 import { useTranslation } from "react-i18next";
 
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 const FitScreen = () => {
   const { t } = useTranslation();
   const route = useRoute();
@@ -177,7 +179,14 @@ const FitScreen = () => {
             }}
             style={styles.prevButton}
           >
-            <Text style={styles.prevText}>{t("Prev")}</Text>
+            <Text style={styles.prevText}>
+              <MaterialCommunityIcons
+                name="set-left-center"
+                size={fp(3.2)}
+                color={"#00000055"}
+              />{" "}
+              {t("Prev")}
+            </Text>
           </Pressable>
           {index + 1 >= excersise.length ? (
             <Pressable
@@ -190,7 +199,14 @@ const FitScreen = () => {
               }}
               style={styles.skipButton}
             >
-              <Text style={styles.skipText}>{t("Skip")}</Text>
+              <Text style={styles.skipText}>
+                <MaterialCommunityIcons
+                  name="set-center-right"
+                  size={fp(3.2)}
+                  color={"black"}
+                />{" "}
+                {t("Skip")}
+              </Text>
             </Pressable>
           ) : (
             <Pressable
@@ -206,7 +222,14 @@ const FitScreen = () => {
               }}
               style={styles.skipButton}
             >
-              <Text style={styles.skipText}>{t("Skip")}</Text>
+              <Text style={styles.skipText}>
+                <MaterialCommunityIcons
+                  name="set-center-right"
+                  size={fp(3.2)}
+                  color={"#00000055"}
+                />{" "}
+                {t("Skip")}
+              </Text>
             </Pressable>
           )}
         </Pressable>
@@ -241,7 +264,7 @@ const styles = StyleSheet.create({
   sets: {
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: hp(1.2),
+    marginVertical: hp(3),
     fontSize: typography.workoutGifSets,
     fontWeight: "bold",
   },
@@ -261,34 +284,41 @@ const styles = StyleSheet.create({
     color: "white",
   },
   skipButton: {
-    backgroundColor: "#0080006f",
     padding: 10,
     borderRadius: 20,
-    marginHorizontal: 20,
-    width: 100,
+    marginHorizontal: wp(0),
+    width: wp(50),
   },
   skipText: {
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
+    alignItems: "center",
+    fontSize: fp(4),
+    color: "rgba(80,80,136,0.8)",
+    opacity: 0.6,
   },
   prevButton: {
-    backgroundColor: "#0080006f",
     padding: 10,
     borderRadius: 20,
-    marginHorizontal: 20,
-    width: 100,
+    marginHorizontal: wp(0),
+    width: wp(50),
   },
   prevText: {
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
+    fontSize: fp(4),
+    color: "rgba(80, 80, 136, 0.8)",
+    opacity: 0.6,
   },
   bottomButtonsView: {
     flexDirection: "row",
     alignSelf: "center",
-    marginTop: 10,
+    marginTop: 0,
     marginLeft: "auto",
     marginRight: "auto",
+    position: "absolute",
+    bottom: hp(2),
   },
 });

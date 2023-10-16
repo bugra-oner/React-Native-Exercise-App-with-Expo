@@ -152,5 +152,6 @@
     "Skip":"Skip",
     "Prev":"Prev",
     "BreakTime": "Time for a break!",
-    "NextMovement":"Next Move"
+    "NextMovement":"Next Move",
+    "StartingIdeal": "Ideal for beginners"
 }
