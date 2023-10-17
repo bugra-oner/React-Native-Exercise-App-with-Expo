@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, SafeAreaView, Image } from "react-native";
 import React, { useState, useEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
-
+import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { useTranslation } from "react-i18next";
 
 import LinearView from "../../components/views/LinearView";
@@ -15,7 +15,6 @@ import TextSection from "../../components/TextSection";
 const RestScreen = ({}) => {
   const { t } = useTranslation();
   const route = useRoute();
-
   //console.log(route.params);
   let index = route.params.index;
   let current = route.params.current;
@@ -23,10 +22,6 @@ const RestScreen = ({}) => {
   // console.log(current);
   const navigation = useNavigation();
   let timer = 0;
-
-  // console.log("index", index);
-  // console.log("length", length);
-
   const calculateRestTime = (index) => {
     if (index === 0) {
       return 15; // Index 0 için dinlenme süresi
@@ -39,28 +34,51 @@ const RestScreen = ({}) => {
       return 15 + (index + 1) * 2;
     }
   };
-  // console.log("restTimeCalculated", calculateRestTime(index));
-
   const [timeLeft, setTimeLeft] = useState(calculateRestTime(index));
-
+  const [extraTime, setExtraTime] = useState(0);
+  // İlerlemenin yüzdesini hesaplamak için bir işlev
+  const calculateProgress = () => {
+    // * Uygulama açıldığında manuel olarak dinlenme saniyesini hesapla daireye böl
+    const initialRestTime = calculateRestTime(index);
+    return (timeLeft / initialRestTime) * 100;
+  };
+  const [fill, setFill] = useState(calculateProgress());
+  // Ekstra süre eklemek için işlev
+  const addExtraTime = () => {
+    const newTime = timeLeft + 20;
+    if (newTime > 0) {
+      setTimeLeft(newTime);
+      setExtraTime(20);
+    }
+  };
+  const extraTimeCircularProgress = () => {};
   //console.log(timeLeft);
   const startTime = () => {
-    timer = setTimeout(() => {
-      if (timeLeft <= 0) {
-        navigation.goBack();
-        // console.log("bu ne 1");
-      } else {
-        setTimeLeft(timeLeft - 1);
-        startTime(); // Yeni bir zamanlayıcı başlat
-      }
-    }, 1000);
+    if (timeLeft <= 0) {
+      navigation.goBack();
+      // Dinlenme süresi bittiğinde navigasyonu burada tetikleyebilirsiniz.
+    } else {
+      timer = setTimeout(() => {
+        setTimeLeft((prevTimeLeft) => {
+          const newTimeLeft = prevTimeLeft - 1;
+          // * Fill func is here..
+          setFill(
+            extraTime === 0
+              ? calculateProgress(newTimeLeft)
+              : extraTimeCircularProgress
+          );
+          return newTimeLeft;
+        });
+        startTime();
+      }, 1000);
+    }
   };
-
   useEffect(() => {
     startTime();
     // Clean up
     return () => clearTimeout(timer);
   }, [timeLeft]); // timeLeft bağımlılığını izle
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LinearView
@@ -93,13 +111,12 @@ const RestScreen = ({}) => {
               bottom: hp(3.8),
               left: wp(86),
               position: "relative",
-              backgroundColor: "red",
             }}
           >
             {current.sets}x
           </Text>
           <View style={styles.middleText}>
-            <Text
+            {/* <Text
               style={{
                 fontSize: fp(4.4),
                 fontWeight: "800",
@@ -118,11 +135,30 @@ const RestScreen = ({}) => {
               }}
             >
               {timeLeft}s
-            </Text>
+            </Text> */}
+            <AnimatedCircularProgress
+              size={120}
+              width={15}
+              fill={fill}
+              tintColor="#00e0ff"
+              backgroundColor="#3d5875"
+              // onAnimationComplete={() => //console.log("onAnimationComplete")}
+            >
+              {(fill) => (
+                <View>
+                  <Text>
+                    {fill}
+                    {"\n"}
+                    {timeLeft}
+                  </Text>
+                  {/* İçeriği burada göstermek istediğiniz şekilde düzenleyin */}
+                </View>
+              )}
+            </AnimatedCircularProgress>
           </View>
           <View style={styles.bottomView}>
             <GradientButton
-              onPress={() => setTimeLeft(timeLeft + 20)}
+              onPress={addExtraTime}
               title={"+20"}
               style={styles.GradientButton}
               textStyle={styles.textStyleGradient}
