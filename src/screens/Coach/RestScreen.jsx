@@ -35,23 +35,28 @@ const RestScreen = ({}) => {
     }
   };
   const [timeLeft, setTimeLeft] = useState(calculateRestTime(index));
-  const [extraTime, setExtraTime] = useState(0);
+  const [extraTime, setExtraTime] = useState(calculateRestTime(index));
   // İlerlemenin yüzdesini hesaplamak için bir işlev
   const calculateProgress = () => {
     // * Uygulama açıldığında manuel olarak dinlenme saniyesini hesapla daireye böl
-    const initialRestTime = calculateRestTime(index);
+    const initialRestTime = extraTime;
+    console.log(timeLeft / initialRestTime);
     return (timeLeft / initialRestTime) * 100;
   };
   const [fill, setFill] = useState(calculateProgress());
   // Ekstra süre eklemek için işlev
   const addExtraTime = () => {
     const newTime = timeLeft + 20;
+    console.log("newTime", newTime);
     if (newTime > 0) {
       setTimeLeft(newTime);
-      setExtraTime(20);
+      setExtraTime(newTime);
     }
   };
-  const extraTimeCircularProgress = () => {};
+
+  // const extraTimeCircularProgress = () => {
+  //   return (timeLeft / timeLeft) * 100;
+  // };
   //console.log(timeLeft);
   const startTime = () => {
     if (timeLeft <= 0) {
@@ -61,18 +66,16 @@ const RestScreen = ({}) => {
       timer = setTimeout(() => {
         setTimeLeft((prevTimeLeft) => {
           const newTimeLeft = prevTimeLeft - 1;
-          // * Fill func is here..
-          setFill(
-            extraTime === 0
-              ? calculateProgress(newTimeLeft)
-              : extraTimeCircularProgress
-          );
+          //1 * Fill func is here..
+          setFill(calculateProgress());
+
           return newTimeLeft;
         });
         startTime();
       }, 1000);
     }
   };
+
   useEffect(() => {
     startTime();
     // Clean up
