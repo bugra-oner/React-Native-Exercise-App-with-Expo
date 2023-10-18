@@ -140,8 +140,8 @@ const RestScreen = ({}) => {
               {timeLeft}s
             </Text> */}
             <AnimatedCircularProgress
-              size={hp(20)}
-              width={wp(4)}
+              size={hp(22)}
+              width={wp(5.2)}
               fill={fill}
               tintColor="#a4dde5"
               backgroundColor="rgba(80,80,136,0.8)"
@@ -180,14 +180,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     overflow: "hidden", // GIF içeriğini çerçevenin içine sığdırmak için
     width: wp(96),
-    height: hp(41),
+    height: hp(42),
     borderRadius: 20,
     marginTop: hp(2.5),
     alignItems: "center",
   },
   image: {
     width: wp(96),
-    height: hp(41),
+    height: hp(42),
     alignSelf: "center",
     backgroundColor: "transparent",
   },
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
   GradientButton: {
     width: wp(50),
     alignSelf: "center",
-    marginVertical: hp(1.8),
+    marginVertical: hp(1.5),
     borderRadius: 10,
     textAlign: "center",
     alignItems: "center",
@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     // backgroundColor: "#000000",
     alignSelf: "center",
     marginBottom: hp(0),
-    bottom: hp(1.4),
+    bottom: hp(1.5),
   },
   Title: {
     marginLeft: wp(8),

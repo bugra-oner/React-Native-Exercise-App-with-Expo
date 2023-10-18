@@ -110,10 +110,13 @@ export default function HomeScreen({ navigation, route }) {
           <View style={styles.buttonsContainer}>
             <ButtonCard
               title={t("Calories")}
-              subTitle={`${calories}`}
+              subTitle={`${calories.toFixed(0)}`}
             />
             <Spacing size={15} />
-            <ButtonCard title={t("TotalMinute")} subTitle={`${minutes}`} />
+            <ButtonCard
+              title={t("TotalMinute")}
+              subTitle={`${minutes.toFixed(0)}`}
+            />
           </View>
         </View>
 
