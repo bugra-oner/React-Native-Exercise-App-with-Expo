@@ -40,14 +40,14 @@ const RestScreen = ({}) => {
   const calculateProgress = () => {
     // * Uygulama açıldığında manuel olarak dinlenme saniyesini hesapla daireye böl
     const initialRestTime = extraTime;
-    console.log(timeLeft / initialRestTime);
+    // console.log(timeLeft / initialRestTime);
     return (timeLeft / initialRestTime) * 100;
   };
   const [fill, setFill] = useState(calculateProgress());
   // Ekstra süre eklemek için işlev
   const addExtraTime = () => {
     const newTime = timeLeft + 20;
-    console.log("newTime", newTime);
+    // console.log("newTime", newTime);
     if (newTime > 0) {
       setTimeLeft(newTime);
       setExtraTime(newTime);
@@ -140,20 +140,15 @@ const RestScreen = ({}) => {
               {timeLeft}s
             </Text> */}
             <AnimatedCircularProgress
-              size={120}
-              width={15}
+              size={hp(20)}
+              width={wp(4)}
               fill={fill}
-              tintColor="#00e0ff"
-              backgroundColor="#3d5875"
-              // onAnimationComplete={() => //console.log("onAnimationComplete")}
+              tintColor="#a4dde5"
+              backgroundColor="rgba(80,80,136,0.8)"
             >
               {(fill) => (
-                <View>
-                  <Text>
-                    {fill}
-                    {"\n"}
-                    {timeLeft}
-                  </Text>
+                <View style={styles.counterView}>
+                  <Text style={styles.timeLeft}>{timeLeft}</Text>
                   {/* İçeriği burada göstermek istediğiniz şekilde düzenleyin */}
                 </View>
               )}
@@ -225,8 +220,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     // backgroundColor: "#000000",
     alignSelf: "center",
-    marginBottom: hp(0.5),
-    bottom: hp(2),
+    marginBottom: hp(0),
+    bottom: hp(1.4),
   },
   Title: {
     marginLeft: wp(8),
@@ -237,5 +232,18 @@ const styles = StyleSheet.create({
     marginLeft: wp(8.5),
     fontSize: fp(2.3),
     fontWeight: "700",
+  },
+  counterView: {
+    backgroundColor: "rgba(80,80,136,0.8)",
+    height: hp(10),
+    width: hp(10),
+    borderRadius: hp(10),
+    justifyContent: "center",
+  },
+  timeLeft: {
+    fontSize: fp(3.5),
+    fontWeight: "bold",
+    alignSelf: "center",
+    color: "white",
   },
 });
