@@ -2,6 +2,8 @@ import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
+import { hp, fp, wp } from "../../utils";
+
 const GradientButton = ({ title, onPress, colors, style, textStyle }) => {
   return (
     <TouchableOpacity onPress={onPress}>
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: fp(2.3),
     color: "#fff",
     paddingVertical: 7,
     paddingHorizontal: 15,

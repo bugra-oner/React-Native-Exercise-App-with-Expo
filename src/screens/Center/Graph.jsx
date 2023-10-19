@@ -107,20 +107,20 @@ export default function Graph({ navigation, route }) {
             title={t("Cardio")}
             name="walk"
             iconColor={"rgba(72, 79, 136, 0.8)"}
-            size={30}
+            size={fp(4)}
             color={"#ae9b83"}
           />
           <CategoriesButton
             title={t("Strength")}
             name="dumbbell"
-            size={30}
+            size={fp(4)}
             iconColor={"rgba(72, 79, 136, 0.8)"}
             color={"#ae7070"}
           />
           <CategoriesButton
             title={t("Endurance")}
             name="horse-variant-fast"
-            size={30}
+            size={fp(4)}
             iconColor={"rgba(72, 79, 136, 0.8)"}
             color={"#35c3dc"}
           />
@@ -128,7 +128,7 @@ export default function Graph({ navigation, route }) {
             title={t("More")}
             name="grain"
             iconColor={"rgba(72, 79, 136, 0.8)"}
-            size={30}
+            size={fp(4)}
             color={"#7faedc"}
           />
         </View>

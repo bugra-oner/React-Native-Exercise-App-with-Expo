@@ -1,20 +1,20 @@
-import React, { useState,useEffect } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, Image } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
-import GradientInput from '../inputs/GradientInput';
-import GradientButton from '../buttons/GradientButton';
+import GradientInput from "../inputs/GradientInput";
+import GradientButton from "../buttons/GradientButton";
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import typography from '../../constants/typography';
-import { useTranslation } from 'react-i18next';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import typography from "../../constants/typography";
+import { useTranslation } from "react-i18next";
 
-import { wp } from '../../utils';
+import { wp, hp, fp } from "../../utils";
 
 const ProteinCard = () => {
   const { t } = useTranslation();
 
-  const [weight, setWeight] = useState('');
+  const [weight, setWeight] = useState("");
   const [proteinAmount, setProteinAmount] = useState(0);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const ProteinCard = () => {
 
   const saveProteinAmountToStorage = async (proteinAmount) => {
     try {
-      await AsyncStorage.setItem('proteinAmount', proteinAmount.toString());
+      await AsyncStorage.setItem("proteinAmount", proteinAmount.toString());
       //console.log('setProteinAmount', proteinAmount)
       //console.log('Protein amount saved to AsyncStorage:', proteinAmount);
     } catch (error) {
@@ -43,33 +43,35 @@ const ProteinCard = () => {
 
   return (
     <LinearGradient
-      colors={['#5d432c', '#a87a59']}
+      colors={["#5d432c", "#a87a59"]}
       start={[0, 0]}
       end={[1, 0]}
       style={styles.cardContainer}
     >
-    
-      <Image source={require('../../assets//cards/protein-image.jpg')} style={styles.image} />
-      
+      <Image
+        source={require("../../assets//cards/protein-image.jpg")}
+        style={styles.image}
+      />
+
       <View style={styles.cardContent}>
-        <Text style={styles.title}>{t('ProteinCalculator')}</Text>
+        <Text style={styles.title}>{t("ProteinCalculator")}</Text>
         <GradientInput
           style={styles.input}
-          placeholder={t('InputKg')}
+          placeholder={t("InputKg")}
           onChangeText={(text) => setWeight(text)}
           keyboardType="numeric"
-          colors={['#5d432c', '#8d7f76']} // Kahverengi tonları
+          colors={["#5d432c", "#8d7f76"]} // Kahverengi tonları
         />
         <GradientButton
-          title={t('CalculateProtein')}
+          title={t("CalculateProtein")}
           onPress={calculateProteinAmount}
-          colors={['#8d684e', '#5d432c']}
+          colors={["#8d684e", "#5d432c"]}
           style={styles.GradientButton}
-           // Kahverengi tonları
+          // Kahverengi tonları
         />
         {proteinAmount !== null && (
           <Text style={styles.resultText}>
-            {t('DailyProteinAmount')}: {proteinAmount} {t('Gram')}
+            {t("DailyProteinAmount")}: {proteinAmount} {t("Gram")}
           </Text>
         )}
       </View>
@@ -79,55 +81,56 @@ const ProteinCard = () => {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    borderRadius: 10,
-    overflow: 'hidden',
-    elevation: 5,
-    width: wp(90), // Kartın genişliği
-    alignSelf: 'center',
-    flexDirection: 'row',
+    borderRadius: 12,
+    overflow: "hidden",
+    elevation: hp(0.5),
+    width: wp(92), // Kartın genişliği
+    alignSelf: "center",
+    flexDirection: "row",
     marginVertical: 10,
+    height: hp(22),
   },
   image: {
-    width: 130,
-    height: 130,
-    resizeMode: 'cover',
-    borderRadius: 65,
-    alignSelf: 'center',
+    width: hp(15),
+    height: hp(15),
+    resizeMode: "cover",
+    borderRadius: hp(10),
+    alignSelf: "center",
     alignContent: "center",
-    marginLeft: "3%"
+    marginLeft: "3%",
   },
   cardContent: {
     flex: 1,
     padding: 10, // İçeriği daha sıkı hale getirin
-    justifyContent: 'space-between', // İçeriği üstten alta sırala
+    justifyContent: "space-between", // İçeriği üstten alta sırala
   },
   title: {
     fontSize: typography.healthTitle,
     marginBottom: 5,
-    color: '#fff',
+    color: "#fff",
   },
   input: {
-    height: 40,
+    height: hp(4),
     borderWidth: 1,
-    borderColor: '#fff', // Placeholder rengi
+    borderColor: "#fff", // Placeholder rengi
     borderRadius: 5,
     marginBottom: 5,
     paddingHorizontal: 10,
-    backgroundColor: 'transparent',
-    color: '#fff',
+    backgroundColor: "transparent",
+    color: "#fff",
   },
   resultText: {
     fontSize: typography.healthText,
-    marginTop: 5,
-    color: '#fff',
+    marginTop: 3,
+    color: "#fff",
   },
-  GradientButton:{
-    height: 45,
+  GradientButton: {
+    height: hp(5),
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginVertical: 10,
-    backgroundColor: '#8d684e',
+    backgroundColor: "#8d684e",
   },
 });
 

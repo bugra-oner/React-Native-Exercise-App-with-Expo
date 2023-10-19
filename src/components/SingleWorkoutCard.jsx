@@ -38,7 +38,7 @@ export default function SingleWorkoutCard({
 const styles = StyleSheet.create({
   container: {
     width: wp(44),
-    padding: 23,
+    padding: hp(3.4),
     borderRadius: 13,
     borderColor: "black",
     shadowColor: "#000000", // Gölgenin rengini burada belirleyebilirsiniz
@@ -71,9 +71,9 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   image: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: hp(6),
+    height: hp(6),
+    borderRadius: 50,
     resizeMode: "contain",
   },
   withLevel: {

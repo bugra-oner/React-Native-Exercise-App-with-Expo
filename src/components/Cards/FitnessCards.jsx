@@ -115,7 +115,7 @@ const FitnessCards = ({
               opacity: difficulty === 0 ? 0.6 : 1,
             }}
             name="lightning-bolt"
-            size={24}
+            size={fp(2.6)}
           />
           <MaterialCommunityIcons
             style={{
@@ -126,7 +126,7 @@ const FitnessCards = ({
               opacity: difficulty === 2 ? 0.6 : 1,
             }}
             name="lightning-bolt"
-            size={24}
+            size={fp(2.6)}
           />
           <MaterialCommunityIcons
             style={{
@@ -137,7 +137,7 @@ const FitnessCards = ({
               opacity: difficulty === 3 ? 0.5 : 1,
             }}
             name="lightning-bolt"
-            size={24}
+            size={fp(2.6)}
             color="black"
           />
           <MaterialCommunityIcons
@@ -148,7 +148,7 @@ const FitnessCards = ({
               left: 80,
             }}
             name="lightning-bolt"
-            size={24}
+            size={fp(2.6)}
             color="black"
           />
           <MaterialCommunityIcons
@@ -159,7 +159,7 @@ const FitnessCards = ({
               left: 100,
             }}
             name="lightning-bolt"
-            size={24}
+            size={fp(2.6)}
             color="black"
           />
 
@@ -170,7 +170,7 @@ const FitnessCards = ({
             <MaterialCommunityIcons
               key={starIndex}
               name="star"
-              size={22}
+              size={fp(2.6)}
               color={
                 parseInt(exerciseCounts[item.name]) >= starIndex
                   ? "#ffffff"
@@ -210,14 +210,13 @@ const styles = StyleSheet.create({
   },
   recommendedTag: {
     position: "absolute",
-    top: 20,
-    right: -25,
+    top: hp(3),
+    left: wp(62),
     backgroundColor: "green", // Etiket arka plan rengi
     paddingHorizontal: 6,
     paddingVertical: 1,
     borderRadius: 100,
-    transform: [{ rotate: "45deg" }],
-    width: wp(30),
+    transform: [{ rotate: "40deg" }],
   },
   recommendedTagText: {
     color: "white",

@@ -1,11 +1,13 @@
-import React from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import React from "react";
+import { View, TextInput, StyleSheet } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+
+import { hp } from "../../utils";
 
 const GradientInput = ({ placeholder, onChangeText, keyboardType, colors }) => {
   return (
     <LinearGradient
-      colors={colors || ['#575ea8', '#83c29f']} // Default renkler
+      colors={colors || ["#575ea8", "#83c29f"]} // Default renkler
       start={[0, 0]}
       end={[1, 0]}
       style={styles.gradientContainer}
@@ -24,14 +26,14 @@ const GradientInput = ({ placeholder, onChangeText, keyboardType, colors }) => {
 const styles = StyleSheet.create({
   gradientContainer: {
     borderRadius: 10,
-    overflow: 'hidden',
+    overflow: "hidden",
     marginVertical: 5,
     elevation: 5,
   },
   input: {
-    height: 40,
-    paddingHorizontal: 10,
-    color: 'white',
+    height: hp(3.7),
+    paddingHorizontal: hp(2),
+    color: "white",
   },
 });
 
