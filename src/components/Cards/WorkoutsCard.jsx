@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1.3208664655685425, height: 1.3208664655685425 },
     elevation: 5,
     justifyContent: "space-between",
-    paddingHorizontal: wp(4.5),
+    paddingHorizontal: wp(4.3),
     marginBottom: 20,
   },
   contentContainer: {
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   image: {
-    width: hp(6.2),
-    height: hp(6.2),
+    width: hp(6.1),
+    height: hp(6.1),
     borderRadius: hp(3),
     marginRight: 20,
   },
