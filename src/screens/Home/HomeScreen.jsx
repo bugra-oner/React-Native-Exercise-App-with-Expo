@@ -100,7 +100,7 @@ export default function HomeScreen({ navigation, route }) {
         RightIconOnPress={() => navigation.navigate("Profil")}
       />
       <ScrollView style={styles.container}>
-        <CreaterCard marginTop="10%" onPress={() => handleFlashMessage()} />
+        <CreaterCard marginTop="9%" onPress={() => handleFlashMessage()} />
         <Text style={styles.title}>{t("Overview")}</Text>
         <View style={styles.headerContainer}>
           <SvgCard
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
     marginTop: 15,
     color: colors.UiText,
-    fontSize: 15,
+    fontSize: fp(2.5),
     fontWeight: "bold",
   },
   headerContainer: {
@@ -231,7 +231,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignContent: "center",
     width: "100%",
-    height: "15",
     justifyContent: "space-around",
   },
   buttonsContainer: {
@@ -240,7 +239,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   spacing: {
-    height: 10, // Boşluğun genişliği
+    height: hp(1), // Boşluğun genişliği
   },
   cardsContainer: {
     alignItems: "center",
