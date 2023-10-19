@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     elevation: 1, // Use elevation to display shadow on Android
     alignSelf: "center",
     flexDirection: "row",
-    height: 10,
+
     backgroundColor: "red",
   },
   topContainerView: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   subTitleText: {
     color: "white",
-    fontSize: fp(1.1),
+    fontSize: fp(1.2),
     marginTop: 5,
     maxWidth: "100%",
     fontWeight: "600",
