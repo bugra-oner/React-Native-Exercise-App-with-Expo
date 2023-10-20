@@ -26,6 +26,8 @@ import advancedBeginner from "../../data/advancedBeginner";
 import IntermediateBeginner from "../../data/IntermediateBeginner";
 import Intermediate from "../../data/Intermediate";
 
+
+
 import LinearView from "../../components/views/LinearView";
 
 const CoachScreen = () => {
