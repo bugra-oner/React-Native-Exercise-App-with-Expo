@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { FitnessItems } from "../../Context";
 
 //components
@@ -29,14 +29,18 @@ import Intermediate from "../../data/Intermediate";
 //asdfasdfsa
 
 import LinearView from "../../components/views/LinearView";
+import useFlashMessage from "../../hooks/FlashMessage";
 
 const CoachScreen = () => {
   const { t } = useTranslation();
   const route = useRoute();
 
+  
   //console.log(route.params);
 
   const { minutes, calories, workout } = useContext(FitnessItems);
+
+  const { showFlashMessage } = useFlashMessage();
 
   //Images Beginners
   const hera = require("../../assets/cards/hera.jpg");
@@ -48,6 +52,20 @@ const CoachScreen = () => {
   const midLevel = require("../../assets/cards/intermade.jpg");
   const image = require("../../assets/zeus.jpg");
   const hard = require("../../assets/cards/hard.jpg");
+
+  const handleFlashMessage = async (
+    firstTitle = "DevelopmentInProgressTitle",
+    secondTitle = "DevelopmentInProgress",
+    alert = "warning"
+  ) => {
+    showFlashMessage(`${t(firstTitle)}`, `${t(secondTitle)}`, alert);
+  };
+
+  useEffect(() => {
+    if (route.params && route.params.workoutComplete) {
+      handleFlashMessage("Homepage", "WorkoutCompletedTitle", "success");
+    }
+  }, [route.params]);
 
   return (
     <ScrollView
