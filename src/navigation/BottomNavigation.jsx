@@ -42,10 +42,14 @@ import RestScreen from "../screens/Coach/RestScreen";
 import FitScreen from "../screens/Coach/FitScreen";
 import WorkOutScreen from "../screens/Coach/WorkoutScreen";
 
+import { useTranslation } from "react-i18next";
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 export default function BottomStackNavigator() {
+  const { t } = useTranslation();
+
   return (
     <Stack.Navigator
       screenOptions={{
