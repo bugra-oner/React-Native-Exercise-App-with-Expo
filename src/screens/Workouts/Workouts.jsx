@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView,ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  ImageBackground,
+} from "react-native";
 
 import colors from "../../constants/colors";
 import typography from "../../constants/typography";
@@ -13,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import Header from "../../components/views/Header";
 
 import SingleWorkoutCard from "../../components/SingleWorkoutCard";
-import { fp,hp,wp } from "../../utils";
+import { fp, hp, wp } from "../../utils";
 
 import GradientImage from "../../components/views/GradientImage";
 
@@ -27,10 +33,7 @@ export default function Workouts({ navigation }) {
         title={t("Workouts")}
       />
       <ScrollView style={styles.container}>
-      <GradientImage 
-        colorsOne={"#FBD786"}
-        colorsTwo={"#816c5c"}
-        />
+        <GradientImage colorsOne={"#FBD786"} colorsTwo={"#816c5c"} />
         <View style={styles.cardsContainer}>
           <WorkoutsCard
             title={i18n.t("FullBodyWorkout")}
@@ -84,9 +87,7 @@ export default function Workouts({ navigation }) {
             />
           </View>
         </View>
-        <View
-        style={styles.emptyContainer} 
-        ></View>
+        <View style={styles.emptyContainer}></View>
       </ScrollView>
     </>
   );
@@ -109,13 +110,12 @@ const styles = StyleSheet.create({
     fontSize: typography.cardSubtitle,
     opacity: 0.6,
   },
-  text:{
-    fontSize:typography.cardSubtitle,
+  text: {
+    fontSize: typography.cardSubtitle,
     color: colors.UiText,
     opacity: 0.9,
-    alignSelf : "center",
-    marginBottom : 20,
-
+    alignSelf: "center",
+    marginBottom: 20,
   },
   cardsContainer: {
     alignItems: "center",
@@ -143,23 +143,23 @@ const styles = StyleSheet.create({
     color: colors.subTitle,
     fontWeight: "600",
   },
- 
-  singleExerciseView:{
-    alignItems : 'center',
+
+  singleExerciseView: {
+    alignItems: "center",
     marginVertical: 5,
-    width: '100%',
-    alignSelf: 'center',
+    width: "100%",
+    alignSelf: "center",
     borderRadius: 10,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
-  singleExercisesRow:{
-    flexDirection: 'row',
-    columnGap : 10,
+  singleExercisesRow: {
+    flexDirection: "row",
+    columnGap: 10,
     marginVertical: 10,
-    alignContent: 'center',
-    alignSelf: 'center',
+    alignContent: "center",
+    alignSelf: "center",
   },
-  emptyContainer:{
+  emptyContainer: {
     height: 50,
-  }
+  },
 });

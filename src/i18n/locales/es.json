@@ -152,5 +152,9 @@
     "Prev": "Prev",
     "BreakTime": "Descanso",
     "NextMovement": "próximo movimiento",
-    "StartingIdeal": "Ideal para principiantes"
+    "StartingIdeal": "Ideal para principiantes",
+    "PersonalInformations": "Personal informations",
+    "Name": "Name",
+    "Gender": "Gender",
+    "HealthConsequences": "Health consequences"
 }

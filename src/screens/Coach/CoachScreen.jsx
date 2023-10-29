@@ -35,7 +35,6 @@ const CoachScreen = () => {
   const { t } = useTranslation();
   const route = useRoute();
 
-  
   //console.log(route.params);
 
   const { minutes, calories, workout } = useContext(FitnessItems);
@@ -74,6 +73,7 @@ const CoachScreen = () => {
         padding: 15,
       }}
     >
+      
       <StatsImage
         colorsZero={"#494b4d"}
         colorsOne={"(rgb(254,239,239)"}

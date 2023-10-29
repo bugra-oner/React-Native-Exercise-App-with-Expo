@@ -18,8 +18,6 @@ import LinearView from "../../components/views/LinearView";
 
 import { hp, fp, wp } from "../../utils";
 
-
-
 const WorkOutScreen = () => {
   const route = useRoute();
   //   console.log(route.params);

@@ -26,7 +26,7 @@ export default function Profil({ navigation }) {
   return (
     <>
       <Header
-        title={"Kişisel Bilgiler"}
+        title={t("PersonalInformation")}
         LeftIconOnPress={() => navigation.goBack()}
         RightIconOnPress={() => navigate("Notifications")}
         RightIcon="bell-outline"
@@ -38,7 +38,7 @@ export default function Profil({ navigation }) {
           <SpacingButton
             special={true}
             specialStyle={styles.specialStyle}
-            text="İsim"
+            text={t("Name")}
             style={styles.Button}
             textStyle={styles.ButtonText}
             iconName="chevron-right"
@@ -49,7 +49,7 @@ export default function Profil({ navigation }) {
             onPress={() => navigate("Name")}
           />
           <SpacingButton
-            text="Cinsiyet"
+            text={t("Gender")}
             style={styles.LastButton}
             textStyle={styles.ButtonText}
             iconName="chevron-right"
@@ -111,7 +111,7 @@ export default function Profil({ navigation }) {
             source={require("../../assets/version.jpg")}
             style={styles.Logo}
           />
-          <Text style={styles.Version}>{t("Version")} 1.2.0</Text>
+          <Text style={styles.Version}>{t("Version")} 1.3.0</Text>
         </View>
       </View>
     </>

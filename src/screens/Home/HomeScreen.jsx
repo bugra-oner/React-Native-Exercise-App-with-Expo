@@ -33,6 +33,8 @@ import { wp, fp, hp } from "../../utils";
 import useFlashMessage from "../../hooks/FlashMessage";
 import { FitnessItems } from "../../Context";
 
+import GradientImage from "../../components/views/GradientImage";
+
 export default function HomeScreen({ navigation, route }) {
   const { minutes, calories, workout } = useContext(FitnessItems);
 
@@ -119,17 +121,22 @@ export default function HomeScreen({ navigation, route }) {
             />
           </View>
         </View>
-
+        <GradientImage
+          textOne={"Gelişen Zorluk Seviyeleri"}
+          textTwo={"Seviyeye göre artan tekrar sayıs"}
+        />
         <View style={styles.cardsContainer}>
           <View style={styles.workoutsHeader}>
             <Text style={styles.workoutsTitle}>
               {t("ExercisesWithoutEquipment")}
             </Text>
-            <TouchableOpacity onPress={() => navigate("Workouts")}>
+            <TouchableOpacity onPress={() => navigate("LevelSelector")}>
               <Text style={styles.workoutsSubTitle}>{t("All")}</Text>
             </TouchableOpacity>
           </View>
+
           {/*  */}
+
           <WorkoutsCard
             title={t("FullBodyWorkout")}
             subTitle={t("FullBodyDesc")}

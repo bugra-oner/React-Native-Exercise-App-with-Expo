@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   input: {
-    height: hp(3.7),
-    paddingHorizontal: hp(2),
+    paddingLeft: 10,
+    padding: hp(0, 7),
     color: "white",
   },
 });

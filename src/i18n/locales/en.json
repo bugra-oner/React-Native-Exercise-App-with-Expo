@@ -153,5 +153,9 @@
     "Prev":"Prev",
     "BreakTime": "Time for a break!",
     "NextMovement":"Next Move",
-    "StartingIdeal": "Ideal for beginners"
+    "StartingIdeal": "Ideal for beginners",
+    "PersonalInformation": "Personal Information",
+    "Name": "Name",
+    "Gender": "Gender",
+    "HealthConsequences": "Health Consequences"
 }

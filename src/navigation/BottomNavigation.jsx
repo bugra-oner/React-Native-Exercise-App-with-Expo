@@ -11,7 +11,7 @@ import Workout from "../screens/Workouts/Workout";
 import History from "../screens/History";
 
 import Workouts from "../screens/Workouts/Workouts";
-import LevelSelector from "../screens/LevelSelector";
+import LevelSelector from "../screens/Home/LevelSelector";
 
 import UpperBodyScreen from "../screens/Workouts/UpperBody";
 import BMICalculator from "../screens/BMICalculator";
@@ -37,7 +37,11 @@ import SitUps from "../screens/Single/SitUps";
 import Squad from "../screens/Single/Squad";
 import Triceps from "../screens/Single/Triceps";
 
+//Discover Screen
 import Discover from "../screens/Discover/Discover";
+import ArticleDetail from "../screens/Discover/ArticleDetails";
+
+/* */
 import RestScreen from "../screens/Coach/RestScreen";
 import FitScreen from "../screens/Coach/FitScreen";
 import WorkOutScreen from "../screens/Coach/WorkoutScreen";
@@ -48,8 +52,6 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 export default function BottomStackNavigator() {
-  const { t } = useTranslation();
-
   return (
     <Stack.Navigator
       screenOptions={{
@@ -89,11 +91,13 @@ export default function BottomStackNavigator() {
       <Stack.Screen name="Rest" component={RestScreen} />
       <Stack.Screen name="Fit" component={FitScreen} />
       <Stack.Screen name="WorkoutScreen" component={WorkOutScreen} />
+      <Stack.Screen name="ArticleDetail" component={ArticleDetail} />
     </Stack.Navigator>
   );
 }
 
 export const BottomNavigator = ({ navigation }) => {
+  const { t } = useTranslation();
   return (
     <Tab.Navigator
       screenOptions={() => ({
@@ -117,7 +121,7 @@ export const BottomNavigator = ({ navigation }) => {
         name="Home"
         component={Home}
         options={{
-          tabBarLabel: "Ana Sayfa",
+          tabBarLabel: t("Homepage"),
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} /> // Expo'nun yerleşik ikonunu kullanıyoruz
@@ -129,7 +133,7 @@ export const BottomNavigator = ({ navigation }) => {
         name="CoachScreen"
         component={CoachScreen}
         options={{
-          tabBarLabel: "Antrenör",
+          tabBarLabel: t("Coach"),
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="people-outline" size={size} color={color} />
@@ -149,7 +153,7 @@ export const BottomNavigator = ({ navigation }) => {
         name="Discover"
         component={Discover}
         options={{
-          tabBarLabel: "Keşfet",
+          tabBarLabel: t("Discover"),
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="grid-outline" size={size} color={color} />
@@ -169,7 +173,7 @@ export const BottomNavigator = ({ navigation }) => {
         name="Profil"
         component={Profil}
         options={{
-          tabBarLabel: "Profil",
+          tabBarLabel: t("Profil"),
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-outline" size={size} color={color} />

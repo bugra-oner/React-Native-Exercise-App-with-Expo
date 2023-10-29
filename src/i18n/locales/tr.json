@@ -152,5 +152,9 @@
       "Prev":"Önceki",
       "BreakTime": "Dinlenme Zamanı!",
       "NextMovement": "Sıradaki Hareket",
-      "StartingIdeal": "Başlangıç İçin İdeal"
+      "StartingIdeal": "Başlangıç İçin İdeal",
+      "Personal Information": "Kişisel Bilgiler",
+      "Name": "İsim",
+      "Gender": "Cinsiyet",
+      "HealthConsequences": "Sağlık Sonuçları"
   }

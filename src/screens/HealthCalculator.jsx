@@ -248,7 +248,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#ffffff",
     justifyContent: "center",
   },
   title: {
@@ -257,15 +256,14 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: "80%",
-    marginBottom: 10,
+    marginVertical: hp(2),
   },
   input: {
     height: 40,
     borderWidth: 1,
     borderColor: colors.UiText,
     borderRadius: 5,
-    marginBottom: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
   },
   resultContainer: {
     marginTop: 20,

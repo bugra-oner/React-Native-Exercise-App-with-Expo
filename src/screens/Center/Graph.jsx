@@ -133,7 +133,7 @@ export default function Graph({ navigation, route }) {
           />
         </View>
         <Card
-          title="Sağlık Sonuçları"
+          title={t("HealthConsequences")}
           icon="aperture-outline"
           subtitle="Durum"
           contentText={`${t("bmiContentText")} : ${
