@@ -156,5 +156,8 @@
     "PersonalInformations": "Personal informations",
     "Name": "Name",
     "Gender": "Gender",
-    "HealthConsequences": "Health consequences"
+    "HealthConsequences": "Health consequences",
+    "IncreaseLevel": "Aumentar Nivel",
+    "IncreaseLevelSub": "El nivel de dificultad de los ejercicios aumentará. ¿Desea continuar?",
+    "WorkoutContent": "Contenido del Entrenamiento"
 }

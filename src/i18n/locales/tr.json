@@ -156,5 +156,8 @@
       "Personal Information": "Kişisel Bilgiler",
       "Name": "İsim",
       "Gender": "Cinsiyet",
-      "HealthConsequences": "Sağlık Sonuçları"
+      "HealthConsequences": "Sağlık Sonuçları",
+      "IncreaseLevel": "Leveli Artır",
+      "IncreaseLevelSub": "Egzersizlerin zorluk seviyesi artacaktır. Devam etmek istiyor musunuz?",
+      "WorkoutContent": "Antreman İçeriği"
   }
