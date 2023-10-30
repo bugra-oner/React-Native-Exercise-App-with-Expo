@@ -12,7 +12,12 @@ import { hp, wp, fp } from "../../utils";
 export default function Discover() {
   const { t } = useTranslation();
   const renderItem = ({ item }) => (
-    <ArticleCard key={item.id} title={item.title} />
+    <ArticleCard
+      key={item.id}
+      title={item.title}
+      readTime={item.time}
+      topic={item.topic}
+    />
   );
   return (
     <View>
@@ -34,12 +39,11 @@ const styles = StyleSheet.create({
     fontSize: fp(2.6),
     marginTop: hp(2),
     left: wp(5),
-    color: "rgba(80,80,136)",
+    color: "black",
   },
   ArticleCard: {
     backgroundColor: "transparent",
     marginVertical: hp(2),
-    width: wp(96),
     alignSelf: "center",
   },
 });

@@ -63,7 +63,7 @@ const CoachScreen = () => {
 
   useEffect(() => {
     if (route.params && route.params.workoutComplete) {
-      handleFlashMessage("Homepage", "WorkoutCompletedTitle", "success");
+      handleFlashMessage("SuccessHealth", "WorkoutCompletedTitle", "success");
     }
   }, [route.params]);
 

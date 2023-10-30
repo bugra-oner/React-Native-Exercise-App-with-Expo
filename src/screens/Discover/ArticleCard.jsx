@@ -1,86 +1,102 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { articles } from "./ArticleData";
-import { hp, wp, fp } from "../../utils";
-
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { fp, hp, wp } from "../../utils";
 
 export default function ArticleCard({
   title,
   image,
   description,
   readTime,
-  content,
-  topic, // Konu etiketi
+  topic,
 }) {
-  const [isLiked, setIsLiked] = useState(false);
+  const [isSaved, setIsSaved] = useState(false); // Yeni eklenen kaydetme işlevi
 
-  const handleLike = async () => {
+  useEffect(() => {
+    // Makale beğenilmiş mi kontrol et
+
+    // Makale kaydedilmiş mi kontrol et
+    const checkSavedStatus = async () => {
+      try {
+        const savedArticles = await AsyncStorage.getItem("savedArticles");
+        const savedArticlesArray = JSON.parse(savedArticles) || [];
+        setIsSaved(savedArticlesArray.includes(title));
+      } catch (error) {
+        console.error("Kaydetme durumu kontrol hatası:", error);
+      }
+    };
+
+    checkSavedStatus();
+  }, [title]);
+
+  const handleSave = async () => {
     try {
-      console.log("isLiked");
-      // Makaleyi beğenmiş kullanıcıların listesini alın
-      const likedArticles = await AsyncStorage.getItem("likedArticles");
-      const likedArticlesArray = JSON.parse(likedArticles) || [];
+      // Makaleyi kaydetmiş kullanıcıların listesini alın
+      const savedArticles = await AsyncStorage.getItem("savedArticles");
+      const savedArticlesArray = JSON.parse(savedArticles) || [];
 
-      if (isLiked) {
-        // Eğer beğeniyorsa, beğenilen makaleleri kaldır
-        const updatedLikedArticles = likedArticlesArray.filter(
+      if (!savedArticlesArray.includes(title)) {
+        // Eğer daha önce kaydedilmemişse, makaleyi kaydedilenlere ekle
+        savedArticlesArray.push(title);
+        await AsyncStorage.setItem(
+          "savedArticles",
+          JSON.stringify(savedArticlesArray)
+        );
+        setIsSaved(true); // Kaydedildi olarak işaretle
+      } else {
+        // Eğer zaten kaydedilmişse, kaydedilen makaleleri kaldır
+        const updatedSavedArticles = savedArticlesArray.filter(
           (articleTitle) => articleTitle !== title
         );
         await AsyncStorage.setItem(
-          "likedArticles",
-          JSON.stringify(updatedLikedArticles)
+          "savedArticles",
+          JSON.stringify(updatedSavedArticles)
         );
-      } else {
-        // Eğer beğenmiyorsa, makaleyi beğenilenlere ekle
-        likedArticlesArray.push(title);
-        await AsyncStorage.setItem(
-          "likedArticles",
-          JSON.stringify(likedArticlesArray)
-        );
+        setIsSaved(false); // Kaydedilmedi olarak işaretle
       }
-
-      setIsLiked(!isLiked);
     } catch (error) {
-      // console.error("Beğenme işlevselliği hatası:", error);
+      console.error("Kaydetme işlevselliği hatası:", error);
     }
   };
-  const navigation = useNavigation();
-  const article = articles.find((article) => article.title === title);
-
-  const handleCardPress = () => {
-    if (article) {
-      navigation.navigate("ArticleDetail", { article });
-    }
-  };
-
-  if (!article) {
-    return null;
-  }
 
   return (
-    <TouchableOpacity style={styles.card} onPress={handleCardPress}>
+    <TouchableOpacity style={styles.card}>
       <Image source={image} style={styles.image} />
+      <MaterialCommunityIcons
+        name={isSaved ? "bookmark" : "bookmark-outline"}
+        size={24}
+        color={isSaved ? "blue" : "gray"}
+        onPress={handleSave}
+        style={styles.bookmark}
+      />
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
       <View style={styles.metaContainer}>
         <View style={styles.readTimeContainer}>
-          <MaterialCommunityIcons name="clock-outline" size={20} color="gray" />
+          <MaterialCommunityIcons
+            name="clock-outline"
+            size={fp(2.4)}
+            color="gray"
+          />
           <Text style={styles.readTimeText}>{readTime}</Text>
         </View>
         <View style={styles.topicContainer}>
-          <MaterialCommunityIcons name="label-outline" size={20} color="gray" />
+          <MaterialCommunityIcons
+            name="label-outline"
+            size={fp(2.4)}
+            color="gray"
+          />
           <Text style={styles.topicText}>{topic}</Text>
         </View>
-        <MaterialCommunityIcons
-          name={isLiked ? "heart" : "heart-outline"}
-          size={20}
-          color={isLiked ? "red" : "gray"}
-          onPress={handleLike}
-        />
       </View>
     </TouchableOpacity>
   );
@@ -98,16 +114,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    marginHorizontal: wp(2),
-    padding: 5,
+    marginHorizontal: 10,
+    padding: 10,
   },
   image: {
-    width: wp(5),
-    height: hp(10),
+    width: 50,
+    height: 100,
     borderRadius: 10,
   },
   title: {
-    fontSize: fp(2),
+    fontSize: 18,
     fontWeight: "bold",
   },
   description: {
@@ -125,16 +141,22 @@ const styles = StyleSheet.create({
   },
   readTimeText: {
     marginLeft: 5,
-    fontSize: 16,
+    fontSize: fp(2.2),
     color: "gray",
   },
   topicContainer: {
     flexDirection: "row",
     alignItems: "center",
+    padding: 5,
   },
   topicText: {
     marginLeft: 5,
-    fontSize: 16,
+    fontSize: fp(2.2),
     color: "gray",
+  },
+  bookmark: {
+    position: "absolute",
+    top: 15,
+    right: 10,
   },
 });
