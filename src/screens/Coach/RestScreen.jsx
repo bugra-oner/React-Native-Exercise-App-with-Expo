@@ -141,9 +141,9 @@ const RestScreen = ({}) => {
             </Text> */}
             <AnimatedCircularProgress
               size={hp(22)}
-              width={wp(5.2)}
+              width={wp(4)}
               fill={fill}
-              tintColor="#a4dde5"
+              tintColor="#962DFF"
               backgroundColor="rgba(80,80,136,0.8)"
             >
               {(fill) => (

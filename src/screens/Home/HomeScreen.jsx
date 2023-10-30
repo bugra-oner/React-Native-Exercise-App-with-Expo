@@ -121,10 +121,7 @@ export default function HomeScreen({ navigation, route }) {
             />
           </View>
         </View>
-        <GradientImage
-          textOne={"Gelişen Zorluk Seviyeleri"}
-          textTwo={"Seviyeye göre artan tekrar sayıs"}
-        />
+        <GradientImage />
         <View style={styles.cardsContainer}>
           <View style={styles.workoutsHeader}>
             <Text style={styles.workoutsTitle}>

@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from "react-native";
 import { useTranslation } from "react-i18next";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { FitnessItems } from "../../Context";
 
 //components
@@ -27,6 +27,7 @@ import IntermediateBeginner from "../../data/IntermediateBeginner";
 import Intermediate from "../../data/Intermediate";
 
 //asdfasdfsa
+import LevelButtons from "../../components/LevelButtons";
 
 import LinearView from "../../components/views/LinearView";
 import useFlashMessage from "../../hooks/FlashMessage";
@@ -37,7 +38,7 @@ const CoachScreen = () => {
 
   //console.log(route.params);
 
-  const { minutes, calories, workout } = useContext(FitnessItems);
+  // const { minutes, calories, workout } = useContext(FitnessItems);
 
   const { showFlashMessage } = useFlashMessage();
 
@@ -66,14 +67,27 @@ const CoachScreen = () => {
     }
   }, [route.params]);
 
+  const scrollViewRef = useRef(null);
+
+  const handleScrollTo = (x, y) => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({ x, y, animated: true });
+    }
+  };
+
   return (
     <ScrollView
+      ref={scrollViewRef}
       style={{
         backgroundColor: "rgba(80,80,136,0.8)",
         padding: 15,
       }}
     >
-      
+      <LevelButtons
+        onBeginnerPress={() => handleScrollTo(0, 1000)}
+        onIntermediatePress={() => handleScrollTo(0, 2500)}
+        onAdvancedPress={() => handleScrollTo(0, 4950)}
+      />
       <StatsImage
         colorsZero={"#494b4d"}
         colorsOne={"(rgb(254,239,239)"}
@@ -83,6 +97,7 @@ const CoachScreen = () => {
         colorsFive={"#494b4d"}
         imageSource={hera}
       />
+
       <FitnessCards
         first={true}
         difficulty={0}
