@@ -19,7 +19,7 @@ import useRestTimer from "../../hooks/useRestTimer";
 import styles from "./style";
 
 const animations = {
-  push_ups: require("../../assets/animations/push_ups_animations.json"),
+  push_ups: require("../../assets/animations/test.json"),
   sit_ups: require("../../assets/animations/sit_ups_animation.json"),
   triceps_dips: require("../../assets/animations/triceps_dips"),
   squats: require("../../assets/animations/squad_animation.json"),

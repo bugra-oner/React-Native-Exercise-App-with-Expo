@@ -29,8 +29,8 @@ import Intermediate from "../../data/Intermediate";
 //asdfasdfsa
 import LevelButtons from "../../components/LevelButtons";
 
-import LinearView from "../../components/views/LinearView";
 import useFlashMessage from "../../hooks/FlashMessage";
+import { hp } from "../../utils";
 
 const CoachScreen = () => {
   const { t } = useTranslation();
@@ -84,9 +84,9 @@ const CoachScreen = () => {
       }}
     >
       <LevelButtons
-        onBeginnerPress={() => handleScrollTo(0, 1000)}
-        onIntermediatePress={() => handleScrollTo(0, 2500)}
-        onAdvancedPress={() => handleScrollTo(0, 4950)}
+        onBeginnerPress={() => handleScrollTo(0, hp(150))}
+        onIntermediatePress={() => handleScrollTo(0, hp(250))}
+        onAdvancedPress={() => handleScrollTo(0, hp(600))}
       />
       <StatsImage
         colorsZero={"#494b4d"}

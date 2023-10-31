@@ -17,6 +17,7 @@ export default function Discover() {
       title={item.title}
       readTime={item.time}
       topic={item.topic}
+      description={item.description}
     />
   );
   return (
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
     marginTop: hp(2),
     left: wp(5),
     color: "black",
+    fontWeight: "800",
   },
   ArticleCard: {
     backgroundColor: "transparent",

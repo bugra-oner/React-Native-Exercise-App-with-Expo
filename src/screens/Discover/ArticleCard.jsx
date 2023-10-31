@@ -10,7 +10,12 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+import { articles } from "./ArticleData";
+import { useNavigation } from "@react-navigation/native";
+
 import { fp, hp, wp } from "../../utils";
+
+import { useTranslation } from "react-i18next";
 
 export default function ArticleCard({
   title,
@@ -19,11 +24,15 @@ export default function ArticleCard({
   readTime,
   topic,
 }) {
+  const navigation = useNavigation();
   const [isSaved, setIsSaved] = useState(false); // Yeni eklenen kaydetme işlevi
+
+  const article = articles.find((article) => article.title === title);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Makale beğenilmiş mi kontrol et
-
     // Makale kaydedilmiş mi kontrol et
     const checkSavedStatus = async () => {
       try {
@@ -31,7 +40,7 @@ export default function ArticleCard({
         const savedArticlesArray = JSON.parse(savedArticles) || [];
         setIsSaved(savedArticlesArray.includes(title));
       } catch (error) {
-        console.error("Kaydetme durumu kontrol hatası:", error);
+        // console.error("Kaydetme durumu kontrol hatası:", error);
       }
     };
 
@@ -43,7 +52,7 @@ export default function ArticleCard({
       // Makaleyi kaydetmiş kullanıcıların listesini alın
       const savedArticles = await AsyncStorage.getItem("savedArticles");
       const savedArticlesArray = JSON.parse(savedArticles) || [];
-
+      console.log("Saved articles", savedArticlesArray);
       if (!savedArticlesArray.includes(title)) {
         // Eğer daha önce kaydedilmemişse, makaleyi kaydedilenlere ekle
         savedArticlesArray.push(title);
@@ -64,12 +73,18 @@ export default function ArticleCard({
         setIsSaved(false); // Kaydedilmedi olarak işaretle
       }
     } catch (error) {
-      console.error("Kaydetme işlevselliği hatası:", error);
+      // console.error("Kaydetme işlevselliği hatası:", error);
     }
   };
 
+  const handleCardPress = () => {
+    // Kullanıcı makale kartına tıkladığında, makalenin ayrı sayfasına yönlendirilir.
+    if (article) {
+      navigation.navigate("ArticleDetail", { article });
+    }
+  };
   return (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={() => handleCardPress()}>
       <Image source={image} style={styles.image} />
       <MaterialCommunityIcons
         name={isSaved ? "bookmark" : "bookmark-outline"}
@@ -78,7 +93,7 @@ export default function ArticleCard({
         onPress={handleSave}
         style={styles.bookmark}
       />
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{t(`articles.${article.id}.title`)}</Text>
       <Text style={styles.description}>{description}</Text>
       <View style={styles.metaContainer}>
         <View style={styles.readTimeContainer}>
@@ -114,20 +129,24 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    marginHorizontal: 10,
-    padding: 10,
+    marginHorizontal: wp(3),
+    padding: wp(1),
+    width: wp(28),
   },
   image: {
-    width: 50,
-    height: 100,
-    borderRadius: 10,
+    width: wp(25),
+    height: hp(11),
+    borderRadius: 15,
+    backgroundColor: "red",
   },
   title: {
-    fontSize: 18,
+    fontSize: fp(2),
     fontWeight: "bold",
   },
   description: {
-    fontSize: 14,
+    fontSize: fp(1.2),
+    height: hp(5),
+    maxHeight: hp(5),
   },
   metaContainer: {
     flexDirection: "row",

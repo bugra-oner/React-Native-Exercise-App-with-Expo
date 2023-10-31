@@ -21,7 +21,7 @@ import styles from './style';
 import { useTranslation } from 'react-i18next';
 
 const animations = {
-  push_ups: require('../../assets/animations/push_ups_animations.json'),
+  push_ups: require('../../assets/animations/test.json'),
   sit_ups: require('../../assets/animations/sit_ups_animation.json'),
   triceps_dips: require('../../assets/animations/triceps_dips.json'),
 };

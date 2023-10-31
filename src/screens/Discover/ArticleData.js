@@ -1,27 +1,35 @@
-// ArticleData.js
+import en from "../../i18n/locales/en.json";
+import tr from "../../i18n/locales/tr.json";
+import es from "../../i18n/locales/es.json";
 
 export const articles = [
   {
     id: 1,
-    title: "Makale Başlığı 1",
-    content: "Bu, ilk makalenin içeriğidir.",
-    time: 10,
-    topic: "test",
+    title: {
+      en: "Fullbody Workout",
+      tr: "Tam Vücut Egzersizi",
+    },
+    // description: {
+    //   en: "",
+    //   tr: "",
+    // },
+    // content: {
+    //   en: "This is the content of the first article.",
+    //   tr: "Bu, ilk makalenin içeriğidir.",
+    // },
   },
-  {
-    id: 2,
-    title: "Makale Başlığı 2",
-    content: "Bu, ikinci makalenin içeriğidir.",
-    time: 10,
-    topic: "test",
-  },
-
-  {
-    id: 3,
-    title: "Makale Başlığı 3",
-    content: "Bu, ikinci makalenin içeriğidir.",
-    time: 15,
-    topic: "test",
-  },
+  // {
+  //   id: 2,
+  //   title: {
+  //     en: "Article Title 2",
+  //     tr: "Makale Başlığı 2",
+  //   },
+  //   content: {
+  //     en: "This is the content of the second article.",
+  //     tr: "Bu, ikinci makalenin içeriğidir.",
+  //   },
+  //   time: 10,
+  //   topic: "test",
+  // },
   // Diğer makaleler...
 ];

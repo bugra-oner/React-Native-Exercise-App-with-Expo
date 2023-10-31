@@ -24,7 +24,7 @@ import useRestTimer from '../../hooks/useRestTimer';
 import styles from './style';
 
 const animations = {
-  push_ups: require('../../assets/animations/push_ups_animations.json'),
+  push_ups: require('../../assets/animations/test.json'),
 };
 
 let singlePushUpWorkout = {
