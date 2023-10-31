@@ -23,11 +23,14 @@ export default function ArticleCard({
   description,
   readTime,
   topic,
+  selectedLanguage,
 }) {
   const navigation = useNavigation();
   const [isSaved, setIsSaved] = useState(false); // Yeni eklenen kaydetme işlevi
 
-  const article = articles.find((article) => article.title === title);
+  const article = articles[selectedLanguage].find(
+    (article) => article.title === title
+  );
 
   const { t } = useTranslation();
 
@@ -52,7 +55,7 @@ export default function ArticleCard({
       // Makaleyi kaydetmiş kullanıcıların listesini alın
       const savedArticles = await AsyncStorage.getItem("savedArticles");
       const savedArticlesArray = JSON.parse(savedArticles) || [];
-      console.log("Saved articles", savedArticlesArray);
+      // console.log("Saved articles", savedArticlesArray);
       if (!savedArticlesArray.includes(title)) {
         // Eğer daha önce kaydedilmemişse, makaleyi kaydedilenlere ekle
         savedArticlesArray.push(title);
@@ -93,7 +96,7 @@ export default function ArticleCard({
         onPress={handleSave}
         style={styles.bookmark}
       />
-      <Text style={styles.title}>{t(`articles.${article.id}.title`)}</Text>
+      <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
       <View style={styles.metaContainer}>
         <View style={styles.readTimeContainer}>
@@ -131,16 +134,15 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginHorizontal: wp(3),
     padding: wp(1),
-    width: wp(28),
+    width: wp(30),
   },
   image: {
     width: wp(25),
     height: hp(11),
     borderRadius: 15,
-    backgroundColor: "red",
   },
   title: {
-    fontSize: fp(2),
+    fontSize: fp(1.8),
     fontWeight: "bold",
   },
   description: {
@@ -159,8 +161,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   readTimeText: {
-    marginLeft: 5,
-    fontSize: fp(2.2),
+    marginLeft: 2,
+    fontSize: fp(1.7),
     color: "gray",
   },
   topicContainer: {
@@ -169,8 +171,8 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   topicText: {
-    marginLeft: 5,
-    fontSize: fp(2.2),
+    marginLeft: 2,
+    fontSize: fp(1.7),
     color: "gray",
   },
   bookmark: {

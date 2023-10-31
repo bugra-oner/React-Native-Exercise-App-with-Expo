@@ -127,7 +127,7 @@ export default function HomeScreen({ navigation, route }) {
             <Text style={styles.workoutsTitle}>
               {t("ExercisesWithoutEquipment")}
             </Text>
-            <TouchableOpacity onPress={() => navigate("LevelSelector")}>
+            <TouchableOpacity onPress={() => navigate("Workouts")}>
               <Text style={styles.workoutsSubTitle}>{t("All")}</Text>
             </TouchableOpacity>
           </View>

@@ -74,6 +74,7 @@ export default function ArticleDetail({ route }) {
       <Text style={styles.title}>{article.title}</Text>
       <Text style={styles.topic}>Konu: {article.topic}</Text>
       <Text style={styles.content}>{article.content}</Text>
+      <Text style={styles.moreContent}>{article.moreContent}</Text>
 
       <TouchableOpacity onPress={handleLike} style={styles.likeButton}>
         <MaterialCommunityIcons
@@ -97,18 +98,24 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   title: {
-    fontSize: 24,
+    fontSize: fp(3.3),
     fontWeight: "bold",
-    marginTop: 20,
+    marginTop: fp(3),
   },
   topic: {
-    fontSize: 16,
+    fontSize: fp(2),
     color: "gray",
-    marginBottom: 10,
+    marginVertical: hp(1),
   },
   content: {
-    fontSize: 16,
-    lineHeight: 24,
+    fontSize: fp(2),
+    lineHeight: fp(3.7),
+  },
+  moreContent: {
+    marginVertical: hp(3),
+    fontSize: fp(2),
+    lineHeight: fp(3.2),
+    marginBottom: hp(7),
   },
   likeButton: {
     position: "absolute",
