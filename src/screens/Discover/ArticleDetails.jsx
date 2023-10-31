@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useTransition } from "react";
 import {
   StyleSheet,
   Text,
@@ -15,10 +15,14 @@ import { useNavigation } from "@react-navigation/native";
 
 import { hp, wp, fp } from "../../utils";
 
+import { useTranslation } from "react-i18next";
+
 export default function ArticleDetail({ route }) {
   const { article } = route.params;
   const [isLiked, setIsLiked] = useState(false);
   const navigation = useNavigation();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const checkLikedStatus = async () => {

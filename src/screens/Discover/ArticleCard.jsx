@@ -138,23 +138,22 @@ const styles = StyleSheet.create({
   },
   image: {
     width: wp(25),
-    height: hp(11),
+    height: hp(10),
     borderRadius: 15,
   },
   title: {
-    fontSize: fp(1.8),
+    fontSize: fp(1.6),
     fontWeight: "bold",
   },
   description: {
     fontSize: fp(1.2),
-    height: hp(5),
-    maxHeight: hp(5),
+    height: hp(4),
   },
   metaContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 5,
+    marginTop: hp(1),
   },
   readTimeContainer: {
     flexDirection: "row",

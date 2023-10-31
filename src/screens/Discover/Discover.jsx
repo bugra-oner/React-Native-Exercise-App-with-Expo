@@ -37,7 +37,7 @@ export default function Discover() {
       );
   };
 
-  console.log(language);
+  // console.log(language);
   const renderItem = ({ item }) => (
     <ArticleCard
       key={item.id}
