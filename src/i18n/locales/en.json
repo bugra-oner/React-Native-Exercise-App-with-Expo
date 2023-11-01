@@ -160,5 +160,6 @@
     "HealthConsequences": "Health Consequences",
     "IncreaseLevel": "Increase Level",
     "IncreaseLevelSub": "The difficulty level of exercises will increase. Do you want to continue?",
-    "WorkoutContent": "Workout Content"
-}
+    "WorkoutContent": "Workout Content",
+    "Subject" : "Subject"
+ }
