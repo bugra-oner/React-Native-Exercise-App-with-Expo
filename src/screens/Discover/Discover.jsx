@@ -37,7 +37,6 @@ export default function Discover() {
       );
   };
 
-  // console.log(language);
   const renderItem = ({ item }) => (
     <ArticleCard
       key={item.id}
@@ -45,6 +44,7 @@ export default function Discover() {
       readTime={item.time}
       description={item.description}
       topic={item.topic}
+      headerImage={item.Image}
       selectedLanguage={
         language !== "en" && language !== "tr" ? "en" : language
       }
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     fontSize: fp(2.6),
     marginTop: hp(2),
     left: wp(5),
-    color: "black",
+    color: "rgba(80,80,136,0.8)",
     fontWeight: "800",
   },
   ArticleCard: {

@@ -19,11 +19,11 @@ import { useTranslation } from "react-i18next";
 
 export default function ArticleCard({
   title,
-  image,
   description,
   readTime,
   topic,
   selectedLanguage,
+  headerImage,
 }) {
   const navigation = useNavigation();
   const [isSaved, setIsSaved] = useState(false); // Yeni eklenen kaydetme işlevi
@@ -88,7 +88,7 @@ export default function ArticleCard({
   };
   return (
     <TouchableOpacity style={styles.card} onPress={() => handleCardPress()}>
-      <Image source={image} style={styles.image} />
+      <Image source={headerImage} style={styles.image} />
       <MaterialCommunityIcons
         name={isSaved ? "bookmark" : "bookmark-outline"}
         size={24}
@@ -97,13 +97,17 @@ export default function ArticleCard({
         style={styles.bookmark}
       />
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
+      <View style={styles.descriptionView}>
+        <Text style={styles.description}>{description}</Text>
+      </View>
+
       <View style={styles.metaContainer}>
         <View style={styles.readTimeContainer}>
           <MaterialCommunityIcons
             name="clock-outline"
             size={fp(2.4)}
             color="gray"
+            style={styles.clockOutline}
           />
           <Text style={styles.readTimeText}>{readTime}</Text>
         </View>
@@ -112,6 +116,7 @@ export default function ArticleCard({
             name="label-outline"
             size={fp(2.4)}
             color="gray"
+            style={styles.labelOutline}
           />
           <Text style={styles.topicText}>{topic}</Text>
         </View>
@@ -122,7 +127,7 @@ export default function ArticleCard({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "white",
+    backgroundColor: "#ede5f5",
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
@@ -130,53 +135,70 @@ const styles = StyleSheet.create({
       height: 2,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowRadius: 7.84,
     elevation: 5,
     marginHorizontal: wp(3),
-    padding: wp(1),
+    height: hp(27),
     width: wp(30),
+    marginBottom: hp(2),
   },
   image: {
-    width: wp(25),
+    width: wp(28),
     height: hp(10),
     borderRadius: 15,
+    alignSelf: "center",
   },
   title: {
     fontSize: fp(1.6),
     fontWeight: "bold",
+    color: "#484F88",
+    maxHeight: hp(5),
+  },
+  descriptionView: {
+    height: hp(7),
   },
   description: {
-    fontSize: fp(1.2),
-    height: hp(4),
+    fontSize: fp(1.3),
+    color: "black",
+    fontWeight: "bold",
   },
   metaContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: hp(1),
+    position: "absolute",
+    bottom: hp(1),
   },
   readTimeContainer: {
     flexDirection: "row",
     alignItems: "center",
   },
   readTimeText: {
-    marginLeft: 2,
+    marginLeft: wp(1),
     fontSize: fp(1.7),
     color: "gray",
+    fontWeight: "600",
   },
   topicContainer: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 5,
+    left: wp(6.5),
   },
   topicText: {
-    marginLeft: 2,
+    marginLeft: wp(1),
     fontSize: fp(1.7),
     color: "gray",
+    fontWeight: "600",
   },
   bookmark: {
     position: "absolute",
     top: 15,
     right: 10,
+  },
+  clockOutline: {
+    marginLeft: wp(1),
+  },
+  labelOutline: {
+    marginLeft: wp(1),
   },
 });
