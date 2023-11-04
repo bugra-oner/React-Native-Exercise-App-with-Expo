@@ -94,7 +94,7 @@ export default function Profil({ navigation }) {
             iconName="chevron-right"
             iconStyle={styles.iconStyle}
             // onPress={() => navigate("Report")}
-            onPress={() => handleShowMessage()}
+            onPress={() => navigate("Report")}
           />
           <SpacingButton
             text={t("Policy")}
@@ -111,7 +111,7 @@ export default function Profil({ navigation }) {
             source={require("../../assets/version.jpg")}
             style={styles.Logo}
           />
-          <Text style={styles.Version}>{t("Version")} 1.3.0</Text>
+          <Text style={styles.Version}>{t("Version")} 1.3.1</Text>
         </View>
       </View>
     </>

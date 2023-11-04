@@ -185,8 +185,8 @@ const styles = StyleSheet.create({
     left: wp(6.5),
   },
   topicText: {
-    marginLeft: wp(1),
-    fontSize: fp(1.7),
+    marginLeft: wp(0.7),
+    fontSize: fp(1.5),
     color: "gray",
     fontWeight: "600",
   },

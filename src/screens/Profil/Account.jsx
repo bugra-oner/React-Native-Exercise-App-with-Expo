@@ -1,27 +1,27 @@
-import { Text, View } from 'react-native';
-import React from 'react';
-import SpacingButton from '../../components/buttons/SpacingButton';
-import Header from '../../components/views/Header';
+import { Text, View } from "react-native";
+import React from "react";
+import SpacingButton from "../../components/buttons/SpacingButton";
+import Header from "../../components/views/Header";
 
-import  { navigate } from '../../navigation/navigationRef';
-import styles from './styles';
+import { navigate } from "../../navigation/navigationRef";
+import styles from "./styles";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 export default function Account({ navigation }) {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <>
       <Header
-        title={'PersonelI'}
+        title={"PersonelI"}
         LeftIconOnPress={() => navigation.goBack()}
-        RightIconOnPress={() => navigate('Notifications')}
+        RightIconOnPress={() => navigate("Notifications")}
         RightIcon="bell-outline"
         LeftIconSize={33}
       />
       <View style={styles.container}>
         <Text style={styles.HeaderText}>{t("PersonelI")}</Text>
-        
+
         <View style={styles.AccountContainer}>
           <SpacingButton
             special={true}
@@ -48,7 +48,7 @@ export default function Account({ navigation }) {
             onPress={() => navigate("Gender")}
           />
         </View>
-         <Text style={styles.HeaderText}>{t('Status')}</Text>
+        <Text style={styles.HeaderText}>{t("Status")}</Text>
         <View style={styles.AccountContainer}>
           <SpacingButton
             text={t("Languages")}
@@ -59,7 +59,7 @@ export default function Account({ navigation }) {
             label="Değiştir"
             labelStyle={styles.labelStyle}
             threeText={styles.threeText}
-            onPress={() =>  navigate("Languages")}
+            onPress={() => navigate("Languages")}
           />
           <SpacingButton
             text={t("Notifications")}
@@ -72,17 +72,17 @@ export default function Account({ navigation }) {
             threeText={styles.threeText}
             onPress={() => navigate("Notifications")}
           />
-        </View> 
-          <View style={styles.freezeAccountView}>
-            <SpacingButton
-              text={t("ReportSystem")}
-              style={styles.LastButton}
-              textStyle={styles.ButtonText}
-              iconName="chevron-right"
-              iconStyle={styles.iconStyle}
-              onPress={() => navigate("Report")}
-            />
-          </View>
+        </View>
+        <View style={styles.freezeAccountView}>
+          <SpacingButton
+            text={t("ReportSystem")}
+            style={styles.LastButton}
+            textStyle={styles.ButtonText}
+            iconName="chevron-right"
+            iconStyle={styles.iconStyle}
+            onPress={() => navigate("Report")}
+          />
+        </View>
       </View>
     </>
   );
