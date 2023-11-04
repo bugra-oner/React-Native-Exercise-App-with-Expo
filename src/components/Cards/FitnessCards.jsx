@@ -84,7 +84,7 @@ const FitnessCards = ({
               style={{
                 // position: "absolute",
                 color: "white",
-                fontSize: fp(2.2),
+                fontSize: fp(2.1),
                 fontWeight: "bold",
                 // left: 21,
                 // top: 22,
