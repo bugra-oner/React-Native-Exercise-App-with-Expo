@@ -182,10 +182,11 @@ const styles = StyleSheet.create({
   topicContainer: {
     flexDirection: "row",
     alignItems: "center",
-    left: wp(6.5),
+    left: wp(6),
+   
   },
   topicText: {
-    marginLeft: wp(0.7),
+    marginLeft: wp(0.1),
     fontSize: fp(1.5),
     color: "gray",
     fontWeight: "600",
