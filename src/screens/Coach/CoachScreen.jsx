@@ -84,8 +84,8 @@ const CoachScreen = () => {
       }}
     >
       <LevelButtons
-        onBeginnerPress={() => handleScrollTo(0, hp(150))}
-        onIntermediatePress={() => handleScrollTo(0, hp(250))}
+        onBeginnerPress={() => handleScrollTo(0, hp(140))}
+        onIntermediatePress={() => handleScrollTo(0, hp(350))}
         onAdvancedPress={() => handleScrollTo(0, hp(600))}
       />
       <StatsImage
