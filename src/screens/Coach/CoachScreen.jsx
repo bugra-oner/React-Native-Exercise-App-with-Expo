@@ -25,6 +25,7 @@ import advancedBeginner from "../../data/advancedBeginner";
 //Data intermediate
 import IntermediateBeginner from "../../data/IntermediateBeginner";
 import Intermediate from "../../data/Intermediate";
+import IntermediateAdvanced from "../../data/IntermediateAdvanced";
 
 //asdfasdfsa
 import LevelButtons from "../../components/LevelButtons";
@@ -181,7 +182,7 @@ const CoachScreen = () => {
       <FitnessCards
         difficulty={3.5}
         backgroundColor={"#9c9c9c"}
-        data={IntermediateBeginner}
+        data={IntermediateAdvanced}
         workoutCompleted={route.params}
       />
 

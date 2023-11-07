@@ -1,8 +1,8 @@
 export default [
   {
     id: "0",
-    image: require("./fitnessImages/fullBody.jpg"),
-    name: "FULL BODY INTERMEDIATE BEGINNER",
+    image: require("./fitnessImages/fullbody-gray.jpg"),
+    name: "FULL BODY INTERMEDIATE ADVANCED",
     timing: [18, 30],
     description: "INTERMEDIATE",
     excersises: [
@@ -130,8 +130,8 @@ export default [
   },
   {
     id: "1",
-    image: require("./fitnessImages/ABS.jpg"),
-    name: "ABS  INTERMEDIATE BEGINNER",
+    image: require("./fitnessImages/advancedabs.jpg"),
+    name: "ABS  INTERMEDIATE ADVANCED",
     timing: [10, 16],
     description: "INTERMEDIATE",
     excersises: [
@@ -207,7 +207,7 @@ export default [
   {
     id: "2",
     image: require("./fitnessImages/Arm.jpg"),
-    name: "ARM INTERMEDIATE BEGINNER",
+    name: "ARM INTERMEDIATE ADVANCED",
     timing: [12, 18],
     description: "INTERMEDIATE",
     excersises: [
@@ -295,7 +295,7 @@ export default [
   {
     id: "3",
     image: require("./fitnessImages/Chest.jpg"),
-    name: "CHEST INTERMEDIATE BEGINNER",
+    name: "CHEST INTERMEDIATE ADVANCED",
     timing: [8, 12],
     description: "INTERMEDIATE",
     excersises: [
