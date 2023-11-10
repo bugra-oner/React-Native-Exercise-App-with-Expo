@@ -161,5 +161,8 @@
       "IncreaseLevelSub": "Egzersizlerin zorluk seviyesi artacaktır. Devam etmek istiyor musunuz?",
       "WorkoutContent": "Antreman İçeriği",
       "Subject": "Konu",
-      "Profil": "Profil"
+      "Profil": "Profil",
+      "Men": "Erkek",
+      "Woman": "Kadın",
+      "NameInput": "İsminizi Girin"
   }

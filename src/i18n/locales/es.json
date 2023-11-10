@@ -161,5 +161,8 @@
     "IncreaseLevelSub": "El nivel de dificultad de los ejercicios aumentará. ¿Desea continuar?",
     "WorkoutContent": "Contenido del Entrenamiento",
     "Subject" : "Subject",
-    "Profil": "Profiles"
+    "Profil": "Profiles",
+    "Men": "Men",
+    "Woman": "Mensajes",
+    "NameInput": "Enter Your Name"
 }

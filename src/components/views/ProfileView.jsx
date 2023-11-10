@@ -2,14 +2,14 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { wp, hp, fp } from "../../utils";
 
-export default function ProfileView() {
+export default function ProfileView({ name, gender, fix, onPress }) {
   return (
     <View style={styles.container}>
       <View style={styles.TextView}>
         <Text style={styles.titleText}>Ali Güngören</Text>
         <Text style={styles.genderText}>Erkek</Text>
       </View>
-      <TouchableOpacity style={styles.touchableOpacity}>
+      <TouchableOpacity onPress={onPress} style={styles.touchableOpacity}>
         <Text style={styles.buttonText}>Düzenle</Text>
       </TouchableOpacity>
     </View>
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
     marginTop: hp(5),
   },
   TextView: {},
-  titleText: {},
-  genderText: {},
+  titleText: { fontSize: fp(2.8) },
+  genderText: { fontSize: fp(2.5) },
   buttonText: {
     padding: 10,
   },

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 //Utils
 import { wp, hp, fp } from "../../utils";
@@ -12,16 +12,33 @@ import SpacingButton from "../../components/buttons/SpacingButton";
 import { useTranslation } from "react-i18next";
 import { FitnessItems } from "../../Context";
 
+//Modal Components
+import EditProfileModal from "../../components/modals/EditProfileModal";
+
 export default function Profil() {
   const { t } = useTranslation();
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const { minutes, calories, workout, user } = useContext(FitnessItems);
+
+  const openModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
+  const saveModal = () => {
+    // Kaydetme işlemleri burada yapılır
+    closeModal();
+  };
 
   console.log(user);
 
   return (
     <View>
-      <ProfileView />
+      <ProfileView onPress={openModal} />
       <View style={styles.topHeaderView}>
         <TextCard title="180 cm" subTitle="Boy" />
         <TextCard title="52 kg" subTitle="Kilo" />
@@ -55,6 +72,11 @@ export default function Profil() {
           onPress={() => navigate("Settings")}
         />
       </View>
+      <EditProfileModal
+        visible={isModalVisible}
+        onClose={closeModal}
+        onSave={saveModal}
+      />
     </View>
   );
 }

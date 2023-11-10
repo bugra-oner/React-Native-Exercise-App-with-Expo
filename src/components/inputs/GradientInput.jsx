@@ -4,7 +4,13 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import { hp } from "../../utils";
 
-const GradientInput = ({ placeholder, onChangeText, keyboardType, colors }) => {
+const GradientInput = ({
+  placeholder,
+  onChangeText,
+  keyboardType,
+  colors,
+  style,
+}) => {
   return (
     <LinearGradient
       colors={colors || ["#575ea8", "#83c29f"]} // Default renkler
@@ -13,7 +19,7 @@ const GradientInput = ({ placeholder, onChangeText, keyboardType, colors }) => {
       style={styles.gradientContainer}
     >
       <TextInput
-        style={styles.input}
+        style={[style ? style : styles.input]}
         placeholder={placeholder}
         placeholderTextColor="#fff" // Placeholder rengi
         onChangeText={onChangeText}
