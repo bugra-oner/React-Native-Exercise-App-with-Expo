@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useTransition } from "react";
 import { View, Text, Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -15,10 +15,13 @@ import { FitnessItems } from "../../Context";
 import colors from "../../constants/colors";
 import { hp } from "../../utils";
 
+import { useTranslation } from "react-i18next";
+
 export default function Gender({ navigation }) {
   const { user, setUser } = useContext(FitnessItems);
   const [selectedButton, setSelectedButton] = useState([0, "Default"]);
-  console.log("user gender", user.gender);
+
+  const { t } = useTransition();
 
   useEffect(() => {
     async function fetchGender() {

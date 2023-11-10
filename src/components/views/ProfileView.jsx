@@ -19,10 +19,20 @@ export default function ProfileView({ name, gender, fix, onPress }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    backgroundColor: "#F3F5FF",
+    padding: 18,
     justifyContent: "space-between",
     width: wp(90),
     alignSelf: "center",
     marginTop: hp(5),
+    borderRadius: 7,
+    borderColor: "black",
+    backgroundColor: "#ffff",
+    shadowColor: "#000000", // Gölgenin rengini burada belirleyebilirsiniz
+    shadowOpacity: 0.8, // Gölgenin opaklığını burada belirleyebilirsiniz
+    shadowRadius: 7.604332447052002, // Gölgenin yuvarlaklık derecesini burada belirleyebilirsiniz
+    shadowOffset: { width: 2.3208664655685425, height: 2.3208664655685425 }, // Gölgenin konumunu burada belirleyebilirsiniz
+    elevation: 10, // Sadece Android için shadow (iOS bu prop'u kullanmaz)
   },
   TextView: {},
   titleText: { fontSize: fp(2.8) },

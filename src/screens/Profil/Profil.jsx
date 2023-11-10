@@ -14,6 +14,7 @@ import { FitnessItems } from "../../Context";
 
 //Modal Components
 import EditProfileModal from "../../components/modals/EditProfileModal";
+import PremiumCard from "../../components/PremiumCard";
 
 export default function Profil() {
   const { t } = useTranslation();
@@ -38,12 +39,19 @@ export default function Profil() {
 
   return (
     <View>
-      <ProfileView onPress={openModal} />
+      <ProfileView onPress={() => navigate("Settings")} />
       <View style={styles.topHeaderView}>
         <TextCard title="180 cm" subTitle="Boy" />
         <TextCard title="52 kg" subTitle="Kilo" />
         <TextCard title="27" subTitle="Yaş" />
       </View>
+      {/* <PremiumCard /> */}
+      <EditProfileModal
+        visible={isModalVisible}
+        onClose={closeModal}
+        onSave={saveModal}
+      />
+
       <View style={styles.AccountContainer}>
         <SpacingButton
           special={true}
@@ -72,11 +80,6 @@ export default function Profil() {
           onPress={() => navigate("Settings")}
         />
       </View>
-      <EditProfileModal
-        visible={isModalVisible}
-        onClose={closeModal}
-        onSave={saveModal}
-      />
     </View>
   );
 }
