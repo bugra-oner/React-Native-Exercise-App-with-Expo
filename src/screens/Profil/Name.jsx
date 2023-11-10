@@ -1,19 +1,23 @@
 import { Text, View, Alert } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //label input
 import UpdateInput from "../../components/inputs/UpdateInput";
 import Header from "../../components/views/Header";
 
-import { navigate } from "../../navigation/navigationRef";
+import { FitnessItems } from "../../Context";
+
 //styles import
 import styles from "./StylesCustom";
 
 export default function Name({ navigation }) {
-  const [name, setName] = useState("");
+  const { user, setUser } = useContext(FitnessItems);
+  const [name, setName] = useState(user.name ? user.name : "");
   const [RightIconColor, setRightIconColor] = useState("#828280");
   const [firstName, setFirstName] = useState("");
+
+  console.log(user);
 
   const nameChange = () => {
     if (name !== firstName) {
@@ -40,10 +44,22 @@ export default function Name({ navigation }) {
       setRightIconColor("#828280");
 
       // Async storage'a ismi kaydetmek
+
       try {
-        await AsyncStorage.setItem("userName", name);
+        // Mevcut kullanıcı bilgilerini al
+        const existingUser = await AsyncStorage.getItem("user");
+        const updatedUser = existingUser ? JSON.parse(existingUser) : {};
+
+        // Yeni bilgileri ekleyin veya güncelleyin
+        updatedUser.name = name;
+        // updatedUser.gender = gender; // Örneğin, cinsiyet bilgisi eklendiğinde
+
+        // Güncellenmiş kullanıcı bilgilerini AsyncStorage'a ve Context'e kaydedin
+        await AsyncStorage.setItem("user", JSON.stringify(updatedUser));
+        setUser(updatedUser);
       } catch (error) {
-        //console.log('Async storage error:', error);
+        // Hata işleme
+        //
       }
 
       setFirstName(name);

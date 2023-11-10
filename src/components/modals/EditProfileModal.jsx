@@ -45,12 +45,6 @@ const EditProfileModal = ({ visible, onClose, onSave }) => {
           {/* Kullanıcı bilgilerini düzenlemek için gerekli input alanları eklenebilir */}
           <GradientInput
             style={styles.input}
-            placeholder={t("NameInput")}
-            onChangeText={(text) => setName(text)}
-            keyboardType="default"
-          />
-          <GradientInput
-            style={styles.input}
             placeholder={t("InputKg")}
             onChangeText={(text) => setWeight(text)}
             keyboardType="numeric"
