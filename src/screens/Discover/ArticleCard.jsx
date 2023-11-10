@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -100,9 +93,8 @@ export default function ArticleCard({
       <View style={styles.descriptionView}>
         <Text style={styles.description}>{description}</Text>
       </View>
-
-      <View style={styles.metaContainer}>
-        <View style={styles.readTimeContainer}>
+      <View style={styles.RowContainerBottom}>
+        <View style={styles.metaContainer}>
           <MaterialCommunityIcons
             name="clock-outline"
             size={fp(2.4)}
@@ -111,14 +103,13 @@ export default function ArticleCard({
           />
           <Text style={styles.readTimeText}>{readTime}</Text>
         </View>
-        <View style={styles.topicContainer}>
+        <View style={styles.readTimeContainer}>
           <MaterialCommunityIcons
             name="label-outline"
-            size={fp(2.4)}
+            size={fp(2)}
             color="gray"
             style={styles.labelOutline}
           />
-          <Text style={styles.topicText}>{topic}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -162,32 +153,24 @@ const styles = StyleSheet.create({
     color: "black",
     fontWeight: "bold",
   },
+  RowContainerBottom: {
+    marginVertical: hp(2.6),
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+    alignContent: "space-between",
+  },
   metaContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    position: "absolute",
-    bottom: hp(1),
   },
   readTimeContainer: {
     flexDirection: "row",
-    alignItems: "center",
+    marginHorizontal: wp(3),
   },
   readTimeText: {
     marginLeft: wp(1),
     fontSize: fp(1.7),
-    color: "gray",
-    fontWeight: "600",
-  },
-  topicContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    left: wp(6),
-   
-  },
-  topicText: {
-    marginLeft: wp(0.1),
-    fontSize: fp(1.5),
     color: "gray",
     fontWeight: "600",
   },
