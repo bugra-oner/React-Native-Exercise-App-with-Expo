@@ -14,7 +14,7 @@ import Workouts from "../screens/Workouts/Workouts";
 import LevelSelector from "../screens/Home/LevelSelector";
 
 import UpperBodyScreen from "../screens/Workouts/UpperBody";
-import BMICalculator from "../screens/BMICalculator";
+
 import Graph from "../screens/Center/Graph";
 import HealthCalculator from "../screens/HealthCalculator";
 
@@ -27,6 +27,7 @@ import ReportSystem from "../screens/Profil/ReportSystem";
 import Languages from "../screens/Profil/SelectLanguages";
 import Notifications from "../screens/Profil/Notifications";
 import CoachScreen from "../screens/Coach/CoachScreen";
+import Settings from "../screens/Profil/Settings";
 
 import Info from "../screens/Informations/Info";
 import Policy from "../screens/Policy";
@@ -69,7 +70,6 @@ export default function BottomStackNavigator() {
       <Stack.Screen name="Workout" component={Workout} />
       <Stack.Screen name="History" component={History} />
       <Stack.Screen name="UpperBody" component={UpperBodyScreen} />
-      <Stack.Screen name="BMI" component={BMICalculator} />
       <Stack.Screen name="HealthCalculator" component={HealthCalculator} />
       <Stack.Screen name="Info" component={Info} />
       <Stack.Screen name="LowerBody" component={LowerBody} />
@@ -92,6 +92,7 @@ export default function BottomStackNavigator() {
       <Stack.Screen name="Fit" component={FitScreen} />
       <Stack.Screen name="WorkoutScreen" component={WorkOutScreen} />
       <Stack.Screen name="ArticleDetail" component={ArticleDetail} />
+      <Stack.Screen name="Settings" component={Settings} />
     </Stack.Navigator>
   );
 }

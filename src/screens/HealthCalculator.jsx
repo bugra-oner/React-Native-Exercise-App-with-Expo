@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -19,8 +19,12 @@ import { hp, wp, fp } from "../utils";
 
 import { showMessage, hideMessage } from "react-native-flash-message";
 
+import { FitnessItems } from "../Context";
+
 const HealthCalculator = ({ navigation }) => {
   const { t } = useTranslation();
+
+  const { user, setUser } = useContext(FitnessItems);
 
   const activityLevels = [
     { label: `${t("sedentary")}`, value: "sedentary" },
@@ -162,6 +166,8 @@ const HealthCalculator = ({ navigation }) => {
         "calculatedData",
         JSON.stringify(calculatedData)
       );
+
+      setUser({ ...user, calculatedData });
       // console.log('Calculated data saved to AsyncStorage:', calculatedData);
       // Verilerin güncellendiğini bildir
       navigation.navigate("Graph", { updateHealthDataOnScreen: true });

@@ -6,10 +6,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FitnessContext = ({ children }) => {
   const [completed, setCompleted] = useState([]);
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(["test", "Gender"]);
   const [workout, setWorkout] = useState(0);
   const [calories, setCalories] = useState(0);
   const [minutes, setMinutes] = useState(0);
+  const [calculatedData, setCalculatedData] = useState();
 
   // Verileri AsyncStorage'den alın
   useEffect(() => {
@@ -33,6 +34,11 @@ const FitnessContext = ({ children }) => {
     AsyncStorage.getItem("user").then((value) => {
       if (value !== null) {
         setUser(JSON.parse(value));
+      }
+    });
+    AsyncStorage.getItem("calculatedData").then((value) => {
+      if (value !== null) {
+        setCalculatedData(value);
       }
     });
   }, []);

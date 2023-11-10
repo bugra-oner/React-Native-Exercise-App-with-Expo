@@ -161,5 +161,6 @@
     "IncreaseLevel": "Increase Level",
     "IncreaseLevelSub": "The difficulty level of exercises will increase. Do you want to continue?",
     "WorkoutContent": "Workout Content",
-    "Subject" : "Subject"
+    "Subject" : "Subject",
+    "Profile": "Profile"
  }

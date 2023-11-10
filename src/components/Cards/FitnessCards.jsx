@@ -71,13 +71,13 @@ const FitnessCards = ({
             source={item.image}
           />
           {/* Önerilen etiketi */}
-          {key === 0 && first === true && (
+          {/* {key === 0 && first === true && (
             <View style={styles.recommendedTag}>
               <Text style={styles.recommendedTagText}>
                 {t("StartingIdeal")}
               </Text>
             </View>
-          )}
+          )} */}
           {/* Diğer içerikler */}
           <View style={styles.TextView}>
             <Text
