@@ -8,19 +8,14 @@ import { useTranslation } from "react-i18next";
 import GradientInput from "../inputs/GradientInput";
 import { wp, hp, fp } from "../../utils";
 
-const EditProfileModal = ({ visible, onClose, onSave }) => {
+const EditProfileModal = ({
+  visible,
+  onClose,
+  onSave,
+  onInputChange 
+}) => {
   const { t } = useTranslation();
-
   const [gender, setGender] = useState("male");
-
-  const [weight, setWeight] = useState("");
-  const [height, setHeight] = useState("");
-  const [age, setAge] = useState("");
-
-  const [name, setName] = useState("");
-  const [dailyCalories, setDailyCalories] = useState(null);
-  const [dailyWater, setDailyWater] = useState(null);
-  const [idealWeight, setIdealWeight] = useState(null);
 
   // Burada, kullanıcı bilgilerini düzenlemek için state'ler ve fonksiyonlar eklenebilir
   const genders = [
@@ -38,33 +33,25 @@ const EditProfileModal = ({ visible, onClose, onSave }) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>Kullanıcı Bilgilerini Düzenle</Text>
-          <UpdateInput />
-          <UpdateInput />
-          <UpdateInput />
 
           {/* Kullanıcı bilgilerini düzenlemek için gerekli input alanları eklenebilir */}
           <GradientInput
             style={styles.input}
             placeholder={t("InputKg")}
-            onChangeText={(text) => setWeight(text)}
+            onChangeText={(text) => onInputChange("weight", text)}
             keyboardType="numeric"
           />
           <GradientInput
             style={styles.input}
             placeholder={t("InputCm")}
-            onChangeText={(text) => setHeight(text)}
+            onChangeText={(text) => onInputChange("height", text)}
             keyboardType="numeric"
           />
           <GradientInput
             style={styles.input}
             placeholder={t("InputOld")}
-            onChangeText={(text) => setAge(text)}
+            onChangeText={(text) => onInputChange("age", text)}
             keyboardType="numeric"
-          />
-          <CustomPicker
-            options={genders}
-            selectedValue={gender}
-            onValueChange={(value) => setGender(value)}
           />
           <TouchableOpacity
             style={[styles.button, styles.buttonClose]}
@@ -111,11 +98,12 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     fontWeight: "bold",
     textAlign: "center",
-    padding: hp(0.4),
+    padding: hp(1),
   },
   modalText: {
-    marginBottom: hp(1),
+    marginBottom: hp(3),
     textAlign: "center",
+    fontWeight: "bold",
   },
   input: {
     width: wp(50),

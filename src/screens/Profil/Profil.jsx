@@ -19,8 +19,10 @@ import PremiumCard from "../../components/PremiumCard";
 export default function Profil() {
   const { t } = useTranslation();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalForm, setModalForm] = useState();
 
-  const { minutes, calories, workout, user } = useContext(FitnessItems);
+  const { minutes, calories, workout, user, setUser } =
+    useContext(FitnessItems);
 
   const openModal = () => {
     setIsModalVisible(true);
@@ -36,6 +38,12 @@ export default function Profil() {
   };
 
   const Regender = t(`${user.gender}`);
+
+  const onInputChange = (field, value) => {
+    setModalForm((prevForm) => ({ ...prevForm, [field]: value }));
+  };
+
+  console.log(modalForm);
 
   return (
     <View>
@@ -55,6 +63,7 @@ export default function Profil() {
         visible={isModalVisible}
         onClose={closeModal}
         onSave={saveModal}
+        onInputChange={onInputChange}
       />
 
       <View style={styles.AccountContainer}>
@@ -69,7 +78,7 @@ export default function Profil() {
           label="Değiştir"
           labelStyle={styles.labelStyle}
           threeText={styles.threeText}
-          onPress={() => setIsModalVisible(true)}
+          onPress={openModal}
         />
         <SpacingButton
           special={true}

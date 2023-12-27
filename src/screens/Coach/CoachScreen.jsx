@@ -48,11 +48,11 @@ const CoachScreen = () => {
   const beginnerImage = require("../../assets/cards/2.jpg");
   const romanHuman = require("../../assets/cards/basicHuman.jpg");
   // Image Midlevel
-  const beginnerMidImage = require("../../assets/cards/vikingSoldier.jpg");
-  const advancedMidLevel = require("../../assets/cards/midLevel.jpg");
-  const midLevel = require("../../assets/cards/intermade.jpg");
-  const image = require("../../assets/zeus.jpg");
-  const hard = require("../../assets/cards/hard.jpg");
+  // const beginnerMidImage = require("../../assets/cards/vikingSoldier.jpg");
+  // const advancedMidLevel = require("../../assets/cards/midLevel.jpg");
+  // const midLevel = require("../../assets/cards/intermade.jpg");
+  // const image = require("../../assets/zeus.jpg");
+  // const hard = require("../../assets/cards/hard.jpg");
 
   const handleFlashMessage = async (
     firstTitle = "DevelopmentInProgressTitle",
@@ -162,7 +162,7 @@ const CoachScreen = () => {
         workoutCompleted={route.params}
       />
       */}
-      
+
       {/* Intermediate MidLevel 
       <StatsImage imageSource={image} />
       <FitnessCards
@@ -189,7 +189,6 @@ const CoachScreen = () => {
         workoutCompleted={route.params}
       />
        */}
-      
 
       {/*Mid Level Finished 
 
