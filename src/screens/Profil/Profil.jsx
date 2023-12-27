@@ -35,17 +35,22 @@ export default function Profil() {
     closeModal();
   };
 
-  console.log(user);
+  const Regender = t(`${user.gender}`);
 
   return (
     <View>
-      <ProfileView onPress={() => navigate("Settings")} />
+      <ProfileView
+        name={user.name}
+        gender={Regender}
+        onPress={() => navigate("Settings")}
+      />
       <View style={styles.topHeaderView}>
-        <TextCard title="180 cm" subTitle="Boy" />
-        <TextCard title="52 kg" subTitle="Kilo" />
-        <TextCard title="27" subTitle="Yaş" />
+        <TextCard title="199 cm" subTitle="Boy" />
+        <TextCard title="999 kg" subTitle="Kilo" />
+        <TextCard title="99" subTitle="Yaş" />
       </View>
       {/* <PremiumCard /> */}
+
       <EditProfileModal
         visible={isModalVisible}
         onClose={closeModal}
@@ -56,7 +61,7 @@ export default function Profil() {
         <SpacingButton
           special={true}
           specialStyle={styles.specialStyle}
-          text={t("Settings")}
+          text={"Boy ve kiloyu düzenle"}
           style={styles.Button}
           textStyle={styles.ButtonText}
           iconName="chevron-right"
@@ -64,7 +69,7 @@ export default function Profil() {
           label="Değiştir"
           labelStyle={styles.labelStyle}
           threeText={styles.threeText}
-          onPress={() => navigate("Settings")}
+          onPress={() => setIsModalVisible(true)}
         />
         <SpacingButton
           special={true}

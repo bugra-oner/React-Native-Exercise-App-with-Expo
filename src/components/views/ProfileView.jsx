@@ -2,12 +2,19 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { wp, hp, fp } from "../../utils";
 
+import CustomIcon from "../CustomIcon";
+
+
 export default function ProfileView({ name, gender, fix, onPress }) {
+
+  
   return (
     <View style={styles.container}>
       <View style={styles.TextView}>
-        <Text style={styles.titleText}>Ali Güngören</Text>
-        <Text style={styles.genderText}>Erkek</Text>
+        <Text style={styles.titleText}>{name ? name : "Anonim"}</Text>
+        <Text style={styles.genderText}>
+          {gender ? gender : "Belirtilmedi"}
+        </Text>
       </View>
       <TouchableOpacity onPress={onPress} style={styles.touchableOpacity}>
         <Text style={styles.buttonText}>Düzenle</Text>

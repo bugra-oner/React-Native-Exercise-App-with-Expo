@@ -28,13 +28,13 @@ export default function Gender({ navigation }) {
       try {
         const gender = user.gender;
         switch (gender) {
-          case "male":
+          case "Male":
             setSelectedButton([1, gender]);
             break;
-          case "woman":
+          case "Woman":
             setSelectedButton([2, gender]);
             break;
-          case "other":
+          case "Other":
             setSelectedButton([3, gender]);
             break;
           default:
@@ -78,13 +78,13 @@ export default function Gender({ navigation }) {
       // Yeni bilgileri ekleyin veya güncelleyin
       updatedUser.gender = selectedButton[1];
       // updatedUser.gender = gender; // Örneğin, cinsiyet bilgisi eklendiğinde
-      console.log("test burasi çalışıyor mu..");
+      //console.log("test burasi çalışıyor mu..");
       // Güncellenmiş kullanıcı bilgilerini AsyncStorage'a ve Context'e kaydedin
       await AsyncStorage.setItem("user", JSON.stringify(updatedUser));
       setUser(updatedUser);
     } catch (error) {
       // Hata işleme
-      console.log("Async storage error:", error);
+      //console.log("Async storage error:", error);
     }
 
     Alert.alert(
@@ -144,7 +144,7 @@ export default function Gender({ navigation }) {
           iconStyle={styles.buttonRightIcon}
           iconSize={20}
           onPress={() =>
-            setSelectedButton([1, "male"]) &&
+            setSelectedButton([1, "Male"]) &&
             setRightIconColor(colors.settingColors.selected)
           }
           iconColor={
@@ -177,7 +177,7 @@ export default function Gender({ navigation }) {
               ? { color: colors.settingColors.selected }
               : { color: "black" },
           ]}
-          onPress={() => setSelectedButton([2, "woman"])}
+          onPress={() => setSelectedButton([2, "Woman"])}
           iconColor={
             selectedButton[0] === 2 ? colors.settingColors.selected : "black"
           }
@@ -208,7 +208,7 @@ export default function Gender({ navigation }) {
               ? { color: colors.settingColors.selected }
               : { color: "black" },
           ]}
-          onPress={() => setSelectedButton([3, "other"])}
+          onPress={() => setSelectedButton([3, "Other"])}
           iconColor={
             selectedButton[0] === 3 ? colors.settingColors.selected : "black"
           }
