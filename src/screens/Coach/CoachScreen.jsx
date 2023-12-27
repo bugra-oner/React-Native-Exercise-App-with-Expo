@@ -145,7 +145,7 @@ const CoachScreen = () => {
       />
       {/* Advanced Beginner's finished*/}
 
-      {/* Intermediate  Beginner*/}
+      {/* Intermediate  Beginner
       <StatsImage
         colorsZero={"#71503c"}
         colorsOne={"#dfdcdc"}
@@ -161,7 +161,9 @@ const CoachScreen = () => {
         data={IntermediateBeginner}
         workoutCompleted={route.params}
       />
-      {/* Intermediate MidLevel */}
+      */}
+      
+      {/* Intermediate MidLevel 
       <StatsImage imageSource={image} />
       <FitnessCards
         difficulty={3}
@@ -169,7 +171,8 @@ const CoachScreen = () => {
         data={Intermediate}
         workoutCompleted={route.params}
       />
-      {/* Mid level Advanced */}
+      */}
+      {/* Mid level Advanced
       <StatsImage
         colorsZero={"#71503c"}
         colorsOne={"#dfdcdc"}
@@ -185,8 +188,10 @@ const CoachScreen = () => {
         data={IntermediateAdvanced}
         workoutCompleted={route.params}
       />
+       */}
+      
 
-      {/*Mid Level Finished */}
+      {/*Mid Level Finished 
 
       <StatsImage
         colorsZero={"#7a8288"}
@@ -203,10 +208,12 @@ const CoachScreen = () => {
         data={IntermediateBeginner}
         workoutCompleted={route.params}
       />
+      */}
+
       {/* Intermediate Finished */}
 
       {/* Intermediate Advanced */}
-      <StatsImage
+      {/* <StatsImage
         colorsZero={"#000000"}
         colorsOne={"#fbcea3"}
         colorsTwo={"#000000"}
@@ -215,13 +222,12 @@ const CoachScreen = () => {
         colorsFive={"#000000"}
         imageSource={hard}
       />
-
       <FitnessCards
         difficulty={5}
         backgroundColor={"#33343d"}
         data={fitness}
         workoutCompleted={route.params}
-      />
+      /> */}
     </ScrollView>
   );
 };
