@@ -7,6 +7,7 @@ import CustomPicker from "../CustomPicker";
 import { useTranslation } from "react-i18next";
 import GradientInput from "../inputs/GradientInput";
 import { wp, hp, fp } from "../../utils";
+import CustomIcon from "../CustomIcon";
 
 const EditProfileModal = ({ visible, onClose, onSave, onInputChange }) => {
   const { t } = useTranslation();
@@ -22,6 +23,15 @@ const EditProfileModal = ({ visible, onClose, onSave, onInputChange }) => {
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
+          <TouchableOpacity style={styles.CloserView} onPress={onClose}>
+            <CustomIcon
+              name={"close"}
+              color="black"
+              marginHorizontal={wp(0)}
+              marginRight={wp(0)}
+              size={fp(2.5)}
+            />
+          </TouchableOpacity>
           <Text style={styles.modalText}>Kullanıcı Bilgilerini Düzenle</Text>
 
           {/* Kullanıcı bilgilerini düzenlemek için gerekli input alanları eklenebilir */}
@@ -98,6 +108,17 @@ const styles = StyleSheet.create({
   input: {
     width: wp(50),
     textAlign: "center",
+  },
+  CloserView: {
+    alignSelf: "flex-end",
+    justifyContent: "center",
+    backgroundColor: "#484F88",
+    borderRadius: 15,
+    top: hp(-2),
+    right: wp(-4),
+    height: hp(3),
+    width: wp(6),
+    alignItems: "center",
   },
 });
 
