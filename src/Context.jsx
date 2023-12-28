@@ -34,6 +34,7 @@ const FitnessContext = ({ children }) => {
     AsyncStorage.getItem("user").then((value) => {
       if (value !== null) {
         setUser(JSON.parse(value));
+        //console.log(user)
       }
     });
     AsyncStorage.getItem("calculatedData").then((value) => {

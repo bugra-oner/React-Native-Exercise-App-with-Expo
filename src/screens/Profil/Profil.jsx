@@ -16,13 +16,17 @@ import { FitnessItems } from "../../Context";
 import EditProfileModal from "../../components/modals/EditProfileModal";
 import PremiumCard from "../../components/PremiumCard";
 
+import useFlashMessage from "../../hooks/FlashMessage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 export default function Profil() {
   const { t } = useTranslation();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalForm, setModalForm] = useState();
 
-  const { minutes, calories, workout, user, setUser } =
-    useContext(FitnessItems);
+  const { user, setUser } = useContext(FitnessItems);
+
+  const { showFlashMessage } = useFlashMessage();
 
   const openModal = () => {
     setIsModalVisible(true);
@@ -30,10 +34,31 @@ export default function Profil() {
 
   const closeModal = () => {
     setIsModalVisible(false);
+    // console.log("Close Modal");
   };
 
-  const saveModal = () => {
+  const saveModal = async () => {
     // Kaydetme işlemleri burada yapılır
+    if (
+      modalForm === undefined ||
+      modalForm === null ||
+      modalForm.age === undefined ||
+      modalForm.height === undefined ||
+      modalForm.weight === undefined
+    ) {
+      showFlashMessage(`${t("Error")}`, `${t("ErrorFormNotValid")}`, "warning");
+      return;
+    } else {
+      try {
+        setUser((prevUser) => ({
+          ...prevUser,
+          age: modalForm.age,
+          weight: modalForm.weight,
+          height: modalForm.height,
+        }));
+        await AsyncStorage.setItem("user", JSON.stringify(user));
+      } catch (error) {}
+    }
     closeModal();
   };
 
@@ -43,7 +68,7 @@ export default function Profil() {
     setModalForm((prevForm) => ({ ...prevForm, [field]: value }));
   };
 
-  console.log(modalForm);
+  
 
   return (
     <View>
@@ -53,9 +78,9 @@ export default function Profil() {
         onPress={() => navigate("Settings")}
       />
       <View style={styles.topHeaderView}>
-        <TextCard title="199 cm" subTitle="Boy" />
-        <TextCard title="999 kg" subTitle="Kilo" />
-        <TextCard title="99" subTitle="Yaş" />
+        <TextCard title={user?.age || 18} subTitle="Boy" />
+        <TextCard title={user?.weight || 70} subTitle="Kilo" />
+        <TextCard title={user?.height || 180} subTitle="Yaş" />
       </View>
       {/* <PremiumCard /> */}
 

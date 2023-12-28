@@ -8,20 +8,10 @@ import { useTranslation } from "react-i18next";
 import GradientInput from "../inputs/GradientInput";
 import { wp, hp, fp } from "../../utils";
 
-const EditProfileModal = ({
-  visible,
-  onClose,
-  onSave,
-  onInputChange 
-}) => {
+const EditProfileModal = ({ visible, onClose, onSave, onInputChange }) => {
   const { t } = useTranslation();
-  const [gender, setGender] = useState("male");
 
   // Burada, kullanıcı bilgilerini düzenlemek için state'ler ve fonksiyonlar eklenebilir
-  const genders = [
-    { label: t("Male"), value: "male" },
-    { label: t("Female"), value: "female" },
-  ];
 
   return (
     <Modal
