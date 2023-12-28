@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
   },
   TextView: {
     backgroundColor: "#ffffff",
-    padding: hp(2),
-    borderRadius: 6,
+    padding: hp(1),
+    borderRadius: 2,
     borderColor: "black",
     backgroundColor: "#ffffff29",
     shadowColor: "#000000", // Gölgenin rengini burada belirleyebilirsiniz
