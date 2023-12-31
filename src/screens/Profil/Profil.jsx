@@ -62,13 +62,17 @@ export default function Profil() {
     closeModal();
   };
 
-  const Regender = t(`${user.gender}`);
+  if (user?.gender) {
+    var Regender = t(`${user?.gender}`);
+    console.log(Regender);
+  } else {
+    Regender;
+    console.log(Regender);
+  }
 
   const onInputChange = (field, value) => {
     setModalForm((prevForm) => ({ ...prevForm, [field]: value }));
   };
-
-  
 
   return (
     <View>
