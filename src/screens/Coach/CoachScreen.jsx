@@ -227,6 +227,7 @@ const CoachScreen = () => {
         data={fitness}
         workoutCompleted={route.params}
       /> */}
+      <View style={{ marginBottom: hp(10) }} />
     </ScrollView>
   );
 };

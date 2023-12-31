@@ -3,7 +3,7 @@ export default [
     id: "0",
     image: require("./fitnessImages/fullbody2.png"),
     name: "FULL BODY BEGINNER",
-    timing: [18, 25],
+    timing: [9, 14],
     description: "Beginner",
     excersises: [
       {
@@ -54,72 +54,72 @@ export default [
         name: "STANDING CALF RAISE",
         sets: 25,
       },
-      {
-        id: "106",
-        image: require("./lowerBody/wall-squat-isometric.gif"),
-        name: "WALL SQUAD ISOMETRIC",
-        sets: 5,
-      },
-      {
-        id: "103",
-        image: require("./lowerBody/standing-calf-raise.gif"),
-        name: "STANDING CALF RAISE",
-        sets: 25,
-      },
-      {
-        id: "111",
-        image: require("./lowerBody/wall-squat-isometric.gif"),
-        name: "WALL SQUAD ISOMETRIC",
-        sets: 5,
-      },
+      // {
+      //   id: "106",
+      //   image: require("./lowerBody/wall-squat-isometric.gif"),
+      //   name: "WALL SQUAD ISOMETRIC",
+      //   sets: 5,
+      // },
+      // {
+      //   id: "103",
+      //   image: require("./lowerBody/standing-calf-raise.gif"),
+      //   name: "STANDING CALF RAISE",
+      //   sets: 25,
+      // },
+      // {
+      //   id: "111",
+      //   image: require("./lowerBody/wall-squat-isometric.gif"),
+      //   name: "WALL SQUAD ISOMETRIC",
+      //   sets: 5,
+      // },
       {
         id: "104",
         image: require("./lowerBody/standing-calf-raise.gif"),
         name: "STANDING CALF RAISE",
-        sets: 25,
+        sets: 30,
       },
-      {
-        id: "108",
-        image: require("./lowerBody/wall-squat-isometric.gif"),
-        name: "WALL SQUAD ISOMETRIC",
-        sets: 5,
-      },
-      {
-        id: "105",
-        image: require("./lowerBody/standing-calf-raise.gif"),
-        name: "STANDING CALF RAISE",
-        sets: 25,
-      },
-      {
-        id: "106",
-        image: require("./lowerBody/wall-squat-isometric.gif"),
-        name: "WALL SQUAD ISOMETRIC",
-        sets: 5,
-      },
-      {
-        id: "90",
-        image: require("./abs/abs.gif"),
-        name: "SIT UPS",
-        sets: 10,
-      },
-      {
-        id: "107",
-        image: require("./abs/abs.gif"),
-        name: "SIT UPS",
-        sets: 10,
-      },
+      // {
+      //   id: "108",
+      //   image: require("./lowerBody/wall-squat-isometric.gif"),
+      //   name: "WALL SQUAD ISOMETRIC",
+      //   sets: 5,
+      // },
+      // {
+      //   id: "105",
+      //   image: require("./lowerBody/standing-calf-raise.gif"),
+      //   name: "STANDING CALF RAISE",
+      //   sets: 25,
+      // },
+      // {
+      //   id: "106",
+      //   image: require("./lowerBody/wall-squat-isometric.gif"),
+      //   name: "WALL SQUAD ISOMETRIC",
+      //   sets: 5,
+      // },
+      // {
+      //   id: "90",
+      //   image: require("./abs/abs.gif"),
+      //   name: "SIT UPS",
+      //   sets: 10,
+      // },
+      // {
+      //   id: "107",
+      //   image: require("./abs/abs.gif"),
+      //   name: "SIT UPS",
+      //   sets: 10,
+      // },
       // {
       //   id: "12",
       //   image: require("./DIAMOND_PUSHUP_MOTIFIED.gif"),
       //   name: "DIAMOND PUSH UPS",
       //   sets: 10,
       // },
-      {
-        id: "14",
-        image: require("./Cobra.gif"),
-        name: "COBRA STRETCH",
-        sets: 10,
-      },
+      // {
+      //   id: "14",
+      //   image: require("./Cobra.gif"),
+      //   name: "COBRA STRETCH",
+      //   sets: 10,
+      // },
       // {
       //   id: "15",
       //   image: require("./double-knee-to-chest-stretch.gif"),
@@ -196,7 +196,7 @@ export default [
     id: "2",
     image: require("./fitnessImages/armarm.jpg"),
     name: "ARM BEGINNER",
-    timing: [9, 15],
+    timing: [8, 14],
     description: "Beginner",
     excersises: [
       {
@@ -241,13 +241,12 @@ export default [
         name: "PUSH-UPS",
         sets: 10,
       },
-
-      {
-        id: "75",
-        image: require("./inchworm.gif"),
-        name: "INCH WORMS",
-        sets: 5,
-      },
+      // {
+      //   id: "75",
+      //   image: require("./inchworm.gif"),
+      //   name: "INCH WORMS",
+      //   sets: 5,
+      // },
       {
         id: "76",
         image: require("./tricep-kick-back.gif"),

@@ -3,7 +3,7 @@ export default [
     id: "0",
     image: require("./fitnessImages/fullBody.jpg"),
     name: "FULL BODY SEMI-BEGINNER",
-    timing: [10, 13],
+    timing: [8, 11],
     description: "Beginner",
     excersises: [
       {
@@ -54,24 +54,24 @@ export default [
         name: "STANDING CALF RAISE",
         sets: 25,
       },
-      {
-        id: "92",
-        image: require("./f4b0f3093fcadd64968e4c46d1767b50.gif"),
-        name: "HEEL TOUCH",
-        sets: 20,
-      },
+      // {
+      //   id: "92",
+      //   image: require("./f4b0f3093fcadd64968e4c46d1767b50.gif"),
+      //   name: "HEEL TOUCH",
+      //   sets: 20,
+      // },
       // {
       //   id: "12",
       //   image: require("./DIAMOND_PUSHUP_MOTIFIED.gif"),
       //   name: "DIAMOND PUSH UPS",
       //   sets: 10,
       // },
-      {
-        id: "14",
-        image: require("./Cobra.gif"),
-        name: "COBRA STRETCH",
-        sets: 10,
-      },
+      // {
+      //   id: "14",
+      //   image: require("./Cobra.gif"),
+      //   name: "COBRA STRETCH",
+      //   sets: 10,
+      // },
       // {
       //   id: "15",
       //   image: require("./double-knee-to-chest-stretch.gif"),
@@ -143,7 +143,7 @@ export default [
     id: "2",
     image: require("./fitnessImages/Arm.jpg"),
     name: "ARM SEMI-BEGINNER",
-    timing: [7, 10],
+    timing: [6, 8],
     description: "Beginner",
     excersises: [
       {
@@ -182,12 +182,12 @@ export default [
         name: "PUSH-UPS",
         sets: 6,
       },
-      {
-        id: "75",
-        image: require("./inchworm.gif"),
-        name: "INCH WORMS",
-        sets: 5,
-      },
+      // {
+      //   id: "75",
+      //   image: require("./inchworm.gif"),
+      //   name: "INCH WORMS",
+      //   sets: 5,
+      // },
       {
         id: "76",
         image: require("./tricep-kick-back.gif"),
@@ -200,7 +200,7 @@ export default [
     id: "3",
     image: require("./fitnessImages/Chest.jpg"),
     name: "CHEST SEMI-BEGINNER",
-    timing: [6, 8],
+    timing: [5, 7],
     description: "Beginner",
     excersises: [
       {
@@ -246,12 +246,12 @@ export default [
       //   name: "PUSH-UP & ROTATION",
       //   sets: 6,
       // },
-      {
-        id: "26",
-        image: require("./burpess.gif"),
-        name: "BURPEES",
-        sets: 6,
-      },
+      // {
+      //   id: "26",
+      //   image: require("./burpess.gif"),
+      //   name: "BURPEES",
+      //   sets: 6,
+      // },
     ],
   },
 ];
