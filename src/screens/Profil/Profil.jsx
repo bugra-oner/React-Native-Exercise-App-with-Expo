@@ -64,10 +64,6 @@ export default function Profil() {
 
   if (user?.gender) {
     var Regender = t(`${user?.gender}`);
-    console.log(Regender);
-  } else {
-    Regender;
-    console.log(Regender);
   }
 
   const onInputChange = (field, value) => {
