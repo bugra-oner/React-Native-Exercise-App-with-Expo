@@ -15,6 +15,7 @@ import FlashMessage from "react-native-flash-message";
 import { FitnessContext } from "./src/Context";
 
 export default function App() {
+  //App File
   const isLanguageLoaded = useSetLanguage();
 
   if (!isLanguageLoaded) {
