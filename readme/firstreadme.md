@@ -1,3 +1,13 @@
+Note: The most important part of coding is problem-solving, researching, and practicing. If you encounter an error, search the internet during the installation. I'll provide you with links assuming you have no prior knowledge, and you can learn components by reading the documentation for React Native and React Native Expo on these provided links.
+
+Before starting the project, read the files that start with .md at the end of the sample readme. 
+
+secondReadme.md(All)
+installation.md(Recommended start-up you can use a suitable start-up option for yourself)
+note.md(Those who have never known coding)
+
+ 
+ 
  !! Hello React Native developers and enthusiasts!  is excited to present a sports app project featuring a splash screen, multilingual support, and a swift transition from beginner to advanced levels. This ready project is designed to provide a quick transition for those familiar with React Native fundamentals, assuming basic knowledge, and does not include backend connections or APIs.
 
 🚀 Swift Transition from Beginner to Advanced:
