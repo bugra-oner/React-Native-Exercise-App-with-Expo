@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 
+//Context
 const FitnessItems = createContext();
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
