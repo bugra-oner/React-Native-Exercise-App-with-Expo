@@ -25,9 +25,8 @@ Read this first : secondreadme.
   4. Start the Project
 After installing dependencies, use the following command to start the project:
 
-bash
-Copy code
-expo start
+
+ npx expo start
 
 5. Scan the QR Code
 After starting the project, you'll see a QR code in your browser.
