@@ -1,3 +1,10 @@
+The reading order should be as follows
+first readme
+second readme
+installation
+note
+starting
+
 Note: The most important part of coding is problem-solving, researching, and practicing. If you encounter an error, search the internet during the installation. I'll provide you with links assuming you have no prior knowledge, and you can learn components by reading the documentation for React Native and React Native Expo on these provided links.
 
 Before starting the project, read the files that start with .md at the end of the sample readme. 

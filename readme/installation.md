@@ -1,3 +1,10 @@
+The reading order should be as follows
+first readme
+second readme
+installation
+note
+starting
+
 ## Getting Started
 
 To run the project, follow these steps.
@@ -35,5 +42,10 @@ Open Expo Go and scan the QR code from your browser to view the project.
 Usage
 Basic usage instructions for the application can be included here. This may cover Expo CLI usage, in-app navigation, and fundamental React Native Expo components.
 
+If you want, you can also launch it in the emulator.
 
+ npx expo start > npx expo start  > select expo go > press a open android
+
+
+If you have any problems with the installation, please email boletroyapps@gmail.com
 

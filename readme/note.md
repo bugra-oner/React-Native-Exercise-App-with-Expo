@@ -1,3 +1,10 @@
+The reading order should be as follows
+first readme
+second readme
+installation
+note
+starting
+
 Note: The most important part of coding is problem-solving, researching, and practicing. 
 If you encounter an error, search the internet during the installation.
  I'll provide you with links assuming you have no prior knowledge, and you can learn components by reading the documentation for React Native and React Native Expo on these provided links.
@@ -14,3 +21,6 @@ This is a react-native cli, where it is used for a react-native cli instead of e
 
 We use expo
  https://docs.expo.dev/ 
+
+
+ 

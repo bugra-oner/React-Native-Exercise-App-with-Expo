@@ -1,3 +1,10 @@
+The reading order should be as follows
+1- first readme
+2-second readme
+3-installation
+4-note
+5-starting
+
 First of all, before starting this project, 
 learn how to start a project with react-native expo yourself. 
 Go to the website and create an application with react-native expo independent of this project.
