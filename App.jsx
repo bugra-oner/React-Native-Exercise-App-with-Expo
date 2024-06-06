@@ -11,7 +11,7 @@ import { I18nextProvider } from "react-i18next";
 import i18n, { useSetLanguage } from "./src/i18n/i18n";
 import FlashMessage from "react-native-flash-message";
 
-// Context
+// Context //
 import { FitnessContext } from "./src/Context";
 
 export default function App() {
