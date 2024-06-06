@@ -16,7 +16,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "",
+      "package": "com.yourcompany.yourappname", // switch to expo go 
       "versionCode": 15,
       "icon": "./assets/images/icon.png"
     },
