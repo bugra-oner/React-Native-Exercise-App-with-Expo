@@ -1,9 +1,9 @@
-<p align="center" >
+<p>
  <h3>Home Page</h3>
-  <img width="240" height="500" src="/images/Homepage.png">
-  <img width="240" height="500" src="/images/HomePageMiddle.png">
-  <img width="240" height="500" src="/images/HomepageBottom.png">
-  <img width="240" height="500" src="/images/5.png">
+  <img align="center"width="240" height="500" src="/images/Homepage.png">
+  <img align="center"width="240" height="500" src="/images/HomePageMiddle.png">
+  <img align="center"width="240" height="500" src="/images/HomepageBottom.png">
+  <img align="center"width="240" height="500" src="/images/5.png">
 
  <h3>Coach</h3>
 
