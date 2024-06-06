@@ -1,4 +1,7 @@
+
+const exampleImage = require("./pushup.gif")
 export default [
+
   {
     id: "0",
     image: require("./fitnessImages/fullbody3.png"),
@@ -14,67 +17,67 @@ export default [
       // },
       {
         id: "20",
-        image: require("./decline-pushups.gif"),
+        image: exampleImage,
         name: "DECLINE PUSH-UPS",
         sets: 12,
       },
       {
         id: "11",
-        image: require("./incline.gif"),
+        image: exampleImage,
         name: "INCLINE PUSH-UPS",
         sets: 8,
       },
       {
         id: "110",
-        image: require("./pushup.gif"),
+        image: exampleImage,
         name: "PUSH-UPS",
         sets: 10,
       },
       {
         id: "120",
-        image: require("./incline.gif"),
+        image: exampleImage,
         name: "INCLINE PUSH-UPS",
         sets: 10,
       },
       {
         id: "13",
-        image: require("./wide-arm-push-up.gif"),
+        image: exampleImage,
         name: "WIDE ARM PUSH-UPS",
         sets: 10,
       },
       {
         id: "100",
-        image: require("./pushup.gif"),
+        image: exampleImage,
         name: "PUSH-UPS",
         sets: 10,
       },
       {
         id: "101",
-        image: require("./lowerBody/standing-calf-raise.gif"),
+        image: exampleImage,
         name: "STANDING CALF RAISE",
         sets: 25,
       },
       {
         id: "106",
-        image: require("./lowerBody/wall-squat-isometric.gif"),
+        image: exampleImage,
         name: "WALL SQUAD ISOMETRIC",
         sets: 8,
       },
       {
         id: "103",
-        image: require("./lowerBody/standing-calf-raise.gif"),
+        image: exampleImage,
         name: "STANDING CALF RAISE",
         sets: 30,
       },
       {
         id: "111",
-        image: require("./lowerBody/wall-squat-isometric.gif"),
+        image: exampleImage,
         name: "WALL SQUAD ISOMETRIC",
         sets: 10,
       },
       {
         id: "104",
-        image: require("./lowerBody/standing-calf-raise.gif"),
+        image:exampleImage,
         name: "STANDING CALF RAISE",
         sets: 35,
       },

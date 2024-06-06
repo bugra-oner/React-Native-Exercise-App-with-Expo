@@ -48,11 +48,11 @@ const CoachScreen = () => {
   const beginnerImage = require("../../assets/cards/2.jpg");
   const romanHuman = require("../../assets/cards/basicHuman.jpg");
   // Image Midlevel
-  // const beginnerMidImage = require("../../assets/cards/vikingSoldier.jpg");
-  // const advancedMidLevel = require("../../assets/cards/midLevel.jpg");
-  // const midLevel = require("../../assets/cards/intermade.jpg");
-  // const image = require("../../assets/zeus.jpg");
-  // const hard = require("../../assets/cards/hard.jpg");
+  const beginnerMidImage = require("../../assets/cards/vikingSoldier.jpg");
+  const advancedMidLevel = require("../../assets/cards/midLevel.jpg");
+  const midLevel = require("../../assets/cards/intermade.jpg");
+  const image = require("../../assets/zeus.jpg");
+  const hard = require("../../assets/cards/hard.jpg");
 
   const handleFlashMessage = async (
     firstTitle = "DevelopmentInProgressTitle",
@@ -143,9 +143,7 @@ const CoachScreen = () => {
         data={advancedBeginner}
         workoutCompleted={route.params}
       />
-      {/* Advanced Beginner's finished*/}
 
-      {/* Intermediate  Beginner
       <StatsImage
         colorsZero={"#71503c"}
         colorsOne={"#dfdcdc"}
@@ -161,9 +159,9 @@ const CoachScreen = () => {
         data={IntermediateBeginner}
         workoutCompleted={route.params}
       />
-      */}
 
-      {/* Intermediate MidLevel 
+
+      {/* Intermediate MidLevel */}
       <StatsImage imageSource={image} />
       <FitnessCards
         difficulty={3}
@@ -171,8 +169,8 @@ const CoachScreen = () => {
         data={Intermediate}
         workoutCompleted={route.params}
       />
-      */}
-      {/* Mid level Advanced
+
+
       <StatsImage
         colorsZero={"#71503c"}
         colorsOne={"#dfdcdc"}
@@ -188,9 +186,9 @@ const CoachScreen = () => {
         data={IntermediateAdvanced}
         workoutCompleted={route.params}
       />
-       */}
 
-      {/*Mid Level Finished 
+
+      {/*Mid Level Finished  */}
 
       <StatsImage
         colorsZero={"#7a8288"}
@@ -207,12 +205,12 @@ const CoachScreen = () => {
         data={IntermediateBeginner}
         workoutCompleted={route.params}
       />
-      */}
+
 
       {/* Intermediate Finished */}
 
       {/* Intermediate Advanced */}
-      {/* <StatsImage
+      <StatsImage
         colorsZero={"#000000"}
         colorsOne={"#fbcea3"}
         colorsTwo={"#000000"}
@@ -226,7 +224,7 @@ const CoachScreen = () => {
         backgroundColor={"#33343d"}
         data={fitness}
         workoutCompleted={route.params}
-      /> */}
+      />
       <View style={{ marginBottom: hp(10) }} />
     </ScrollView>
   );
