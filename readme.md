@@ -1,78 +1,97 @@
-<p align="center">
-  <img width="250" height="250" src="https://www.yazilimturkiye.com/wp-content/uploads/2021/06/yenilogo.jpg">
-</p>
+<p align="center" >
+ <h3>Home Page</h3>
+  <img width="240" height="500" src="/images/Homepage.png">
+  <img width="240" height="500" src="/images/HomePageMiddle.png">
+  <img width="240" height="500" src="/images/HomepageBottom.png">
+  <img width="240" height="500" src="/images/5.png">
 
-<p align="center">
-  <img width="255" height="500" src="/images/Homepage.png">
-  <img width="250" height="500" src="/images/HomePageMiddle.png">
-  <img width="250" height="500" src="/images/HomepageBottom.png">
+ <h3>Coach</h3>
+
+  <img width="240" height="500" src="/images/Coach.png">
+  <img width="240" height="500" src="/images/Coach2.png">
+  <img width="240" height="500" src="/images/Coach3.png">
+  <img width="240" height="500" src="/images/Coach4.png">
+  <img width="240" height="500" src="/images/2.png">
+  <img width="240" height="500" src="/images/3.png">
+  <img width="240" height="500" src="/images/4.png">
+
+  <h3>Discover</h3>
+
+  <img width="240" height="500" src="/images/Discover.png">
+  <h3>Health</h3>
+  <img width="240" height="500" src="/images/Health.png">
+  <br>
   
-  <img width="250" height="500" src="/images/Screenshot_1717704860.png">
-  <img width="250" height="500" src="/images/Screenshot_1717704860.png">
-
-
+  <img width="240" height="500" src="/images/1.png">
+  
+  and more ...
 </p>
-
 
 # React Native Exercise App with Expo
 
-Bu proje, kullanıcıların egzersiz planlarını oluşturup takip edebileceği bir React Native uygulamasıdır. Expo kullanılarak geliştirilmiştir.
+This project is a React Native application that allows users to create and track their exercise plans. It is developed using Expo.
 
-## Özellikler
+## Features
 
-- **Egzersiz Planları**: KEgzersiz Planı Detayı: Seçilen bir egzersiz planının detaylarının görüntülendiği ekran
-- **Aktivite Geçmişi**: Zorluğa göre artan seviye egzersizleri ve seçilebilen zorluğa göre antremanlar.
-- **Farklı Egzersiz Türleri**: Çeşitli egzersiz türleri ekleyip yönetebilirsiniz.
-- **Kişisel Hedefler**: Kullanıcılar, kişisel egzersiz hedeflerini belirleyip takip edebilirler.
-- **Koç ekranı**: Koç ekranı ile birlikte egzersiz gifi ile yapacağınız egzersizi görebilirsiniz.
+- **Exercise Plans**: Create and edit exercise plans.
+- **Activity History**: Track your activity history with various difficulty levels and selectable workouts.
+- **Different Exercise Types**: Add and manage various types of exercises.
+- **Personal Goals**: Set and track personal exercise goals.
+- **Coach Screen**: View exercise GIFs to guide your workouts on the coach screen.
 
+## Installation and Running
 
-## Kurulum ve Çalıştırma
+To run the project locally, follow these steps:
 
-Projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları takip edebilirsiniz:
-
-1. Bu depoyu klonlayın:
+1. Clone this repository:
     ```bash
     git clone https://github.com/bugra-oner/React-Native-Exercise-App-with-Expo.git
     cd React-Native-Exercise-App-with-Expo
     ```
 
-2. Gerekli bağımlılıkları yükleyin:
+2. Install the necessary dependencies:
     ```bash
     npm install
     ```
 
-3. Uygulamayı çalıştırın:
+3. Start the application:
     ```bash
     expo start
     ```
 
-4. **Expo Go Kullanımı**: Uygulamayı Expo Go kullanarak çalıştırabilirsiniz. Expo Go uygulamasını mobil cihazınıza yükleyin ve QR kodunu tarayın.
+4. **Using Expo Go**: You can run the application using Expo Go. Install the Expo Go app on your mobile device and scan the QR code.
 
-## Kullanım
+## Usage
 
-- **Ana Ekran**: Mevcut egzersiz planlarınızı görüntüleyin.
-- **Yeni Egzersiz Planı Ekleme**: `Yeni Plan Ekle` butonuna tıklayarak yeni egzersiz planları oluşturun.
-- **Geçmiş**: Aktivite geçmişinizi görüntüleyin.
-- **Hedefler**: Kişisel hedeflerinizi belirleyin ve takip edin.
+- **Home Screen**: View your existing exercise plans.
+- **Add New Exercise Plan**: Click the `Add New Plan` button to create new exercise plans.
+- **History**: View your activity history.
+- **Goals**: Set and track your personal goals.
 
-## Dil Ayarları ve i18n Desteği
+## Language Settings and i18n Support
 
-Bu uygulama, i18n (uluslararasılaştırma) desteği sağlar ve üç dilde kullanılabilir:
+This application provides i18n (internationalization) support and can be used in three languages:
 
-- İngilizce (varsayılan dil)
-- İspanyolca
-- Türkçe
+- English (default language)
+- Spanish
+- Turkish
 
-## Proje Yapısı
-
+## Project Structure
 
 ```plaintext
 src/
-├── assets/         # Uygulama varlıkları (resimler, ikonlar)
-├── components/     # Yeniden kullanılabilir bileşenler
-├── navigation/     # Navigasyon ayarları ve dosyaları
-├── screens/        # Uygulama ekranları
-├── services/       # API servisleri ve veri işlemleri
-└── utils/          # Yardımcı fonksiyonlar ve sabitler
+├── assets/         # Application assets (images, icons)
+├── components/     # Reusable components
+├── navigation/     # Navigation settings and files
+├── screens/        # Application screens
+├── services/       # API services and data handling
+└── utils/          # Utility functions and constants
+
+Key Files
+> App.jsx: The main file of the application.
+> src/navigation/: In-app navigation settings.
+> src/screens/: Different screens and related code.
+> src/components/: Reusable React components.
+> src/services/: Services for API calls and data management.
+> src/utils/i18n.js: Language settings and translation files.
 
